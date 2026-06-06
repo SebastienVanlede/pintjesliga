@@ -1,3 +1,5 @@
+import { createClient, SupabaseClient } from '@supabase/supabase-js';
+
 export interface LeaderboardEntry {
   id: string;
   created_at: string;
@@ -12,15 +14,16 @@ export interface LeaderboardEntry {
   unique_teams: number;
 }
 
-export function getSupabaseClient() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-  if (!url || !key) return null;
+const url  = process.env.NEXT_PUBLIC_SUPABASE_URL  ?? '';
+const key  = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? '';
 
-  // Dynamic import to avoid SSG issues
-  const { createClient } = require('@supabase/supabase-js');
-  return createClient(url, key);
+export const supabaseReady = !!(url && key);
+
+// Singleton — herbruikt dezelfde client per server instantie
+let _client: SupabaseClient | null = null;
+
+export function getSupabaseClient(): SupabaseClient | null {
+  if (!supabaseReady) return null;
+  if (!_client) _client = createClient(url, key);
+  return _client;
 }
-
-export const supabaseReady =
-  !!(process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
