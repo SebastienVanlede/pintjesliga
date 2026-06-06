@@ -5,9 +5,9 @@ import { useGameStore } from '@/lib/store';
 
 const STEPS = [
   { label: 'Formatie', path: '/' },
-  { label: 'Draft', path: '/draft' },
-  { label: 'XI', path: '/xi' },
-  { label: 'Seizoen', path: '/simulate' },
+  { label: 'Draft',    path: '/draft' },
+  { label: 'XI',       path: '/xi' },
+  { label: 'Seizoen',  path: '/simulate' },
 ];
 
 function currentStepIndex(pathname: string): number {
@@ -35,92 +35,80 @@ export default function Nav() {
       style={{ backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)' }}
     >
       {/* Belgian stripe */}
-      <div style={{ display: 'flex', height: 3 }}>
-        <div style={{ flex: 1, background: '#1A1A1A' }} />
-        <div style={{ flex: 1, background: 'var(--gold)' }} />
-        <div style={{ flex: 1, background: 'var(--red)' }} />
+      <div className="flex h-[3px]">
+        <div className="flex-1" style={{ background: '#1A1A1A' }} />
+        <div className="flex-1" style={{ background: 'var(--gold)' }} />
+        <div className="flex-1" style={{ background: 'var(--red)' }} />
       </div>
 
       {/* Nav bar */}
       <div
+        className="flex items-center justify-between px-4 sm:px-6"
         style={{
-          background: 'var(--nav-bg)',
+          background: 'rgba(7,7,10,0.88)',
           borderBottom: '1px solid var(--border)',
           height: 52,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: '0 24px',
         }}
       >
         {/* Logo */}
-        <Link href="/" style={{ textDecoration: 'none' }}>
-          <span
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: '1.25rem',
-              letterSpacing: '0.1em',
-              color: 'var(--gold)',
-            }}
-          >
+        <Link href="/" style={{ textDecoration: 'none', flexShrink: 0 }}>
+          <span style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: '1.15rem',
+            letterSpacing: '0.1em',
+            color: 'var(--gold)',
+          }}>
             PINTJES<span style={{ color: 'var(--text)' }}>LIGA</span>
           </span>
         </Link>
 
-        {/* Step progress */}
-        <nav style={{ display: 'flex', alignItems: 'center', gap: 0 }}>
+        {/* Step progress — center */}
+        <nav className="flex items-center">
           {STEPS.map((step, i) => {
-            const isActive = currentStep === i;
-            const isDone = currentStep > i;
-            const canNavigate = stepReachable[i];
+            const isActive  = currentStep === i;
+            const isDone    = currentStep > i;
+            const canNav    = stepReachable[i];
 
             return (
-              <div key={step.path} style={{ display: 'flex', alignItems: 'center' }}>
+              <div key={step.path} className="flex items-center">
+                {/* Connector line */}
                 {i > 0 && (
-                  <div
-                    style={{
-                      width: 24,
-                      height: 1,
-                      background: isDone ? 'var(--gold-dim)' : 'var(--border)',
-                      margin: '0 4px',
-                    }}
-                  />
+                  <div className="w-3 sm:w-5 h-px mx-0.5 sm:mx-1"
+                    style={{ background: isDone ? 'var(--gold-dim)' : 'var(--border)' }} />
                 )}
+
                 <Link
-                  href={canNavigate ? step.path : '#'}
+                  href={canNav ? step.path : '#'}
+                  className="flex items-center gap-1 sm:gap-1.5 rounded"
                   style={{
                     textDecoration: 'none',
-                    padding: '4px 10px',
-                    borderRadius: 4,
+                    padding: isActive ? '3px 6px' : '3px 4px',
                     background: isActive ? 'var(--gold-glow)' : 'transparent',
                     border: isActive ? '1px solid var(--gold-dim)' : '1px solid transparent',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 6,
-                    cursor: canNavigate ? 'pointer' : 'default',
+                    cursor: canNav ? 'pointer' : 'default',
                     transition: 'all 0.15s',
                   }}
                 >
+                  {/* Circle */}
                   <span
+                    className="flex items-center justify-center flex-shrink-0"
                     style={{
-                      width: 18,
-                      height: 18,
+                      width: 18, height: 18,
                       borderRadius: '50%',
                       background: isActive ? 'var(--gold)' : isDone ? 'var(--gold-dim)' : 'var(--border-2)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: '0.6rem',
+                      fontSize: '0.58rem',
                       fontWeight: 700,
                       color: isActive || isDone ? '#07070A' : 'var(--muted)',
-                      flexShrink: 0,
                     }}
                   >
                     {isDone ? '✓' : i + 1}
                   </span>
+
+                  {/* Label — verborgen op mobiel */}
                   <span
+                    className="hidden sm:inline"
                     style={{
-                      fontSize: '0.7rem',
+                      fontSize: '0.65rem',
                       letterSpacing: '0.06em',
                       textTransform: 'uppercase',
                       color: isActive ? 'var(--gold)' : isDone ? 'var(--text-2)' : 'var(--muted)',
@@ -135,37 +123,38 @@ export default function Nav() {
           })}
         </nav>
 
-        {/* Right actions */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        {/* Rechts: leaderboard + theme */}
+        <div className="flex items-center gap-1.5 flex-shrink-0">
           <Link
             href="/leaderboard"
+            className="flex items-center gap-1 rounded transition-all"
             style={{
               textDecoration: 'none',
-              fontSize: '0.65rem',
-              letterSpacing: '0.1em',
-              textTransform: 'uppercase',
-              color: pathname === '/leaderboard' ? 'var(--gold)' : 'var(--muted)',
-              padding: '4px 8px',
+              padding: '4px 7px',
               border: '1px solid var(--border)',
               borderRadius: 4,
-              transition: 'all 0.15s',
+              color: pathname === '/leaderboard' ? 'var(--gold)' : 'var(--muted)',
             }}
           >
-            🏆 Board
+            <span>🏆</span>
+            {/* Text — verborgen op mobiel */}
+            <span className="hidden sm:inline" style={{ fontSize: '0.6rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
+              Board
+            </span>
           </Link>
+
           <button
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            title={theme === 'dark' ? 'Schakel naar licht' : 'Schakel naar donker'}
+            title={theme === 'dark' ? 'Licht' : 'Donker'}
             style={{
               background: 'transparent',
               border: '1px solid var(--border)',
               borderRadius: 4,
-              padding: '4px 8px',
+              padding: '4px 7px',
               cursor: 'pointer',
-              fontSize: '0.9rem',
+              fontSize: '0.85rem',
               lineHeight: 1,
               color: 'var(--muted)',
-              transition: 'all 0.15s',
             }}
           >
             {theme === 'dark' ? '☀️' : '🌙'}
