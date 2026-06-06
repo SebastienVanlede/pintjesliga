@@ -52,6 +52,7 @@ export interface Player {
   id: string;
   name: string;
   position: Position;
+  alternativePositions?: Position[];
   nationality: string;
   age: number;
   appearances: number;
@@ -79,6 +80,10 @@ export interface Team {
   primaryColor: string;
   secondaryColor: string;
   seasons: string[];
+}
+
+export function playerPositions(p: Player): Position[] {
+  return [p.position, ...(p.alternativePositions ?? [])];
 }
 
 export interface PickedPlayer {

@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGameStore } from '@/lib/store';
 import { getAvailableRolls, loadSquad } from '@/lib/data';
-import { FORMATION_POSITIONS, Player, Squad, Team, PickedPlayer, Position } from '@/lib/types';
+import { FORMATION_POSITIONS, Player, Squad, Team, PickedPlayer, Position, playerPositions } from '@/lib/types';
 import FormationPitch from '@/components/FormationPitch';
 
 type Phase = 'idle' | 'spinning' | 'squad' | 'placing';
@@ -99,7 +99,7 @@ const pickedByIndex = Object.fromEntries(pickedPlayers.map((p) => [p.positionInd
       ? new Set(
           positions
             .map((pos, i) => ({ pos, i }))
-            .filter(({ pos, i }) => pos === selectedPlayer.position && !pickedByIndex[i])
+            .filter(({ pos, i }) => playerPositions(selectedPlayer).includes(pos) && !pickedByIndex[i])
             .map(({ i }) => i)
         )
       : new Set();
@@ -206,7 +206,7 @@ const pickedByIndex = Object.fromEntries(pickedPlayers.map((p) => [p.positionInd
                 <div className="flex flex-col gap-1.5 max-h-[420px] overflow-y-auto pr-1">
                   {[...roll.squad.players].sort((a, b) => b.overall - a.overall).map((player) => {
                     const alreadyPicked = pickedPlayerIds.has(player.id);
-                    const posFull = isPositionFull(player.position);
+                    const posFull = playerPositions(player).every(pos => isPositionFull(pos));
                     const disabled = alreadyPicked || posFull;
                     const disabledReason = alreadyPicked ? 'Al gekozen' : posFull ? 'Positie vol' : null;
                     return (
@@ -329,7 +329,7 @@ function PlayerRow({
         <div>
           <p className="text-sm font-medium" style={{ color: 'var(--text)' }}>{player.name}</p>
           <p className="text-xs" style={{ color: 'var(--muted)' }}>
-            {player.position} · {player.nationality} · {player.goals}D {player.assists}A
+            {playerPositions(player).join(' · ')} · {player.nationality} · {player.goals}D {player.assists}A
           </p>
         </div>
       </div>
