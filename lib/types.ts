@@ -124,10 +124,11 @@ export interface SimulatedPhase {
 
 export interface SimulatedSeason {
   regularSeason: SimulatedPhase;
-  po1: SimulatedPhase;        // Championship (top 6)
-  po2: SimulatedPhase;        // Europe (7-12)
+  po1: SimulatedPhase;          // Championship (top 6)
+  po2: SimulatedPhase;          // Europe (7-12)
   poRelegation: SimulatedPhase; // Relegation (13-16)
   champion: string;
-  europeanSpots: string[];    // top 4 from PO1
-  relegated: string[];        // bottom 2 from relegation PO
+  europeanSpots: string[];      // top 4 from PO1
+  relegated: string[];          // bottom 2 from relegation PO
+  directlyRelegate: string;     // 17th place — straight down, no playoff
 }

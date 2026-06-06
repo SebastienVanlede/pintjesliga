@@ -132,6 +132,10 @@ export default function SimulatePage() {
                     {t === 'Jouw XI' ? '⭐ Jouw XI' : t}
                   </p>
                 ))}
+                <p className="text-xs leading-tight mt-1 pt-1" style={{ color: sim.directlyRelegate === 'Jouw XI' ? 'var(--red)' : 'var(--muted)', borderTop: '1px solid rgba(196,30,58,0.2)' }}>
+                  <span style={{ fontSize: '0.6rem', opacity: 0.7 }}>Rechtstreeks: </span>
+                  {sim.directlyRelegate === 'Jouw XI' ? '⭐ Jouw XI' : sim.directlyRelegate}
+                </p>
               </div>
             </div>
           </div>
@@ -140,10 +144,14 @@ export default function SimulatePage() {
           <div className="rounded-lg px-4 py-3 text-sm"
             style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}>
             <span style={{ color: 'var(--muted)' }}>Jouw XI belandde in: </span>
-            <span style={{ color: 'var(--gold)', fontFamily: 'var(--font-display)', letterSpacing: '0.06em' }}>
+            <span style={{
+              color: sim.directlyRelegate === 'Jouw XI' ? 'var(--red)' : 'var(--gold)',
+              fontFamily: 'var(--font-display)', letterSpacing: '0.06em',
+            }}>
               {userInPO1 ? 'Championship Play-off (PO1)' :
                userInPO2 ? 'Europa Play-off (PO2)' :
-               userInRele ? 'Relegation Play-off' : ''}
+               userInRele ? 'Relegation Play-off' :
+               sim.directlyRelegate === 'Jouw XI' ? 'Rechtstreeks gedegradeerd (17e)' : ''}
             </span>
             {sim.champion === 'Jouw XI' && (
               <span style={{ color: 'var(--gold)' }}> · KAMPIOEN!</span>
@@ -183,7 +191,8 @@ export default function SimulatePage() {
                     </p>
                   )}
                   <StandingsTable rows={phase.standings} tab={tab.id}
-                    champion={sim.champion} relegated={sim.relegated} europeanSpots={sim.europeanSpots} />
+                    champion={sim.champion} relegated={sim.relegated}
+                    europeanSpots={sim.europeanSpots} directlyRelegate={sim.directlyRelegate} />
                   <div className="mt-4">
                     <MatchList matches={phase.matches} />
                   </div>
@@ -219,12 +228,13 @@ export default function SimulatePage() {
 
 // ─── Standings table ──────────────────────────────────────────────────────────
 
-function StandingsTable({ rows, tab, champion, relegated, europeanSpots }: {
+function StandingsTable({ rows, tab, champion, relegated, europeanSpots, directlyRelegate }: {
   rows: StandingRow[];
   tab: TabId;
   champion: string;
   relegated: string[];
   europeanSpots: string[];
+  directlyRelegate: string;
 }) {
   const showCarryover = tab !== 'regular' && rows.some(r => r.carryoverPoints !== undefined);
 
@@ -253,6 +263,7 @@ function StandingsTable({ rows, tab, champion, relegated, europeanSpots }: {
         const isUser = row.team === 'Jouw XI';
         const isChampion = tab === 'po1' && row.team === champion;
         const isRelegate = tab === 'relegation' && relegated.includes(row.team);
+        const isDirectRelegate = tab === 'regular' && row.team === directlyRelegate;
         const isEU = tab === 'po1' && europeanSpots.includes(row.team);
         const gd = row.goalsFor - row.goalsAgainst;
 
@@ -261,7 +272,7 @@ function StandingsTable({ rows, tab, champion, relegated, europeanSpots }: {
           : i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.015)';
 
         const leftBorderColor = isChampion ? 'var(--gold)'
-          : isRelegate ? 'var(--red)'
+          : isRelegate || isDirectRelegate ? 'var(--red)'
           : isEU ? '#1a3a6e'
           : 'transparent';
 

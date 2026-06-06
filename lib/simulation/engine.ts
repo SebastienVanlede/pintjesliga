@@ -143,13 +143,15 @@ export function simulateSeason(
   const regStandings = buildStandings(allTeams.map(t => t.name), regMatches);
 
   // ── Split into playoff groups ──────────────────────────────────────────────
-  const po1Names    = regStandings.slice(0, 6).map(r => r.team);
-  const po2Names    = regStandings.slice(6, 12).map(r => r.team);
-  const releNames   = regStandings.slice(12).map(r => r.team);
+  // 17 teams: top 6 → PO1, 7-12 → PO2, 13-16 → Relegation PO, 17th → direct relegation
+  const po1Names         = regStandings.slice(0, 6).map(r => r.team);
+  const po2Names         = regStandings.slice(6, 12).map(r => r.team);
+  const releNames        = regStandings.slice(12, 16).map(r => r.team); // exactly 4 teams
+  const directlyRelegate = regStandings[16]?.team ?? regStandings[regStandings.length - 1].team;
 
-  const po1Carry    = Object.fromEntries(regStandings.slice(0, 6).map(r  => [r.team, Math.ceil(r.points / 2)]));
-  const po2Carry    = Object.fromEntries(regStandings.slice(6, 12).map(r => [r.team, Math.ceil(r.points / 2)]));
-  const releCarry   = Object.fromEntries(regStandings.slice(12).map(r    => [r.team, r.points])); // full points
+  const po1Carry    = Object.fromEntries(regStandings.slice(0, 6).map(r   => [r.team, Math.ceil(r.points / 2)]));
+  const po2Carry    = Object.fromEntries(regStandings.slice(6, 12).map(r  => [r.team, Math.ceil(r.points / 2)]));
+  const releCarry   = Object.fromEntries(regStandings.slice(12, 16).map(r => [r.team, r.points])); // full points
 
   const po1Teams    = po1Names.map(n  => allTeams.find(t => t.name === n)!);
   const po2Teams    = po2Names.map(n  => allTeams.find(t => t.name === n)!);
@@ -170,17 +172,18 @@ export function simulateSeason(
   const relStandings = buildStandings(releNames, relMatches, releCarry);
 
   // ── Outcomes ───────────────────────────────────────────────────────────────
-  const champion       = po1Standings[0].team;
-  const europeanSpots  = po1Standings.slice(0, 4).map(r => r.team);
-  const relegated      = relStandings.slice(2).map(r => r.team);
+  const champion      = po1Standings[0].team;
+  const europeanSpots = po1Standings.slice(0, 4).map(r => r.team);
+  const relegated     = relStandings.slice(2).map(r => r.team); // bottom 2 of relegation PO
 
   return {
-    regularSeason:  { name: 'Regulier Seizoen',      matches: regMatches,  standings: regStandings },
-    po1:            { name: 'Championship Play-off',  matches: po1Matches,  standings: po1Standings },
-    po2:            { name: 'Europa Play-off',        matches: po2Matches,  standings: po2Standings },
-    poRelegation:   { name: 'Relegation Play-off',   matches: relMatches,  standings: relStandings },
+    regularSeason:  { name: 'Regulier Seizoen',     matches: regMatches,  standings: regStandings },
+    po1:            { name: 'Championship Play-off', matches: po1Matches,  standings: po1Standings },
+    po2:            { name: 'Europa Play-off',       matches: po2Matches,  standings: po2Standings },
+    poRelegation:   { name: 'Relegation Play-off',  matches: relMatches,  standings: relStandings },
     champion,
     europeanSpots,
     relegated,
+    directlyRelegate,
   };
 }
