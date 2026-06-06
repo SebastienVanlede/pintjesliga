@@ -461,9 +461,10 @@ function ResultsView({ sim, onReset, onBack }: {
 }) {
   const [activeTab, setActiveTab] = useState<TabId>('regular');
   const [matchesOpen, setMatchesOpen] = useState(false);
-  const { pickedPlayers, formation, teamName } = useGameStore();
+  const { pickedPlayers, formation, teamName, draftMode } = useGameStore();
   const myTeam = teamName.trim() || 'Mijn Droomelftal';
-  const score = calculateScore(pickedPlayers as PickedPlayer[], sim, myTeam);
+  const isBlind = draftMode === 'blind';
+  const score = calculateScore(pickedPlayers as PickedPlayer[], sim, myTeam, isBlind);
 
   const TABS: { id: TabId; label: string; sublabel: string }[] = [
     { id: 'regular',    label: 'Regulier',      sublabel: '30 speeldagen' },
@@ -1120,11 +1121,12 @@ function ScoreCard({ score, sim, formation }: { score: ScoreBreakdown; sim: Simu
         </div>
 
         {/* Breakdown */}
-        <div className="grid grid-cols-3 divide-x" style={{ borderColor: 'var(--border)' }}>
+        <div className={`grid divide-x ${score.isBlind ? 'grid-cols-4' : 'grid-cols-3'}`} style={{ borderColor: 'var(--border)' }}>
           {[
             { label: 'Resultaat', value: score.resultScore, color: 'var(--text)' },
             { label: 'Underdog', value: `+${score.underdogBonus}`, sub: `gem. ${score.avgOverall} OVR`, color: score.underdogBonus > 0 ? 'var(--gold)' : 'var(--muted)' },
             { label: 'Diversiteit', value: `+${score.diversityBonus}`, sub: `${score.uniqueTeams} clubs`, color: score.diversityBonus > 100 ? 'var(--gold)' : 'var(--text-2)' },
+            ...(score.isBlind ? [{ label: '🎭 Memory', value: `+${score.blindBonus}`, sub: '×1.15 bonus', color: 'var(--gold)' }] : []),
           ].map(({ label, value, sub, color }) => (
             <div key={label} className="flex flex-col items-center py-4 px-2 gap-0.5">
               <span className="label-xs">{label}</span>

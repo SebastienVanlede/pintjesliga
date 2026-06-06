@@ -1,13 +1,17 @@
 import { PickedPlayer, SimulatedSeason } from './types';
 
+export const BLIND_MULTIPLIER = 1.15; // 15% bonus voor From Memory modus
+
 export interface ScoreBreakdown {
   total: number;
   resultScore: number;
   underdogBonus: number;
   diversityBonus: number;
+  blindBonus: number;   // extra punten door blind-modus multiplier
   avgOverall: number;
   uniqueTeams: number;
   resultLabel: string;
+  isBlind: boolean;
 }
 
 export function getResultLabel(sim: SimulatedSeason, teamName: string): string {
@@ -39,11 +43,15 @@ export function getResultLabel(sim: SimulatedSeason, teamName: string): string {
 export function calculateScore(
   pickedPlayers: PickedPlayer[],
   sim: SimulatedSeason,
-  teamName: string
+  teamName: string,
+  blind = false
 ): ScoreBreakdown {
-  if (!pickedPlayers.length) return { total: 0, resultScore: 0, underdogBonus: 0, diversityBonus: 0, avgOverall: 0, uniqueTeams: 0, resultLabel: '' };
+  if (!pickedPlayers.length) return {
+    total: 0, resultScore: 0, underdogBonus: 0, diversityBonus: 0,
+    blindBonus: 0, avgOverall: 0, uniqueTeams: 0, resultLabel: '', isBlind: blind,
+  };
 
-  // Result score — uses actual team name from simulation
+  // Result score
   const isChampion = sim.champion === teamName;
   const po1Rank = sim.po1.standings.findIndex(r => r.team === teamName);
   const inPO2 = sim.po2.standings.some(r => r.team === teamName);
@@ -58,27 +66,33 @@ export function calculateScore(
   else if (po1Rank >= 0)  resultScore = 400;
   else if (inPO2)         resultScore = 300;
   else if (inRele) {
-    const releRank = sim.poRelegation.standings.findIndex(r => r.team === 'Jouw XI');
+    const releRank = sim.poRelegation.standings.findIndex(r => r.team === teamName);
     resultScore = releRank < 2 ? 150 : 50;
   } else if (directRele)  resultScore = 0;
 
-  // Underdog bonus: lager gem. overall = moeilijker gebouwd team = meer punten
+  // Underdog bonus
   const avgOverall = Math.round(pickedPlayers.reduce((s, p) => s + p.player.overall, 0) / pickedPlayers.length);
   const underdogBonus = Math.max(0, (75 - avgOverall) * 20);
 
-  // Diversity bonus: meer unieke team+seizoen combinaties = meer punten
+  // Diversity bonus
   const uniqueTeams = new Set(pickedPlayers.map(p => `${p.teamName}|${p.season}`)).size;
   const diversityBonus = uniqueTeams * 15;
 
-  const total = resultScore + underdogBonus + diversityBonus;
+  const baseTotal = resultScore + underdogBonus + diversityBonus;
+
+  // From Memory bonus: 25% extra
+  const blindBonus = blind ? Math.round(baseTotal * (BLIND_MULTIPLIER - 1)) : 0;
+  const total = baseTotal + blindBonus;
 
   return {
     total,
     resultScore,
     underdogBonus,
     diversityBonus,
+    blindBonus,
     avgOverall,
     uniqueTeams,
     resultLabel: getResultLabel(sim, teamName),
+    isBlind: blind,
   };
 }

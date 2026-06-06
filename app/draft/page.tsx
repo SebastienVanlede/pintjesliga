@@ -158,6 +158,7 @@ export default function DraftPage() {
           eligibleIndices={phase === 'placing' ? eligibleIndices : new Set()}
           onAssign={phase === 'placing' ? handleAssignPosition : undefined}
           size="md"
+          blind={blind}
         />
 
       </div>

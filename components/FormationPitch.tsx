@@ -11,6 +11,7 @@ interface Props {
   eligibleIndices?: Set<number>;
   onAssign?: (i: number) => void;
   size?: 'md' | 'lg';
+  blind?: boolean;
 }
 
 export default function FormationPitch({
@@ -19,6 +20,7 @@ export default function FormationPitch({
   eligibleIndices = new Set(),
   onAssign,
   size = 'md',
+  blind = false,
 }: Props) {
   const dots = FORMATION_DOTS[formation];
   const positions = FORMATION_POSITIONS[formation];
@@ -79,15 +81,17 @@ export default function FormationPitch({
                 fill={pick.teamPrimaryColor}
                 stroke="rgba(255,255,255,0.7)"
                 strokeWidth={1.8 * scale} />
-              <text x={cx} y={cy - 5 * scale} textAnchor="middle"
+              <text x={cx} y={blind ? cy + 2 * scale : cy - 5 * scale} textAnchor="middle"
                 fontSize={7 * scale} fill="white" fontWeight="700">
                 {pick.player.name.split(' ').pop()?.slice(0, 9)}
               </text>
-              <text x={cx} y={cy + 5 * scale} textAnchor="middle"
-                fontSize={8.5 * scale} fill="rgba(255,255,255,0.95)"
-                fontFamily="var(--font-display)">
-                {pick.player.overall}
-              </text>
+              {!blind && (
+                <text x={cx} y={cy + 5 * scale} textAnchor="middle"
+                  fontSize={8.5 * scale} fill="rgba(255,255,255,0.95)"
+                  fontFamily="var(--font-display)">
+                  {pick.player.overall}
+                </text>
+              )}
               <text x={cx} y={cy + 13 * scale} textAnchor="middle"
                 fontSize={5.5 * scale} fill="rgba(255,255,255,0.65)">
                 {pos}
