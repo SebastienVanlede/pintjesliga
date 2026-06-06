@@ -1,0 +1,24 @@
+{
+  "team": "Sporting Charleroi",
+  "teamId": "charleroi",
+  "season": "2021-22",
+  "year": 2021,
+  "players": [
+    {"id":"defourny-21","name":"Théo Defourny","position":"GK","nationality":"BEL","age":25,"appearances":26,"goals":0,"assists":0,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"descamps-21","name":"Nicolas Penneteau","position":"GK","nationality":"FRA","age":38,"appearances":10,"goals":0,"assists":0,"marketValue":200000,"internationalCaps":0,"awards":[],"overall":60},
+    {"id":"dessoleil-21","name":"Dorian Dessoleil","position":"CB","nationality":"BEL","age":29,"appearances":26,"goals":0,"assists":0,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"ousou-21","name":"Aiham Ousou","position":"CB","nationality":"SYR","age":24,"appearances":24,"goals":1,"assists":0,"marketValue":1000000,"internationalCaps":12,"awards":[],"overall":65},
+    {"id":"keita-21","name":"Steeve Mounié","position":"ST","nationality":"BEN","age":27,"appearances":24,"goals":9,"assists":3,"marketValue":3000000,"internationalCaps":25,"awards":[],"overall":69},
+    {"id":"morioka-21","name":"Ryota Morioka","position":"CM","alternativePositions":["CAM"],"nationality":"JPN","age":27,"appearances":26,"goals":3,"assists":6,"marketValue":2000000,"internationalCaps":28,"awards":[],"overall":70},
+    {"id":"gholizadeh-21","name":"Ali Gholizadeh","position":"LW","alternativePositions":["RW","CAM"],"nationality":"IRN","age":25,"appearances":24,"goals":4,"assists":5,"marketValue":2000000,"internationalCaps":22,"awards":[],"overall":69},
+    {"id":"nicholson-21","name":"Shamar Nicholson","position":"ST","nationality":"JAM","age":23,"appearances":22,"goals":8,"assists":2,"marketValue":2000000,"internationalCaps":10,"awards":[],"overall":68},
+    {"id":"ilaimaharitra-21","name":"Marco Ilaimaharitra","position":"CDM","alternativePositions":["CM"],"nationality":"MDG","age":28,"appearances":22,"goals":1,"assists":2,"marketValue":800000,"internationalCaps":15,"awards":[],"overall":65},
+    {"id":"bah-21","name":"Pol Bah","position":"LB","alternativePositions":["CB"],"nationality":"GUI","age":22,"appearances":20,"goals":0,"assists":1,"marketValue":600000,"internationalCaps":3,"awards":[],"overall":60},
+    {"id":"benchaib-21","name":"Amine Benchaib","position":"CM","nationality":"BEL","age":21,"appearances":18,"goals":1,"assists":2,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":61},
+    {"id":"selemani-21","name":"Faïz Selemani","position":"RW","alternativePositions":["ST"],"nationality":"COM","age":26,"appearances":18,"goals":3,"assists":3,"marketValue":700000,"internationalCaps":12,"awards":[],"overall":62},
+    {"id":"messaoudi-21","name":"Billel Messaoudi","position":"ST","alternativePositions":["LW"],"nationality":"ALG","age":26,"appearances":16,"goals":3,"assists":2,"marketValue":600000,"internationalCaps":3,"awards":[],"overall":62},
+    {"id":"diallo-21","name":"Modou Diallo","position":"RB","nationality":"SEN","age":26,"appearances":16,"goals":0,"assists":1,"marketValue":500000,"internationalCaps":5,"awards":[],"overall":60},
+    {"id":"lavallee-21b","name":"Steeven Willems","position":"LB","nationality":"BEL","age":28,"appearances":14,"goals":0,"assists":1,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":60},
+    {"id":"boukamir-21","name":"Mehdi Boukamir","position":"CB","nationality":"MAR","age":20,"appearances":10,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":58}
+  ]
+}

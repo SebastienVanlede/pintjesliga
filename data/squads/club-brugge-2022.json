@@ -1,0 +1,24 @@
+{
+  "team": "Club Brugge KV",
+  "teamId": "club-brugge",
+  "season": "2022-23",
+  "year": 2022,
+  "players": [
+    {"id":"simon-mignolet-22","name":"Simon Mignolet","position":"GK","nationality":"BEL","age":34,"appearances":32,"goals":0,"assists":0,"marketValue":2000000,"internationalCaps":78,"awards":[],"overall":77},
+    {"id":"nordin-jackers-22","name":"Nordin Jackers","position":"GK","nationality":"BEL","age":25,"appearances":4,"goals":0,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"brandon-mechele-22","name":"Brandon Mechele","position":"CB","nationality":"BEL","age":30,"appearances":32,"goals":2,"assists":1,"marketValue":4000000,"internationalCaps":8,"awards":[],"overall":73},
+    {"id":"jack-hendry-22","name":"Jack Hendry","position":"CB","nationality":"SCO","age":26,"appearances":26,"goals":1,"assists":0,"marketValue":3500000,"internationalCaps":18,"awards":[],"overall":70},
+    {"id":"tajon-buchanan-22","name":"Tajon Buchanan","position":"RB","alternativePositions":["LW","RM"],"nationality":"CAN","age":23,"appearances":28,"goals":3,"assists":7,"marketValue":8000000,"internationalCaps":20,"awards":[],"overall":75},
+    {"id":"kyriani-sabbe-22","name":"Kyriani Sabbe","position":"RB","alternativePositions":["RM"],"nationality":"BEL","age":21,"appearances":20,"goals":0,"assists":2,"marketValue":2500000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"bjorn-meijer-22","name":"Bjorn Meijer","position":"LB","nationality":"NED","age":21,"appearances":18,"goals":0,"assists":3,"marketValue":5000000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"casper-nielsen-22","name":"Casper Nielsen","position":"CDM","alternativePositions":["CM"],"nationality":"DEN","age":29,"appearances":30,"goals":2,"assists":6,"marketValue":3000000,"internationalCaps":2,"awards":[],"overall":73},
+    {"id":"hans-vanaken-22","name":"Hans Vanaken","position":"CM","alternativePositions":["CAM"],"nationality":"BEL","age":29,"appearances":34,"goals":7,"assists":11,"marketValue":10000000,"internationalCaps":38,"awards":["Gouden Schoen 2019","Gouden Schoen 2020"],"overall":80},
+    {"id":"hugo-vetlesen-22","name":"Hugo Vetlesen","position":"CM","alternativePositions":["CAM"],"nationality":"NOR","age":22,"appearances":26,"goals":3,"assists":5,"marketValue":6000000,"internationalCaps":5,"awards":[],"overall":71},
+    {"id":"sander-coopman-22","name":"Sander Coopman","position":"CM","nationality":"BEL","age":28,"appearances":22,"goals":2,"assists":4,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"cisse-sandra-22","name":"Cisse Sandra","position":"CM","nationality":"BEL","age":20,"appearances":16,"goals":1,"assists":2,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"ferran-jutgla-22","name":"Ferran Jutglà","position":"ST","nationality":"ESP","age":23,"appearances":30,"goals":14,"assists":5,"marketValue":8000000,"internationalCaps":0,"awards":[],"overall":73},
+    {"id":"noa-lang-22","name":"Andreas Skov Olsen","position":"RW","alternativePositions":["LW"],"nationality":"DEN","age":22,"appearances":24,"goals":6,"assists":7,"marketValue":6000000,"internationalCaps":8,"awards":[],"overall":72},
+    {"id":"onyedika-22","name":"Raphael Onyedika","position":"CDM","alternativePositions":["CM"],"nationality":"NGA","age":22,"appearances":22,"goals":1,"assists":3,"marketValue":8000000,"internationalCaps":5,"awards":[],"overall":73},
+    {"id":"bjorn-meijer-22b","name":"Mohamed Acheampong","position":"LW","nationality":"GHA","age":20,"appearances":20,"goals":4,"assists":4,"marketValue":2500000,"internationalCaps":3,"awards":[],"overall":65}
+  ]
+}

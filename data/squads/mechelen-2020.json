@@ -1,0 +1,24 @@
+{
+  "team": "KV Mechelen",
+  "teamId": "mechelen",
+  "season": "2020-21",
+  "year": 2020,
+  "players": [
+    {"id":"coucke-20","name":"Gaëtan Coucke","position":"GK","nationality":"BEL","age":27,"appearances":28,"goals":0,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"thoelen-20","name":"Yannick Thoelen","position":"GK","nationality":"BEL","age":27,"appearances":8,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":62},
+    {"id":"walsh-20","name":"Sandy Walsh","position":"RB","alternativePositions":["RM"],"nationality":"IDN","age":26,"appearances":26,"goals":0,"assists":3,"marketValue":1500000,"internationalCaps":18,"awards":[],"overall":66},
+    {"id":"vanhecke-20","name":"Jannes Van Hecke","position":"CB","alternativePositions":["CDM"],"nationality":"BEL","age":21,"appearances":22,"goals":0,"assists":0,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"lavallee-20","name":"Dimitri Lavalée","position":"CB","nationality":"BEL","age":24,"appearances":20,"goals":0,"assists":0,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":61},
+    {"id":"bijker-20","name":"Lucas Bijker","position":"LB","nationality":"NED","age":26,"appearances":20,"goals":0,"assists":1,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":62},
+    {"id":"gouet-20","name":"Samuel Gouet","position":"CDM","alternativePositions":["CM"],"nationality":"CMR","age":22,"appearances":26,"goals":1,"assists":2,"marketValue":2000000,"internationalCaps":5,"awards":[],"overall":65},
+    {"id":"schoofs-20","name":"Rob Schoofs","position":"CM","alternativePositions":["CDM","CAM"],"nationality":"BEL","age":26,"appearances":24,"goals":2,"assists":4,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"storm-20","name":"Nikola Storm","position":"RW","nationality":"BEL","age":26,"appearances":22,"goals":5,"assists":3,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"hairemans-20","name":"Geoffry Hairemans","position":"RW","alternativePositions":["LW","CM"],"nationality":"BEL","age":26,"appearances":22,"goals":4,"assists":4,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"mrabti-20","name":"Kerim Mrabti","position":"CM","alternativePositions":["CAM","ST"],"nationality":"SWE","age":24,"appearances":20,"goals":3,"assists":4,"marketValue":1200000,"internationalCaps":5,"awards":[],"overall":64},
+    {"id":"bongonda-20","name":"Theo Bongonda","position":"LW","alternativePositions":["RW"],"nationality":"COD","age":25,"appearances":18,"goals":4,"assists":4,"marketValue":2500000,"internationalCaps":6,"awards":[],"overall":67},
+    {"id":"da-cruz-20","name":"Alessio da Cruz","position":"LW","alternativePositions":["RW"],"nationality":"CPV","age":24,"appearances":18,"goals":2,"assists":2,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":60},
+    {"id":"ngoy-20","name":"Julien Ngoy","position":"LW","alternativePositions":["ST"],"nationality":"BEL","age":23,"appearances":16,"goals":2,"assists":2,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":59},
+    {"id":"wouters-20b","name":"Dries Wouters","position":"CDM","alternativePositions":["CB"],"nationality":"BEL","age":22,"appearances":14,"goals":0,"assists":1,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":61},
+    {"id":"van-hoorenbeeck-20","name":"Alec Van Hoorenbeeck","position":"RB","nationality":"BEL","age":21,"appearances":12,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":58}
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "team": "RFC Seraing",
+  "teamId": "seraing",
+  "season": "2021-22",
+  "year": 2021,
+  "players": [
+    {"id":"innocent-21","name":"Garissone Innocent","position":"GK","nationality":"HAI","age":24,"appearances":24,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":5,"awards":[],"overall":63},
+    {"id":"moser-seraing-21","name":"Lennart Moser","position":"GK","nationality":"GER","age":24,"appearances":12,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":62},
+    {"id":"maziz-seraing-21","name":"Youssef Maziz","position":"LW","alternativePositions":["CAM"],"nationality":"MAR","age":23,"appearances":24,"goals":4,"assists":5,"marketValue":800000,"internationalCaps":2,"awards":[],"overall":63},
+    {"id":"gorenc-21","name":"Jan Gorenc","position":"CB","nationality":"SVN","age":28,"appearances":22,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":8,"awards":[],"overall":61},
+    {"id":"gillet-21","name":"Moussa Djenepo","position":"LW","alternativePositions":["RW"],"nationality":"MLI","age":23,"appearances":18,"goals":3,"assists":3,"marketValue":3000000,"internationalCaps":15,"awards":[],"overall":67},
+    {"id":"lambert-21","name":"Boris Lambert","position":"CB","alternativePositions":["CDM"],"nationality":"BEL","age":26,"appearances":20,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":60},
+    {"id":"bitumazala-21","name":"Nathan Bitumazala","position":"CM","alternativePositions":["CAM"],"nationality":"FRA","age":21,"appearances":18,"goals":2,"assists":3,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":61},
+    {"id":"prevljak-seraing-21","name":"Smail Prevljak","position":"ST","nationality":"BIH","age":25,"appearances":22,"goals":7,"assists":3,"marketValue":1000000,"internationalCaps":10,"awards":[],"overall":64},
+    {"id":"oger-21","name":"Dario Oger","position":"CM","nationality":"BEL","age":22,"appearances":18,"goals":1,"assists":2,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":59},
+    {"id":"ndri-seraing-21","name":"Konan N'Dri","position":"RW","alternativePositions":["LW"],"nationality":"CIV","age":19,"appearances":16,"goals":2,"assists":2,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":60},
+    {"id":"alloh-21","name":"Teddy Alloh","position":"CB","nationality":"FRA","age":25,"appearances":16,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":59},
+    {"id":"keita-seraing-21","name":"Amadou Keita","position":"CM","alternativePositions":["CDM"],"nationality":"GUI","age":22,"appearances":14,"goals":0,"assists":1,"marketValue":400000,"internationalCaps":3,"awards":[],"overall":58},
+    {"id":"diabate-21","name":"Habib Keita","position":"CM","nationality":"MLI","age":25,"appearances":14,"goals":1,"assists":1,"marketValue":400000,"internationalCaps":5,"awards":[],"overall":58},
+    {"id":"canak-21","name":"Cihan Çanak","position":"ST","alternativePositions":["LW"],"nationality":"TUR","age":20,"appearances":12,"goals":2,"assists":1,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":58},
+    {"id":"filin-21","name":"Aleksandr Filin","position":"RB","nationality":"RUS","age":23,"appearances":12,"goals":0,"assists":1,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":57},
+    {"id":"bocat-seraing-21","name":"Eric Bocat","position":"LB","nationality":"FRA","age":23,"appearances":10,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":58}
+  ]
+}

@@ -99,9 +99,9 @@ export default function HomePage() {
 
         {/* Footer hint */}
         <div className="flex items-center gap-3 text-xs" style={{ color: 'var(--muted)', opacity: 0.6 }}>
-          <span>32 squads</span>
+          <span>83 squads</span>
           <span style={{ color: 'var(--border)' }}>·</span>
-          <span>Seizoenen 2023-24 &amp; 2024-25</span>
+          <span>Seizoenen 2020-21 t/m 2024-25</span>
           <span style={{ color: 'var(--border)' }}>·</span>
           <span>3 herrolls</span>
           <span style={{ color: 'var(--border)' }}>·</span>

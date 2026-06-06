@@ -1,0 +1,24 @@
+{
+  "team": "AA Gent",
+  "teamId": "gent",
+  "season": "2022-23",
+  "year": 2022,
+  "players": [
+    {"id":"nardi-22","name":"Paul Nardi","position":"GK","nationality":"FRA","age":29,"appearances":28,"goals":0,"assists":0,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"roef-22","name":"Davy Roef","position":"GK","nationality":"BEL","age":28,"appearances":8,"goals":0,"assists":0,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"okumu-22","name":"Joseph Okumu","position":"CB","nationality":"KEN","age":25,"appearances":28,"goals":1,"assists":0,"marketValue":4000000,"internationalCaps":15,"awards":[],"overall":70},
+    {"id":"torunarigha-22","name":"Jordan Torunarigha","position":"CB","nationality":"GER","age":26,"appearances":26,"goals":1,"assists":0,"marketValue":3000000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"piatkowski-22","name":"Kamil Piątkowski","position":"CB","nationality":"POL","age":23,"appearances":22,"goals":0,"assists":0,"marketValue":3500000,"internationalCaps":8,"awards":[],"overall":69},
+    {"id":"godeau-22","name":"Bruno Godeau","position":"LB","nationality":"BEL","age":28,"appearances":24,"goals":0,"assists":2,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"fortuna-22","name":"Núrio Fortuna","position":"RB","alternativePositions":["LB"],"nationality":"AGO","age":22,"appearances":20,"goals":0,"assists":2,"marketValue":1500000,"internationalCaps":5,"awards":[],"overall":64},
+    {"id":"odjidja-22","name":"Vadis Odjidja-Ofoe","position":"CM","alternativePositions":["CAM"],"nationality":"BEL","age":34,"appearances":24,"goals":3,"assists":5,"marketValue":1500000,"internationalCaps":46,"awards":[],"overall":70},
+    {"id":"kums-22","name":"Sven Kums","position":"CM","alternativePositions":["CAM","CDM"],"nationality":"BEL","age":31,"appearances":28,"goals":2,"assists":5,"marketValue":1500000,"internationalCaps":18,"awards":["Pro League Best Midfielder 2015"],"overall":71},
+    {"id":"hong-22","name":"Hong Hyun-seok","position":"CAM","alternativePositions":["CM"],"nationality":"KOR","age":22,"appearances":24,"goals":4,"assists":6,"marketValue":4000000,"internationalCaps":8,"awards":[],"overall":71},
+    {"id":"de-sart-22","name":"Julien De Sart","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":27,"appearances":22,"goals":1,"assists":3,"marketValue":2000000,"internationalCaps":3,"awards":[],"overall":69},
+    {"id":"samoise-22","name":"Matisse Samoise","position":"RM","alternativePositions":["RW","LW"],"nationality":"BEL","age":20,"appearances":22,"goals":3,"assists":4,"marketValue":2500000,"internationalCaps":1,"awards":[],"overall":67},
+    {"id":"hauge-22","name":"Jens Petter Hauge","position":"LW","alternativePositions":["RW"],"nationality":"NOR","age":23,"appearances":26,"goals":7,"assists":6,"marketValue":5000000,"internationalCaps":8,"awards":[],"overall":72},
+    {"id":"cuypers-22","name":"Hugo Cuypers","position":"ST","nationality":"BEL","age":25,"appearances":30,"goals":18,"assists":6,"marketValue":6000000,"internationalCaps":3,"awards":[],"overall":77},
+    {"id":"orban-22","name":"Gift Orban","position":"ST","alternativePositions":["LW"],"nationality":"NGA","age":21,"appearances":24,"goals":12,"assists":4,"marketValue":6000000,"internationalCaps":3,"awards":[],"overall":75},
+    {"id":"fofana-22","name":"Malick Fofana","position":"LW","alternativePositions":["RW"],"nationality":"BEL","age":17,"appearances":18,"goals":4,"assists":4,"marketValue":4000000,"internationalCaps":0,"awards":[],"overall":70}
+  ]
+}

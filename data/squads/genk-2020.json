@@ -1,0 +1,24 @@
+{
+  "team": "KRC Genk",
+  "teamId": "genk",
+  "season": "2020-21",
+  "year": 2020,
+  "players": [
+    {"id":"vandevoordt-20","name":"Maarten Vandevoordt","position":"GK","nationality":"BEL","age":18,"appearances":30,"goals":0,"assists":0,"marketValue":5000000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"wouters-20","name":"Dries Wouters","position":"CDM","alternativePositions":["CB"],"nationality":"BEL","age":23,"appearances":26,"goals":0,"assists":2,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"munoz-20","name":"Daniel Muñoz","position":"RB","alternativePositions":["RM"],"nationality":"COL","age":24,"appearances":28,"goals":1,"assists":3,"marketValue":4000000,"internationalCaps":10,"awards":[],"overall":70},
+    {"id":"cuesta-20","name":"Carlos Cuesta","position":"CB","nationality":"COL","age":22,"appearances":24,"goals":0,"assists":0,"marketValue":2500000,"internationalCaps":3,"awards":[],"overall":67},
+    {"id":"arteaga-20","name":"Gerardo Arteaga","position":"LB","alternativePositions":["LM"],"nationality":"MEX","age":22,"appearances":24,"goals":0,"assists":2,"marketValue":2000000,"internationalCaps":15,"awards":[],"overall":67},
+    {"id":"mckenzie-20","name":"Mark McKenzie","position":"CB","nationality":"USA","age":21,"appearances":20,"goals":0,"assists":0,"marketValue":2000000,"internationalCaps":8,"awards":[],"overall":65},
+    {"id":"heynen-20","name":"Bryan Heynen","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":25,"appearances":34,"goals":3,"assists":5,"marketValue":4000000,"internationalCaps":5,"awards":[],"overall":72},
+    {"id":"hrosovsky-20","name":"Patrik Hrošovský","position":"CM","alternativePositions":["CDM"],"nationality":"SVK","age":28,"appearances":26,"goals":1,"assists":4,"marketValue":2000000,"internationalCaps":40,"awards":[],"overall":68},
+    {"id":"onuachu-20","name":"Paul Onuachu","position":"ST","nationality":"NGA","age":26,"appearances":34,"goals":30,"assists":6,"marketValue":20000000,"internationalCaps":15,"awards":["Pro League Player of the Year 2021","Pro League Top Scorer 2021"],"overall":82},
+    {"id":"paintsil-20","name":"Joseph Paintsil","position":"RW","alternativePositions":["LW","CAM"],"nationality":"GHA","age":21,"appearances":26,"goals":5,"assists":6,"marketValue":3500000,"internationalCaps":5,"awards":[],"overall":69},
+    {"id":"ito-20","name":"Junya Itō","position":"RW","alternativePositions":["LW","ST"],"nationality":"JPN","age":27,"appearances":22,"goals":6,"assists":6,"marketValue":4000000,"internationalCaps":28,"awards":[],"overall":73},
+    {"id":"trossard-20","name":"Theo Bongonda","position":"LW","alternativePositions":["RW"],"nationality":"COD","age":26,"appearances":20,"goals":5,"assists":6,"marketValue":3000000,"internationalCaps":8,"awards":[],"overall":68},
+    {"id":"oyen-20","name":"Luca Oyen","position":"LW","alternativePositions":["CAM"],"nationality":"BEL","age":17,"appearances":16,"goals":2,"assists":3,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":62},
+    {"id":"samatta-20","name":"Mbwana Samatta","position":"ST","nationality":"TAN","age":28,"appearances":18,"goals":5,"assists":2,"marketValue":3000000,"internationalCaps":45,"awards":[],"overall":67},
+    {"id":"galarza-20","name":"Matías Galarza","position":"CM","nationality":"ARG","age":18,"appearances":14,"goals":0,"assists":1,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":60},
+    {"id":"sadick-20","name":"Mujaid Sadick","position":"CB","nationality":"ESP","age":22,"appearances":12,"goals":0,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":62}
+  ]
+}

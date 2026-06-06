@@ -1,0 +1,24 @@
+{
+  "team": "KRC Genk",
+  "teamId": "genk",
+  "season": "2022-23",
+  "year": 2022,
+  "players": [
+    {"id":"vandevoordt-22","name":"Maarten Vandevoordt","position":"GK","nationality":"BEL","age":20,"appearances":34,"goals":0,"assists":0,"marketValue":12000000,"internationalCaps":2,"awards":[],"overall":76},
+    {"id":"chambaere-22","name":"Vic Chambaere","position":"GK","nationality":"BEL","age":21,"appearances":2,"goals":0,"assists":0,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":62},
+    {"id":"munoz-22","name":"Daniel Muñoz","position":"RB","alternativePositions":["RM","CB"],"nationality":"COL","age":26,"appearances":30,"goals":2,"assists":5,"marketValue":6000000,"internationalCaps":20,"awards":[],"overall":74},
+    {"id":"mckenzie-22","name":"Mark McKenzie","position":"CB","nationality":"USA","age":23,"appearances":28,"goals":1,"assists":0,"marketValue":4000000,"internationalCaps":18,"awards":[],"overall":70},
+    {"id":"cuesta-22","name":"Carlos Cuesta","position":"CB","nationality":"COL","age":24,"appearances":26,"goals":1,"assists":0,"marketValue":5000000,"internationalCaps":8,"awards":[],"overall":71},
+    {"id":"arteaga-22","name":"Gerardo Arteaga","position":"LB","alternativePositions":["LM"],"nationality":"MEX","age":24,"appearances":28,"goals":0,"assists":3,"marketValue":4000000,"internationalCaps":25,"awards":[],"overall":71},
+    {"id":"heynen-22","name":"Bryan Heynen","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":27,"appearances":34,"goals":3,"assists":5,"marketValue":4000000,"internationalCaps":10,"awards":[],"overall":75},
+    {"id":"hrosovsky-22","name":"Patrik Hrošovský","position":"CM","alternativePositions":["CDM"],"nationality":"SVK","age":30,"appearances":28,"goals":2,"assists":4,"marketValue":2500000,"internationalCaps":48,"awards":[],"overall":71},
+    {"id":"tresor-22","name":"Mike Trésor","position":"LW","alternativePositions":["CM","CAM"],"nationality":"BEL","age":24,"appearances":30,"goals":8,"assists":10,"marketValue":8000000,"internationalCaps":5,"awards":[],"overall":76},
+    {"id":"el-khannous-22","name":"Bilal El Khannous","position":"CAM","alternativePositions":["CM","CDM"],"nationality":"MAR","age":19,"appearances":26,"goals":4,"assists":6,"marketValue":8000000,"internationalCaps":5,"awards":[],"overall":72},
+    {"id":"ait-el-hadj-22","name":"Anouar Ait El Hadj","position":"CAM","alternativePositions":["LW","CM"],"nationality":"BEL","age":21,"appearances":20,"goals":4,"assists":5,"marketValue":4000000,"internationalCaps":2,"awards":[],"overall":70},
+    {"id":"paintsil-22","name":"Joseph Paintsil","position":"RW","alternativePositions":["LW","CAM"],"nationality":"GHA","age":23,"appearances":32,"goals":10,"assists":8,"marketValue":8000000,"internationalCaps":12,"awards":[],"overall":75},
+    {"id":"oyen-22","name":"Luca Oyen","position":"LW","alternativePositions":["CAM","RW"],"nationality":"BEL","age":19,"appearances":22,"goals":4,"assists":5,"marketValue":4000000,"internationalCaps":2,"awards":[],"overall":69},
+    {"id":"samatta-22","name":"Mbwana Samatta","position":"ST","nationality":"TAN","age":30,"appearances":26,"goals":10,"assists":3,"marketValue":3000000,"internationalCaps":55,"awards":[],"overall":70},
+    {"id":"galarza-22","name":"Matías Galarza","position":"CM","nationality":"ARG","age":20,"appearances":18,"goals":1,"assists":3,"marketValue":2000000,"internationalCaps":3,"awards":[],"overall":66},
+    {"id":"sadick-22","name":"Mujaid Sadick","position":"CB","nationality":"ESP","age":24,"appearances":16,"goals":0,"assists":0,"marketValue":1500000,"internationalCaps":2,"awards":[],"overall":67}
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "team": "SV Zulte Waregem",
+  "teamId": "zulte-waregem",
+  "season": "2022-23",
+  "year": 2022,
+  "players": [
+    {"id":"bostyn-22","name":"Louis Bostyn","position":"GK","nationality":"BEL","age":26,"appearances":26,"goals":0,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"de-backer-22","name":"Sander De Backer","position":"GK","nationality":"BEL","age":27,"appearances":10,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":62},
+    {"id":"vossen-zul-22","name":"Jelle Vossen","position":"ST","alternativePositions":["LW"],"nationality":"BEL","age":31,"appearances":22,"goals":6,"assists":3,"marketValue":600000,"internationalCaps":10,"awards":[],"overall":63},
+    {"id":"sakamoto-zul-22","name":"Issa Sakamoto","position":"CB","nationality":"JPN","age":26,"appearances":24,"goals":0,"assists":0,"marketValue":700000,"internationalCaps":5,"awards":[],"overall":62},
+    {"id":"mendyl-22","name":"Hamza Mendyl","position":"LB","alternativePositions":["CB"],"nationality":"MAR","age":24,"appearances":22,"goals":0,"assists":2,"marketValue":1000000,"internationalCaps":5,"awards":[],"overall":64},
+    {"id":"cools-zul-22","name":"Jari De Busser","position":"RB","nationality":"BEL","age":27,"appearances":20,"goals":0,"assists":2,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":61},
+    {"id":"heylen-22","name":"Tuur Rommens","position":"CB","nationality":"BEL","age":22,"appearances":18,"goals":0,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":60},
+    {"id":"de-smet-zul-22","name":"Gianni Bruno","position":"ST","nationality":"BEL","age":34,"appearances":22,"goals":7,"assists":2,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"kums-zul-22","name":"Joao Gamboa","position":"CM","alternativePositions":["CAM"],"nationality":"POR","age":24,"appearances":22,"goals":2,"assists":3,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"deman-zul-22","name":"Daan Nijs","position":"CM","nationality":"BEL","age":22,"appearances":18,"goals":1,"assists":2,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":61},
+    {"id":"larin-22","name":"Cyle Larin","position":"ST","nationality":"CAN","age":27,"appearances":20,"goals":5,"assists":2,"marketValue":3000000,"internationalCaps":40,"awards":[],"overall":70},
+    {"id":"zulj-22","name":"Bram Verbist","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":27,"appearances":20,"goals":1,"assists":2,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":61},
+    {"id":"tissoudali-zul-22","name":"Lassana Coulibaly","position":"CM","nationality":"MLI","age":28,"appearances":18,"goals":1,"assists":2,"marketValue":800000,"internationalCaps":20,"awards":[],"overall":63},
+    {"id":"saido-22","name":"Stef Peeters","position":"RW","nationality":"BEL","age":28,"appearances":16,"goals":2,"assists":2,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":61},
+    {"id":"marquez-22","name":"Marco Weymans","position":"CB","nationality":"BDI","age":22,"appearances":14,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":2,"awards":[],"overall":59},
+    {"id":"acosta-22","name":"Dylan Mbayo","position":"LW","nationality":"BEL","age":20,"appearances":12,"goals":2,"assists":1,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":61}
+  ]
+}

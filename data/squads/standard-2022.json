@@ -1,0 +1,24 @@
+{
+  "team": "Standard Liège",
+  "teamId": "standard",
+  "season": "2022-23",
+  "year": 2022,
+  "players": [
+    {"id":"bodart-22","name":"Arnaud Bodart","position":"GK","nationality":"BEL","age":24,"appearances":30,"goals":0,"assists":0,"marketValue":2500000,"internationalCaps":1,"awards":[],"overall":71},
+    {"id":"henkinet-22","name":"Laurent Henkinet","position":"GK","nationality":"BEL","age":29,"appearances":6,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"hautekiet-22","name":"Ibe Hautekiet","position":"CB","nationality":"BEL","age":21,"appearances":26,"goals":1,"assists":0,"marketValue":2500000,"internationalCaps":1,"awards":[],"overall":70},
+    {"id":"laifis-22","name":"Konstantinos Laifis","position":"CB","alternativePositions":["LB"],"nationality":"CYP","age":29,"appearances":24,"goals":0,"assists":0,"marketValue":1500000,"internationalCaps":40,"awards":[],"overall":67},
+    {"id":"dussenne-22","name":"Noë Dussenne","position":"CB","nationality":"BEL","age":29,"appearances":22,"goals":0,"assists":0,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"laursen-22","name":"Jacob Barrett Laursen","position":"RB","nationality":"DEN","age":25,"appearances":24,"goals":0,"assists":3,"marketValue":2000000,"internationalCaps":5,"awards":[],"overall":67},
+    {"id":"fossey-22","name":"Marlon Fossey","position":"RB","nationality":"USA","age":23,"appearances":20,"goals":0,"assists":2,"marketValue":1500000,"internationalCaps":1,"awards":[],"overall":66},
+    {"id":"alzate-22","name":"Steven Alzate","position":"CM","alternativePositions":["CAM","CDM"],"nationality":"COL","age":24,"appearances":26,"goals":2,"assists":4,"marketValue":2500000,"internationalCaps":8,"awards":[],"overall":69},
+    {"id":"zinckernagel-22","name":"Philip Zinckernagel","position":"RW","alternativePositions":["LW","CM"],"nationality":"DEN","age":26,"appearances":22,"goals":4,"assists":5,"marketValue":3000000,"internationalCaps":5,"awards":[],"overall":69},
+    {"id":"cimirot-22","name":"Gojko Cimirot","position":"CM","alternativePositions":["CDM"],"nationality":"BIH","age":30,"appearances":20,"goals":1,"assists":3,"marketValue":1000000,"internationalCaps":40,"awards":[],"overall":67},
+    {"id":"balikwisha-std-22","name":"William Balikwisha","position":"LW","alternativePositions":["RW","ST"],"nationality":"COD","age":22,"appearances":22,"goals":4,"assists":4,"marketValue":2000000,"internationalCaps":2,"awards":[],"overall":68},
+    {"id":"ohio-22","name":"Noah Ohio","position":"ST","alternativePositions":["LW"],"nationality":"NED","age":20,"appearances":22,"goals":8,"assists":3,"marketValue":3000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"perica-22","name":"Stipe Perica","position":"ST","nationality":"CRO","age":26,"appearances":20,"goals":6,"assists":2,"marketValue":1500000,"internationalCaps":8,"awards":[],"overall":66},
+    {"id":"emond-22","name":"Renaud Emond","position":"ST","nationality":"BEL","age":31,"appearances":16,"goals":4,"assists":1,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"donn-22","name":"Aron Dønnum","position":"LW","alternativePositions":["CAM"],"nationality":"NOR","age":23,"appearances":18,"goals":3,"assists":4,"marketValue":2000000,"internationalCaps":5,"awards":[],"overall":66},
+    {"id":"bokadi-22","name":"Merveille Bokadi","position":"CDM","alternativePositions":["CM"],"nationality":"COD","age":28,"appearances":16,"goals":0,"assists":2,"marketValue":1000000,"internationalCaps":15,"awards":[],"overall":65}
+  ]
+}
