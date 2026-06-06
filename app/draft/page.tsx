@@ -10,6 +10,8 @@ import FormationPitch from '@/components/FormationPitch';
 type Phase = 'idle' | 'spinning' | 'squad' | 'placing';
 interface Roll { team: Team; season: string; squad: Squad }
 
+const POSITION_ORDER = ['GK','RB','CB','LB','CDM','CM','CAM','RM','LM','RW','LW','ST'];
+
 export default function DraftPage() {
   const router = useRouter();
   const { formation, pickedPlayers, pickPlayer, draftMode } = useGameStore();
@@ -23,7 +25,6 @@ export default function DraftPage() {
 
   const MAX_REROLLS = 3;
   const rerollsLeft = MAX_REROLLS - rerollsUsed;
-
   const deckRef = useRef<{ team: Team; season: string }[]>([]);
 
   useEffect(() => {
@@ -34,9 +35,12 @@ export default function DraftPage() {
   const positions = formation ? FORMATION_POSITIONS[formation] : [];
   const pickedByIndex = Object.fromEntries(pickedPlayers.map((p) => [p.positionIndex, p]));
   const filledCount = pickedPlayers.length;
+  const nextPos = positions[filledCount] ?? null;
 
   useEffect(() => { if (!formation) router.replace('/'); }, [formation, router]);
-  useEffect(() => { if (filledCount >= positions.length && positions.length > 0) router.push('/xi'); }, [filledCount, positions.length, router]);
+  useEffect(() => {
+    if (filledCount >= positions.length && positions.length > 0) router.push('/xi');
+  }, [filledCount, positions.length, router]);
 
   const rollDice = useCallback((isReroll = false) => {
     if (isReroll) setRerollsUsed(prev => prev + 1);
@@ -48,9 +52,9 @@ export default function DraftPage() {
     let ticks = 0;
     const interval = setInterval(() => {
       const r = allRolls[Math.floor(Math.random() * allRolls.length)];
-      setSpinLabel(`${r.team.shortName || r.team.name.slice(0, 12)} · ${r.season}`);
+      setSpinLabel(`${r.team.name} · ${r.season}`);
       ticks++;
-      if (ticks >= 18) {
+      if (ticks >= 20) {
         clearInterval(interval);
         if (deckRef.current.length === 0) {
           deckRef.current = [...allRolls].sort(() => Math.random() - 0.5);
@@ -62,12 +66,9 @@ export default function DraftPage() {
             setRoll({ team: final.team, season: final.season, squad });
             setPhase('squad');
           })
-          .catch(() => {
-            // Laadprobleem: terug naar idle zodat de gebruiker opnieuw kan rollen
-            setPhase('idle');
-          });
+          .catch(() => setPhase('idle'));
       }
-    }, 85);
+    }, 80);
   }, []);
 
   function handleSelectPlayer(player: Player) {
@@ -92,8 +93,8 @@ export default function DraftPage() {
 
   if (!formation) return null;
 
-  const pickedPlayerIds    = new Set(pickedPlayers.map((p) => p.player.id));
-  const pickedPlayerNames  = new Set(pickedPlayers.map((p) => p.player.name.toLowerCase()));
+  const pickedPlayerIds   = new Set(pickedPlayers.map((p) => p.player.id));
+  const pickedPlayerNames = new Set(pickedPlayers.map((p) => p.player.name.toLowerCase()));
   const filledPerPosition: Record<string, number> = {};
   for (const p of pickedPlayers) filledPerPosition[p.position] = (filledPerPosition[p.position] ?? 0) + 1;
   const totalPerPosition: Record<string, number> = {};
@@ -101,7 +102,9 @@ export default function DraftPage() {
   function isPositionFull(pos: Position) { return (filledPerPosition[pos] ?? 0) >= (totalPerPosition[pos] ?? 0); }
 
   const eligibleIndices: Set<number> = selectedPlayer
-    ? new Set(positions.map((pos, i) => ({ pos, i })).filter(({ pos, i }) => playerPositions(selectedPlayer).includes(pos) && !pickedByIndex[i]).map(({ i }) => i))
+    ? new Set(positions.map((pos, i) => ({ pos, i }))
+        .filter(({ pos, i }) => playerPositions(selectedPlayer).includes(pos) && !pickedByIndex[i])
+        .map(({ i }) => i))
     : new Set();
 
   const progressPct = Math.round((filledCount / positions.length) * 100);
@@ -109,49 +112,40 @@ export default function DraftPage() {
   return (
     <div className="flex flex-col lg:flex-row min-h-[calc(100svh-56px)]">
 
-      {/* ── Left: Pitch column ─────────────────────────────────────────── */}
+      {/* ── Links: Pitch + Lineup ─────────────────────────────────────── */}
       <div
-        className="flex flex-col items-center gap-4 px-6 py-6 lg:py-8 lg:px-8 lg:w-[380px] flex-shrink-0"
-        style={{ borderRight: '1px solid var(--border)', background: 'rgba(0,0,0,0.2)' }}
+        className="flex flex-col gap-5 px-5 py-6 lg:py-8 lg:px-7 lg:w-[360px] xl:w-[400px] flex-shrink-0"
+        style={{ borderRight: '1px solid var(--border)', background: 'rgba(0,0,0,0.15)' }}
       >
-        {/* Progress */}
-        <div className="w-full">
-          <div className="flex items-center justify-between mb-1.5">
+        {/* Voortgangsbalk */}
+        <div>
+          <div className="flex items-center justify-between mb-2">
             <span className="label-xs">Jouw opstelling</span>
-            <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.9rem', color: 'var(--gold)', letterSpacing: '0.05em' }}>
+            <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.85rem', color: 'var(--gold)', letterSpacing: '0.06em' }}>
               {filledCount}/{positions.length}
             </span>
           </div>
           <div className="h-1 rounded-full w-full" style={{ background: 'var(--border)' }}>
-            <div
-              className="h-1 rounded-full transition-all duration-500"
-              style={{ background: 'var(--gold)', width: `${progressPct}%` }}
+            <motion.div
+              className="h-1 rounded-full"
+              style={{ background: 'var(--gold)' }}
+              animate={{ width: `${progressPct}%` }}
+              transition={{ duration: 0.5 }}
             />
           </div>
         </div>
 
-        {/* Formation label */}
-        <div className="flex items-center gap-2 self-start">
-          <span
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: '0.75rem',
-              letterSpacing: '0.12em',
-              color: 'var(--muted)',
-              border: '1px solid var(--border)',
-              padding: '2px 8px',
-              borderRadius: 4,
-            }}
-          >
+        {/* Formatie tag + placing hint */}
+        <div className="flex items-center gap-2">
+          <span style={{
+            fontFamily: 'var(--font-display)', fontSize: '0.7rem', letterSpacing: '0.12em',
+            color: 'var(--muted)', border: '1px solid var(--border)', padding: '2px 8px', borderRadius: 4,
+          }}>
             {formation}
           </span>
           {phase === 'placing' && (
-            <motion.span
-              initial={{ opacity: 0, x: -6 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="text-xs"
-              style={{ color: 'var(--gold)' }}
-            >
+            <motion.span initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }}
+              className="text-xs" style={{ color: 'var(--gold)' }}>
               ← klik op een positie
             </motion.span>
           )}
@@ -166,156 +160,260 @@ export default function DraftPage() {
           size="md"
         />
 
-        {/* Position chips — quick overview */}
-        <div className="w-full flex flex-wrap gap-1">
+        {/* Lineup lijst — vervangt de kleine chips */}
+        <div className="flex flex-col gap-1">
           {positions.map((pos, i) => {
             const pick = pickedByIndex[i];
+            const isNext = !pick && phase !== 'placing' && i === filledCount;
             return (
-              <div
+              <motion.div
                 key={i}
-                className="flex items-center gap-1 px-2 py-1 rounded text-xs"
+                layout
+                className="flex items-center gap-2 rounded-lg px-3 py-2"
                 style={{
-                  background: pick ? `${pick.teamPrimaryColor}20` : 'var(--surface)',
-                  border: `1px solid ${pick ? `${pick.teamPrimaryColor}50` : 'var(--border)'}`,
-                  color: pick ? pick.teamPrimaryColor : 'var(--muted)',
-                  fontFamily: pick ? 'inherit' : 'var(--font-display)',
-                  fontSize: '0.65rem',
-                  letterSpacing: pick ? 0 : '0.06em',
+                  background: pick
+                    ? `${pick.teamPrimaryColor}12`
+                    : isNext
+                      ? 'rgba(212,148,10,0.06)'
+                      : 'transparent',
+                  border: `1px solid ${pick
+                    ? `${pick.teamPrimaryColor}35`
+                    : isNext
+                      ? 'rgba(212,148,10,0.3)'
+                      : 'var(--border)'}`,
                 }}
               >
-                {pick ? `${pos} · ${pick.player.name.split(' ').pop()?.slice(0, 8)}` : pos}
-              </div>
+                {/* Positie badge */}
+                <span style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: '0.6rem',
+                  letterSpacing: '0.08em',
+                  color: pick ? pick.teamPrimaryColor : isNext ? 'var(--gold)' : 'var(--muted)',
+                  width: 30,
+                  flexShrink: 0,
+                }}>{pos}</span>
+
+                {pick ? (
+                  <>
+                    {/* Overall */}
+                    <span style={{
+                      fontFamily: 'var(--font-display)',
+                      fontSize: '0.75rem',
+                      color: pick.player.overall >= 80 ? 'var(--gold)' : pick.player.overall >= 73 ? '#A8E6CF' : 'var(--text-2)',
+                      width: 22,
+                      flexShrink: 0,
+                      textAlign: 'center',
+                    }}>{blind ? '?' : pick.player.overall}</span>
+                    {/* Naam */}
+                    <span className="text-xs truncate flex-1" style={{ color: 'var(--text)', fontWeight: 500 }}>
+                      {pick.player.name.split(' ').pop()}
+                    </span>
+                    {/* Seizoen */}
+                    <span className="text-xs flex-shrink-0" style={{ color: 'var(--muted)', fontSize: '0.58rem' }}>
+                      {pick.season.slice(-2)}
+                    </span>
+                  </>
+                ) : (
+                  <span className="text-xs flex-1" style={{ color: isNext ? 'var(--gold)' : 'var(--border-2)' }}>
+                    {isNext ? '← aan de beurt' : '——'}
+                  </span>
+                )}
+              </motion.div>
             );
           })}
         </div>
       </div>
 
-      {/* ── Right: Action column ───────────────────────────────────────── */}
+      {/* ── Rechts: Actie ─────────────────────────────────────────────── */}
       <div className="flex-1 flex flex-col px-6 py-6 lg:px-10 lg:py-8 gap-6 overflow-y-auto">
         <AnimatePresence mode="wait">
 
           {/* IDLE */}
           {phase === 'idle' && (
             <motion.div key="idle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              className="flex flex-col items-center justify-center gap-6 flex-1 min-h-72">
-              <div className="text-center">
-                <p className="label-xs mb-2">
-                  {filledCount === 0 ? 'Begin je draft' : `Speler ${filledCount + 1} van ${positions.length}`}
-                </p>
-                <p style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.5rem,4vw,2.2rem)', color: 'var(--text)', letterSpacing: '0.08em' }}>
-                  ROL EEN TEAM + SEIZOEN
-                </p>
-                <p className="text-sm mt-1" style={{ color: 'var(--muted)' }}>
-                  {filledCount === 0 ? 'Een willekeurige Pro League squad wacht op je' : 'Jij kiest zelf de speler en positie na de rol'}
-                </p>
-              </div>
+              className="flex flex-col items-center justify-center gap-8 flex-1 min-h-72">
 
-              <button
+              {/* Volgende positie */}
+              {nextPos && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="text-center flex flex-col gap-2"
+                >
+                  <span className="label-xs">Volgende positie te vullen</span>
+                  <span style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: 'clamp(3rem,10vw,5rem)',
+                    color: 'var(--gold)',
+                    letterSpacing: '0.12em',
+                    lineHeight: 1,
+                    textShadow: '0 0 60px rgba(212,148,10,0.4)',
+                  }}>
+                    {nextPos}
+                  </span>
+                  <span className="text-sm" style={{ color: 'var(--muted)' }}>
+                    {filledCount === 0 ? 'Kies jouw eerste speler' : `${positions.length - filledCount} posities resterend`}
+                  </span>
+                </motion.div>
+              )}
+
+              {/* Rol knop */}
+              <motion.button
                 onClick={() => rollDice(false)}
-                className="flex flex-col items-center gap-3 px-12 py-6 rounded-xl transition-all duration-200"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.97 }}
+                className="flex flex-col items-center gap-3 rounded-2xl"
                 style={{
                   background: 'var(--gold)',
                   border: '2px solid var(--gold)',
-                  boxShadow: '0 0 60px rgba(212,148,10,0.3)',
+                  boxShadow: '0 0 60px rgba(212,148,10,0.35), 0 0 120px rgba(212,148,10,0.15)',
                   cursor: 'pointer',
+                  padding: '28px 56px',
                 }}
-                onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1.04)'; }}
-                onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1)'; }}
               >
-                <span style={{ fontSize: '2.5rem', lineHeight: 1 }}>🎲</span>
-                <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', color: '#07070A', letterSpacing: '0.15em' }}>
+                <span style={{ fontSize: '2.8rem', lineHeight: 1 }}>🎲</span>
+                <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.3rem', color: '#07070A', letterSpacing: '0.2em' }}>
                   ROL
                 </span>
-              </button>
+              </motion.button>
+
+              <p className="text-xs text-center" style={{ color: 'var(--muted)' }}>
+                Een willekeurig Pro League team uit 8 seizoenen
+              </p>
             </motion.div>
           )}
 
-          {/* SPINNING */}
+          {/* SPINNING — slot machine */}
           {phase === 'spinning' && (
             <motion.div key="spinning" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               className="flex flex-col items-center justify-center gap-6 flex-1 min-h-72">
-              <div className="flex flex-col items-center gap-4">
-                <div className="flex gap-1.5">
-                  {[0, 1, 2].map(i => (
-                    <motion.div
-                      key={i}
-                      animate={{ scale: [1, 1.3, 1], opacity: [0.4, 1, 0.4] }}
-                      transition={{ duration: 0.6, delay: i * 0.15, repeat: Infinity }}
-                      style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--gold)' }}
-                    />
-                  ))}
+
+              <span className="label-xs">Dobbelstenen rollen…</span>
+
+              {/* Slot machine box */}
+              <div style={{
+                width: '100%',
+                maxWidth: 420,
+                border: '2px solid var(--gold-dim)',
+                borderRadius: 16,
+                background: 'var(--surface)',
+                boxShadow: '0 0 40px rgba(212,148,10,0.12), inset 0 0 40px rgba(0,0,0,0.3)',
+                overflow: 'hidden',
+                position: 'relative',
+              }}>
+                {/* Bovenste fade */}
+                <div style={{
+                  position: 'absolute', top: 0, left: 0, right: 0, height: 40,
+                  background: 'linear-gradient(to bottom, var(--surface), transparent)',
+                  zIndex: 1, pointerEvents: 'none',
+                }} />
+                {/* Onderste fade */}
+                <div style={{
+                  position: 'absolute', bottom: 0, left: 0, right: 0, height: 40,
+                  background: 'linear-gradient(to top, var(--surface), transparent)',
+                  zIndex: 1, pointerEvents: 'none',
+                }} />
+                {/* Gouden lijn indicator */}
+                <div style={{
+                  position: 'absolute', top: '50%', left: 16, right: 16,
+                  height: 1, background: 'var(--gold-dim)', zIndex: 2,
+                  transform: 'translateY(-50%)',
+                }} />
+
+                <div style={{ padding: '28px 24px', textAlign: 'center' }}>
+                  <AnimatePresence mode="wait">
+                    <motion.p
+                      key={spinLabel}
+                      initial={{ opacity: 0, y: -16 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 16 }}
+                      transition={{ duration: 0.06 }}
+                      style={{
+                        fontFamily: 'var(--font-display)',
+                        fontSize: 'clamp(1.1rem,4vw,1.6rem)',
+                        color: 'var(--gold)',
+                        letterSpacing: '0.1em',
+                      }}
+                    >
+                      {spinLabel}
+                    </motion.p>
+                  </AnimatePresence>
                 </div>
-                <motion.p
-                  key={spinLabel}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.07 }}
-                  style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: 'clamp(1.4rem,5vw,2.2rem)',
-                    color: 'var(--gold)',
-                    letterSpacing: '0.12em',
-                    textAlign: 'center',
-                  }}
-                >
-                  {spinLabel}
-                </motion.p>
-                <p className="label-xs">squad laden…</p>
+              </div>
+
+              {/* Pulserende dots */}
+              <div className="flex gap-2">
+                {[0, 1, 2].map(i => (
+                  <motion.div key={i}
+                    animate={{ scale: [1, 1.5, 1], opacity: [0.3, 1, 0.3] }}
+                    transition={{ duration: 0.5, delay: i * 0.12, repeat: Infinity }}
+                    style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--gold)' }}
+                  />
+                ))}
               </div>
             </motion.div>
           )}
 
-          {/* SQUAD */}
+          {/* SQUAD — teamreveal + spelerslijst */}
           {phase === 'squad' && roll && (
-            <motion.div key="squad" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-              className="flex flex-col gap-5 flex-1">
+            <motion.div key="squad" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
+              className="flex flex-col gap-4 flex-1">
 
-              {/* Team banner */}
+              {/* Team reveal banner */}
               <div
-                className="rounded-xl p-4"
+                className="rounded-2xl overflow-hidden"
                 style={{
-                  background: `linear-gradient(135deg, ${roll.team.primaryColor}18 0%, transparent 60%)`,
-                  border: `1px solid ${roll.team.primaryColor}40`,
+                  background: `linear-gradient(135deg, ${roll.team.primaryColor}20 0%, transparent 70%)`,
+                  border: `1.5px solid ${roll.team.primaryColor}50`,
+                  boxShadow: `0 0 32px ${roll.team.primaryColor}18`,
                 }}
               >
-                <div className="flex items-start justify-between">
+                <div className="px-5 py-4 flex items-center justify-between">
                   <div>
-                    <p className="label-xs mb-1">Gerold team</p>
+                    <span className="label-xs block mb-1.5" style={{ color: `${roll.team.primaryColor}cc` }}>Gerold team</span>
                     <h2 style={{
                       fontFamily: 'var(--font-display)',
-                      fontSize: 'clamp(1.4rem,4vw,2rem)',
+                      fontSize: 'clamp(1.5rem,5vw,2.2rem)',
                       color: roll.team.primaryColor,
                       letterSpacing: '0.06em',
                       lineHeight: 1,
-                      textShadow: `0 0 30px ${roll.team.primaryColor}40`,
+                      textShadow: `0 0 40px ${roll.team.primaryColor}50`,
                     }}>
                       {roll.team.name}
                     </h2>
                   </div>
                   <div className="text-right">
-                    <p className="label-xs mb-1">Seizoen</p>
-                    <p style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', color: 'var(--text)', letterSpacing: '0.08em' }}>
+                    <span className="label-xs block mb-1.5">Seizoen</span>
+                    <p style={{
+                      fontFamily: 'var(--font-display)',
+                      fontSize: '1.6rem',
+                      color: 'var(--text)',
+                      letterSpacing: '0.08em',
+                      lineHeight: 1,
+                    }}>
                       {roll.season}
                     </p>
                   </div>
                 </div>
-                <p className="text-xs mt-2" style={{ color: 'var(--text-2)' }}>
-                  Kies een speler — je wijst daarna de positie toe op het veld
-                </p>
+                <div style={{
+                  height: 3,
+                  background: `linear-gradient(to right, ${roll.team.primaryColor}, transparent)`,
+                }} />
               </div>
 
-              {/* Reroll bar */}
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
+              {/* Herroll balk */}
+              <div className="flex items-center justify-between px-1">
+                <div className="flex items-center gap-2.5">
                   <span className="text-xs" style={{ color: 'var(--muted)' }}>Herrolls</span>
-                  <div className="flex gap-1">
+                  <div className="flex gap-1.5">
                     {Array.from({ length: MAX_REROLLS }).map((_, i) => (
-                      <div
+                      <motion.div
                         key={i}
+                        animate={{ scale: i < rerollsLeft ? 1 : 0.7 }}
                         style={{
                           width: 10, height: 10, borderRadius: '50%',
                           background: i < rerollsLeft ? 'var(--gold)' : 'var(--border-2)',
-                          transition: 'background 0.2s',
+                          boxShadow: i < rerollsLeft ? '0 0 6px rgba(212,148,10,0.5)' : 'none',
                         }}
                       />
                     ))}
@@ -329,33 +427,43 @@ export default function DraftPage() {
                     color: rerollsLeft > 0 ? 'var(--text-2)' : 'var(--border-2)',
                     textDecoration: rerollsLeft > 0 ? 'underline' : 'none',
                     cursor: rerollsLeft > 0 ? 'pointer' : 'not-allowed',
-                    padding: '4px 0',
                   }}
                 >
                   {rerollsLeft > 0 ? `Opnieuw rollen (${rerollsLeft} over)` : 'Geen herrolls meer'}
                 </button>
               </div>
 
-              {/* Player list */}
-              <div className="flex flex-col gap-2 flex-1 overflow-y-auto max-h-[420px] pr-1">
+              {/* Instructie */}
+              <p className="text-xs px-1" style={{ color: 'var(--muted)' }}>
+                Kies een speler → wijs daarna de positie toe op het veld
+              </p>
+
+              {/* Spelerslijst */}
+              <div className="flex flex-col gap-1.5 flex-1 overflow-y-auto pr-1" style={{ maxHeight: 440 }}>
                 {[...roll.squad.players]
                   .sort((a, b) => blind
-                    ? ['GK','RB','CB','LB','CDM','CM','CAM','RM','LM','RW','LW','ST'].indexOf(a.position) - ['GK','RB','CB','LB','CDM','CM','CAM','RM','LM','RW','LW','ST'].indexOf(b.position)
+                    ? POSITION_ORDER.indexOf(a.position) - POSITION_ORDER.indexOf(b.position)
                     : b.overall - a.overall)
-                  .map((player) => {
+                  .map((player, idx) => {
                     const alreadyPicked = pickedPlayerIds.has(player.id) || pickedPlayerNames.has(player.name.toLowerCase());
                     const posFull = playerPositions(player).every(pos => isPositionFull(pos));
                     const disabled = alreadyPicked || posFull;
                     return (
-                      <PlayerCard
+                      <motion.div
                         key={player.id}
-                        player={player}
-                        teamColor={roll.team.primaryColor}
-                        disabled={disabled}
-                        disabledReason={alreadyPicked ? 'Gekozen' : posFull ? 'Vol' : undefined}
-                        blind={blind}
-                        onPick={() => !disabled && handleSelectPlayer(player)}
-                      />
+                        initial={{ opacity: 0, x: 10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: idx * 0.025, duration: 0.2 }}
+                      >
+                        <PlayerCard
+                          player={player}
+                          teamColor={roll.team.primaryColor}
+                          disabled={disabled}
+                          disabledReason={alreadyPicked ? 'Gekozen' : posFull ? 'Vol' : undefined}
+                          blind={blind}
+                          onPick={() => !disabled && handleSelectPlayer(player)}
+                        />
+                      </motion.div>
                     );
                   })}
               </div>
@@ -364,28 +472,33 @@ export default function DraftPage() {
 
           {/* PLACING */}
           {phase === 'placing' && selectedPlayer && roll && (
-            <motion.div key="placing" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
+            <motion.div key="placing" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
               className="flex flex-col gap-5 flex-1 justify-center items-center max-w-lg mx-auto w-full">
 
-              {/* Selected player card */}
-              <div
-                className="w-full rounded-xl p-5"
-                style={{ background: 'var(--surface)', border: '2px solid var(--gold)', boxShadow: '0 0 40px rgba(212,148,10,0.15)' }}
-              >
-                <p className="label-xs mb-3">Gekozen speler</p>
+              {/* Gekozen speler card */}
+              <div className="w-full rounded-2xl p-5" style={{
+                background: 'var(--surface)',
+                border: '2px solid var(--gold)',
+                boxShadow: '0 0 50px rgba(212,148,10,0.18)',
+              }}>
+                <span className="label-xs block mb-3" style={{ color: 'var(--gold-dim)' }}>Gekozen speler</span>
                 <div className="flex items-center gap-4">
                   <OverallBadge overall={selectedPlayer.overall} size="lg" blind={blind} />
-                  <div className="flex-1">
-                    <p className="font-semibold" style={{ color: 'var(--text)', fontSize: '1.05rem' }}>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-semibold truncate" style={{ color: 'var(--text)', fontSize: '1.1rem' }}>
                       {selectedPlayer.name}
                     </p>
                     <div className="flex items-center gap-2 flex-wrap mt-1">
                       {playerPositions(selectedPlayer).map(pos => (
-                        <span key={pos} className="text-xs px-2 py-0.5 rounded" style={{ background: 'var(--surface-2)', color: 'var(--text-2)', fontFamily: 'var(--font-display)', letterSpacing: '0.05em' }}>
-                          {pos}
-                        </span>
+                        <span key={pos} style={{
+                          fontSize: '0.65rem', letterSpacing: '0.06em',
+                          padding: '2px 7px', borderRadius: 4,
+                          background: 'var(--surface-2)', color: 'var(--text-2)',
+                          fontFamily: 'var(--font-display)',
+                          border: '1px solid var(--border)',
+                        }}>{pos}</span>
                       ))}
-                      <span className="text-xs" style={{ color: 'var(--muted)' }}>
+                      <span style={{ fontSize: '0.65rem', color: 'var(--muted)' }}>
                         {roll.team.name} · {roll.season}
                       </span>
                     </div>
@@ -393,16 +506,21 @@ export default function DraftPage() {
                 </div>
               </div>
 
+              {/* Instructie */}
               {eligibleIndices.size === 0 ? (
-                <div className="text-center p-4 rounded-xl" style={{ background: 'var(--red-dim)', border: '1px solid var(--red)' }}>
+                <div className="w-full text-center p-4 rounded-xl" style={{ background: 'var(--red-dim)', border: '1px solid var(--red)' }}>
                   <p className="text-sm" style={{ color: 'var(--red)' }}>
                     Geen vrije {playerPositions(selectedPlayer).join('/')} positie beschikbaar in {formation}.
                   </p>
                 </div>
               ) : (
-                <div className="text-center p-4 rounded-xl" style={{ background: 'rgba(212,148,10,0.06)', border: '1px solid var(--gold-dim)' }}>
+                <div className="w-full flex items-center gap-3 p-4 rounded-xl" style={{
+                  background: 'rgba(212,148,10,0.06)',
+                  border: '1px solid var(--gold-dim)',
+                }}>
+                  <span style={{ fontSize: '1.5rem' }}>←</span>
                   <p className="text-sm" style={{ color: 'var(--gold)' }}>
-                    ← Klik op een oplichtende positie op het veld om te plaatsen
+                    Klik op een oplichtende <strong>{playerPositions(selectedPlayer).join('/')}</strong>-positie op het veld
                   </p>
                 </div>
               )}
@@ -434,57 +552,54 @@ function PlayerCard({ player, teamColor, onPick, disabled, disabledReason, blind
     <button
       onClick={!disabled ? onPick : undefined}
       disabled={disabled}
-      className="w-full text-left rounded-lg transition-all duration-100 group"
+      className="w-full text-left rounded-xl transition-all duration-100 group"
       style={{
         background: 'var(--surface)',
         border: '1px solid var(--border)',
-        padding: '10px 12px',
-        opacity: disabled ? 0.4 : 1,
+        padding: '9px 12px',
+        opacity: disabled ? 0.38 : 1,
         cursor: disabled ? 'not-allowed' : 'pointer',
       }}
       onMouseEnter={e => {
         if (disabled) return;
         const el = e.currentTarget as HTMLButtonElement;
-        el.style.borderColor = `${teamColor}80`;
-        el.style.background = `${teamColor}10`;
+        el.style.borderColor = `${teamColor}90`;
+        el.style.background = `${teamColor}12`;
+        el.style.transform = 'translateX(2px)';
       }}
       onMouseLeave={e => {
         const el = e.currentTarget as HTMLButtonElement;
         el.style.borderColor = 'var(--border)';
         el.style.background = 'var(--surface)';
+        el.style.transform = 'translateX(0)';
       }}
     >
       <div className="flex items-center gap-3">
         <OverallBadge overall={player.overall} size="sm" blind={blind} />
 
         <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2">
-            <p className="text-sm font-medium truncate" style={{ color: 'var(--text)' }}>{player.name}</p>
-          </div>
+          <p className="text-sm font-medium truncate" style={{ color: 'var(--text)' }}>
+            {player.name}
+          </p>
           <div className="flex items-center gap-1.5 mt-0.5 flex-wrap">
             {allPositions.map(pos => (
               <span key={pos} style={{
-                fontSize: '0.6rem', letterSpacing: '0.06em',
+                fontSize: '0.58rem', letterSpacing: '0.06em',
                 padding: '1px 5px', borderRadius: 3,
-                background: 'var(--surface-2)',
-                color: 'var(--text-2)',
+                background: 'var(--surface-2)', color: 'var(--text-2)',
                 fontFamily: 'var(--font-display)',
               }}>{pos}</span>
             ))}
-            <span style={{ fontSize: '0.65rem', color: 'var(--muted)' }}>·</span>
-            <span style={{ fontSize: '0.65rem', color: 'var(--muted)' }}>{player.nationality}</span>
-            <span style={{ fontSize: '0.65rem', color: 'var(--muted)' }}>·</span>
-            <span style={{ fontSize: '0.65rem', color: 'var(--muted)' }}>{player.goals}G {player.assists}A</span>
+            <span style={{ fontSize: '0.62rem', color: 'var(--muted)' }}>· {player.nationality}</span>
+            {!blind && <span style={{ fontSize: '0.62rem', color: 'var(--muted)' }}>· {player.goals}G {player.assists}A</span>}
           </div>
           {!blind && player.awards && player.awards.length > 0 && (
             <div className="flex gap-1 mt-1 flex-wrap">
-              {player.awards.map(award => (
+              {player.awards.slice(0, 2).map(award => (
                 <span key={award} style={{
-                  fontSize: '0.58rem', letterSpacing: '0.03em',
-                  padding: '1px 6px', borderRadius: 3,
-                  background: 'rgba(212,148,10,0.12)',
-                  color: 'var(--gold)',
-                  border: '1px solid rgba(212,148,10,0.25)',
+                  fontSize: '0.55rem', padding: '1px 5px', borderRadius: 3,
+                  background: 'rgba(212,148,10,0.1)', color: 'var(--gold)',
+                  border: '1px solid rgba(212,148,10,0.2)',
                 }}>🏆 {award}</span>
               ))}
             </div>
@@ -493,7 +608,7 @@ function PlayerCard({ player, teamColor, onPick, disabled, disabledReason, blind
 
         {disabled ? (
           <span style={{
-            fontSize: '0.6rem', letterSpacing: '0.06em',
+            fontSize: '0.58rem', letterSpacing: '0.06em',
             padding: '3px 7px', borderRadius: 4,
             background: 'var(--border)', color: 'var(--muted)',
             fontFamily: 'var(--font-display)', flexShrink: 0,
@@ -502,10 +617,11 @@ function PlayerCard({ player, teamColor, onPick, disabled, disabledReason, blind
           <span
             className="opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0"
             style={{
-              fontSize: '0.65rem', letterSpacing: '0.1em',
-              padding: '4px 10px', borderRadius: 4,
+              fontSize: '0.62rem', letterSpacing: '0.12em',
+              padding: '5px 12px', borderRadius: 6,
               background: teamColor, color: '#07070A',
               fontFamily: 'var(--font-display)',
+              fontWeight: 700,
             }}
           >
             KIES
@@ -519,23 +635,28 @@ function PlayerCard({ player, teamColor, onPick, disabled, disabledReason, blind
 // ─── Overall badge ────────────────────────────────────────────────────────────
 
 function OverallBadge({ overall, size, blind }: { overall: number; size: 'sm' | 'lg'; blind?: boolean }) {
-  const color = blind ? 'var(--muted)' : overall >= 80 ? 'var(--gold)' : overall >= 73 ? '#A8E6CF' : overall >= 66 ? 'var(--text-2)' : 'var(--muted)';
-  const bg    = blind ? 'rgba(104,100,92,0.1)' : overall >= 80 ? 'rgba(212,148,10,0.2)' : overall >= 73 ? 'rgba(168,230,207,0.12)' : overall >= 66 ? 'rgba(237,234,228,0.08)' : 'rgba(104,100,92,0.15)';
-  const dim   = size === 'sm' ? { width: 38, height: 38, fontSize: '0.9rem' } : { width: 56, height: 56, fontSize: '1.4rem' };
+  const color = blind ? 'var(--muted)'
+    : overall >= 80 ? 'var(--gold)'
+    : overall >= 73 ? '#A8E6CF'
+    : overall >= 66 ? 'var(--text-2)'
+    : 'var(--muted)';
+  const bg = blind ? 'rgba(104,100,92,0.1)'
+    : overall >= 80 ? 'rgba(212,148,10,0.22)'
+    : overall >= 73 ? 'rgba(168,230,207,0.12)'
+    : overall >= 66 ? 'rgba(237,234,228,0.08)'
+    : 'rgba(104,100,92,0.12)';
+  const dim = size === 'sm'
+    ? { width: 38, height: 38, fontSize: '0.88rem', borderRadius: 8 }
+    : { width: 58, height: 58, fontSize: '1.5rem', borderRadius: 12 };
 
   return (
     <div style={{
-      ...dim,
-      borderRadius: 8,
-      background: bg,
-      border: `1px solid ${color}40`,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontFamily: 'var(--font-display)',
-      color,
-      flexShrink: 0,
+      ...dim, background: bg,
+      border: `1px solid ${color}50`,
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      fontFamily: 'var(--font-display)', color, flexShrink: 0,
       letterSpacing: '0.02em',
+      boxShadow: !blind && overall >= 80 ? `0 0 12px ${color}30` : 'none',
     }}>
       {blind ? '?' : overall}
     </div>
