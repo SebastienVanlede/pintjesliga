@@ -251,7 +251,7 @@ export function simulateSeason(
   const regEnd = regMatches.length;
 
   // ── Phase 2: Play-off 1 — Championship (top 6, half points rounded up) ────
-  const po1Matches   = roundRobin(po1Teams, regEnd + 1, false);
+  const po1Matches   = roundRobin(po1Teams, regEnd + 1, true);
   const po1Standings = buildStandings(po1Names, po1Matches, po1Carry);
 
   // ── Phase 3: Play-off 2 — Europe (7-12, half points rounded up) ───────────

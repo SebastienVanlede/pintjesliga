@@ -195,12 +195,15 @@ function ManualSim({ squads, pickedPlayers, onDone }: {
     const po2Names = finalStandings.slice(6, 12).map(r => r.team);
     const relNames = finalStandings.slice(12).map(r => r.team); // 4 teams
 
+    const po1Sched = generateFullSchedule(po1Names);   // home + away: 10 rounds
+    const po2Sched = generatePlayoffSchedule(po2Names); // single: 5 rounds
+    const relSched = generatePlayoffSchedule(relNames);  // single: 3 rounds
     setPlayoffs({
       round: 0,
-      maxRounds: 5, // max(PO1=5, PO2=5, REL=3) — all run concurrently
-      po1: { names: po1Names, schedule: generatePlayoffSchedule(po1Names), carry: Object.fromEntries(finalStandings.slice(0, 6).map(r => [r.team, Math.ceil(r.points / 2)])), matches: [] },
-      po2: { names: po2Names, schedule: generatePlayoffSchedule(po2Names), carry: Object.fromEntries(finalStandings.slice(6, 12).map(r => [r.team, Math.ceil(r.points / 2)])), matches: [] },
-      rel: { names: relNames, schedule: generatePlayoffSchedule(relNames), carry: Object.fromEntries(finalStandings.slice(12).map(r => [r.team, r.points])), matches: [] },
+      maxRounds: Math.max(po1Sched.length, po2Sched.length, relSched.length),
+      po1: { names: po1Names, schedule: po1Sched, carry: Object.fromEntries(finalStandings.slice(0, 6).map(r => [r.team, Math.ceil(r.points / 2)])), matches: [] },
+      po2: { names: po2Names, schedule: po2Sched, carry: Object.fromEntries(finalStandings.slice(6, 12).map(r => [r.team, Math.ceil(r.points / 2)])), matches: [] },
+      rel: { names: relNames, schedule: relSched, carry: Object.fromEntries(finalStandings.slice(12).map(r => [r.team, r.points])), matches: [] },
       regularStandings: finalStandings,
     });
     setLastRound(null);
