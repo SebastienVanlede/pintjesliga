@@ -112,6 +112,92 @@ function roundRobin(
   return matches;
 }
 
+// ─── Public helpers for manual mode ──────────────────────────────────────────
+
+export interface SimTeamPublic {
+  name: string;
+  overall: number;
+  scorers: string[];
+}
+
+export function buildSimTeams(userPlayers: PickedPlayer[], opponentSquads: Squad[]): SimTeamPublic[] {
+  const userTeam: SimTeamPublic = {
+    name: 'Jouw XI',
+    overall: xiOverall(userPlayers),
+    scorers: userPlayers
+      .filter(p => ['ST', 'RW', 'LW', 'CAM', 'CM'].includes(p.position))
+      .map(p => p.player.name),
+  };
+  if (!userTeam.scorers.length) userTeam.scorers = userPlayers.map(p => p.player.name);
+
+  const opponents: SimTeamPublic[] = opponentSquads.map(sq => ({
+    name: sq.team,
+    overall: squadOverall(sq),
+    scorers: sq.players
+      .filter(p => ['ST', 'RW', 'LW', 'CAM', 'CM'].includes(p.position))
+      .map(p => p.name),
+  }));
+
+  return [userTeam, ...opponents];
+}
+
+// Circle method — returns one half of fixtures (home only).
+// Adds a ghost 'BYE' team when count is odd so every round has equal matches.
+function circleRounds(teamNames: string[]): [string, string][][] {
+  const teams = teamNames.length % 2 === 0 ? [...teamNames] : [...teamNames, '__BYE__'];
+  const m = teams.length;
+  const fixed = teams[0];
+  const rotating = teams.slice(1);
+  const rounds: [string, string][][] = [];
+
+  for (let r = 0; r < m - 1; r++) {
+    const current = [fixed, ...rotating];
+    const pairs: [string, string][] = [];
+    for (let i = 0; i < m / 2; i++) {
+      const home = current[i];
+      const away = current[m - 1 - i];
+      if (home !== '__BYE__' && away !== '__BYE__') pairs.push([home, away]);
+    }
+    rounds.push(pairs);
+    rotating.unshift(rotating.pop()!);
+  }
+  return rounds;
+}
+
+/** Home + away round-robin schedule (regular season). */
+export function generateFullSchedule(teamNames: string[]): [string, string][][] {
+  const home = circleRounds(teamNames);
+  const away = home.map(round => round.map(([h, a]) => [a, h] as [string, string]));
+  return [...home, ...away];
+}
+
+/** Single round-robin schedule (playoffs — each pair plays once). */
+export function generatePlayoffSchedule(teamNames: string[]): [string, string][][] {
+  return circleRounds(teamNames);
+}
+
+/** Simulate all matches in one round. */
+export function simulateRound(
+  pairs: [string, string][],
+  teams: SimTeamPublic[],
+  startMatchNumber: number
+): SimulatedMatch[] {
+  return pairs.map((pair, i) => {
+    const home = teams.find(t => t.name === pair[0])!;
+    const away = teams.find(t => t.name === pair[1])!;
+    return simMatch(home as SimTeam, away as SimTeam, startMatchNumber + i);
+  });
+}
+
+/** Build standings from a list of matches + optional starting points. */
+export function computeStandings(
+  teamNames: string[],
+  matches: SimulatedMatch[],
+  carryover: Record<string, number> = {}
+): StandingRow[] {
+  return buildStandings(teamNames, matches, carryover);
+}
+
 // ─── Full season simulation ───────────────────────────────────────────────────
 
 export function simulateSeason(
