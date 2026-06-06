@@ -4,17 +4,19 @@
   "season": "2017-18",
   "year": 2017,
   "players": [
-    {"id":"ochoa-17","name":"Guillermo Ochoa","position":"GK","nationality":"MEX","age":32,"appearances":24,"goals":0,"assists":0,"marketValue":3000000,"internationalCaps":100,"awards":[],"overall":71},
-    {"id":"bodart-17","name":"Arnaud Bodart","position":"GK","nationality":"BEL","age":22,"appearances":8,"goals":0,"assists":0,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":63},
-    {"id":"laifis-17","name":"Konstantinos Laifis","position":"CB","alternativePositions":["LB"],"nationality":"CYP","age":24,"appearances":22,"goals":0,"assists":0,"marketValue":1500000,"internationalCaps":25,"awards":[],"overall":63},
-    {"id":"vanheusden-17","name":"Zinho Vanheusden","position":"CB","alternativePositions":["CDM"],"nationality":"BEL","age":18,"appearances":12,"goals":0,"assists":0,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":64},
-    {"id":"goreux-17","name":"Réginal Goreux","position":"RB","alternativePositions":["CB","RM"],"nationality":"HAI","age":30,"appearances":18,"goals":0,"assists":1,"marketValue":500000,"internationalCaps":50,"awards":[],"overall":60},
-    {"id":"pocognoli-17","name":"Sébastien Pocognoli","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":30,"appearances":18,"goals":0,"assists":1,"marketValue":700000,"internationalCaps":10,"awards":[],"overall":62},
-    {"id":"cimirot-17","name":"Gojko Cimirot","position":"CDM","alternativePositions":["CM"],"nationality":"BIH","age":25,"appearances":22,"goals":1,"assists":2,"marketValue":1000000,"internationalCaps":22,"awards":[],"overall":64},
-    {"id":"mpoku-17","name":"Paul-José M'Poku","position":"CAM","alternativePositions":["CM","LW"],"nationality":"COD","age":24,"appearances":22,"goals":4,"assists":5,"marketValue":2500000,"internationalCaps":22,"awards":[],"overall":68},
-    {"id":"carcela-17","name":"Mehdi Carcela","position":"LW","alternativePositions":["RW","CAM"],"nationality":"MAR","age":26,"appearances":20,"goals":3,"assists":4,"marketValue":1800000,"internationalCaps":30,"awards":[],"overall":65},
-    {"id":"bastien-17","name":"Samuel Bastien","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":20,"appearances":14,"goals":1,"assists":2,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":61},
-    {"id":"emond-17","name":"Renaud Emond","position":"ST","nationality":"BEL","age":25,"appearances":18,"goals":7,"assists":2,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":64},
-    {"id":"sa-17","name":"Orlando Sá","position":"ST","nationality":"POR","age":27,"appearances":14,"goals":4,"assists":1,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":62}
+    {"id":"ochoa-17","name":"Guillermo Ochoa","position":"GK","nationality":"MEX","age":31,"appearances":24,"goals":0,"assists":0,"marketValue":3000000,"internationalCaps":100,"awards":[],"overall":73},
+    {"id":"bodart-17","name":"Arnaud Bodart","position":"GK","nationality":"BEL","age":19,"appearances":6,"goals":0,"assists":0,"marketValue":200000,"internationalCaps":0,"awards":[],"overall":60},
+    {"id":"luyindama-17","name":"Christian Luyindama","position":"CB","nationality":"COD","age":23,"appearances":22,"goals":2,"assists":0,"marketValue":6000000,"internationalCaps":10,"awards":[],"overall":72},
+    {"id":"laifis-17","name":"Konstantinos Laifis","position":"CB","alternativePositions":["LB"],"nationality":"CYP","age":24,"appearances":22,"goals":1,"assists":0,"marketValue":4000000,"internationalCaps":25,"awards":[],"overall":68},
+    {"id":"vanheusden-17","name":"Zinho Vanheusden","position":"CB","alternativePositions":["CDM"],"nationality":"BEL","age":17,"appearances":8,"goals":0,"assists":0,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":62},
+    {"id":"pocognoli-17","name":"Sébastien Pocognoli","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":29,"appearances":18,"goals":0,"assists":1,"marketValue":900000,"internationalCaps":10,"awards":[],"overall":64},
+    {"id":"fai-17","name":"Collins Fai","position":"RB","alternativePositions":["RM"],"nationality":"CMR","age":24,"appearances":22,"goals":0,"assists":2,"marketValue":1500000,"internationalCaps":30,"awards":[],"overall":65},
+    {"id":"cimirot-17","name":"Gojko Cimirot","position":"CDM","alternativePositions":["CM"],"nationality":"BIH","age":24,"appearances":22,"goals":1,"assists":2,"marketValue":3500000,"internationalCaps":22,"awards":[],"overall":67},
+    {"id":"marin-17","name":"Răzvan Marin","position":"CM","alternativePositions":["CDM","CAM"],"nationality":"ROU","age":21,"appearances":26,"goals":4,"assists":5,"marketValue":7000000,"internationalCaps":15,"awards":[],"overall":73},
+    {"id":"mpoku-17","name":"Paul-José M'Poku","position":"CAM","alternativePositions":["CM","LW"],"nationality":"COD","age":25,"appearances":22,"goals":5,"assists":5,"marketValue":3000000,"internationalCaps":22,"awards":[],"overall":69},
+    {"id":"carcela-17","name":"Mehdi Carcela","position":"LW","alternativePositions":["RW","CAM"],"nationality":"MAR","age":28,"appearances":20,"goals":4,"assists":4,"marketValue":3500000,"internationalCaps":30,"awards":[],"overall":70},
+    {"id":"edmilson-junior-17","name":"Edmílson Junior","position":"LW","alternativePositions":["RW"],"nationality":"BRA","age":22,"appearances":24,"goals":8,"assists":4,"marketValue":7000000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"belfodil-17","name":"Ishak Belfodil","position":"ST","nationality":"ALG","age":25,"appearances":18,"goals":7,"assists":2,"marketValue":5500000,"internationalCaps":10,"awards":[],"overall":70},
+    {"id":"emond-17","name":"Renaud Emond","position":"ST","nationality":"BEL","age":26,"appearances":20,"goals":8,"assists":2,"marketValue":2200000,"internationalCaps":0,"awards":[],"overall":67}
   ]
 }

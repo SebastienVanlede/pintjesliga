@@ -4,13 +4,17 @@
   "season": "2017-18",
   "year": 2017,
   "players": [
-    {"id":"jackers-17","name":"Nordin Jackers","position":"GK","nationality":"BEL","age":18,"appearances":12,"goals":0,"assists":0,"marketValue":200000,"internationalCaps":0,"awards":[],"overall":54},
-    {"id":"schoonbaert-17","name":"Brendan Schoonbaert","position":"CB","nationality":"BEL","age":22,"appearances":14,"goals":0,"assists":0,"marketValue":200000,"internationalCaps":0,"awards":[],"overall":53},
-    {"id":"wuytens-17","name":"Dries Wuytens","position":"CB","nationality":"BEL","age":26,"appearances":12,"goals":0,"assists":0,"marketValue":200000,"internationalCaps":0,"awards":[],"overall":53},
-    {"id":"mandjeck-17","name":"Georges Mandjeck","position":"CDM","alternativePositions":["CM"],"nationality":"CMR","age":27,"appearances":14,"goals":0,"assists":1,"marketValue":300000,"internationalCaps":5,"awards":[],"overall":57},
-    {"id":"bertone-17","name":"Leonardo Bertone","position":"CM","alternativePositions":["CDM"],"nationality":"SUI","age":22,"appearances":12,"goals":1,"assists":1,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":54},
-    {"id":"sinani-17","name":"Danel Sinani","position":"LW","alternativePositions":["CAM","RW"],"nationality":"LUX","age":19,"appearances":14,"goals":2,"assists":3,"marketValue":600000,"internationalCaps":15,"awards":[],"overall":58},
-    {"id":"frey-17","name":"Michael Frey","position":"ST","nationality":"SUI","age":21,"appearances":14,"goals":4,"assists":1,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":60},
-    {"id":"van-de-wiel-17","name":"Vladimir Van De Wiel","position":"RB","alternativePositions":["CB","RM"],"nationality":"BEL","age":27,"appearances":12,"goals":0,"assists":0,"marketValue":200000,"internationalCaps":0,"awards":[],"overall":53}
+    {"id":"roef-w-17","name":"Davy Roef","position":"GK","nationality":"BEL","age":23,"appearances":26,"goals":0,"assists":0,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"camacho-17","name":"Rudy Camacho","position":"CB","nationality":"FRA","age":26,"appearances":22,"goals":1,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"buatu-17","name":"Buatu","position":"CB","nationality":"AGO","age":23,"appearances":20,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":5,"awards":[],"overall":62},
+    {"id":"moren-17","name":"Valtteri Moren","position":"CB","nationality":"FIN","age":26,"appearances":18,"goals":0,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":61},
+    {"id":"demir-17","name":"Erdin Demir","position":"LB","alternativePositions":["LM"],"nationality":"SWE","age":27,"appearances":20,"goals":0,"assists":2,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"jans-17","name":"Laurent Jans","position":"RB","alternativePositions":["RM"],"nationality":"LUX","age":24,"appearances":22,"goals":1,"assists":2,"marketValue":1200000,"internationalCaps":35,"awards":[],"overall":65},
+    {"id":"seck-w-17","name":"Ibrahima Seck","position":"CDM","alternativePositions":["CM"],"nationality":"SEN","age":27,"appearances":24,"goals":1,"assists":2,"marketValue":2000000,"internationalCaps":3,"awards":[],"overall":67},
+    {"id":"angban-17","name":"Victorien Angban","position":"CM","alternativePositions":["CDM"],"nationality":"CIV","age":20,"appearances":22,"goals":2,"assists":3,"marketValue":1000000,"internationalCaps":5,"awards":[],"overall":64},
+    {"id":"morioka-w-17","name":"Ryota Morioka","position":"CAM","alternativePositions":["CM"],"nationality":"JPN","age":26,"appearances":14,"goals":3,"assists":4,"marketValue":5000000,"internationalCaps":14,"awards":[],"overall":68},
+    {"id":"ampomah-17","name":"Nana Ampomah","position":"LW","alternativePositions":["RW"],"nationality":"GHA","age":21,"appearances":22,"goals":4,"assists":4,"marketValue":1500000,"internationalCaps":3,"awards":[],"overall":65},
+    {"id":"kiese-thelin-w-17","name":"Isaac Kiese Thelin","position":"ST","alternativePositions":["LW"],"nationality":"SWE","age":25,"appearances":14,"goals":6,"assists":2,"marketValue":2500000,"internationalCaps":8,"awards":[],"overall":66},
+    {"id":"gano-17","name":"Zinho Gano","position":"ST","nationality":"GNB","age":23,"appearances":22,"goals":7,"assists":2,"marketValue":1800000,"internationalCaps":0,"awards":[],"overall":66}
   ]
 }

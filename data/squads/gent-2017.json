@@ -4,19 +4,19 @@
   "season": "2017-18",
   "year": 2017,
   "players": [
-    {"id":"kalinic-17","name":"Lovre Kalinić","position":"GK","nationality":"CRO","age":27,"appearances":26,"goals":0,"assists":0,"marketValue":4000000,"internationalCaps":10,"awards":[],"overall":72},
-    {"id":"thoelen-17","name":"Yannick Thoelen","position":"GK","nationality":"BEL","age":25,"appearances":6,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":62},
-    {"id":"mitrovic-17","name":"Stefan Mitrović","position":"CB","nationality":"SRB","age":26,"appearances":24,"goals":1,"assists":0,"marketValue":3000000,"internationalCaps":12,"awards":[],"overall":68},
-    {"id":"gigot-17","name":"Samuel Gigot","position":"CB","nationality":"FRA","age":23,"appearances":22,"goals":1,"assists":0,"marketValue":2500000,"internationalCaps":0,"awards":[],"overall":66},
-    {"id":"foket-17","name":"Thomas Foket","position":"RB","alternativePositions":["RM"],"nationality":"BEL","age":22,"appearances":22,"goals":1,"assists":4,"marketValue":2500000,"internationalCaps":3,"awards":[],"overall":66},
-    {"id":"machado-17","name":"Deiver Machado","position":"LB","nationality":"COL","age":25,"appearances":20,"goals":0,"assists":2,"marketValue":1500000,"internationalCaps":5,"awards":[],"overall":63,"alternativePositions":["LM"]},
-    {"id":"verstraete-g-17","name":"Birger Verstraete","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":23,"appearances":22,"goals":2,"assists":3,"marketValue":1800000,"internationalCaps":0,"awards":[],"overall":63},
-    {"id":"dejaegere-17","name":"Brecht Dejaegere","position":"CM","alternativePositions":["CAM","CDM"],"nationality":"BEL","age":25,"appearances":20,"goals":3,"assists":3,"marketValue":2000000,"internationalCaps":1,"awards":[],"overall":66},
-    {"id":"neto-17","name":"Renato Neto","position":"CDM","alternativePositions":["CM"],"nationality":"BRA","age":26,"appearances":18,"goals":1,"assists":2,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":63},
-    {"id":"simon-17","name":"Moses Simon","position":"LW","alternativePositions":["RW"],"nationality":"NGA","age":21,"appearances":22,"goals":5,"assists":5,"marketValue":3500000,"internationalCaps":10,"awards":[],"overall":68},
-    {"id":"kalu-17","name":"Samuel Kalu","position":"RW","alternativePositions":["LW"],"nationality":"NGA","age":21,"appearances":18,"goals":4,"assists":4,"marketValue":3000000,"internationalCaps":8,"awards":[],"overall":67},
-    {"id":"yaremchuk-17","name":"Roman Yaremchuk","position":"ST","nationality":"UKR","age":21,"appearances":20,"goals":7,"assists":2,"marketValue":3000000,"internationalCaps":5,"awards":[],"overall":67},
-    {"id":"sylla-17","name":"Mamadou Sylla","position":"ST","alternativePositions":["LW"],"nationality":"SEN","age":26,"appearances":18,"goals":5,"assists":2,"marketValue":1000000,"internationalCaps":5,"awards":[],"overall":64},
-    {"id":"koita-g-17","name":"Aboubakary Koita","position":"ST","alternativePositions":["LW"],"nationality":"BEL","age":16,"appearances":6,"goals":0,"assists":0,"marketValue":200000,"internationalCaps":0,"awards":[],"overall":50}
+    {"id":"kalinic-17","name":"Lovre Kalinić","position":"GK","nationality":"CRO","age":27,"appearances":26,"goals":0,"assists":0,"marketValue":6500000,"internationalCaps":10,"awards":[],"overall":73},
+    {"id":"thoelen-17","name":"Yannick Thoelen","position":"GK","nationality":"BEL","age":26,"appearances":6,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"mitrovic-17","name":"Stefan Mitrović","position":"CB","nationality":"SRB","age":27,"appearances":24,"goals":1,"assists":0,"marketValue":2200000,"internationalCaps":15,"awards":[],"overall":68},
+    {"id":"gigot-17","name":"Samuel Gigot","position":"CB","nationality":"FRA","age":23,"appearances":22,"goals":1,"assists":0,"marketValue":6000000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"foket-17","name":"Thomas Foket","position":"RB","alternativePositions":["RM"],"nationality":"BEL","age":22,"appearances":22,"goals":1,"assists":4,"marketValue":3500000,"internationalCaps":3,"awards":[],"overall":67},
+    {"id":"machado-17","name":"Deiver Machado","position":"LB","alternativePositions":["LM"],"nationality":"COL","age":23,"appearances":20,"goals":0,"assists":2,"marketValue":1000000,"internationalCaps":5,"awards":[],"overall":63},
+    {"id":"verstraete-g-17","name":"Birger Verstraete","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":23,"appearances":22,"goals":2,"assists":3,"marketValue":2500000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"dejaegere-17","name":"Brecht Dejaegere","position":"CM","alternativePositions":["CAM","CDM"],"nationality":"BEL","age":26,"appearances":20,"goals":3,"assists":4,"marketValue":3500000,"internationalCaps":1,"awards":[],"overall":68},
+    {"id":"neto-17","name":"Renato Neto","position":"CDM","alternativePositions":["CM"],"nationality":"BRA","age":25,"appearances":18,"goals":1,"assists":2,"marketValue":3000000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"simon-17","name":"Moses Simon","position":"LW","alternativePositions":["RW"],"nationality":"NGA","age":21,"appearances":22,"goals":5,"assists":5,"marketValue":6000000,"internationalCaps":10,"awards":[],"overall":70},
+    {"id":"kalu-17","name":"Samuel Kalu","position":"RW","alternativePositions":["LW"],"nationality":"NGA","age":19,"appearances":18,"goals":4,"assists":4,"marketValue":5000000,"internationalCaps":8,"awards":[],"overall":68},
+    {"id":"yaremchuk-17","name":"Roman Yaremchuk","position":"ST","nationality":"UKR","age":21,"appearances":20,"goals":7,"assists":2,"marketValue":3500000,"internationalCaps":5,"awards":[],"overall":68},
+    {"id":"sylla-17","name":"Mamadou Sylla","position":"ST","alternativePositions":["LW"],"nationality":"SEN","age":23,"appearances":18,"goals":5,"assists":2,"marketValue":2200000,"internationalCaps":5,"awards":[],"overall":66},
+    {"id":"coulibaly-k-17","name":"Kalifa Coulibaly","position":"ST","nationality":"MLI","age":25,"appearances":18,"goals":4,"assists":2,"marketValue":3000000,"internationalCaps":10,"awards":[],"overall":67}
   ]
 }

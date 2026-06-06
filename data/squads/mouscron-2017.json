@@ -4,12 +4,17 @@
   "season": "2017-18",
   "year": 2017,
   "players": [
-    {"id":"gillekens-17","name":"Nick Gillekens","position":"GK","nationality":"BEL","age":20,"appearances":14,"goals":0,"assists":0,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":57},
-    {"id":"silvestre-17","name":"Matías Silvestre","position":"CB","nationality":"ARG","age":31,"appearances":16,"goals":0,"assists":0,"marketValue":300000,"internationalCaps":22,"awards":[],"overall":58},
-    {"id":"keita-m-17","name":"Cheick Keita","position":"LB","nationality":"MLI","age":20,"appearances":14,"goals":0,"assists":1,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":55,"alternativePositions":["LM"]},
-    {"id":"bakic-m-17","name":"Marko Bakić","position":"CM","alternativePositions":["CAM","CDM"],"nationality":"MNE","age":21,"appearances":14,"goals":1,"assists":2,"marketValue":500000,"internationalCaps":8,"awards":[],"overall":57},
-    {"id":"nuno-m-17","name":"Nuno da Costa","position":"RW","alternativePositions":["ST"],"nationality":"CPV","age":25,"appearances":14,"goals":4,"assists":2,"marketValue":600000,"internationalCaps":20,"awards":[],"overall":59},
-    {"id":"gnohere-m-17","name":"Harlem Gnohéré","position":"ST","nationality":"FRA","age":27,"appearances":14,"goals":4,"assists":1,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":57},
-    {"id":"badibanga-m-17","name":"Beni Badibanga","position":"LW","nationality":"BEL","age":21,"appearances":12,"goals":2,"assists":2,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":55}
+    {"id":"bailly-17","name":"Logan Bailly","position":"GK","nationality":"BEL","age":31,"appearances":24,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":1,"awards":[],"overall":64},
+    {"id":"mezague-17","name":"Teddy Mezague","position":"CB","nationality":"FRA","age":27,"appearances":24,"goals":1,"assists":0,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":62},
+    {"id":"godeau-m-17","name":"Bruno Godeau","position":"CB","alternativePositions":["LB"],"nationality":"BEL","age":25,"appearances":22,"goals":0,"assists":1,"marketValue":650000,"internationalCaps":0,"awards":[],"overall":62},
+    {"id":"diedhiou-17","name":"Christophe Diedhiou","position":"CB","nationality":"SEN","age":29,"appearances":20,"goals":0,"assists":0,"marketValue":350000,"internationalCaps":0,"awards":[],"overall":60},
+    {"id":"mohamed-17","name":"Dimitri Mohamed","position":"LB","alternativePositions":["LM"],"nationality":"FRA","age":28,"appearances":22,"goals":0,"assists":2,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":62},
+    {"id":"vojvoda-17","name":"Mërgim Vojvoda","position":"RB","alternativePositions":["RM"],"nationality":"KOS","age":22,"appearances":24,"goals":1,"assists":2,"marketValue":850000,"internationalCaps":5,"awards":[],"overall":64},
+    {"id":"govea-17","name":"Omar Govea","position":"CDM","alternativePositions":["CM"],"nationality":"MEX","age":21,"appearances":24,"goals":2,"assists":4,"marketValue":2200000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"nkaka-17","name":"Aristote Nkaka","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":21,"appearances":20,"goals":0,"assists":2,"marketValue":1300000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"amallah-17","name":"Selim Amallah","position":"CAM","alternativePositions":["CM"],"nationality":"MAR","age":20,"appearances":22,"goals":3,"assists":4,"marketValue":1000000,"internationalCaps":2,"awards":[],"overall":64},
+    {"id":"olinga-17","name":"Fabrice Olinga","position":"LW","alternativePositions":["RW"],"nationality":"CMR","age":21,"appearances":22,"goals":7,"assists":3,"marketValue":700000,"internationalCaps":10,"awards":[],"overall":64},
+    {"id":"rotariu-17","name":"Dorin Rotariu","position":"RW","alternativePositions":["LW","ST"],"nationality":"ROU","age":21,"appearances":18,"goals":4,"assists":3,"marketValue":1500000,"internationalCaps":5,"awards":[],"overall":64},
+    {"id":"awoniyi-17","name":"Taiwo Awoniyi","position":"ST","nationality":"NGA","age":19,"appearances":18,"goals":6,"assists":2,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":65}
   ]
 }
