@@ -40,6 +40,7 @@ export default function DraftPage() {
 
   const rollDice = useCallback((isReroll = false) => {
     if (isReroll) setRerollsUsed(prev => prev + 1);
+    else setRerollsUsed(0);
     setPhase('spinning');
     setRoll(null);
     setSelectedPlayer(null);
@@ -81,7 +82,6 @@ export default function DraftPage() {
     } as PickedPlayer);
     setSelectedPlayer(null);
     setRoll(null);
-    setRerollsUsed(0);
     setPhase('idle');
   }
 
