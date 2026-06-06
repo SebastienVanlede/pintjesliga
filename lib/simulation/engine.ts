@@ -1,4 +1,13 @@
-import { PickedPlayer, Squad, SimulatedSeason, SimulatedMatch, StandingRow } from '@/lib/types';
+import {
+  PickedPlayer,
+  Squad,
+  SimulatedSeason,
+  SimulatedPhase,
+  SimulatedMatch,
+  StandingRow,
+} from '@/lib/types';
+
+// ─── Team model ──────────────────────────────────────────────────────────────
 
 interface SimTeam {
   name: string;
@@ -7,113 +16,171 @@ interface SimTeam {
 }
 
 function xiOverall(players: PickedPlayer[]): number {
-  if (players.length === 0) return 60;
+  if (!players.length) return 60;
   return Math.round(players.reduce((s, p) => s + p.player.overall, 0) / players.length);
 }
 
 function squadOverall(squad: Squad): number {
-  const starters = [...squad.players].sort((a, b) => b.overall - a.overall).slice(0, 11);
-  return Math.round(starters.reduce((s, p) => s + p.overall, 0) / starters.length);
+  const top11 = [...squad.players].sort((a, b) => b.overall - a.overall).slice(0, 11);
+  return Math.round(top11.reduce((s, p) => s + p.overall, 0) / top11.length);
 }
 
-function weightedGoals(ownOverall: number, oppOverall: number): number {
-  // Base: 1.4 expected goals; each point of overall difference shifts +/- 0.04
-  const diff = ownOverall - oppOverall;
-  const expected = Math.max(0.2, 1.4 + diff * 0.04);
-  // Poisson approximation via sum of uniform randoms
-  return poissonSample(expected);
+function scorerPool(team: SimTeam): string[] {
+  return team.scorers.length ? team.scorers : [team.name];
 }
+
+function pickScorers(team: SimTeam, goals: number): string[] {
+  const pool = scorerPool(team);
+  return Array.from({ length: goals }, () => pool[Math.floor(Math.random() * pool.length)]);
+}
+
+// ─── Match simulation ─────────────────────────────────────────────────────────
 
 function poissonSample(lambda: number): number {
   let k = 0;
   let p = Math.random();
-  const threshold = Math.exp(-lambda);
-  while (p > threshold) {
-    k++;
-    p *= Math.random();
-  }
+  const threshold = Math.exp(-Math.max(0.1, lambda));
+  while (p > threshold) { k++; p *= Math.random(); }
   return k;
 }
 
-function pickScorers(team: SimTeam, goals: number): string[] {
-  const result: string[] = [];
-  for (let i = 0; i < goals; i++) {
-    result.push(team.scorers[Math.floor(Math.random() * team.scorers.length)]);
-  }
-  return result;
+function weightedGoals(own: number, opp: number): number {
+  const expected = Math.max(0.2, 1.4 + (own - opp) * 0.04);
+  return poissonSample(expected);
 }
 
-function buildStandings(teams: SimTeam[], matches: SimulatedMatch[]): StandingRow[] {
+function simMatch(home: SimTeam, away: SimTeam, round: number): SimulatedMatch {
+  const homeGoals = weightedGoals(home.overall, away.overall);
+  const awayGoals = weightedGoals(away.overall, home.overall);
+  return {
+    round,
+    home: home.name,
+    away: away.name,
+    homeGoals,
+    awayGoals,
+    scorers: [...pickScorers(home, homeGoals), ...pickScorers(away, awayGoals)],
+  };
+}
+
+// ─── Standings builder ────────────────────────────────────────────────────────
+
+function buildStandings(
+  teamNames: string[],
+  matches: SimulatedMatch[],
+  carryover: Record<string, number> = {}
+): StandingRow[] {
   const rows: Record<string, StandingRow> = {};
-  for (const t of teams) {
-    rows[t.name] = { team: t.name, played: 0, won: 0, drawn: 0, lost: 0, goalsFor: 0, goalsAgainst: 0, points: 0 };
+  for (const name of teamNames) {
+    rows[name] = {
+      team: name,
+      played: 0, won: 0, drawn: 0, lost: 0,
+      goalsFor: 0, goalsAgainst: 0,
+      points: carryover[name] ?? 0,
+      carryoverPoints: carryover[name],
+    };
   }
   for (const m of matches) {
     const h = rows[m.home];
     const a = rows[m.away];
+    if (!h || !a) continue;
     h.played++; h.goalsFor += m.homeGoals; h.goalsAgainst += m.awayGoals;
     a.played++; a.goalsFor += m.awayGoals; a.goalsAgainst += m.homeGoals;
-    if (m.homeGoals > m.awayGoals) { h.won++; h.points += 3; a.lost++; }
+    if (m.homeGoals > m.awayGoals)      { h.won++; h.points += 3; a.lost++; }
     else if (m.homeGoals < m.awayGoals) { a.won++; a.points += 3; h.lost++; }
-    else { h.drawn++; h.points++; a.drawn++; a.points++; }
+    else                                { h.drawn++; h.points++; a.drawn++; a.points++; }
   }
-  return Object.values(rows).sort((a, b) =>
-    b.points - a.points || (b.goalsFor - b.goalsAgainst) - (a.goalsFor - a.goalsAgainst)
+  return Object.values(rows).sort(
+    (a, b) => b.points - a.points || (b.goalsFor - b.goalsAgainst) - (a.goalsFor - a.goalsAgainst)
   );
 }
+
+// ─── Round-robin generator ────────────────────────────────────────────────────
+
+function roundRobin(
+  teams: SimTeam[],
+  startRound: number,
+  homeAndAway: boolean
+): SimulatedMatch[] {
+  const matches: SimulatedMatch[] = [];
+  let r = startRound;
+  for (let i = 0; i < teams.length; i++) {
+    for (let j = i + 1; j < teams.length; j++) {
+      matches.push(simMatch(teams[i], teams[j], r++));
+      if (homeAndAway) matches.push(simMatch(teams[j], teams[i], r++));
+    }
+  }
+  return matches;
+}
+
+// ─── Full season simulation ───────────────────────────────────────────────────
 
 export function simulateSeason(
   userPlayers: PickedPlayer[],
   opponentSquads: Squad[]
 ): SimulatedSeason {
+  // Build team pool
   const userTeam: SimTeam = {
     name: 'Jouw XI',
     overall: xiOverall(userPlayers),
     scorers: userPlayers
-      .filter((p) => ['ST', 'RW', 'LW', 'CAM', 'CM'].includes(p.position))
-      .map((p) => p.player.name),
+      .filter(p => ['ST', 'RW', 'LW', 'CAM', 'CM'].includes(p.position))
+      .map(p => p.player.name),
   };
-  if (userTeam.scorers.length === 0) {
-    userTeam.scorers = userPlayers.map((p) => p.player.name);
-  }
+  if (!userTeam.scorers.length) userTeam.scorers = userPlayers.map(p => p.player.name);
 
-  const opponents: SimTeam[] = opponentSquads.map((sq) => ({
+  const opponents: SimTeam[] = opponentSquads.map(sq => ({
     name: sq.team,
     overall: squadOverall(sq),
     scorers: sq.players
-      .filter((p) => ['ST', 'RW', 'LW', 'CAM', 'CM'].includes(p.position))
-      .map((p) => p.name),
+      .filter(p => ['ST', 'RW', 'LW', 'CAM', 'CM'].includes(p.position))
+      .map(p => p.name),
   }));
 
-  const teams = [userTeam, ...opponents];
-  const matches: SimulatedMatch[] = [];
-  let round = 1;
+  const allTeams = [userTeam, ...opponents];
 
-  // Full round-robin (home + away)
-  for (let i = 0; i < teams.length; i++) {
-    for (let j = 0; j < teams.length; j++) {
-      if (i === j) continue;
-      const home = teams[i];
-      const away = teams[j];
-      const homeGoals = weightedGoals(home.overall, away.overall);
-      const awayGoals = weightedGoals(away.overall, home.overall);
-      matches.push({
-        round,
-        home: home.name,
-        away: away.name,
-        homeGoals,
-        awayGoals,
-        scorers: [
-          ...pickScorers(home, homeGoals),
-          ...pickScorers(away, awayGoals),
-        ],
-      });
-      round++;
-    }
-  }
+  // ── Phase 1: Regular season (home + away) ──────────────────────────────────
+  const regMatches = roundRobin(allTeams, 1, true);
+  const regStandings = buildStandings(allTeams.map(t => t.name), regMatches);
+
+  // ── Split into playoff groups ──────────────────────────────────────────────
+  const po1Names    = regStandings.slice(0, 6).map(r => r.team);
+  const po2Names    = regStandings.slice(6, 12).map(r => r.team);
+  const releNames   = regStandings.slice(12).map(r => r.team);
+
+  const po1Carry    = Object.fromEntries(regStandings.slice(0, 6).map(r  => [r.team, Math.ceil(r.points / 2)]));
+  const po2Carry    = Object.fromEntries(regStandings.slice(6, 12).map(r => [r.team, Math.ceil(r.points / 2)]));
+  const releCarry   = Object.fromEntries(regStandings.slice(12).map(r    => [r.team, r.points])); // full points
+
+  const po1Teams    = po1Names.map(n  => allTeams.find(t => t.name === n)!);
+  const po2Teams    = po2Names.map(n  => allTeams.find(t => t.name === n)!);
+  const releTeams   = releNames.map(n => allTeams.find(t => t.name === n)!);
+
+  const regEnd = regMatches.length;
+
+  // ── Phase 2: Play-off 1 — Championship (top 6, half points rounded up) ────
+  const po1Matches   = roundRobin(po1Teams, regEnd + 1, false);
+  const po1Standings = buildStandings(po1Names, po1Matches, po1Carry);
+
+  // ── Phase 3: Play-off 2 — Europe (7-12, half points rounded up) ───────────
+  const po2Matches   = roundRobin(po2Teams, regEnd + po1Matches.length + 1, false);
+  const po2Standings = buildStandings(po2Names, po2Matches, po2Carry);
+
+  // ── Phase 4: Relegation Play-off (13-16, full regular season points) ───────
+  const relMatches   = roundRobin(releTeams, regEnd + po1Matches.length + po2Matches.length + 1, false);
+  const relStandings = buildStandings(releNames, relMatches, releCarry);
+
+  // ── Outcomes ───────────────────────────────────────────────────────────────
+  const champion       = po1Standings[0].team;
+  const europeanSpots  = po1Standings.slice(0, 4).map(r => r.team);
+  const relegated      = relStandings.slice(2).map(r => r.team);
 
   return {
-    matches,
-    standings: buildStandings(teams, matches),
+    regularSeason:  { name: 'Regulier Seizoen',      matches: regMatches,  standings: regStandings },
+    po1:            { name: 'Championship Play-off',  matches: po1Matches,  standings: po1Standings },
+    po2:            { name: 'Europa Play-off',        matches: po2Matches,  standings: po2Standings },
+    poRelegation:   { name: 'Relegation Play-off',   matches: relMatches,  standings: relStandings },
+    champion,
+    europeanSpots,
+    relegated,
   };
 }

@@ -113,9 +113,21 @@ export interface StandingRow {
   goalsFor: number;
   goalsAgainst: number;
   points: number;
+  carryoverPoints?: number; // points brought into a playoff phase
+}
+
+export interface SimulatedPhase {
+  name: string;
+  matches: SimulatedMatch[];
+  standings: StandingRow[];
 }
 
 export interface SimulatedSeason {
-  matches: SimulatedMatch[];
-  standings: StandingRow[];
+  regularSeason: SimulatedPhase;
+  po1: SimulatedPhase;        // Championship (top 6)
+  po2: SimulatedPhase;        // Europe (7-12)
+  poRelegation: SimulatedPhase; // Relegation (13-16)
+  champion: string;
+  europeanSpots: string[];    // top 4 from PO1
+  relegated: string[];        // bottom 2 from relegation PO
 }
