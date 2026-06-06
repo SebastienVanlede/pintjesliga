@@ -72,7 +72,6 @@ const pickedByIndex = Object.fromEntries(pickedPlayers.map((p) => [p.positionInd
     } as PickedPlayer);
     setSelectedPlayer(null);
     setRoll(null);
-    setRerollsUsed(0);
     setPhase('idle');
   }
 
@@ -236,8 +235,8 @@ const pickedByIndex = Object.fromEntries(pickedPlayers.map((p) => [p.positionInd
                       cursor: rerollsLeft > 0 ? 'pointer' : 'not-allowed',
                     }}>
                     {rerollsLeft > 0
-                      ? `Opnieuw rollen (${rerollsLeft} over)`
-                      : 'Geen herrolls meer — kies een speler'}
+                      ? `Opnieuw rollen (${rerollsLeft} herroll${rerollsLeft === 1 ? '' : 's'} resterend)`
+                      : 'Geen herrolls meer — je moet kiezen'}
                   </button>
                 </div>
               </motion.div>
