@@ -37,15 +37,15 @@ export default function LeaderboardPage() {
       </motion.div>
 
       {/* Score explanation */}
-      <div className="w-full grid grid-cols-3 gap-3">
+      <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
         {[
           { label: 'Resultaat', desc: 'Kampioen = 1000 pts, degradatie = 0 pts' },
           { label: 'Underdog', desc: 'Lager gem. overall = meer bonuspunten' },
           { label: 'Diversiteit', desc: 'Meer unieke clubs = meer bonuspunten' },
         ].map(({ label, desc }) => (
-          <div key={label} className="card p-3 text-center">
-            <p className="text-xs font-medium" style={{ color: 'var(--text)' }}>{label}</p>
-            <p className="text-xs mt-1" style={{ color: 'var(--muted)', lineHeight: 1.4 }}>{desc}</p>
+          <div key={label} className="card p-3 flex sm:flex-col items-center sm:text-center gap-3 sm:gap-1">
+            <p className="text-xs font-medium shrink-0" style={{ color: 'var(--text)', minWidth: '5.5rem' }}>{label}</p>
+            <p className="text-xs" style={{ color: 'var(--muted)', lineHeight: 1.4 }}>{desc}</p>
           </div>
         ))}
       </div>
@@ -75,12 +75,10 @@ export default function LeaderboardPage() {
       ) : (
         <div className="w-full flex flex-col gap-0 rounded-xl overflow-hidden" style={{ border: '1px solid var(--border)' }}>
           {/* Header row */}
-          <div className="grid items-center px-4 py-2 text-xs uppercase tracking-widest"
-            style={{ background: 'var(--surface-2)', color: 'var(--muted)', gridTemplateColumns: '2.5rem 1fr 5rem 5rem 6rem' }}>
+          <div className="grid items-center px-3 sm:px-4 py-2 text-xs uppercase tracking-widest"
+            style={{ background: 'var(--surface-2)', color: 'var(--muted)', gridTemplateColumns: '2rem 1fr auto' }}>
             <span>#</span>
             <span>Naam</span>
-            <span className="text-center">Formatie</span>
-            <span className="text-center">OVR</span>
             <span className="text-right">Score</span>
           </div>
 
@@ -90,9 +88,9 @@ export default function LeaderboardPage() {
               initial={{ opacity: 0, x: -8 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: i * 0.04 }}
-              className="grid items-center px-4 py-3 text-sm"
+              className="grid items-center px-3 sm:px-4 py-3 text-sm"
               style={{
-                gridTemplateColumns: '2.5rem 1fr 5rem 5rem 6rem',
+                gridTemplateColumns: '2rem 1fr auto',
                 borderTop: '1px solid var(--border)',
                 background: i === 0 ? 'rgba(212,148,10,0.06)' : i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.015)',
               }}
@@ -102,27 +100,23 @@ export default function LeaderboardPage() {
                 {MEDAL[i] ?? i + 1}
               </span>
 
-              {/* Name + result */}
-              <div>
-                <p className="font-medium" style={{ color: 'var(--text)' }}>{entry.player_name}</p>
-                <p className="text-xs mt-0.5" style={{ color: 'var(--muted)' }}>{entry.result_label}</p>
+              {/* Name + result + meta */}
+              <div className="min-w-0">
+                <p className="font-medium truncate" style={{ color: 'var(--text)' }}>{entry.player_name}</p>
+                <div className="flex items-center gap-2 flex-wrap mt-0.5">
+                  <p className="text-xs" style={{ color: 'var(--muted)' }}>{entry.result_label}</p>
+                  <span className="text-xs px-1.5 py-0.5 rounded" style={{ background: 'var(--surface-2)', color: 'var(--text-2)', fontFamily: 'var(--font-display)', letterSpacing: '0.05em', fontSize: '0.6rem' }}>
+                    {entry.formation}
+                  </span>
+                  <span className="text-xs" style={{ color: entry.avg_overall >= 75 ? 'var(--muted)' : entry.avg_overall >= 70 ? 'var(--text-2)' : 'var(--gold)', fontSize: '0.7rem' }}>
+                    OVR {entry.avg_overall}
+                  </span>
+                </div>
               </div>
-
-              {/* Formation */}
-              <div className="text-center">
-                <span className="text-xs px-2 py-0.5 rounded" style={{ background: 'var(--surface-2)', color: 'var(--text-2)', fontFamily: 'var(--font-display)', letterSpacing: '0.05em' }}>
-                  {entry.formation}
-                </span>
-              </div>
-
-              {/* Avg overall */}
-              <span className="text-center text-sm" style={{ color: entry.avg_overall >= 75 ? 'var(--muted)' : entry.avg_overall >= 70 ? 'var(--text-2)' : 'var(--gold)' }}>
-                {entry.avg_overall}
-              </span>
 
               {/* Score */}
-              <div className="text-right">
-                <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.15rem', color: i === 0 ? 'var(--gold)' : 'var(--text)', letterSpacing: '0.04em' }}>
+              <div className="text-right pl-3">
+                <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', color: i === 0 ? 'var(--gold)' : 'var(--text)', letterSpacing: '0.04em', whiteSpace: 'nowrap' }}>
                   {entry.score.toLocaleString('nl-BE')}
                 </span>
               </div>
