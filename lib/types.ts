@@ -1,8 +1,8 @@
 export type Position = 'GK' | 'RB' | 'CB' | 'LB' | 'CDM' | 'CM' | 'CAM' | 'RM' | 'LM' | 'RW' | 'LW' | 'ST';
 
-export type Formation = '4-3-3' | '4-4-2' | '4-2-3-1' | '3-5-2' | '5-3-2' | '4-1-4-1' | '3-4-3' | '4-3-2-1';
+export type Formation = '4-3-3' | '4-4-2' | '4-2-3-1' | '3-5-2' | '5-3-2' | '4-1-4-1' | '3-4-3' | '4-3-2-1' | '4-2-4';
 
-export const FORMATIONS: Formation[] = ['4-3-3', '4-4-2', '4-2-3-1', '3-5-2', '5-3-2', '4-1-4-1', '3-4-3', '4-3-2-1'];
+export const FORMATIONS: Formation[] = ['4-3-3', '4-4-2', '4-2-3-1', '3-5-2', '5-3-2', '4-1-4-1', '3-4-3', '4-3-2-1', '4-2-4'];
 
 // Positions listed GK → defense → midfield → attack
 export const FORMATION_POSITIONS: Record<Formation, Position[]> = {
@@ -14,6 +14,7 @@ export const FORMATION_POSITIONS: Record<Formation, Position[]> = {
   '4-1-4-1': ['GK', 'RB', 'CB', 'CB', 'LB', 'CDM', 'RM', 'CM', 'CM', 'LM', 'ST'],
   '3-4-3':   ['GK', 'CB', 'CB', 'CB', 'RM', 'CM', 'CM', 'LM', 'RW', 'ST', 'LW'],
   '4-3-2-1': ['GK', 'RB', 'CB', 'CB', 'LB', 'CM', 'CM', 'CM', 'CAM', 'CAM', 'ST'],
+  '4-2-4':   ['GK', 'RB', 'CB', 'CB', 'LB', 'CM', 'CM', 'RW', 'ST', 'ST', 'LW'],
 };
 
 // [x, y] in a 60x80 SVG viewBox, GK at bottom, attack at top
@@ -68,6 +69,12 @@ export const FORMATION_DOTS: Record<Formation, [number, number][]> = {
     [46, 38], [30, 36], [14, 38],
     [38, 22], [22, 22],
     [30, 8],
+  ],
+  '4-2-4': [
+    [30, 73],
+    [50, 56], [38, 53], [22, 53], [10, 56],
+    [38, 38], [22, 38],
+    [54, 12], [40, 8], [20, 8], [6, 12],
   ],
 };
 
