@@ -16,7 +16,7 @@
     {"id":"tissoudali-21","name":"Tarik Tissoudali","position":"LW","alternativePositions":["ST","RW"],"nationality":"MAR","age":27,"appearances":32,"goals":21,"assists":7,"marketValue":5000000,"internationalCaps":5,"awards":[],"overall":77},
     {"id":"depoitre-21","name":"Laurent Depoitre","position":"ST","nationality":"BEL","age":29,"appearances":22,"goals":7,"assists":3,"marketValue":2000000,"internationalCaps":10,"awards":["Pro League Top Scorer 2015"],"overall":70},
     {"id":"hjulsager-21","name":"Andrew Hjulsager","position":"CM","alternativePositions":["CDM"],"nationality":"DEN","age":26,"appearances":20,"goals":2,"assists":3,"marketValue":1500000,"internationalCaps":3,"awards":[],"overall":66},
-    {"id":"samoise-21","name":"Matisse Samoise","position":"RM","alternativePositions":["RW","LW"],"nationality":"BEL","age":19,"appearances":18,"goals":2,"assists":3,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"samoise-21","name":"Matisse Samoise","position":"RM","alternativePositions":["RW","LW","RB"],"nationality":"BEL","age":19,"appearances":18,"goals":2,"assists":3,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":63},
     {"id":"marreh-21","name":"Sulayman Marreh","position":"CDM","alternativePositions":["CM"],"nationality":"GMB","age":24,"appearances":16,"goals":0,"assists":1,"marketValue":800000,"internationalCaps":10,"awards":[],"overall":62},
     {"id":"cuypers-21","name":"Hugo Cuypers","position":"ST","nationality":"BEL","age":23,"appearances":14,"goals":5,"assists":2,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":69}
   ]
