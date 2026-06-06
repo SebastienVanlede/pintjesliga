@@ -48,8 +48,8 @@ export default function HomePage() {
             <span style={{ color: 'var(--text)' }}>LIGA</span>
           </h1>
           <p style={{ color: 'var(--muted)', maxWidth: '38ch' }}>
-            Rol de dobbelstenen, pak je spelers en bouw de beste historische
-            Belgische droomploeg ooit.
+            Rol de dobbelstenen, kies je spelers uit echte Pro League squads
+            en simuleer een volledig seizoen met het Belgisch playoffsysteem.
           </p>
         </header>
 
@@ -98,12 +98,15 @@ export default function HomePage() {
         </button>
 
         {/* Footer hint */}
-        <p
-          className="text-xs text-center"
-          style={{ color: 'var(--muted)', opacity: 0.5 }}
-        >
-          5 beschikbare teams · Meer seizoenen komen eraan
-        </p>
+        <div className="flex items-center gap-3 text-xs" style={{ color: 'var(--muted)', opacity: 0.6 }}>
+          <span>32 squads</span>
+          <span style={{ color: 'var(--border)' }}>·</span>
+          <span>Seizoenen 2023-24 &amp; 2024-25</span>
+          <span style={{ color: 'var(--border)' }}>·</span>
+          <span>3 herrolls</span>
+          <span style={{ color: 'var(--border)' }}>·</span>
+          <span>PO1 · PO2 · Relegate</span>
+        </div>
       </div>
     </main>
   );
