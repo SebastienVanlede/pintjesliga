@@ -471,6 +471,19 @@ function PlayerCard({ player, teamColor, onPick, disabled, disabledReason, blind
             <span style={{ fontSize: '0.65rem', color: 'var(--muted)' }}>·</span>
             <span style={{ fontSize: '0.65rem', color: 'var(--muted)' }}>{player.goals}G {player.assists}A</span>
           </div>
+          {!blind && player.awards && player.awards.length > 0 && (
+            <div className="flex gap-1 mt-1 flex-wrap">
+              {player.awards.map(award => (
+                <span key={award} style={{
+                  fontSize: '0.58rem', letterSpacing: '0.03em',
+                  padding: '1px 6px', borderRadius: 3,
+                  background: 'rgba(212,148,10,0.12)',
+                  color: 'var(--gold)',
+                  border: '1px solid rgba(212,148,10,0.25)',
+                }}>🏆 {award}</span>
+              ))}
+            </div>
+          )}
         </div>
 
         {disabled ? (
