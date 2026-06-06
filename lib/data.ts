@@ -42,12 +42,6 @@ const squadModules: Record<string, () => Promise<Squad>> = {
   'kortrijk-2023-24':      () => import('@/data/squads/kortrijk-2023.json').then(m => m.default as Squad),
   'eupen-2023-24':         () => import('@/data/squads/eupen-2023.json').then(m => m.default as Squad),
   'rwdm-2023-24':          () => import('@/data/squads/rwdm-2023.json').then(m => m.default as Squad),
-  // Historic seasons
-  'club-brugge-2002-03':  () => import('@/data/squads/club-brugge-2002.json').then(m => m.default as Squad),
-  'anderlecht-2003-04':   () => import('@/data/squads/anderlecht-2003.json').then(m => m.default as Squad),
-  'standard-2008-09':     () => import('@/data/squads/standard-2008.json').then(m => m.default as Squad),
-  'genk-2010-11':         () => import('@/data/squads/genk-2010.json').then(m => m.default as Squad),
-  'gent-2014-15':         () => import('@/data/squads/gent-2014.json').then(m => m.default as Squad),
 };
 
 export function getTeamById(id: string): Team | undefined {
