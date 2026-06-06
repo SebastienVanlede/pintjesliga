@@ -8,17 +8,17 @@
     {"id":"theo-defourny-23","name":"Théo Defourny","position":"GK","nationality":"BEL","age":27,"appearances":16,"goals":0,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":63},
     {"id":"aiham-ousou-23","name":"Aiham Ousou","position":"CB","nationality":"SYR","age":26,"appearances":26,"goals":0,"assists":0,"marketValue":1500000,"internationalCaps":18,"awards":[],"overall":68},
     {"id":"mehdi-boukamir-23","name":"Mehdi Boukamir","position":"CB","nationality":"MAR","age":22,"appearances":22,"goals":0,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":63},
-    {"id":"lewin-blum-23","name":"Lewin Blum","position":"RB","nationality":"SUI","age":25,"appearances":26,"goals":1,"assists":3,"marketValue":1800000,"internationalCaps":0,"awards":[],"overall":67},
-    {"id":"cheick-keita-23","name":"Cheick Keita","position":"LB","nationality":"MLI","age":28,"appearances":24,"goals":0,"assists":2,"marketValue":1000000,"internationalCaps":8,"awards":[],"overall":66},
+    {"id":"lewin-blum-23","name":"Lewin Blum","position":"RB","alternativePositions":["RM"],"nationality":"SUI","age":25,"appearances":26,"goals":1,"assists":3,"marketValue":1800000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"cheick-keita-23","name":"Cheick Keita","position":"LB","alternativePositions":["LM"],"nationality":"MLI","age":28,"appearances":24,"goals":0,"assists":2,"marketValue":1000000,"internationalCaps":8,"awards":[],"overall":66},
     {"id":"pol-bah-23","name":"Jules Gaudin","position":"CB","nationality":"FRA","age":24,"appearances":18,"goals":0,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":62},
-    {"id":"etienne-camara-23","name":"Etienne Camara","position":"CDM","nationality":"FRA","age":23,"appearances":28,"goals":2,"assists":3,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":69},
-    {"id":"yacine-titraoui-23","name":"Yacine Titraoui","position":"CM","nationality":"ALG","age":25,"appearances":26,"goals":3,"assists":5,"marketValue":1500000,"internationalCaps":8,"awards":[],"overall":67},
-    {"id":"jakob-romsaas-23","name":"Jakob Napoleon Romsaas","position":"CM","nationality":"NOR","age":23,"appearances":22,"goals":1,"assists":3,"marketValue":1200000,"internationalCaps":2,"awards":[],"overall":66},
+    {"id":"etienne-camara-23","name":"Etienne Camara","position":"CDM","alternativePositions":["CM"],"nationality":"FRA","age":23,"appearances":28,"goals":2,"assists":3,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"yacine-titraoui-23","name":"Yacine Titraoui","position":"CM","alternativePositions":["CDM"],"nationality":"ALG","age":25,"appearances":26,"goals":3,"assists":5,"marketValue":1500000,"internationalCaps":8,"awards":[],"overall":67},
+    {"id":"jakob-romsaas-23","name":"Jakob Napoleon Romsaas","position":"CM","alternativePositions":["CDM"],"nationality":"NOR","age":23,"appearances":22,"goals":1,"assists":3,"marketValue":1200000,"internationalCaps":2,"awards":[],"overall":66},
     {"id":"isaac-mbenza-23","name":"Isaac Mbenza","position":"LW","nationality":"BEL","age":27,"appearances":24,"goals":4,"assists":4,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":67},
     {"id":"shamar-nicholson-23","name":"Shamar Nicholson","position":"ST","nationality":"JAM","age":25,"appearances":24,"goals":9,"assists":3,"marketValue":2500000,"internationalCaps":15,"awards":[],"overall":70},
     {"id":"aurelien-scheidler-23","name":"Aurélien Scheidler","position":"ST","nationality":"FRA","age":23,"appearances":20,"goals":6,"assists":3,"marketValue":2500000,"internationalCaps":0,"awards":[],"overall":68},
     {"id":"antoine-colassin-23","name":"Antoine Colassin","position":"ST","nationality":"BEL","age":22,"appearances":18,"goals":4,"assists":2,"marketValue":2000000,"internationalCaps":3,"awards":[],"overall":66},
-    {"id":"patrick-pflucke-23","name":"Patrick Pflücke","position":"CM","nationality":"GER","age":27,"appearances":16,"goals":2,"assists":3,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"patrick-pflucke-23","name":"Patrick Pflücke","position":"CM","alternativePositions":["CDM"],"nationality":"GER","age":27,"appearances":16,"goals":2,"assists":3,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":66},
     {"id":"mory-kera-23","name":"Mory Kera","position":"RM","nationality":"BEL","age":21,"appearances":16,"goals":2,"assists":2,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":62}
   ]
 }

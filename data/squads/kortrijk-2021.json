@@ -6,19 +6,19 @@
   "players": [
     {"id":"vandenberghe-21","name":"Tom Vandenberghe","position":"GK","nationality":"BEL","age":25,"appearances":28,"goals":0,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":63},
     {"id":"ilkay-21","name":"Joris Delle","position":"GK","nationality":"FRA","age":32,"appearances":8,"goals":0,"assists":0,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":61},
-    {"id":"d-haene-21","name":"Kristof D'haene","position":"LB","nationality":"BEL","age":32,"appearances":22,"goals":0,"assists":2,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":62},
+    {"id":"d-haene-21","name":"Kristof D'haene","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":32,"appearances":22,"goals":0,"assists":2,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":62},
     {"id":"dessoleil-21b","name":"Dorian Dessoleil","position":"CB","nationality":"BEL","age":29,"appearances":20,"goals":0,"assists":0,"marketValue":900000,"internationalCaps":0,"awards":[],"overall":63},
     {"id":"watanabe-21","name":"Tsuyoshi Watanabe","position":"CB","nationality":"JPN","age":25,"appearances":20,"goals":0,"assists":0,"marketValue":1500000,"internationalCaps":8,"awards":[],"overall":65},
     {"id":"mehssatou-21","name":"Nayel Mehssatou","position":"CB","nationality":"CHI","age":20,"appearances":18,"goals":0,"assists":0,"marketValue":1000000,"internationalCaps":1,"awards":[],"overall":61},
-    {"id":"atemona-21","name":"Christalino Atemona","position":"RB","nationality":"GER","age":21,"appearances":16,"goals":0,"assists":1,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":59},
-    {"id":"kadri-21","name":"Abdelkahar Kadri","position":"CM","alternativePositions":["CAM"],"nationality":"ALG","age":26,"appearances":22,"goals":2,"assists":3,"marketValue":900000,"internationalCaps":6,"awards":[],"overall":63},
-    {"id":"de-neve-21","name":"Dion De Neve","position":"CM","nationality":"BEL","age":21,"appearances":20,"goals":1,"assists":2,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":60},
+    {"id":"atemona-21","name":"Christalino Atemona","position":"RB","alternativePositions":["RM"],"nationality":"GER","age":21,"appearances":16,"goals":0,"assists":1,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":59},
+    {"id":"kadri-21","name":"Abdelkahar Kadri","position":"CM","alternativePositions":["CAM","CDM"],"nationality":"ALG","age":26,"appearances":22,"goals":2,"assists":3,"marketValue":900000,"internationalCaps":6,"awards":[],"overall":63},
+    {"id":"de-neve-21","name":"Dion De Neve","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":21,"appearances":20,"goals":1,"assists":2,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":60},
     {"id":"audoor-21","name":"Lynnt Audoor","position":"RM","alternativePositions":["CM"],"nationality":"BEL","age":20,"appearances":18,"goals":2,"assists":2,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":61},
     {"id":"selemani-21b","name":"Faïz Selemani","position":"RW","alternativePositions":["ST"],"nationality":"COM","age":26,"appearances":18,"goals":2,"assists":2,"marketValue":700000,"internationalCaps":12,"awards":[],"overall":61},
     {"id":"avenatti-21","name":"Felipe Avenatti","position":"ST","nationality":"URU","age":27,"appearances":20,"goals":5,"assists":2,"marketValue":700000,"internationalCaps":3,"awards":[],"overall":62},
     {"id":"regali-21","name":"Martin Regáli","position":"ST","nationality":"SVK","age":22,"appearances":18,"goals":4,"assists":1,"marketValue":600000,"internationalCaps":2,"awards":[],"overall":60},
     {"id":"gueye-21b","name":"Pape Habib Guèye","position":"ST","nationality":"SEN","age":20,"appearances":14,"goals":2,"assists":1,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":59},
-    {"id":"brunner-21","name":"Dylan Ouédraogo","position":"CM","nationality":"BEL","age":20,"appearances":12,"goals":0,"assists":1,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":58},
+    {"id":"brunner-21","name":"Dylan Ouédraogo","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":20,"appearances":12,"goals":0,"assists":1,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":58},
     {"id":"brunner-21b","name":"Massimo Bruno","position":"LW","nationality":"BEL","age":27,"appearances":14,"goals":2,"assists":2,"marketValue":700000,"internationalCaps":2,"awards":[],"overall":62}
   ]
 }

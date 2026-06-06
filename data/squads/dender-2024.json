@@ -6,19 +6,19 @@
   "players": [
     {"id":"guillaume-dietsch","name":"Guillaume Dietsch","position":"GK","nationality":"FRA","age":26,"appearances":28,"goals":0,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":65},
     {"id":"michael-verrips","name":"Michael Verrips","position":"GK","nationality":"NED","age":28,"appearances":8,"goals":0,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":63},
-    {"id":"luc-marijnissen","name":"Luc Marijnissen","position":"RB","nationality":"NED","age":26,"appearances":26,"goals":1,"assists":3,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"luc-marijnissen","name":"Luc Marijnissen","position":"RB","alternativePositions":["RM"],"nationality":"NED","age":26,"appearances":26,"goals":1,"assists":3,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":65},
     {"id":"bo-de-kerf","name":"Bo De Kerf","position":"CB","nationality":"BEL","age":24,"appearances":24,"goals":0,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":63},
     {"id":"david-hrnckar","name":"David Hrnčár","position":"CB","nationality":"SVK","age":28,"appearances":22,"goals":0,"assists":0,"marketValue":700000,"internationalCaps":5,"awards":[],"overall":63},
-    {"id":"kobe-cools","name":"Kobe Cools","position":"LB","nationality":"BEL","age":22,"appearances":20,"goals":0,"assists":2,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":61},
+    {"id":"kobe-cools","name":"Kobe Cools","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":22,"appearances":20,"goals":0,"assists":2,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":61},
     {"id":"nail-moutha-sebtaoui","name":"Nail Moutha-Sebtaoui","position":"CB","nationality":"MAR","age":27,"appearances":18,"goals":1,"assists":0,"marketValue":800000,"internationalCaps":3,"awards":[],"overall":63},
     {"id":"ragnar-oratmangoen","name":"Ragnar Oratmangoen","position":"LW","nationality":"IDN","age":26,"appearances":26,"goals":5,"assists":6,"marketValue":2000000,"internationalCaps":30,"awards":[],"overall":68},
-    {"id":"roman-kvet","name":"Roman Květ","position":"CM","nationality":"CZE","age":27,"appearances":24,"goals":2,"assists":4,"marketValue":1200000,"internationalCaps":3,"awards":[],"overall":65},
-    {"id":"noah-mbamba","name":"Noah Mbamba","position":"CDM","nationality":"BEL","age":19,"appearances":22,"goals":1,"assists":2,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":65},
-    {"id":"malcolm-viltard","name":"Malcolm Viltard","position":"CM","nationality":"FRA","age":25,"appearances":20,"goals":1,"assists":3,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"roman-kvet","name":"Roman Květ","position":"CM","alternativePositions":["CDM"],"nationality":"CZE","age":27,"appearances":24,"goals":2,"assists":4,"marketValue":1200000,"internationalCaps":3,"awards":[],"overall":65},
+    {"id":"noah-mbamba","name":"Noah Mbamba","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":19,"appearances":22,"goals":1,"assists":2,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"malcolm-viltard","name":"Malcolm Viltard","position":"CM","alternativePositions":["CDM"],"nationality":"FRA","age":25,"appearances":20,"goals":1,"assists":3,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":63},
     {"id":"alireza-jahanbakhsh","name":"Alireza Jahanbakhsh","position":"RW","nationality":"IRN","age":31,"appearances":22,"goals":5,"assists":5,"marketValue":2000000,"internationalCaps":65,"awards":[],"overall":70},
     {"id":"david-toshevski","name":"David Toshevski","position":"ST","nationality":"MKD","age":25,"appearances":24,"goals":8,"assists":3,"marketValue":1500000,"internationalCaps":15,"awards":[],"overall":67},
     {"id":"jordan-kadiri","name":"Jordan Kadiri","position":"ST","nationality":"NGA","age":26,"appearances":20,"goals":6,"assists":2,"marketValue":1200000,"internationalCaps":3,"awards":[],"overall":65},
     {"id":"bruny-nsimba","name":"Bruny Nsimba","position":"LW","nationality":"ANG","age":24,"appearances":18,"goals":4,"assists":3,"marketValue":1000000,"internationalCaps":5,"awards":[],"overall":63},
-    {"id":"desmond-acquah","name":"Desmond Acquah","position":"CM","nationality":"BEL","age":23,"appearances":16,"goals":1,"assists":2,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":61}
+    {"id":"desmond-acquah","name":"Desmond Acquah","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":23,"appearances":16,"goals":1,"assists":2,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":61}
   ]
 }

@@ -6,19 +6,19 @@
   "players": [
     {"id":"schmidt-20","name":"Daniel Schmidt","position":"GK","nationality":"JPN","age":29,"appearances":30,"goals":0,"assists":0,"marketValue":700000,"internationalCaps":15,"awards":[],"overall":67},
     {"id":"coppens-20","name":"Jo Coppens","position":"GK","nationality":"BEL","age":29,"appearances":6,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":63},
-    {"id":"hashioka-20","name":"Daiki Hashioka","position":"RB","nationality":"JPN","age":21,"appearances":24,"goals":0,"assists":2,"marketValue":1000000,"internationalCaps":3,"awards":[],"overall":62},
+    {"id":"hashioka-20","name":"Daiki Hashioka","position":"RB","alternativePositions":["RM"],"nationality":"JPN","age":21,"appearances":24,"goals":0,"assists":2,"marketValue":1000000,"internationalCaps":3,"awards":[],"overall":62},
     {"id":"teixeira-20","name":"Jorge Teixeira","position":"CB","nationality":"POR","age":28,"appearances":22,"goals":0,"assists":0,"marketValue":700000,"internationalCaps":3,"awards":[],"overall":62},
     {"id":"godeau-stvv-20","name":"Bruno Godeau","position":"CB","nationality":"BEL","age":27,"appearances":20,"goals":0,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":60},
-    {"id":"bocat-stvv-20","name":"Eric Bocat","position":"LB","nationality":"FRA","age":23,"appearances":18,"goals":0,"assists":1,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":58},
+    {"id":"bocat-stvv-20","name":"Eric Bocat","position":"LB","alternativePositions":["LM"],"nationality":"FRA","age":23,"appearances":18,"goals":0,"assists":1,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":58},
     {"id":"smets-stvv-20","name":"Matte Smets","position":"CM","alternativePositions":["CDM","CB"],"nationality":"BEL","age":20,"appearances":20,"goals":0,"assists":1,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":60},
     {"id":"suzuki-20","name":"Yuma Suzuki","position":"ST","nationality":"JPN","age":24,"appearances":30,"goals":17,"assists":4,"marketValue":3000000,"internationalCaps":10,"awards":[],"overall":73},
     {"id":"okazaki-20","name":"Shinji Okazaki","position":"ST","nationality":"JPN","age":34,"appearances":22,"goals":5,"assists":3,"marketValue":500000,"internationalCaps":119,"awards":[],"overall":64},
     {"id":"koita-stvv-20","name":"Aboubakary Koita","position":"ST","alternativePositions":["LW"],"nationality":"BEL","age":19,"appearances":18,"goals":3,"assists":2,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":59},
-    {"id":"ogawa-20","name":"Ryoya Ogawa","position":"LB","nationality":"JPN","age":24,"appearances":18,"goals":0,"assists":1,"marketValue":700000,"internationalCaps":2,"awards":[],"overall":59},
-    {"id":"dumont-20","name":"Olivier Dumont","position":"CM","nationality":"BEL","age":26,"appearances":18,"goals":0,"assists":1,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":59},
+    {"id":"ogawa-20","name":"Ryoya Ogawa","position":"LB","alternativePositions":["LM"],"nationality":"JPN","age":24,"appearances":18,"goals":0,"assists":1,"marketValue":700000,"internationalCaps":2,"awards":[],"overall":59},
+    {"id":"dumont-20","name":"Olivier Dumont","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":26,"appearances":18,"goals":0,"assists":1,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":59},
     {"id":"hara-20","name":"Taichi Hara","position":"LW","alternativePositions":["RW"],"nationality":"JPN","age":24,"appearances":16,"goals":3,"assists":3,"marketValue":700000,"internationalCaps":5,"awards":[],"overall":59},
     {"id":"librici-20","name":"Andréa Librici","position":"ST","nationality":"BEL","age":21,"appearances":14,"goals":2,"assists":1,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":56},
     {"id":"leistner-20","name":"Toni Leistner","position":"CB","nationality":"GER","age":29,"appearances":12,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":60},
-    {"id":"barnes-stvv-20","name":"Joselpho Barnes","position":"CM","alternativePositions":["CAM"],"nationality":"GHA","age":21,"appearances":12,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":56}
+    {"id":"barnes-stvv-20","name":"Joselpho Barnes","position":"CM","alternativePositions":["CAM","CDM"],"nationality":"GHA","age":21,"appearances":12,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":56}
   ]
 }

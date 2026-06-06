@@ -9,7 +9,7 @@
     {"id":"daland-21","name":"Jesper Daland","position":"CB","nationality":"NOR","age":22,"appearances":26,"goals":0,"assists":0,"marketValue":1500000,"internationalCaps":2,"awards":[],"overall":66},
     {"id":"popovic-21","name":"Boris Popović","position":"CB","nationality":"SRB","age":26,"appearances":22,"goals":0,"assists":0,"marketValue":1000000,"internationalCaps":3,"awards":[],"overall":64},
     {"id":"siquet-21","name":"Hugo Siquet","position":"RB","alternativePositions":["RM"],"nationality":"BEL","age":20,"appearances":24,"goals":0,"assists":3,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":66},
-    {"id":"miangue-21","name":"Senna Miangué","position":"LB","nationality":"BEL","age":24,"appearances":20,"goals":0,"assists":1,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":62},
+    {"id":"miangue-21","name":"Senna Miangué","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":24,"appearances":20,"goals":0,"assists":1,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":62},
     {"id":"van-der-bruggen-21","name":"Hannes Van der Bruggen","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":27,"appearances":26,"goals":1,"assists":3,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":65},
     {"id":"lopes-21","name":"Leonardo Lopes","position":"CM","alternativePositions":["CDM"],"nationality":"POR","age":22,"appearances":22,"goals":1,"assists":2,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":63},
     {"id":"ueda-21","name":"Ayase Ueda","position":"ST","nationality":"JPN","age":23,"appearances":24,"goals":10,"assists":3,"marketValue":3000000,"internationalCaps":10,"awards":[],"overall":70},
@@ -17,8 +17,8 @@
     {"id":"hotic-21","name":"Dino Hotić","position":"CAM","alternativePositions":["CM","LW"],"nationality":"BIH","age":26,"appearances":22,"goals":3,"assists":4,"marketValue":1500000,"internationalCaps":8,"awards":[],"overall":65},
     {"id":"gboho-21","name":"Yann Gboho","position":"RW","alternativePositions":["LW"],"nationality":"FRA","age":20,"appearances":18,"goals":3,"assists":4,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":63},
     {"id":"somers-21","name":"Thibo Somers","position":"ST","alternativePositions":["LW"],"nationality":"BEL","age":19,"appearances":16,"goals":3,"assists":2,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":60},
-    {"id":"vanhoutte-21","name":"Charles Vanhoutte","position":"CM","nationality":"BEL","age":23,"appearances":14,"goals":1,"assists":1,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":60},
+    {"id":"vanhoutte-21","name":"Charles Vanhoutte","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":23,"appearances":14,"goals":1,"assists":1,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":60},
     {"id":"deman-21","name":"Olivier Deman","position":"LW","alternativePositions":["LM"],"nationality":"BEL","age":21,"appearances":14,"goals":1,"assists":2,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":60},
-    {"id":"espinoza-21","name":"Dagoberto Espinoza","position":"CM","nationality":"MEX","age":26,"appearances":12,"goals":1,"assists":1,"marketValue":500000,"internationalCaps":5,"awards":[],"overall":59}
+    {"id":"espinoza-21","name":"Dagoberto Espinoza","position":"CM","alternativePositions":["CDM"],"nationality":"MEX","age":26,"appearances":12,"goals":1,"assists":1,"marketValue":500000,"internationalCaps":5,"awards":[],"overall":59}
   ]
 }

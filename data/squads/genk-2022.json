@@ -18,7 +18,7 @@
     {"id":"paintsil-22","name":"Joseph Paintsil","position":"RW","alternativePositions":["LW","CAM"],"nationality":"GHA","age":23,"appearances":32,"goals":10,"assists":8,"marketValue":8000000,"internationalCaps":12,"awards":[],"overall":75},
     {"id":"oyen-22","name":"Luca Oyen","position":"LW","alternativePositions":["CAM","RW"],"nationality":"BEL","age":19,"appearances":22,"goals":4,"assists":5,"marketValue":4000000,"internationalCaps":2,"awards":[],"overall":69},
     {"id":"samatta-22","name":"Mbwana Samatta","position":"ST","nationality":"TAN","age":30,"appearances":26,"goals":10,"assists":3,"marketValue":3000000,"internationalCaps":55,"awards":[],"overall":70},
-    {"id":"galarza-22","name":"Matías Galarza","position":"CM","nationality":"ARG","age":20,"appearances":18,"goals":1,"assists":3,"marketValue":2000000,"internationalCaps":3,"awards":[],"overall":66},
+    {"id":"galarza-22","name":"Matías Galarza","position":"CM","alternativePositions":["CDM"],"nationality":"ARG","age":20,"appearances":18,"goals":1,"assists":3,"marketValue":2000000,"internationalCaps":3,"awards":[],"overall":66},
     {"id":"sadick-22","name":"Mujaid Sadick","position":"CB","nationality":"ESP","age":24,"appearances":16,"goals":0,"assists":0,"marketValue":1500000,"internationalCaps":2,"awards":[],"overall":67}
   ]
 }

@@ -18,7 +18,7 @@
     {"id":"oyen-21","name":"Luca Oyen","position":"LW","alternativePositions":["CAM"],"nationality":"BEL","age":18,"appearances":18,"goals":3,"assists":4,"marketValue":2500000,"internationalCaps":0,"awards":[],"overall":66},
     {"id":"samatta-21","name":"Mbwana Samatta","position":"ST","nationality":"TAN","age":29,"appearances":18,"goals":5,"assists":2,"marketValue":2000000,"internationalCaps":50,"awards":[],"overall":67},
     {"id":"el-khannous-21","name":"Bilal El Khannous","position":"CAM","alternativePositions":["CM","CDM"],"nationality":"MAR","age":18,"appearances":14,"goals":1,"assists":2,"marketValue":3000000,"internationalCaps":0,"awards":[],"overall":64},
-    {"id":"galarza-21","name":"Matías Galarza","position":"CM","nationality":"ARG","age":19,"appearances":14,"goals":0,"assists":1,"marketValue":1500000,"internationalCaps":1,"awards":[],"overall":62},
+    {"id":"galarza-21","name":"Matías Galarza","position":"CM","alternativePositions":["CDM"],"nationality":"ARG","age":19,"appearances":14,"goals":0,"assists":1,"marketValue":1500000,"internationalCaps":1,"awards":[],"overall":62},
     {"id":"sadick-21","name":"Mujaid Sadick","position":"CB","nationality":"ESP","age":23,"appearances":12,"goals":0,"assists":0,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":64}
   ]
 }
