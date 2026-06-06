@@ -14,9 +14,10 @@ import {
   SimTeamPublic,
 } from '@/lib/simulation/engine';
 import { Squad, SimulatedSeason, SimulatedPhase, StandingRow, SimulatedMatch, Formation, PickedPlayer } from '@/lib/types';
+import { calculateScore, ScoreBreakdown } from '@/lib/scoring';
 
 type SimMode = 'auto' | 'manual';
-type TabId = 'regular' | 'po1' | 'po2' | 'relegation';
+type TabId = 'regular' | 'po1' | 'po2' | 'relegation' | 'scorers';
 
 // ─── Main page ────────────────────────────────────────────────────────────────
 
@@ -432,16 +433,18 @@ function ResultsView({ sim, onReset, onBack }: {
 }) {
   const [activeTab, setActiveTab] = useState<TabId>('regular');
   const { pickedPlayers, formation, teamName } = useGameStore();
+  const score = calculateScore(pickedPlayers as PickedPlayer[], sim);
   const myTeam = teamName.trim() || 'Mijn Droomelftal';
 
   const TABS: { id: TabId; label: string; sublabel: string }[] = [
-    { id: 'regular',    label: 'Regulier',    sublabel: '30 speeldagen' },
-    { id: 'po1',        label: 'PO1',         sublabel: 'Championship' },
-    { id: 'po2',        label: 'PO2',         sublabel: 'Europa' },
-    { id: 'relegation', label: 'Relegate PO', sublabel: 'Plaatsen 13–16' },
+    { id: 'regular',    label: 'Regulier',      sublabel: '30 speeldagen' },
+    { id: 'po1',        label: 'PO1',           sublabel: 'Championship' },
+    { id: 'po2',        label: 'PO2',           sublabel: 'Europa' },
+    { id: 'relegation', label: 'Relegate PO',   sublabel: 'Plaatsen 13–16' },
+    { id: 'scorers',    label: 'Topschutters',  sublabel: 'Alle fases' },
   ];
 
-  const phaseForTab: Record<TabId, SimulatedPhase> = {
+  const phaseForTab: Partial<Record<TabId, SimulatedPhase>> = {
     regular:    sim.regularSeason,
     po1:        sim.po1,
     po2:        sim.po2,
@@ -524,7 +527,14 @@ function ResultsView({ sim, onReset, onBack }: {
         <AnimatePresence mode="wait">
           {TABS.map(tab => {
             if (tab.id !== activeTab) return null;
-            const phase = phaseForTab[tab.id];
+            if (tab.id === 'scorers') {
+              return (
+                <motion.div key="scorers" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                  <TopScorers sim={sim} pickedPlayers={pickedPlayers as PickedPlayer[]} myTeam={myTeam} />
+                </motion.div>
+              );
+            }
+            const phase = phaseForTab[tab.id]!;
             return (
               <motion.div key={tab.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                 {tab.id !== 'regular' && (
@@ -547,6 +557,9 @@ function ResultsView({ sim, onReset, onBack }: {
           })}
         </AnimatePresence>
 
+        {/* Score + submit */}
+        <ScoreCard score={score} sim={sim} formation={formation!} />
+
         {/* Share card */}
         <ShareSection sim={sim} pickedPlayers={pickedPlayers as PickedPlayer[]} formation={formation!} />
 
@@ -563,6 +576,61 @@ function ResultsView({ sim, onReset, onBack }: {
         </div>
       </div>
     </PageShell>
+  );
+}
+
+// ─── Top scorers ─────────────────────────────────────────────────────────────
+
+function TopScorers({ sim, pickedPlayers, myTeam }: {
+  sim: SimulatedSeason; pickedPlayers: PickedPlayer[]; myTeam: string;
+}) {
+  const userNames = new Set(pickedPlayers.map(p => p.player.name));
+
+  const goalMap: Record<string, number> = {};
+  for (const m of [
+    ...sim.regularSeason.matches,
+    ...sim.po1.matches,
+    ...sim.po2.matches,
+    ...sim.poRelegation.matches,
+  ]) {
+    for (const scorer of m.scorers) {
+      goalMap[scorer] = (goalMap[scorer] ?? 0) + 1;
+    }
+  }
+
+  const ranked = Object.entries(goalMap)
+    .sort(([, a], [, b]) => b - a)
+    .slice(0, 15);
+
+  if (!ranked.length) return <p className="text-xs px-1" style={{ color: 'var(--muted)' }}>Geen doelpunten gevonden.</p>;
+
+  return (
+    <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--border)' }}>
+      <div className="grid px-3 py-1.5 text-xs uppercase tracking-widest"
+        style={{ background: 'var(--surface)', color: 'var(--muted)', gridTemplateColumns: '1.5rem 1fr 2.5rem' }}>
+        <span>#</span><span>Speler</span><span className="text-center">Doel</span>
+      </div>
+      {ranked.map(([name, goals], i) => {
+        const isUser = userNames.has(name);
+        return (
+          <div key={name} className="grid items-center px-3 py-2 text-xs"
+            style={{
+              gridTemplateColumns: '1.5rem 1fr 2.5rem',
+              background: isUser ? 'rgba(212,148,10,0.06)' : i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.015)',
+              borderTop: '1px solid var(--border)',
+              borderLeft: `3px solid ${isUser ? 'var(--gold)' : 'transparent'}`,
+            }}>
+            <span style={{ color: i === 0 ? 'var(--gold)' : 'var(--muted)', fontFamily: 'var(--font-display)' }}>{i + 1}</span>
+            <span className="truncate font-medium" style={{ color: isUser ? 'var(--gold)' : 'var(--text)' }}>
+              {isUser ? `⭐ ${name}` : name}
+            </span>
+            <span className="text-center font-bold" style={{ fontFamily: 'var(--font-display)', fontSize: '0.95rem', color: isUser ? 'var(--gold)' : 'var(--text)' }}>
+              {goals}
+            </span>
+          </div>
+        );
+      })}
+    </div>
   );
 }
 
@@ -891,6 +959,132 @@ function ShareSection({ sim, pickedPlayers, formation }: {
           📥 Download
         </button>
       </div>
+    </div>
+  );
+}
+
+// ─── Score card ───────────────────────────────────────────────────────────────
+
+function ScoreCard({ score, sim, formation }: { score: ScoreBreakdown; sim: SimulatedSeason; formation: string }) {
+  const [name, setName] = useState('');
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'done' | 'error'>('idle');
+  const router = useRouter();
+
+  async function handleSubmit() {
+    if (!name.trim() || status !== 'idle') return;
+    setStatus('submitting');
+    try {
+      const res = await fetch('/api/scores', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          player_name: name.trim(),
+          score: score.total,
+          formation,
+          avg_overall: score.avgOverall,
+          result_label: score.resultLabel,
+          result_score: score.resultScore,
+          underdog_bonus: score.underdogBonus,
+          diversity_bonus: score.diversityBonus,
+          unique_teams: score.uniqueTeams,
+        }),
+      });
+      setStatus(res.ok ? 'done' : 'error');
+    } catch {
+      setStatus('error');
+    }
+  }
+
+  return (
+    <div className="w-full flex flex-col gap-4">
+      <div className="flex items-center gap-4">
+        <div className="flex-1 h-px" style={{ background: 'var(--border)' }} />
+        <span className="label-xs">Jouw score</span>
+        <div className="flex-1 h-px" style={{ background: 'var(--border)' }} />
+      </div>
+
+      {/* Score display */}
+      <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--border)' }}>
+        {/* Big total */}
+        <div className="flex items-center justify-between px-6 py-5" style={{ background: 'rgba(212,148,10,0.06)', borderBottom: '1px solid var(--border)' }}>
+          <div>
+            <span className="label-xs block mb-1">Totaalscore</span>
+            <span style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.5rem,8vw,4rem)', color: 'var(--gold)', letterSpacing: '0.06em', lineHeight: 1 }}>
+              {score.total.toLocaleString('nl-BE')}
+            </span>
+            <span className="text-xs block mt-1" style={{ color: 'var(--muted)' }}>{score.resultLabel}</span>
+          </div>
+          <button
+            onClick={() => router.push('/leaderboard')}
+            className="text-xs px-4 py-2 rounded transition-all"
+            style={{ background: 'var(--surface-2)', border: '1px solid var(--border)', color: 'var(--text-2)', fontFamily: 'var(--font-display)', letterSpacing: '0.08em', cursor: 'pointer' }}
+          >
+            LEADERBOARD →
+          </button>
+        </div>
+
+        {/* Breakdown */}
+        <div className="grid grid-cols-3 divide-x" style={{ borderColor: 'var(--border)' }}>
+          {[
+            { label: 'Resultaat', value: score.resultScore, color: 'var(--text)' },
+            { label: 'Underdog', value: `+${score.underdogBonus}`, sub: `gem. ${score.avgOverall} OVR`, color: score.underdogBonus > 0 ? 'var(--gold)' : 'var(--muted)' },
+            { label: 'Diversiteit', value: `+${score.diversityBonus}`, sub: `${score.uniqueTeams} clubs`, color: score.diversityBonus > 100 ? 'var(--gold)' : 'var(--text-2)' },
+          ].map(({ label, value, sub, color }) => (
+            <div key={label} className="flex flex-col items-center py-4 px-2 gap-0.5">
+              <span className="label-xs">{label}</span>
+              <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem', color, letterSpacing: '0.04em' }}>{value}</span>
+              {sub && <span className="text-xs" style={{ color: 'var(--muted)' }}>{sub}</span>}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Submit form */}
+      {status === 'done' ? (
+        <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}
+          className="rounded-lg px-4 py-3 flex items-center gap-3"
+          style={{ background: 'rgba(74,222,128,0.08)', border: '1px solid rgba(74,222,128,0.3)' }}>
+          <span style={{ color: '#4ade80', fontSize: '1.2rem' }}>✓</span>
+          <div>
+            <p className="text-sm font-medium" style={{ color: '#4ade80' }}>Score opgeslagen!</p>
+            <button onClick={() => router.push('/leaderboard')} className="text-xs underline" style={{ color: 'var(--muted)' }}>
+              Bekijk het leaderboard →
+            </button>
+          </div>
+        </motion.div>
+      ) : (
+        <div className="flex gap-2">
+          <input
+            value={name}
+            onChange={e => setName(e.target.value.slice(0, 24))}
+            placeholder="Jouw naam (max. 24 tekens)"
+            maxLength={24}
+            onKeyDown={e => e.key === 'Enter' && handleSubmit()}
+            className="flex-1 rounded-lg px-4 py-2.5 text-sm"
+            style={{ background: 'var(--surface)', border: '1px solid var(--border)', color: 'var(--text)', outline: 'none', fontFamily: 'inherit' }}
+          />
+          <button
+            onClick={handleSubmit}
+            disabled={!name.trim() || status === 'submitting'}
+            className="px-5 py-2.5 rounded-lg text-sm transition-all"
+            style={{
+              fontFamily: 'var(--font-display)', letterSpacing: '0.1em',
+              background: name.trim() ? 'var(--gold)' : 'var(--surface)',
+              color: name.trim() ? '#07070A' : 'var(--muted)',
+              border: `1px solid ${name.trim() ? 'var(--gold)' : 'var(--border)'}`,
+              cursor: name.trim() ? 'pointer' : 'default',
+              opacity: status === 'submitting' ? 0.6 : 1,
+            }}
+          >
+            {status === 'submitting' ? '…' : 'SUBMIT'}
+          </button>
+        </div>
+      )}
+      {status === 'error' && (
+        <p className="text-xs" style={{ color: 'var(--red)' }}>
+          Kon score niet opslaan. Controleer of Supabase geconfigureerd is.
+        </p>
+      )}
     </div>
   );
 }

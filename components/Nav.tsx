@@ -134,6 +134,24 @@ export default function Nav() {
             );
           })}
         </nav>
+
+        {/* Leaderboard link */}
+        <Link
+          href="/leaderboard"
+          style={{
+            textDecoration: 'none',
+            fontSize: '0.65rem',
+            letterSpacing: '0.1em',
+            textTransform: 'uppercase',
+            color: pathname === '/leaderboard' ? 'var(--gold)' : 'var(--muted)',
+            padding: '4px 8px',
+            border: '1px solid var(--border)',
+            borderRadius: 4,
+            transition: 'all 0.15s',
+          }}
+        >
+          🏆 Board
+        </Link>
       </div>
     </header>
   );
