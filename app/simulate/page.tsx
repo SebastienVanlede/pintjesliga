@@ -45,7 +45,11 @@ export default function SimulatePage() {
 
   // Already have a completed result → show it
   if (sim) {
-    return <ResultsView sim={sim} onReset={() => { reset(); router.push('/'); }} onBack={() => router.push('/xi')} />;
+    return <ResultsView sim={sim} onReset={() => {
+      if (window.confirm('Weet je zeker dat je opnieuw wil beginnen? Je resultaten gaan verloren.')) {
+        reset(); router.push('/');
+      }
+    }} onBack={() => router.push('/xi')} />;
   }
 
   // Mode not yet chosen

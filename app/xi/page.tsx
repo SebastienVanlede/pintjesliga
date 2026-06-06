@@ -113,7 +113,12 @@ export default function XIPage() {
             Nieuwe draft ({formation})
           </button>
           <button
-            onClick={() => { reset(); router.push('/'); }}
+            onClick={() => {
+              if (window.confirm('Weet je zeker dat je opnieuw wil beginnen? Je huidige XI gaat verloren.')) {
+                reset();
+                router.push('/');
+              }
+            }}
             style={{
               fontFamily: 'var(--font-display)',
               fontSize: '0.85rem',
