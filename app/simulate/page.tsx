@@ -80,7 +80,7 @@ export default function SimulatePage() {
 
 // ─── Mode selector ────────────────────────────────────────────────────────────
 
-const SIM_SEASONS = ['2024-25', '2023-24', '2022-23', '2021-22', '2020-21'] as const;
+const SIM_SEASONS = ['2024-25', '2023-24', '2022-23', '2021-22', '2020-21', '2019-20', '2018-19', '2017-18'] as const;
 
 function ModeSelector({ teamName, setTeamName, simSeason, setSimSeason, onSelect }: {
   teamName: string; setTeamName: (n: string) => void;
