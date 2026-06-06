@@ -44,14 +44,18 @@ function poissonSample(lambda: number): number {
   return k;
 }
 
-function weightedGoals(own: number, opp: number): number {
-  const expected = Math.max(0.2, 1.4 + (own - opp) * 0.04);
+const HOME_ADVANTAGE = 0.25; // extra verwachte goals voor thuisploeg
+const QUALITY_FACTOR = 0.07; // impact van overall-verschil per punt
+
+function weightedGoals(own: number, opp: number, isHome: boolean): number {
+  const base = isHome ? 1.4 + HOME_ADVANTAGE : 1.4;
+  const expected = Math.max(0.2, base + (own - opp) * QUALITY_FACTOR);
   return poissonSample(expected);
 }
 
 function simMatch(home: SimTeam, away: SimTeam, round: number): SimulatedMatch {
-  const homeGoals = weightedGoals(home.overall, away.overall);
-  const awayGoals = weightedGoals(away.overall, home.overall);
+  const homeGoals = weightedGoals(home.overall, away.overall, true);
+  const awayGoals = weightedGoals(away.overall, home.overall, false);
   return {
     round,
     home: home.name,
