@@ -4,7 +4,8 @@ import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGameStore } from '@/lib/store';
 import { getAvailableRolls, loadSquad } from '@/lib/data';
-import { FORMATION_POSITIONS, FORMATION_DOTS, Player, Squad, Team, PickedPlayer, Position } from '@/lib/types';
+import { FORMATION_POSITIONS, Player, Squad, Team, PickedPlayer, Position } from '@/lib/types';
+import FormationPitch from '@/components/FormationPitch';
 
 type Phase = 'idle' | 'spinning' | 'squad' | 'placing';
 
@@ -20,8 +21,7 @@ export default function DraftPage() {
   const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null);
 
   const positions = formation ? FORMATION_POSITIONS[formation] : [];
-  const dots = formation ? FORMATION_DOTS[formation] : [];
-  const pickedByIndex = Object.fromEntries(pickedPlayers.map((p) => [p.positionIndex, p]));
+const pickedByIndex = Object.fromEntries(pickedPlayers.map((p) => [p.positionIndex, p]));
   const filledCount = pickedPlayers.length;
 
   useEffect(() => { if (!formation) router.replace('/'); }, [formation, router]);
@@ -127,8 +127,7 @@ export default function DraftPage() {
             {phase === 'placing' ? `Klik op een ${selectedPlayer?.position}-positie` : 'Jouw opstelling'}
           </p>
           <FormationPitch
-            positions={positions}
-            dots={dots}
+            formation={formation}
             pickedByIndex={pickedByIndex}
             eligibleIndices={phase === 'placing' ? eligibleIndices : new Set()}
             onAssign={phase === 'placing' ? handleAssignPosition : undefined}
@@ -259,131 +258,6 @@ export default function DraftPage() {
         </div>
       </div>
     </main>
-  );
-}
-
-// ─── Pitch ───────────────────────────────────────────────────────────────────
-
-// Displayed size — larger for readability
-const PITCH_W = 330;
-const PITCH_H = 440;
-
-function FormationPitch({
-  positions, dots, pickedByIndex, eligibleIndices, onAssign,
-}: {
-  positions: Position[];
-  dots: [number, number][];
-  pickedByIndex: Record<number, PickedPlayer>;
-  eligibleIndices: Set<number>;
-  onAssign?: (i: number) => void;
-}) {
-  // Scale original 60x80 space → PITCH_W x PITCH_H
-  const scaleX = PITCH_W / 60;
-  const scaleY = PITCH_H / 80;
-  const R = 19; // node radius
-
-  return (
-    <svg
-      viewBox={`0 0 ${PITCH_W} ${PITCH_H}`}
-      width={PITCH_W}
-      height={PITCH_H}
-      xmlns="http://www.w3.org/2000/svg"
-      style={{ borderRadius: 10, border: '1px solid var(--border)', maxWidth: '100%' }}
-    >
-      {/* Pitch stripes */}
-      {Array.from({ length: 8 }, (_, i) => (
-        <rect key={i} x="0" y={i * (PITCH_H / 8)} width={PITCH_W} height={PITCH_H / 8}
-          fill={i % 2 === 0 ? '#2D5A27' : '#2A5424'} />
-      ))}
-      {/* Outline */}
-      <rect x="5" y="5" width={PITCH_W - 10} height={PITCH_H - 10}
-        fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="1.5" />
-      {/* Center line */}
-      <line x1="5" y1={PITCH_H / 2} x2={PITCH_W - 5} y2={PITCH_H / 2}
-        stroke="rgba(255,255,255,0.4)" strokeWidth="1.2" />
-      {/* Center circle */}
-      <circle cx={PITCH_W / 2} cy={PITCH_H / 2} r="38"
-        fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="1.2" />
-      <circle cx={PITCH_W / 2} cy={PITCH_H / 2} r="2" fill="rgba(255,255,255,0.6)" />
-      {/* Top penalty area */}
-      <rect x={PITCH_W * 0.22} y="5" width={PITCH_W * 0.56} height={PITCH_H * 0.16}
-        fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="1" />
-      {/* Top 6-yard box */}
-      <rect x={PITCH_W * 0.36} y="5" width={PITCH_W * 0.28} height={PITCH_H * 0.065}
-        fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="0.8" />
-      {/* Bottom penalty area */}
-      <rect x={PITCH_W * 0.22} y={PITCH_H * 0.84} width={PITCH_W * 0.56} height={PITCH_H * 0.16}
-        fill="none" stroke="rgba(255,255,255,0.35)" strokeWidth="1" />
-      {/* Bottom 6-yard box */}
-      <rect x={PITCH_W * 0.36} y={PITCH_H * 0.935} width={PITCH_W * 0.28} height={PITCH_H * 0.065}
-        fill="none" stroke="rgba(255,255,255,0.3)" strokeWidth="0.8" />
-
-      {/* Position nodes */}
-      {dots.map(([dx, dy], i) => {
-        const cx = dx * scaleX;
-        const cy = dy * scaleY;
-        const pick = pickedByIndex[i];
-        const isEligible = eligibleIndices.has(i);
-        const isClickable = isEligible && !!onAssign;
-        const pos = positions[i];
-
-        if (pick) {
-          return (
-            <g key={i}>
-              <circle cx={cx} cy={cy} r={R}
-                fill={pick.teamPrimaryColor}
-                stroke="rgba(255,255,255,0.7)"
-                strokeWidth="1.8"
-              />
-              <text x={cx} y={cy - 5} textAnchor="middle" fontSize="7" fill="white" fontWeight="700">
-                {pick.player.name.split(' ').pop()?.slice(0, 9)}
-              </text>
-              <text x={cx} y={cy + 5} textAnchor="middle" fontSize="8.5" fill="rgba(255,255,255,0.95)"
-                fontFamily="var(--font-display)" fontWeight="400">
-                {pick.player.overall}
-              </text>
-              <text x={cx} y={cy + 13} textAnchor="middle" fontSize="5.5" fill="rgba(255,255,255,0.65)">
-                {pos}
-              </text>
-            </g>
-          );
-        }
-
-        if (isClickable) {
-          return (
-            <g key={i} style={{ cursor: 'pointer' }} onClick={() => onAssign!(i)}>
-              <circle cx={cx} cy={cy} r={R} fill="rgba(212,148,10,0.35)"
-                stroke="#D4940A" strokeWidth="2.5">
-                <animate attributeName="r" values={`${R - 1};${R + 2};${R - 1}`} dur="1.1s" repeatCount="indefinite" />
-                <animate attributeName="opacity" values="0.85;1;0.85" dur="1.1s" repeatCount="indefinite" />
-              </circle>
-              <text x={cx} y={cy + 3} textAnchor="middle" fontSize="8" fill="#D4940A"
-                fontFamily="var(--font-display)">
-                {pos}
-              </text>
-              <text x={cx} y={cy + 11.5} textAnchor="middle" fontSize="6" fill="#D4940A" opacity="0.8">
-                +
-              </text>
-            </g>
-          );
-        }
-
-        return (
-          <g key={i}>
-            <circle cx={cx} cy={cy} r={R - 2}
-              fill="rgba(0,0,0,0.4)"
-              stroke="rgba(255,255,255,0.25)"
-              strokeWidth="1.2"
-              opacity={eligibleIndices.size > 0 ? 0.35 : 0.85}
-            />
-            <text x={cx} y={cy + 3} textAnchor="middle" fontSize="7.5"
-              fill="rgba(255,255,255,0.65)" fontFamily="var(--font-display)">
-              {pos}
-            </text>
-          </g>
-        );
-      })}
-    </svg>
   );
 }
 
