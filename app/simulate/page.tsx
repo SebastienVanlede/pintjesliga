@@ -22,7 +22,7 @@ type TabId = 'regular' | 'po1' | 'po2' | 'relegation';
 
 export default function SimulatePage() {
   const router = useRouter();
-  const { formation, pickedPlayers, simulatedSeason, setSimulatedSeason, reset } = useGameStore();
+  const { formation, pickedPlayers, simulatedSeason, setSimulatedSeason, reset, teamName, setTeamName } = useGameStore();
   const [mode, setMode] = useState<SimMode | null>(null);
   const [squads, setSquads] = useState<Squad[] | null>(null);
 
@@ -49,7 +49,7 @@ export default function SimulatePage() {
 
   // Mode not yet chosen
   if (!mode) {
-    return <ModeSelector onSelect={setMode} />;
+    return <ModeSelector teamName={teamName} setTeamName={setTeamName} onSelect={setMode} />;
   }
 
   if (!squads) {
@@ -61,6 +61,7 @@ export default function SimulatePage() {
       <AutoSim
         squads={squads}
         pickedPlayers={pickedPlayers}
+        teamName={teamName}
         onDone={result => { setSimulatedSeason(result as any); }}
       />
     );
@@ -70,6 +71,7 @@ export default function SimulatePage() {
     <ManualSim
       squads={squads}
       pickedPlayers={pickedPlayers}
+      teamName={teamName}
       onDone={result => { setSimulatedSeason(result as any); }}
     />
   );
@@ -77,13 +79,29 @@ export default function SimulatePage() {
 
 // ─── Mode selector ────────────────────────────────────────────────────────────
 
-function ModeSelector({ onSelect }: { onSelect: (m: SimMode) => void }) {
+function ModeSelector({ teamName, setTeamName, onSelect }: {
+  teamName: string; setTeamName: (n: string) => void; onSelect: (m: SimMode) => void;
+}) {
   return (
     <PageShell>
       <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.8rem,6vw,3rem)', color: 'var(--gold)', letterSpacing: '0.08em' }}>
         KIES SIMULATIEMODUS
       </h1>
-      <div className="flex flex-col sm:flex-row gap-4 w-full max-w-xl mt-4">
+      <div className="w-full max-w-xl flex flex-col gap-1.5">
+        <label className="text-xs tracking-widest uppercase px-1" style={{ color: 'var(--muted)' }}>
+          Naam van jouw team
+        </label>
+        <input
+          value={teamName}
+          onChange={e => setTeamName(e.target.value)}
+          onBlur={e => { if (!e.target.value.trim()) setTeamName('Mijn Droomelftal'); }}
+          maxLength={28}
+          placeholder="Mijn Droomelftal"
+          className="rounded px-4 py-2 text-sm w-full"
+          style={{ background: 'var(--surface)', border: '1px solid var(--border)', color: 'var(--text)', outline: 'none', fontFamily: 'inherit' }}
+        />
+      </div>
+      <div className="flex flex-col sm:flex-row gap-4 w-full max-w-xl">
         <ModeCard
           icon="⚡"
           title="Automatisch"
@@ -124,11 +142,11 @@ function ModeCard({ icon, title, description, onClick, highlight }: {
 
 // ─── Auto simulation ──────────────────────────────────────────────────────────
 
-function AutoSim({ squads, pickedPlayers, onDone }: {
-  squads: Squad[]; pickedPlayers: any[]; onDone: (r: SimulatedSeason) => void;
+function AutoSim({ squads, pickedPlayers, teamName, onDone }: {
+  squads: Squad[]; pickedPlayers: any[]; teamName: string; onDone: (r: SimulatedSeason) => void;
 }) {
   useEffect(() => {
-    const result = simulateSeason(pickedPlayers, squads);
+    const result = simulateSeason(pickedPlayers, squads, teamName.trim() || 'Mijn Droomelftal');
     onDone(result);
   }, []);
   return <LoadingView label="Seizoen simuleren…" />;
@@ -151,13 +169,14 @@ interface Playoffs {
   regularStandings: StandingRow[];
 }
 
-function ManualSim({ squads, pickedPlayers, onDone }: {
-  squads: Squad[]; pickedPlayers: any[]; onDone: (r: SimulatedSeason) => void;
+function ManualSim({ squads, pickedPlayers, teamName, onDone }: {
+  squads: Squad[]; pickedPlayers: any[]; teamName: string; onDone: (r: SimulatedSeason) => void;
 }) {
+  const myTeam = teamName.trim() || 'Mijn Droomelftal';
   // Ensure 16 teams total (drop last squad if needed for even number)
   const validSquads = (squads.length + 1) % 2 !== 0 ? squads.slice(0, -1) : squads;
 
-  const teams      = useRef<SimTeamPublic[]>(buildSimTeams(pickedPlayers, validSquads));
+  const teams      = useRef<SimTeamPublic[]>(buildSimTeams(pickedPlayers, validSquads, myTeam));
   const teamNames  = useRef(teams.current.map(t => t.name));
   const regSched   = useRef(generateFullSchedule(teamNames.current)); // 30 rounds, 8 matches each
 
@@ -291,13 +310,13 @@ function ManualSim({ squads, pickedPlayers, onDone }: {
             Speeldag {regRound + 1} — aankomende wedstrijden
           </p>
           {upcomingPairs.map(([h, a], i) => {
-            const isUser = h === 'Jouw XI' || a === 'Jouw XI';
+            const isUser = h === myTeam || a === myTeam;
             return (
               <div key={i} className="flex items-center justify-between rounded-lg px-4 py-2"
                 style={{ background: isUser ? 'rgba(212,148,10,0.06)' : 'var(--surface)', border: `1px solid ${isUser ? 'var(--gold-dim)' : 'var(--border)'}` }}>
-                <span className="text-xs flex-1 text-right truncate" style={{ color: h === 'Jouw XI' ? 'var(--gold)' : 'var(--text)', fontWeight: h === 'Jouw XI' ? 600 : 400 }}>{h}</span>
+                <span className="text-xs flex-1 text-right truncate" style={{ color: h === myTeam ? 'var(--gold)' : 'var(--text)', fontWeight: h === myTeam ? 600 : 400 }}>{h}</span>
                 <span className="mx-3 text-xs flex-shrink-0" style={{ color: 'var(--muted)' }}>vs</span>
-                <span className="text-xs flex-1 truncate" style={{ color: a === 'Jouw XI' ? 'var(--gold)' : 'var(--text)', fontWeight: a === 'Jouw XI' ? 600 : 400 }}>{a}</span>
+                <span className="text-xs flex-1 truncate" style={{ color: a === myTeam ? 'var(--gold)' : 'var(--text)', fontWeight: a === myTeam ? 600 : 400 }}>{a}</span>
               </div>
             );
           })}
@@ -319,13 +338,13 @@ function ManualSim({ squads, pickedPlayers, onDone }: {
               <div key={group}>
                 <p className="text-xs mb-1 px-1" style={{ color }}>{label}</p>
                 {g.schedule[poUpcomingR].map(([h, a], i) => {
-                  const isUser = h === 'Jouw XI' || a === 'Jouw XI';
+                  const isUser = h === myTeam || a === myTeam;
                   return (
                     <div key={i} className="flex items-center justify-between rounded-lg px-4 py-2 mb-1"
                       style={{ background: isUser ? 'rgba(212,148,10,0.06)' : 'var(--surface)', border: `1px solid ${isUser ? 'var(--gold-dim)' : 'var(--border)'}` }}>
-                      <span className="text-xs flex-1 text-right truncate" style={{ color: h === 'Jouw XI' ? 'var(--gold)' : 'var(--text)', fontWeight: h === 'Jouw XI' ? 600 : 400 }}>{h}</span>
+                      <span className="text-xs flex-1 text-right truncate" style={{ color: h === myTeam ? 'var(--gold)' : 'var(--text)', fontWeight: h === myTeam ? 600 : 400 }}>{h}</span>
                       <span className="mx-3 text-xs flex-shrink-0" style={{ color: 'var(--muted)' }}>vs</span>
-                      <span className="text-xs flex-1 truncate" style={{ color: a === 'Jouw XI' ? 'var(--gold)' : 'var(--text)', fontWeight: a === 'Jouw XI' ? 600 : 400 }}>{a}</span>
+                      <span className="text-xs flex-1 truncate" style={{ color: a === myTeam ? 'var(--gold)' : 'var(--text)', fontWeight: a === myTeam ? 600 : 400 }}>{a}</span>
                     </div>
                   );
                 })}
@@ -354,12 +373,12 @@ function ManualSim({ squads, pickedPlayers, onDone }: {
                 <p className="text-xs mb-1 px-1" style={{ color }}>{label}</p>
                 <div className="rounded-lg overflow-hidden" style={{ border: '1px solid var(--border)' }}>
                   {rows.map((row, i) => {
-                    const isUser = row.team === 'Jouw XI';
+                    const isUser = row.team === myTeam;
                     return (
                       <div key={row.team} className="flex items-center justify-between px-2 py-1.5 text-xs"
                         style={{ background: isUser ? 'rgba(212,148,10,0.06)' : i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.015)', borderTop: i > 0 ? '1px solid var(--border)' : 'none' }}>
                         <span style={{ color: 'var(--muted)', width: 16 }}>{i + 1}</span>
-                        <span className="flex-1 truncate mx-1" style={{ color: isUser ? 'var(--gold)' : 'var(--text)' }}>{isUser ? '⭐ Jouw XI' : row.team}</span>
+                        <span className="flex-1 truncate mx-1" style={{ color: isUser ? 'var(--gold)' : 'var(--text)' }}>{isUser ? `⭐ ${myTeam}` : row.team}</span>
                         <span style={{ fontFamily: 'var(--font-display)', color: isUser ? 'var(--gold)' : 'var(--text)' }}>{row.points}</span>
                       </div>
                     );
@@ -412,7 +431,8 @@ function ResultsView({ sim, onReset, onBack }: {
   sim: SimulatedSeason; onReset: () => void; onBack: () => void;
 }) {
   const [activeTab, setActiveTab] = useState<TabId>('regular');
-  const { pickedPlayers, formation } = useGameStore();
+  const { pickedPlayers, formation, teamName } = useGameStore();
+  const myTeam = teamName.trim() || 'Mijn Droomelftal';
 
   const TABS: { id: TabId; label: string; sublabel: string }[] = [
     { id: 'regular',    label: 'Regulier',    sublabel: '30 speeldagen' },
@@ -428,9 +448,9 @@ function ResultsView({ sim, onReset, onBack }: {
     relegation: sim.poRelegation,
   };
 
-  const userInPO1  = sim.po1.standings.some(r => r.team === 'Jouw XI');
-  const userInPO2  = sim.po2.standings.some(r => r.team === 'Jouw XI');
-  const userInRele = sim.poRelegation.standings.some(r => r.team === 'Jouw XI');
+  const userInPO1  = sim.po1.standings.some(r => r.team === myTeam);
+  const userInPO2  = sim.po2.standings.some(r => r.team === myTeam);
+  const userInRele = sim.poRelegation.standings.some(r => r.team === myTeam);
 
   return (
     <PageShell>
@@ -444,15 +464,15 @@ function ResultsView({ sim, onReset, onBack }: {
           <div className="rounded-xl p-4 text-center" style={{ background: 'rgba(212,148,10,0.1)', border: '2px solid var(--gold)' }}>
             <p className="text-xs tracking-widest uppercase mb-1" style={{ color: 'var(--muted)' }}>Kampioen</p>
             <p style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', color: 'var(--gold)', letterSpacing: '0.05em' }}>
-              {sim.champion === 'Jouw XI' ? '⭐ Jouw XI' : sim.champion}
+              {sim.champion === myTeam ? `⭐ ${myTeam}` : sim.champion}
             </p>
           </div>
           <div className="rounded-xl p-4 text-center" style={{ background: 'var(--surface)', border: '1px solid #1a3a6e' }}>
             <p className="text-xs tracking-widest uppercase mb-1" style={{ color: 'var(--muted)' }}>Europa (top 4 PO1)</p>
             <div className="flex flex-col gap-0.5">
               {sim.europeanSpots.map((t, i) => (
-                <p key={i} className="text-xs leading-tight" style={{ color: t === 'Jouw XI' ? 'var(--gold)' : 'var(--text)' }}>
-                  {t === 'Jouw XI' ? '⭐ Jouw XI' : t}
+                <p key={i} className="text-xs leading-tight" style={{ color: t === myTeam ? 'var(--gold)' : 'var(--text)' }}>
+                  {t === myTeam ? `⭐ ${myTeam}` : t}
                 </p>
               ))}
             </div>
@@ -461,13 +481,13 @@ function ResultsView({ sim, onReset, onBack }: {
             <p className="text-xs tracking-widest uppercase mb-1" style={{ color: 'var(--muted)' }}>Gedegradeerd</p>
             <div className="flex flex-col gap-0.5">
               {sim.relegated.map((t, i) => (
-                <p key={i} className="text-xs leading-tight" style={{ color: t === 'Jouw XI' ? 'var(--red)' : 'var(--muted)' }}>
-                  {t === 'Jouw XI' ? '⭐ Jouw XI' : t}
+                <p key={i} className="text-xs leading-tight" style={{ color: t === myTeam ? 'var(--red)' : 'var(--muted)' }}>
+                  {t === myTeam ? `⭐ ${myTeam}` : t}
                 </p>
               ))}
-              <p className="text-xs leading-tight mt-1 pt-1" style={{ color: sim.directlyRelegate === 'Jouw XI' ? 'var(--red)' : 'var(--muted)', borderTop: '1px solid rgba(196,30,58,0.2)' }}>
+              <p className="text-xs leading-tight mt-1 pt-1" style={{ color: sim.directlyRelegate === myTeam ? 'var(--red)' : 'var(--muted)', borderTop: '1px solid rgba(196,30,58,0.2)' }}>
                 <span style={{ fontSize: '0.6rem', opacity: 0.7 }}>Rechtstreeks: </span>
-                {sim.directlyRelegate === 'Jouw XI' ? '⭐ Jouw XI' : sim.directlyRelegate}
+                {sim.directlyRelegate === myTeam ? `⭐ ${myTeam}` : sim.directlyRelegate}
               </p>
             </div>
           </div>
@@ -475,17 +495,17 @@ function ResultsView({ sim, onReset, onBack }: {
 
         {/* User journey */}
         <div className="rounded-lg px-4 py-3 text-sm" style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}>
-          <span style={{ color: 'var(--muted)' }}>Jouw XI belandde in: </span>
+          <span style={{ color: 'var(--muted)' }}>{myTeam} belandde in: </span>
           <span style={{
-            color: sim.directlyRelegate === 'Jouw XI' ? 'var(--red)' : 'var(--gold)',
+            color: sim.directlyRelegate === myTeam ? 'var(--red)' : 'var(--gold)',
             fontFamily: 'var(--font-display)', letterSpacing: '0.06em',
           }}>
             {userInPO1  ? 'Championship Play-off (PO1)' :
              userInPO2  ? 'Europa Play-off (PO2)' :
              userInRele ? 'Relegation Play-off' :
-             sim.directlyRelegate === 'Jouw XI' ? 'Rechtstreeks gedegradeerd (17e)' : ''}
+             sim.directlyRelegate === myTeam ? 'Rechtstreeks gedegradeerd (17e)' : ''}
           </span>
-          {sim.champion === 'Jouw XI' && <span style={{ color: 'var(--gold)' }}> · KAMPIOEN!</span>}
+          {sim.champion === myTeam && <span style={{ color: 'var(--gold)' }}> · KAMPIOEN!</span>}
         </div>
 
         {/* Phase tabs */}
@@ -534,7 +554,7 @@ function ResultsView({ sim, onReset, onBack }: {
         <div className="flex gap-4 justify-center mt-2">
           <button onClick={onBack} className="px-6 py-3 rounded text-sm transition-all duration-150"
             style={{ fontFamily: 'var(--font-display)', letterSpacing: '0.1em', background: 'transparent', color: 'var(--muted)', border: '2px solid var(--border)' }}>
-            ← Jouw XI
+            ← {myTeam}
           </button>
           <button onClick={onReset} className="px-8 py-3 rounded transition-all duration-150"
             style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', letterSpacing: '0.12em', background: 'var(--gold)', color: '#090907', border: '2px solid var(--gold)' }}>
@@ -556,12 +576,14 @@ function ShareSection({ sim, pickedPlayers, formation }: {
   formation: string;
 }) {
   const [copied, setCopied] = useState(false);
+  const { teamName } = useGameStore();
+  const myTeam = teamName.trim() || 'Mijn Droomelftal';
 
-  const userInPO1   = sim.po1.standings.some(r => r.team === 'Jouw XI');
-  const userInPO2   = sim.po2.standings.some(r => r.team === 'Jouw XI');
-  const userInRele  = sim.poRelegation.standings.some(r => r.team === 'Jouw XI');
-  const po1Rank     = userInPO1 ? sim.po1.standings.findIndex(r => r.team === 'Jouw XI') + 1 : null;
-  const isChampion  = sim.champion === 'Jouw XI';
+  const userInPO1   = sim.po1.standings.some(r => r.team === myTeam);
+  const userInPO2   = sim.po2.standings.some(r => r.team === myTeam);
+  const userInRele  = sim.poRelegation.standings.some(r => r.team === myTeam);
+  const po1Rank     = userInPO1 ? sim.po1.standings.findIndex(r => r.team === myTeam) + 1 : null;
+  const isChampion  = sim.champion === myTeam;
   const avgOverall  = pickedPlayers.length
     ? Math.round(pickedPlayers.reduce((s, p) => s + p.player.overall, 0) / pickedPlayers.length)
     : 0;
@@ -587,7 +609,7 @@ function ShareSection({ sim, pickedPlayers, formation }: {
       '',
       '─────────────────────',
       `🏆 Kampioen: ${sim.champion}`,
-      `⭐ Jouw XI: ${resultLabel}`,
+      `⭐ ${myTeam}: ${resultLabel}`,
       ...(degraded ? [`🔴 Gedegradeerd: ${degraded}`] : []),
       '',
       'Maak je eigen droomelf: pintjesliga.be',
@@ -717,7 +739,7 @@ function ShareSection({ sim, pickedPlayers, formation }: {
 
     ctx.font = 'bold 22px Arial, sans-serif';
     ctx.fillStyle = isChampion ? GOLD : TEXT;
-    ctx.fillText(`Jouw XI: ${resultLabel}`, PAD, y);
+    ctx.fillText(`${myTeam}: ${resultLabel}`, PAD, y);
     y += 34;
 
     if (degraded) {
@@ -819,12 +841,12 @@ function ShareSection({ sim, pickedPlayers, formation }: {
               <span style={{ fontSize: 14, color: '#D4940A', fontWeight: 700 }}>
                 Kampioen:
               </span>
-              <span style={{ fontSize: 14, color: sim.champion === 'Jouw XI' ? '#D4940A' : '#EDE9E0' }}>
+              <span style={{ fontSize: 14, color: sim.champion === myTeam ? '#D4940A' : '#EDE9E0' }}>
                 {sim.champion}
               </span>
             </div>
             <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-              <span style={{ fontSize: 14, color: '#6B6560' }}>Jouw XI:</span>
+              <span style={{ fontSize: 14, color: '#6B6560' }}>{myTeam}:</span>
               <span style={{ fontSize: 14, color: isChampion ? '#D4940A' : '#EDE9E0', fontWeight: 600 }}>
                 {resultLabel}
               </span>
@@ -898,12 +920,14 @@ function LoadingView({ label }: { label: string }) {
 }
 
 function MatchRow({ match }: { match: SimulatedMatch }) {
-  const isUser = match.home === 'Jouw XI' || match.away === 'Jouw XI';
+  const { teamName } = useGameStore();
+  const myTeam = teamName.trim() || 'Mijn Droomelftal';
+  const isUser = match.home === myTeam || match.away === myTeam;
   return (
     <div className="flex items-center justify-between rounded-lg px-3 py-2"
       style={{ background: isUser ? 'rgba(212,148,10,0.06)' : 'var(--surface)', border: `1px solid ${isUser ? 'var(--gold-dim)' : 'var(--border)'}` }}>
       <span className="text-xs flex-1 text-right truncate"
-        style={{ color: match.home === 'Jouw XI' ? 'var(--gold)' : 'var(--text)', fontWeight: match.home === 'Jouw XI' ? 600 : 400 }}>
+        style={{ color: match.home === myTeam ? 'var(--gold)' : 'var(--text)', fontWeight: match.home === myTeam ? 600 : 400 }}>
         {match.home}
       </span>
       <span className="mx-3 flex-shrink-0"
@@ -911,7 +935,7 @@ function MatchRow({ match }: { match: SimulatedMatch }) {
         {match.homeGoals} – {match.awayGoals}
       </span>
       <span className="text-xs flex-1 truncate"
-        style={{ color: match.away === 'Jouw XI' ? 'var(--gold)' : 'var(--text)', fontWeight: match.away === 'Jouw XI' ? 600 : 400 }}>
+        style={{ color: match.away === myTeam ? 'var(--gold)' : 'var(--text)', fontWeight: match.away === myTeam ? 600 : 400 }}>
         {match.away}
       </span>
     </div>
@@ -919,6 +943,8 @@ function MatchRow({ match }: { match: SimulatedMatch }) {
 }
 
 function CompactStandings({ rows, directlyRelegate }: { rows: StandingRow[]; directlyRelegate: string }) {
+  const { teamName } = useGameStore();
+  const myTeam = teamName.trim() || 'Mijn Droomelftal';
   return (
     <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--border)' }}>
       <div className="grid px-3 py-1.5 text-xs uppercase tracking-widest"
@@ -927,7 +953,7 @@ function CompactStandings({ rows, directlyRelegate }: { rows: StandingRow[]; dir
         <span className="text-center">+/-</span><span className="text-center">Pts</span>
       </div>
       {rows.map((row, i) => {
-        const isUser = row.team === 'Jouw XI';
+        const isUser = row.team === myTeam;
         const isDirect = row.team === directlyRelegate;
         const gd = row.goalsFor - row.goalsAgainst;
         return (
@@ -940,7 +966,7 @@ function CompactStandings({ rows, directlyRelegate }: { rows: StandingRow[]; dir
               color: isUser ? 'var(--gold)' : 'var(--text)',
             }}>
             <span style={{ color: 'var(--muted)' }}>{i + 1}</span>
-            <span className="truncate font-medium">{isUser ? '⭐ Jouw XI' : row.team}</span>
+            <span className="truncate font-medium">{isUser ? `⭐ ${myTeam}` : row.team}</span>
             <span className="text-center" style={{ color: 'var(--muted)' }}>{row.played}</span>
             <span className="text-center" style={{ color: gd > 0 ? '#4ade80' : gd < 0 ? 'var(--red)' : 'var(--muted)' }}>
               {gd > 0 ? '+' : ''}{gd}
@@ -957,6 +983,8 @@ function StandingsTable({ rows, tab, champion, relegated, europeanSpots, directl
   rows: StandingRow[]; tab: TabId; champion: string;
   relegated: string[]; europeanSpots: string[]; directlyRelegate: string;
 }) {
+  const { teamName } = useGameStore();
+  const myTeam = teamName.trim() || 'Mijn Droomelftal';
   const showCarryover = tab !== 'regular' && rows.some(r => r.carryoverPoints !== undefined);
   return (
     <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--border)' }}>
@@ -972,7 +1000,7 @@ function StandingsTable({ rows, tab, champion, relegated, europeanSpots, directl
         <span className="text-center">Pts</span>
       </div>
       {rows.map((row, i) => {
-        const isUser         = row.team === 'Jouw XI';
+        const isUser         = row.team === myTeam;
         const isChampion     = tab === 'po1' && row.team === champion;
         const isRelegate     = tab === 'relegation' && relegated.includes(row.team);
         const isDirectRel    = tab === 'regular' && row.team === directlyRelegate;
@@ -991,7 +1019,7 @@ function StandingsTable({ rows, tab, champion, relegated, europeanSpots, directl
             }}>
             <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.9rem', color: i === 0 ? 'var(--gold)' : 'var(--muted)' }}>{i + 1}</span>
             <span className="font-medium truncate text-xs" style={{ color: isUser ? 'var(--gold)' : 'var(--text)' }}>
-              {isUser ? '⭐ Jouw XI' : row.team}
+              {isUser ? `⭐ ${myTeam}` : row.team}
             </span>
             <span className="text-center text-xs">{row.won}</span>
             <span className="text-center text-xs">{row.drawn}</span>
@@ -1010,7 +1038,9 @@ function StandingsTable({ rows, tab, champion, relegated, europeanSpots, directl
 
 function MatchList({ matches }: { matches: SimulatedMatch[] }) {
   const [showAll, setShowAll] = useState(false);
-  const userMatches = matches.filter(m => m.home === 'Jouw XI' || m.away === 'Jouw XI');
+  const { teamName } = useGameStore();
+  const myTeam = teamName.trim() || 'Mijn Droomelftal';
+  const userMatches = matches.filter(m => m.home === myTeam || m.away === myTeam);
   const displayed = showAll ? matches : userMatches;
   return (
     <div className="flex flex-col gap-1">
@@ -1019,7 +1049,7 @@ function MatchList({ matches }: { matches: SimulatedMatch[] }) {
           Uitslagen ({matches.length} wedstrijden)
         </span>
         <button className="text-xs underline" style={{ color: 'var(--muted)' }} onClick={() => setShowAll(v => !v)}>
-          {showAll ? 'Enkel Jouw XI' : `Toon alle ${matches.length}`}
+          {showAll ? `Enkel ${myTeam}` : `Toon alle ${matches.length}`}
         </button>
       </div>
       {displayed.map((m, i) => <MatchRow key={i} match={m} />)}

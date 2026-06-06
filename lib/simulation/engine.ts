@@ -120,9 +120,9 @@ export interface SimTeamPublic {
   scorers: string[];
 }
 
-export function buildSimTeams(userPlayers: PickedPlayer[], opponentSquads: Squad[]): SimTeamPublic[] {
+export function buildSimTeams(userPlayers: PickedPlayer[], opponentSquads: Squad[], teamName = 'Mijn Droomelftal'): SimTeamPublic[] {
   const userTeam: SimTeamPublic = {
-    name: 'Jouw XI',
+    name: teamName,
     overall: xiOverall(userPlayers),
     scorers: userPlayers
       .filter(p => ['ST', 'RW', 'LW', 'CAM', 'CM'].includes(p.position))
@@ -202,7 +202,8 @@ export function computeStandings(
 
 export function simulateSeason(
   userPlayers: PickedPlayer[],
-  opponentSquads: Squad[]
+  opponentSquads: Squad[],
+  teamName = 'Mijn Droomelftal'
 ): SimulatedSeason {
   // Ensure 16 teams total (even) → authentic Belgian 30-matchday format, no byes
   // Drop the last squad when needed (16 squads + JX = 17 → odd, so drop one)
@@ -212,7 +213,7 @@ export function simulateSeason(
 
   // Build team pool
   const userTeam: SimTeam = {
-    name: 'Jouw XI',
+    name: teamName,
     overall: xiOverall(userPlayers),
     scorers: userPlayers
       .filter(p => ['ST', 'RW', 'LW', 'CAM', 'CM'].includes(p.position))
