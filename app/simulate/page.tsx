@@ -23,7 +23,7 @@ type TabId = 'regular' | 'po1' | 'po2' | 'relegation' | 'scorers';
 
 export default function SimulatePage() {
   const router = useRouter();
-  const { formation, pickedPlayers, simulatedSeason, setSimulatedSeason, reset, teamName, setTeamName } = useGameStore();
+  const { formation, pickedPlayers, simulatedSeason, setSimulatedSeason, reset, teamName, setTeamName, simSeason, setSimSeason } = useGameStore();
   const [mode, setMode] = useState<SimMode | null>(null);
   const [squads, setSquads] = useState<Squad[] | null>(null);
 
@@ -33,11 +33,11 @@ export default function SimulatePage() {
 
   useEffect(() => {
     if (!formation || pickedPlayers.length < 11) return;
-    // Pre-load squads so both modes can use them
-    const currentRolls = getAvailableRolls().filter(r => r.season === CURRENT_SEASON);
-    Promise.all(currentRolls.map(r => loadSquad(r.team.id, r.season)))
+    setSquads(null);
+    const rolls = getAvailableRolls().filter(r => r.season === simSeason);
+    Promise.all(rolls.map(r => loadSquad(r.team.id, r.season)))
       .then(results => setSquads(results.filter(Boolean) as Squad[]));
-  }, []);
+  }, [simSeason]);
 
   if (!formation || pickedPlayers.length < 11) return null;
 
@@ -50,7 +50,7 @@ export default function SimulatePage() {
 
   // Mode not yet chosen
   if (!mode) {
-    return <ModeSelector teamName={teamName} setTeamName={setTeamName} onSelect={setMode} />;
+    return <ModeSelector teamName={teamName} setTeamName={setTeamName} simSeason={simSeason} setSimSeason={setSimSeason} onSelect={setMode} />;
   }
 
   if (!squads) {
@@ -80,14 +80,20 @@ export default function SimulatePage() {
 
 // ─── Mode selector ────────────────────────────────────────────────────────────
 
-function ModeSelector({ teamName, setTeamName, onSelect }: {
-  teamName: string; setTeamName: (n: string) => void; onSelect: (m: SimMode) => void;
+const SIM_SEASONS = ['2024-25', '2023-24', '2022-23', '2021-22', '2020-21'] as const;
+
+function ModeSelector({ teamName, setTeamName, simSeason, setSimSeason, onSelect }: {
+  teamName: string; setTeamName: (n: string) => void;
+  simSeason: string; setSimSeason: (s: string) => void;
+  onSelect: (m: SimMode) => void;
 }) {
   return (
     <PageShell>
       <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.8rem,6vw,3rem)', color: 'var(--gold)', letterSpacing: '0.08em' }}>
         KIES SIMULATIEMODUS
       </h1>
+
+      {/* Team name */}
       <div className="w-full max-w-xl flex flex-col gap-1.5">
         <label className="text-xs tracking-widest uppercase px-1" style={{ color: 'var(--muted)' }}>
           Naam van jouw team
@@ -102,6 +108,28 @@ function ModeSelector({ teamName, setTeamName, onSelect }: {
           style={{ background: 'var(--surface)', border: '1px solid var(--border)', color: 'var(--text)', outline: 'none', fontFamily: 'inherit' }}
         />
       </div>
+
+      {/* Season picker */}
+      <div className="w-full max-w-xl flex flex-col gap-1.5">
+        <label className="text-xs tracking-widest uppercase px-1" style={{ color: 'var(--muted)' }}>
+          Seizoen van de tegenstanders
+        </label>
+        <div className="flex gap-2 flex-wrap">
+          {SIM_SEASONS.map(s => (
+            <button key={s} onClick={() => setSimSeason(s)}
+              className="px-4 py-2 rounded text-sm transition-all duration-150"
+              style={{
+                fontFamily: 'var(--font-display)', letterSpacing: '0.06em',
+                background: simSeason === s ? 'var(--gold)' : 'var(--surface)',
+                color: simSeason === s ? '#090907' : 'var(--muted)',
+                border: `1px solid ${simSeason === s ? 'var(--gold)' : 'var(--border)'}`,
+              }}>
+              {s}
+            </button>
+          ))}
+        </div>
+      </div>
+
       <div className="flex flex-col sm:flex-row gap-4 w-full max-w-xl">
         <ModeCard
           icon="⚡"

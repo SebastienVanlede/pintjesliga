@@ -10,12 +10,14 @@ interface GameState {
   simulatedSeason: SimulatedSeason | null;
   teamName: string;
   draftMode: 'normal' | 'blind';
+  simSeason: string;
 
   setFormation: (f: Formation) => void;
   pickPlayer: (p: PickedPlayer) => void;
   setSimulatedSeason: (s: SimulatedSeason) => void;
   setTeamName: (n: string) => void;
   setDraftMode: (m: 'normal' | 'blind') => void;
+  setSimSeason: (s: string) => void;
   reset: () => void;
 }
 
@@ -28,6 +30,7 @@ export const useGameStore = create<GameState>()(
       simulatedSeason: null,
       teamName: 'Mijn Droomelftal',
       draftMode: 'normal',
+      simSeason: '2024-25',
 
       setFormation: (formation) =>
         set({ formation, pickedPlayers: [], currentPositionIndex: 0, simulatedSeason: null }),
@@ -44,6 +47,8 @@ export const useGameStore = create<GameState>()(
 
       setDraftMode: (draftMode) => set({ draftMode }),
 
+      setSimSeason: (simSeason) => set({ simSeason }),
+
       reset: () =>
         set({ formation: null, pickedPlayers: [], currentPositionIndex: 0, simulatedSeason: null }),
     }),
@@ -56,6 +61,7 @@ export const useGameStore = create<GameState>()(
         simulatedSeason:  state.simulatedSeason,
         teamName:         state.teamName,
         draftMode:        state.draftMode,
+        simSeason:        state.simSeason,
       }),
     }
   )
