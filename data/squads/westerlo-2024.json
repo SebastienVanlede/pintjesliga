@@ -1,0 +1,24 @@
+{
+  "team": "KVC Westerlo",
+  "teamId": "westerlo",
+  "season": "2024-25",
+  "year": 2024,
+  "players": [
+    {"id":"koen-van-langendonck","name":"Koen Van Langendonck","position":"GK","nationality":"BEL","age":32,"appearances":28,"goals":0,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"andreas-jungdal","name":"Andreas Jungdal","position":"GK","nationality":"DEN","age":23,"appearances":8,"goals":0,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"bryan-reynolds","name":"Bryan Reynolds","position":"RB","nationality":"USA","age":23,"appearances":26,"goals":0,"assists":3,"marketValue":2000000,"internationalCaps":5,"awards":[],"overall":68},
+    {"id":"clinton-nsiala","name":"Clinton Nsiala","position":"CB","nationality":"FRA","age":30,"appearances":24,"goals":1,"assists":0,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"bakary-haidara","name":"Bakary Haidara","position":"CB","nationality":"CIV","age":28,"appearances":22,"goals":0,"assists":0,"marketValue":800000,"internationalCaps":5,"awards":[],"overall":64},
+    {"id":"roman-neustaedter","name":"Roman Neustädter","position":"CB","nationality":"RUS","age":37,"appearances":16,"goals":0,"assists":0,"marketValue":300000,"internationalCaps":10,"awards":[],"overall":62},
+    {"id":"seiji-kimura","name":"Seiji Kimura","position":"LB","nationality":"JPN","age":24,"appearances":22,"goals":0,"assists":2,"marketValue":1000000,"internationalCaps":3,"awards":[],"overall":64},
+    {"id":"serhiy-sydorchuk","name":"Serhiy Sydorchuk","position":"CDM","nationality":"UKR","age":33,"appearances":26,"goals":2,"assists":3,"marketValue":1000000,"internationalCaps":55,"awards":[],"overall":69},
+    {"id":"reda-laalaoui","name":"Reda Laalaoui","position":"CM","nationality":"MAR","age":25,"appearances":24,"goals":2,"assists":4,"marketValue":1500000,"internationalCaps":3,"awards":[],"overall":66},
+    {"id":"thomas-van-den-keybus","name":"Thomas Van den Keybus","position":"CM","nationality":"BEL","age":24,"appearances":20,"goals":1,"assists":2,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"allahyar-sayyadmanesh","name":"Allahyar Sayyadmanesh","position":"LW","nationality":"IRN","age":24,"appearances":26,"goals":7,"assists":5,"marketValue":3000000,"internationalCaps":20,"awards":[],"overall":70},
+    {"id":"eliot-bujupi","name":"Eliot Bujupi","position":"RW","nationality":"KOS","age":28,"appearances":22,"goals":5,"assists":4,"marketValue":1500000,"internationalCaps":10,"awards":[],"overall":67},
+    {"id":"afonso-patrao","name":"Afonso Patrão","position":"ST","nationality":"POR","age":22,"appearances":20,"goals":6,"assists":2,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"nacho-ferri","name":"Nacho Ferri","position":"ST","nationality":"ESP","age":25,"appearances":18,"goals":5,"assists":2,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"enis-destan","name":"Enis Destan","position":"LW","nationality":"TUR","age":24,"appearances":18,"goals":4,"assists":3,"marketValue":1500000,"internationalCaps":5,"awards":[],"overall":65},
+    {"id":"emin-bayram","name":"Emin Bayram","position":"RB","nationality":"TUR","age":25,"appearances":16,"goals":0,"assists":2,"marketValue":800000,"internationalCaps":3,"awards":[],"overall":62}
+  ]
+}

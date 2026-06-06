@@ -1,0 +1,24 @@
+{
+  "team": "OH Leuven",
+  "teamId": "ohl",
+  "season": "2024-25",
+  "year": 2024,
+  "players": [
+    {"id":"tobe-leysen","name":"Tobe Leysen","position":"GK","nationality":"BEL","age":23,"appearances":30,"goals":0,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"theo-radelet","name":"Théo Radelet","position":"GK","nationality":"BEL","age":22,"appearances":6,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":60},
+    {"id":"oscar-gil","name":"Óscar Gil","position":"RB","nationality":"ESP","age":25,"appearances":26,"goals":0,"assists":4,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"noe-dussenne","name":"Noë Dussenne","position":"CB","nationality":"BEL","age":30,"appearances":24,"goals":1,"assists":0,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"takuma-ominami","name":"Takuma Ominami","position":"CB","nationality":"JPN","age":26,"appearances":22,"goals":0,"assists":0,"marketValue":1500000,"internationalCaps":5,"awards":[],"overall":66},
+    {"id":"viktor-damjanic","name":"Viktor Damjanić","position":"CB","nationality":"CRO","age":26,"appearances":20,"goals":0,"assists":0,"marketValue":1000000,"internationalCaps":3,"awards":[],"overall":64},
+    {"id":"thibault-vlietinck","name":"Thibault Vlietinck","position":"LB","nationality":"BEL","age":25,"appearances":22,"goals":0,"assists":2,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"birger-verstraete","name":"Birger Verstraete","position":"CDM","nationality":"BEL","age":31,"appearances":28,"goals":2,"assists":3,"marketValue":1000000,"internationalCaps":5,"awards":[],"overall":68},
+    {"id":"siebe-schrijvers","name":"Siebe Schrijvers","position":"CM","nationality":"BEL","age":28,"appearances":24,"goals":3,"assists":5,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"bryang-kayo","name":"Bryang Kayo","position":"CM","nationality":"USA","age":22,"appearances":20,"goals":2,"assists":3,"marketValue":1500000,"internationalCaps":3,"awards":[],"overall":65},
+    {"id":"thibaud-verlinden","name":"Thibaud Verlinden","position":"LW","nationality":"BEL","age":24,"appearances":22,"goals":4,"assists":5,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"henok-teklab","name":"Henok Teklab","position":"RW","nationality":"GER","age":24,"appearances":20,"goals":4,"assists":4,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"william-balikwisha","name":"William Balikwisha","position":"LW","nationality":"COD","age":24,"appearances":18,"goals":3,"assists":3,"marketValue":1500000,"internationalCaps":3,"awards":[],"overall":66},
+    {"id":"chukwubuikem-ikwuemesi","name":"Chukwubuikem Ikwuemesi","position":"ST","nationality":"NGA","age":23,"appearances":26,"goals":10,"assists":3,"marketValue":3000000,"internationalCaps":5,"awards":[],"overall":70},
+    {"id":"sory-kaba","name":"Sory Kaba","position":"ST","nationality":"GUI","age":29,"appearances":20,"goals":6,"assists":2,"marketValue":1000000,"internationalCaps":15,"awards":[],"overall":66},
+    {"id":"takahiro-akimoto","name":"Takahiro Akimoto","position":"RB","nationality":"JPN","age":26,"appearances":16,"goals":0,"assists":2,"marketValue":800000,"internationalCaps":3,"awards":[],"overall":62}
+  ]
+}

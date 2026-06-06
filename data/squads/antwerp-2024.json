@@ -1,0 +1,24 @@
+{
+  "team": "Royal Antwerp FC",
+  "teamId": "antwerp",
+  "season": "2024-25",
+  "year": 2024,
+  "players": [
+    {"id":"yannick-thoelen","name":"Yannick Thoelen","position":"GK","nationality":"BEL","age":31,"appearances":32,"goals":0,"assists":0,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"bjorn-engels","name":"Björn Engels","position":"CB","nationality":"BEL","age":30,"appearances":28,"goals":2,"assists":0,"marketValue":3000000,"internationalCaps":5,"awards":[],"overall":71},
+    {"id":"zeno-van-den-bosch","name":"Zeno Van Den Bosch","position":"CB","nationality":"BEL","age":22,"appearances":24,"goals":1,"assists":0,"marketValue":3000000,"internationalCaps":2,"awards":[],"overall":69},
+    {"id":"kobe-corbanie","name":"Kobe Corbanie","position":"RB","nationality":"BEL","age":23,"appearances":22,"goals":0,"assists":2,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"yuto-tsunashima","name":"Yuto Tsunashima","position":"RB","nationality":"JPN","age":26,"appearances":20,"goals":0,"assists":3,"marketValue":2500000,"internationalCaps":10,"awards":[],"overall":68},
+    {"id":"daam-foulon","name":"Daam Foulon","position":"LB","nationality":"BEL","age":25,"appearances":28,"goals":0,"assists":3,"marketValue":2500000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"kiki-kouyate","name":"Kiki Kouyaté","position":"CDM","nationality":"MLI","age":28,"appearances":28,"goals":1,"assists":3,"marketValue":3000000,"internationalCaps":15,"awards":[],"overall":71},
+    {"id":"dennis-praet","name":"Dennis Praet","position":"CM","nationality":"BEL","age":30,"appearances":26,"goals":3,"assists":6,"marketValue":4000000,"internationalCaps":18,"awards":[],"overall":74},
+    {"id":"isaac-babadi","name":"Isaac Babadi","position":"CM","nationality":"NED","age":21,"appearances":24,"goals":3,"assists":5,"marketValue":4000000,"internationalCaps":3,"awards":[],"overall":70},
+    {"id":"christopher-scott","name":"Christopher Scott","position":"CM","nationality":"GER","age":25,"appearances":20,"goals":2,"assists":3,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"geoffry-hairemans","name":"Geoffry Hairemans","position":"RW","nationality":"BEL","age":30,"appearances":24,"goals":5,"assists":6,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"gyrano-kerk","name":"Gyrano Kerk","position":"LW","nationality":"SUR","age":26,"appearances":26,"goals":7,"assists":5,"marketValue":3500000,"internationalCaps":8,"awards":[],"overall":71},
+    {"id":"vincent-janssen","name":"Vincent Janssen","position":"ST","nationality":"NED","age":30,"appearances":24,"goals":9,"assists":3,"marketValue":3000000,"internationalCaps":22,"awards":[],"overall":72},
+    {"id":"anthony-valencia","name":"Anthony Valencia","position":"ST","nationality":"ECU","age":26,"appearances":20,"goals":6,"assists":2,"marketValue":3000000,"internationalCaps":10,"awards":[],"overall":70},
+    {"id":"marwan-al-sahafi","name":"Marwan Al-Sahafi","position":"LW","nationality":"SAU","age":23,"appearances":16,"goals":3,"assists":3,"marketValue":2000000,"internationalCaps":8,"awards":[],"overall":66},
+    {"id":"glenn-bijl","name":"Glenn Bijl","position":"CB","nationality":"NED","age":27,"appearances":16,"goals":0,"assists":0,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":64}
+  ]
+}

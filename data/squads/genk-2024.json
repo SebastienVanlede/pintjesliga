@@ -1,0 +1,24 @@
+{
+  "team": "KRC Genk",
+  "teamId": "genk",
+  "season": "2024-25",
+  "year": 2024,
+  "players": [
+    {"id":"hendrik-van-crombrugge","name":"Hendrik Van Crombrugge","position":"GK","nationality":"BEL","age":32,"appearances":34,"goals":0,"assists":0,"marketValue":3000000,"internationalCaps":10,"awards":[],"overall":75},
+    {"id":"tobias-lawal","name":"Tobias Lawal","position":"GK","nationality":"AUT","age":22,"appearances":2,"goals":0,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"zakaria-el-ouahdi","name":"Zakaria El Ouahdi","position":"RB","nationality":"MAR","age":22,"appearances":30,"goals":1,"assists":5,"marketValue":6000000,"internationalCaps":5,"awards":[],"overall":73},
+    {"id":"mujaid-sadick","name":"Mujaid Sadick","position":"CB","nationality":"ESP","age":26,"appearances":30,"goals":2,"assists":0,"marketValue":2500000,"internationalCaps":5,"awards":[],"overall":71},
+    {"id":"matte-smets","name":"Matte Smets","position":"CB","nationality":"BEL","age":24,"appearances":28,"goals":1,"assists":0,"marketValue":3000000,"internationalCaps":2,"awards":[],"overall":70},
+    {"id":"joris-kayembe","name":"Joris Kayembe","position":"LB","nationality":"COD","age":27,"appearances":26,"goals":0,"assists":3,"marketValue":2000000,"internationalCaps":12,"awards":[],"overall":70},
+    {"id":"adrian-palacios","name":"Adrián Palacios","position":"LB","nationality":"VEN","age":24,"appearances":20,"goals":0,"assists":2,"marketValue":2000000,"internationalCaps":10,"awards":[],"overall":68},
+    {"id":"bryan-heynen","name":"Bryan Heynen","position":"CDM","nationality":"BEL","age":29,"appearances":34,"goals":4,"assists":8,"marketValue":4000000,"internationalCaps":15,"awards":[],"overall":76},
+    {"id":"daan-heymans","name":"Daan Heymans","position":"CM","nationality":"BEL","age":25,"appearances":30,"goals":5,"assists":7,"marketValue":4000000,"internationalCaps":5,"awards":[],"overall":73},
+    {"id":"konstantinos-karetsas","name":"Konstantinos Karetsas","position":"CAM","nationality":"GRE","age":17,"appearances":26,"goals":6,"assists":9,"marketValue":10000000,"internationalCaps":3,"awards":["Pro League Young Player 2025"],"overall":74},
+    {"id":"nikolas-sattlberger","name":"Nikolas Sattlberger","position":"CM","nationality":"AUT","age":22,"appearances":22,"goals":2,"assists":3,"marketValue":2500000,"internationalCaps":3,"awards":[],"overall":69},
+    {"id":"ibrahima-bangoura","name":"Ibrahima Sory Bangoura","position":"CM","nationality":"GUI","age":22,"appearances":18,"goals":2,"assists":3,"marketValue":2000000,"internationalCaps":5,"awards":[],"overall":68},
+    {"id":"junya-ito","name":"Junya Itō","position":"RW","nationality":"JPN","age":31,"appearances":30,"goals":10,"assists":8,"marketValue":5000000,"internationalCaps":55,"awards":[],"overall":77},
+    {"id":"jarne-steuckers","name":"Jarne Steuckers","position":"LW","nationality":"BEL","age":22,"appearances":28,"goals":7,"assists":6,"marketValue":5000000,"internationalCaps":3,"awards":[],"overall":73},
+    {"id":"yira-sor","name":"Yira Sor","position":"ST","nationality":"NGA","age":25,"appearances":30,"goals":16,"assists":5,"marketValue":7000000,"internationalCaps":6,"awards":[],"overall":75},
+    {"id":"aaron-bibout","name":"Aaron Bibout","position":"ST","nationality":"CMR","age":23,"appearances":22,"goals":8,"assists":3,"marketValue":3000000,"internationalCaps":5,"awards":[],"overall":70}
+  ]
+}
