@@ -8,17 +8,13 @@
     {"id":"theate-20","name":"Arthur Theate","position":"CB","alternativePositions":["LB"],"nationality":"BEL","age":20,"appearances":26,"goals":1,"assists":0,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":67},
     {"id":"capon-20","name":"Brecht Capon","position":"CB","nationality":"BEL","age":31,"appearances":20,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":60},
     {"id":"lopes-20b","name":"Vinicius Lopes","position":"LB","alternativePositions":["LW","LM"],"nationality":"BRA","age":25,"appearances":22,"goals":1,"assists":3,"marketValue":900000,"internationalCaps":0,"awards":[],"overall":62},
-    {"id":"musaba-20","name":"Emmanuel Musaba","position":"LW","alternativePositions":["ST"],"nationality":"COD","age":21,"appearances":22,"goals":5,"assists":4,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":63},
-    {"id":"nusa-20","name":"Antonio Nusa","position":"RW","alternativePositions":["LW"],"nationality":"NOR","age":15,"appearances":8,"goals":1,"assists":1,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":60},
+    {"id":"lankester-20","name":"Jack Lankester","position":"RB","alternativePositions":["RM"],"nationality":"ENG","age":21,"appearances":16,"goals":0,"assists":2,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":59},
+    {"id":"biset-20","name":"Maxime Biset","position":"CB","nationality":"BEL","age":22,"appearances":18,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":55},
     {"id":"coopman-oos-20","name":"Sander Coopman","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":25,"appearances":20,"goals":2,"assists":3,"marketValue":900000,"internationalCaps":0,"awards":[],"overall":63},
-    {"id":"refaelov-20","name":"Lior Refaelov","position":"CAM","alternativePositions":["CM","RW"],"nationality":"ISR","age":33,"appearances":18,"goals":3,"assists":5,"marketValue":1000000,"internationalCaps":43,"awards":[],"overall":66},
-    {"id":"thiam-20","name":"Mamadou Thiam","position":"ST","nationality":"SEN","age":27,"appearances":20,"goals":7,"assists":2,"marketValue":700000,"internationalCaps":5,"awards":[],"overall":62},
-    {"id":"rafia-20","name":"Hamza Rafia","position":"CM","alternativePositions":["CAM","CDM"],"nationality":"TUN","age":21,"appearances":16,"goals":2,"assists":2,"marketValue":800000,"internationalCaps":3,"awards":[],"overall":59},
-    {"id":"nishio-20","name":"Ryuya Nishio","position":"CM","alternativePositions":["CDM"],"nationality":"JPN","age":22,"appearances":14,"goals":1,"assists":1,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":56},
-    {"id":"biset-20","name":"Maxime Biset","position":"CB","nationality":"BEL","age":22,"appearances":14,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":55},
-    {"id":"atanga-20","name":"David Atanga","position":"RW","alternativePositions":["LW"],"nationality":"GHA","age":22,"appearances":14,"goals":2,"assists":2,"marketValue":600000,"internationalCaps":3,"awards":[],"overall":58},
-    {"id":"popovic-oos-20","name":"Boris Popović","position":"CB","nationality":"SRB","age":24,"appearances":12,"goals":0,"assists":0,"marketValue":700000,"internationalCaps":1,"awards":[],"overall":59},
-    {"id":"nkosi-oos-20","name":"Maxim De Cuyper","position":"LB","alternativePositions":["LM","LW"],"nationality":"BEL","age":20,"appearances":12,"goals":0,"assists":2,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":61},
-    {"id":"lankester-20","name":"Jack Lankester","position":"RB","alternativePositions":["RM"],"nationality":"ENG","age":21,"appearances":10,"goals":0,"assists":1,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":58}
+    {"id":"rafia-20","name":"Hamza Rafia","position":"CM","alternativePositions":["CAM","CDM"],"nationality":"TUN","age":21,"appearances":22,"goals":3,"assists":4,"marketValue":1200000,"internationalCaps":5,"awards":[],"overall":62},
+    {"id":"nishio-20","name":"Ryuya Nishio","position":"CM","alternativePositions":["CDM"],"nationality":"JPN","age":22,"appearances":16,"goals":1,"assists":1,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":57},
+    {"id":"musaba-20","name":"Emmanuel Musaba","position":"LW","alternativePositions":["ST"],"nationality":"COD","age":21,"appearances":24,"goals":6,"assists":5,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"atanga-20","name":"David Atanga","position":"RW","alternativePositions":["LW"],"nationality":"GHA","age":22,"appearances":18,"goals":3,"assists":3,"marketValue":700000,"internationalCaps":3,"awards":[],"overall":59},
+    {"id":"thiam-20","name":"Mamadou Thiam","position":"ST","nationality":"SEN","age":27,"appearances":22,"goals":8,"assists":2,"marketValue":700000,"internationalCaps":5,"awards":[],"overall":63}
   ]
 }
