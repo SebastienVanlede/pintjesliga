@@ -10,44 +10,45 @@ export interface ScoreBreakdown {
   resultLabel: string;
 }
 
-export function getResultLabel(sim: SimulatedSeason): string {
-  const isChampion = sim.champion === 'Jouw XI';
+export function getResultLabel(sim: SimulatedSeason, teamName: string): string {
+  const isChampion = sim.champion === teamName;
   if (isChampion) return 'Kampioen 🏆';
 
-  const po1Rank = sim.po1.standings.findIndex(r => r.team === 'Jouw XI');
+  const po1Rank = sim.po1.standings.findIndex(r => r.team === teamName);
   if (po1Rank === 1) return '2e in PO1';
   if (po1Rank === 2) return '3e in PO1';
   if (po1Rank === 3) return '4e in PO1 (Europa)';
   if (po1Rank >= 0) return `${po1Rank + 1}e in PO1`;
 
-  const inPO2 = sim.po2.standings.some(r => r.team === 'Jouw XI');
+  const inPO2 = sim.po2.standings.some(r => r.team === teamName);
   if (inPO2) {
-    const po2Rank = sim.po2.standings.findIndex(r => r.team === 'Jouw XI');
+    const po2Rank = sim.po2.standings.findIndex(r => r.team === teamName);
     return po2Rank === 0 ? 'PO2 winnaar (Europa)' : 'PO2 (Europa)';
   }
 
-  const inRele = sim.poRelegation.standings.some(r => r.team === 'Jouw XI');
+  const inRele = sim.poRelegation.standings.some(r => r.team === teamName);
   if (inRele) {
-    const releRank = sim.poRelegation.standings.findIndex(r => r.team === 'Jouw XI');
+    const releRank = sim.poRelegation.standings.findIndex(r => r.team === teamName);
     return releRank < 2 ? 'Relegate PO (gered)' : 'Gedegradeerd via PO';
   }
 
-  if (sim.directlyRelegate === 'Jouw XI') return 'Rechtstreeks gedegradeerd';
+  if (sim.directlyRelegate === teamName) return 'Rechtstreeks gedegradeerd';
   return 'Onbekend';
 }
 
 export function calculateScore(
   pickedPlayers: PickedPlayer[],
-  sim: SimulatedSeason
+  sim: SimulatedSeason,
+  teamName: string
 ): ScoreBreakdown {
   if (!pickedPlayers.length) return { total: 0, resultScore: 0, underdogBonus: 0, diversityBonus: 0, avgOverall: 0, uniqueTeams: 0, resultLabel: '' };
 
-  // Result score
-  const isChampion = sim.champion === 'Jouw XI';
-  const po1Rank = sim.po1.standings.findIndex(r => r.team === 'Jouw XI');
-  const inPO2 = sim.po2.standings.some(r => r.team === 'Jouw XI');
-  const inRele = sim.poRelegation.standings.some(r => r.team === 'Jouw XI');
-  const directRele = sim.directlyRelegate === 'Jouw XI';
+  // Result score — uses actual team name from simulation
+  const isChampion = sim.champion === teamName;
+  const po1Rank = sim.po1.standings.findIndex(r => r.team === teamName);
+  const inPO2 = sim.po2.standings.some(r => r.team === teamName);
+  const inRele = sim.poRelegation.standings.some(r => r.team === teamName);
+  const directRele = sim.directlyRelegate === teamName;
 
   let resultScore = 0;
   if (isChampion)         resultScore = 1000;
@@ -78,6 +79,6 @@ export function calculateScore(
     diversityBonus,
     avgOverall,
     uniqueTeams,
-    resultLabel: getResultLabel(sim),
+    resultLabel: getResultLabel(sim, teamName),
   };
 }

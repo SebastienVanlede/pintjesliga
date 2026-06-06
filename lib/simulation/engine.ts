@@ -186,10 +186,11 @@ export function simulateRound(
   teams: SimTeamPublic[],
   startMatchNumber: number
 ): SimulatedMatch[] {
-  return pairs.map((pair, i) => {
-    const home = teams.find(t => t.name === pair[0])!;
-    const away = teams.find(t => t.name === pair[1])!;
-    return simMatch(home as SimTeam, away as SimTeam, startMatchNumber + i);
+  return pairs.flatMap((pair, i) => {
+    const home = teams.find(t => t.name === pair[0]);
+    const away = teams.find(t => t.name === pair[1]);
+    if (!home || !away) return []; // skip pairs with unknown teams
+    return [simMatch(home as SimTeam, away as SimTeam, startMatchNumber + i)];
   });
 }
 
@@ -249,9 +250,9 @@ export function simulateSeason(
   const po2Carry  = Object.fromEntries(regStandings.slice(6, 12).map(r => [r.team, Math.ceil(r.points / 2)]));
   const releCarry = Object.fromEntries(regStandings.slice(12).map(r    => [r.team, r.points]));
 
-  const po1Teams    = po1Names.map(n  => allTeams.find(t => t.name === n)!);
-  const po2Teams    = po2Names.map(n  => allTeams.find(t => t.name === n)!);
-  const releTeams   = releNames.map(n => allTeams.find(t => t.name === n)!);
+  const po1Teams  = po1Names.map(n => allTeams.find(t => t.name === n)).filter((t): t is SimTeam => t != null);
+  const po2Teams  = po2Names.map(n => allTeams.find(t => t.name === n)).filter((t): t is SimTeam => t != null);
+  const releTeams = releNames.map(n => allTeams.find(t => t.name === n)).filter((t): t is SimTeam => t != null);
 
   const regEnd = regMatches.length;
 

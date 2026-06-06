@@ -56,11 +56,16 @@ export default function DraftPage() {
           deckRef.current = [...allRolls].sort(() => Math.random() - 0.5);
         }
         const final = deckRef.current.shift()!;
-        loadSquad(final.team.id, final.season).then((squad) => {
-          if (!squad) { rollDice(isReroll); return; }
-          setRoll({ team: final.team, season: final.season, squad });
-          setPhase('squad');
-        });
+        loadSquad(final.team.id, final.season)
+          .then((squad) => {
+            if (!squad) { rollDice(isReroll); return; }
+            setRoll({ team: final.team, season: final.season, squad });
+            setPhase('squad');
+          })
+          .catch(() => {
+            // Laadprobleem: terug naar idle zodat de gebruiker opnieuw kan rollen
+            setPhase('idle');
+          });
       }
     }, 85);
   }, []);

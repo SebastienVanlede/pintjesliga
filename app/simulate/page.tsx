@@ -462,8 +462,8 @@ function ResultsView({ sim, onReset, onBack }: {
   const [activeTab, setActiveTab] = useState<TabId>('regular');
   const [matchesOpen, setMatchesOpen] = useState(false);
   const { pickedPlayers, formation, teamName } = useGameStore();
-  const score = calculateScore(pickedPlayers as PickedPlayer[], sim);
   const myTeam = teamName.trim() || 'Mijn Droomelftal';
+  const score = calculateScore(pickedPlayers as PickedPlayer[], sim, myTeam);
 
   const TABS: { id: TabId; label: string; sublabel: string }[] = [
     { id: 'regular',    label: 'Regulier',      sublabel: '30 speeldagen' },
