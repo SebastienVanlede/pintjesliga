@@ -136,230 +136,196 @@ function AutoSim({ squads, pickedPlayers, onDone }: {
 
 // ─── Manual simulation ────────────────────────────────────────────────────────
 
-type ManualPhase = 'regular' | 'po1' | 'po2' | 'relegation' | 'done';
-
-interface ManualState {
-  phase: ManualPhase;
-  allTeams: SimTeamPublic[];
+interface PlayoffGroup {
+  names: string[];
   schedule: [string, string][][];
-  phaseTeamNames: string[];
-  carryover: Record<string, number>;
-  roundIndex: number;
-  phaseMatches: SimulatedMatch[];       // matches played in current phase
-  allRegularMatches: SimulatedMatch[];  // saved after regular season
-  lastRound: SimulatedMatch[] | null;
-  matchCounter: number;
+  carry: Record<string, number>;
+  matches: SimulatedMatch[];
+}
+interface Playoffs {
+  round: number;
+  maxRounds: number; // max(5, 5, 3) = 5
+  po1: PlayoffGroup;
+  po2: PlayoffGroup;
+  rel: PlayoffGroup;
   regularStandings: StandingRow[];
-  directlyRelegate: string;
-  po1Standings?: StandingRow[];
-  po2Standings?: StandingRow[];
-  releStandings?: StandingRow[];
 }
 
 function ManualSim({ squads, pickedPlayers, onDone }: {
   squads: Squad[]; pickedPlayers: any[]; onDone: (r: SimulatedSeason) => void;
 }) {
-  const allTeams = useRef<SimTeamPublic[]>(buildSimTeams(pickedPlayers, squads));
-  const teamNames = allTeams.current.map(t => t.name);
+  // Ensure 16 teams total (drop last squad if needed for even number)
+  const validSquads = (squads.length + 1) % 2 !== 0 ? squads.slice(0, -1) : squads;
 
-  const [state, setState] = useState<ManualState>(() => ({
-    phase: 'regular',
-    allTeams: allTeams.current,
-    schedule: generateFullSchedule(teamNames),
-    phaseTeamNames: teamNames,
-    carryover: {},
-    roundIndex: 0,
-    phaseMatches: [],
-    allRegularMatches: [],
-    lastRound: null,
-    matchCounter: 1,
-    regularStandings: computeStandings(teamNames, []),
-    directlyRelegate: '',
-  }));
+  const teams      = useRef<SimTeamPublic[]>(buildSimTeams(pickedPlayers, validSquads));
+  const teamNames  = useRef(teams.current.map(t => t.name));
+  const regSched   = useRef(generateFullSchedule(teamNames.current)); // 30 rounds, 8 matches each
 
-  const standings = computeStandings(state.phaseTeamNames, state.phaseMatches, state.carryover);
-  const totalRounds = state.schedule.length;
-  const isDone = state.roundIndex >= totalRounds;
-  const currentPairs = !isDone ? state.schedule[state.roundIndex] : [];
-  const userMatch = currentPairs.find(([h, a]) => h === 'Jouw XI' || a === 'Jouw XI');
-  const userHasBye = !isDone && currentPairs.length > 0 && !userMatch;
+  // ── Regular season state ─────────────────────────────────────────────────
+  const [regRound,    setRegRound]    = useState(0);
+  const [regMatches,  setRegMatches]  = useState<SimulatedMatch[]>([]);
+  const [lastRound,   setLastRound]   = useState<SimulatedMatch[] | null>(null);
+  const [counter,     setCounter]     = useState(1);
 
-  function handleSimulateRound() {
-    if (isDone) return;
-    const pairs = state.schedule[state.roundIndex];
-    const results = simulateRound(pairs, state.allTeams, state.matchCounter);
-    setState(s => ({
-      ...s,
-      phaseMatches: [...s.phaseMatches, ...results],
-      lastRound: results,
-      roundIndex: s.roundIndex + 1,
-      matchCounter: s.matchCounter + results.length,
+  // ── Playoff state (null until regular season complete) ───────────────────
+  const [playoffs, setPlayoffs] = useState<Playoffs | null>(null);
+
+  const regDone       = regRound >= regSched.current.length;
+  const playoffsDone  = playoffs !== null && playoffs.round >= playoffs.maxRounds;
+
+  // Derived standings (computed from current matches)
+  const regStandings = computeStandings(teamNames.current, regMatches);
+  const po1Standings = playoffs ? computeStandings(playoffs.po1.names, playoffs.po1.matches, playoffs.po1.carry) : null;
+  const po2Standings = playoffs ? computeStandings(playoffs.po2.names, playoffs.po2.matches, playoffs.po2.carry) : null;
+  const relStandings = playoffs ? computeStandings(playoffs.rel.names, playoffs.rel.matches, playoffs.rel.carry) : null;
+
+  function simulateRegularRound() {
+    if (regDone) return;
+    const pairs   = regSched.current[regRound];
+    const results = simulateRound(pairs, teams.current, counter);
+    setRegMatches(prev => [...prev, ...results]);
+    setLastRound(results);
+    setCounter(prev => prev + results.length);
+    setRegRound(prev => prev + 1);
+  }
+
+  function startPlayoffs() {
+    const finalStandings = computeStandings(teamNames.current, regMatches);
+    const po1Names = finalStandings.slice(0, 6).map(r => r.team);
+    const po2Names = finalStandings.slice(6, 12).map(r => r.team);
+    const relNames = finalStandings.slice(12).map(r => r.team); // 4 teams
+
+    setPlayoffs({
+      round: 0,
+      maxRounds: 5, // max(PO1=5, PO2=5, REL=3) — all run concurrently
+      po1: { names: po1Names, schedule: generatePlayoffSchedule(po1Names), carry: Object.fromEntries(finalStandings.slice(0, 6).map(r => [r.team, Math.ceil(r.points / 2)])), matches: [] },
+      po2: { names: po2Names, schedule: generatePlayoffSchedule(po2Names), carry: Object.fromEntries(finalStandings.slice(6, 12).map(r => [r.team, Math.ceil(r.points / 2)])), matches: [] },
+      rel: { names: relNames, schedule: generatePlayoffSchedule(relNames), carry: Object.fromEntries(finalStandings.slice(12).map(r => [r.team, r.points])), matches: [] },
+      regularStandings: finalStandings,
+    });
+    setLastRound(null);
+  }
+
+  function simulatePlayoffRound() {
+    if (!playoffs || playoffsDone) return;
+    const r = playoffs.round;
+    let c = counter;
+
+    // All three playoff groups advance simultaneously
+    const po1R = r < playoffs.po1.schedule.length ? simulateRound(playoffs.po1.schedule[r], teams.current, c) : [];
+    c += po1R.length;
+    const po2R = r < playoffs.po2.schedule.length ? simulateRound(playoffs.po2.schedule[r], teams.current, c) : [];
+    c += po2R.length;
+    const relR = r < playoffs.rel.schedule.length ? simulateRound(playoffs.rel.schedule[r], teams.current, c) : [];
+    c += relR.length;
+
+    setCounter(c);
+    setLastRound([...po1R, ...po2R, ...relR]);
+    setPlayoffs(prev => prev && ({
+      ...prev,
+      round: prev.round + 1,
+      po1: { ...prev.po1, matches: [...prev.po1.matches, ...po1R] },
+      po2: { ...prev.po2, matches: [...prev.po2.matches, ...po2R] },
+      rel: { ...prev.rel, matches: [...prev.rel.matches, ...relR] },
     }));
   }
 
-  function handleTransition() {
-    const s = state;
-    const regStandings = computeStandings(s.phaseTeamNames, s.phaseMatches, s.carryover);
-
-    if (s.phase === 'regular') {
-      const po1Names  = regStandings.slice(0, 6).map(r => r.team);
-      const po2Names  = regStandings.slice(6, 12).map(r => r.team);
-      const relNames  = regStandings.slice(12, 16).map(r => r.team);
-      const dirRel    = regStandings[16]?.team ?? regStandings[regStandings.length - 1].team;
-      const po1Carry  = Object.fromEntries(regStandings.slice(0, 6).map(r  => [r.team, Math.ceil(r.points / 2)]));
-
-      setState({
-        ...s,
-        phase: 'po1',
-        phaseTeamNames: po1Names,
-        schedule: generatePlayoffSchedule(po1Names),
-        carryover: po1Carry,
-        phaseMatches: [],
-        lastRound: null,
-        roundIndex: 0,
-        regularStandings: regStandings,
-        allRegularMatches: s.phaseMatches,
-        directlyRelegate: dirRel,
-      });
-    }
-
-    if (s.phase === 'po1') {
-      const po1Final  = computeStandings(s.phaseTeamNames, s.phaseMatches, s.carryover);
-      const po2Names  = s.regularStandings.slice(6, 12).map(r => r.team);
-      const po2Carry  = Object.fromEntries(s.regularStandings.slice(6, 12).map(r => [r.team, Math.ceil(r.points / 2)]));
-
-      setState({
-        ...s,
-        phase: 'po2',
-        phaseTeamNames: po2Names,
-        schedule: generatePlayoffSchedule(po2Names),
-        carryover: po2Carry,
-        phaseMatches: [],
-        lastRound: null,
-        roundIndex: 0,
-        po1Standings: po1Final,
-      });
-    }
-
-    if (s.phase === 'po2') {
-      const po2Final  = computeStandings(s.phaseTeamNames, s.phaseMatches, s.carryover);
-      const relNames  = s.regularStandings.slice(12, 16).map(r => r.team);
-      const relCarry  = Object.fromEntries(s.regularStandings.slice(12, 16).map(r => [r.team, r.points]));
-
-      setState({
-        ...s,
-        phase: 'relegation',
-        phaseTeamNames: relNames,
-        schedule: generatePlayoffSchedule(relNames),
-        carryover: relCarry,
-        phaseMatches: [],
-        lastRound: null,
-        roundIndex: 0,
-        po2Standings: po2Final,
-      });
-    }
-
-    if (s.phase === 'relegation') {
-      const relFinal = computeStandings(s.phaseTeamNames, s.phaseMatches, s.carryover);
-      const po1Final = s.po1Standings!;
-      const po2Final = s.po2Standings!;
-
-      const result: SimulatedSeason = {
-        regularSeason:  { name: 'Regulier Seizoen',     matches: s.allRegularMatches,    standings: s.regularStandings },
-        po1:            { name: 'Championship Play-off', matches: po1Final.map(() => ({} as SimulatedMatch)), standings: po1Final },
-        po2:            { name: 'Europa Play-off',       matches: po2Final.map(() => ({} as SimulatedMatch)), standings: po2Final },
-        poRelegation:   { name: 'Relegation Play-off',  matches: [],                     standings: relFinal },
-        champion:       po1Final[0].team,
-        europeanSpots:  po1Final.slice(0, 4).map(r => r.team),
-        relegated:      relFinal.slice(2).map(r => r.team),
-        directlyRelegate: s.directlyRelegate,
-      };
-      setState({ ...s, phase: 'done', releStandings: relFinal });
-      onDone(result);
-    }
+  function finishSimulation() {
+    if (!playoffs || !po1Standings || !po2Standings || !relStandings) return;
+    onDone({
+      regularSeason:  { name: 'Regulier Seizoen',     matches: regMatches,           standings: playoffs.regularStandings },
+      po1:            { name: 'Championship Play-off', matches: playoffs.po1.matches, standings: po1Standings },
+      po2:            { name: 'Europa Play-off',       matches: playoffs.po2.matches, standings: po2Standings },
+      poRelegation:   { name: 'Relegation Play-off',  matches: playoffs.rel.matches, standings: relStandings },
+      champion:       po1Standings[0].team,
+      europeanSpots:  po1Standings.slice(0, 4).map(r => r.team),
+      relegated:      relStandings.slice(2).map(r => r.team),
+      directlyRelegate: '',
+    });
   }
 
-  const phaseLabels: Record<ManualPhase, string> = {
-    regular:    'Regulier Seizoen',
-    po1:        'Championship Play-off (PO1)',
-    po2:        'Europa Play-off (PO2)',
-    relegation: 'Relegation Play-off',
-    done:       'Klaar',
-  };
+  // ── What to show ─────────────────────────────────────────────────────────
+  const isRegular  = !playoffs;
+  const isPlayoffs = playoffs && !playoffsDone;
 
-  const phaseColor: Record<ManualPhase, string> = {
-    regular:    'var(--gold)',
-    po1:        'var(--gold)',
-    po2:        '#3a8fd1',
-    relegation: 'var(--red)',
-    done:       'var(--gold)',
-  };
+  const upcomingPairs = isRegular && !regDone ? regSched.current[regRound] : [];
+  const poUpcomingR   = playoffs && !playoffsDone ? playoffs.round : -1;
+  const totalRegRounds = regSched.current.length;
 
   return (
     <PageShell>
-      {/* Phase header */}
+      {/* Header */}
       <div className="w-full max-w-2xl text-center">
         <p className="text-xs tracking-widest uppercase mb-1" style={{ color: 'var(--muted)' }}>
-          {phaseLabels[state.phase]}
+          {isRegular ? 'Regulier Seizoen' : 'Play-offs — PO1 · PO2 · Relegate PO gelijktijdig'}
         </p>
-        <p style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1rem,4vw,1.6rem)', color: phaseColor[state.phase], letterSpacing: '0.1em' }}>
-          {isDone
-            ? state.phase === 'regular' ? 'Regulier seizoen afgelopen!' : 'Fase afgelopen!'
-            : `Speeldag ${state.roundIndex + 1} van ${totalRounds}`}
+        <p style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1rem,4vw,1.6rem)', color: 'var(--gold)', letterSpacing: '0.1em' }}>
+          {isRegular
+            ? (regDone ? 'Regulier seizoen afgelopen!' : `Speeldag ${regRound + 1} van ${totalRegRounds}`)
+            : (playoffsDone ? 'Play-offs afgelopen!' : `PO speeldag ${playoffs.round + 1} van ${playoffs.maxRounds}`)}
         </p>
-
-        {/* Progress bar */}
         <div className="h-1 rounded-full mt-2 w-full" style={{ background: 'var(--border)' }}>
           <div className="h-1 rounded-full transition-all duration-300"
-            style={{ background: phaseColor[state.phase], width: `${(state.roundIndex / Math.max(totalRounds, 1)) * 100}%` }} />
+            style={{ background: 'var(--gold)', width: `${isRegular ? (regRound / totalRegRounds) * 100 : playoffs ? (playoffs.round / playoffs.maxRounds) * 100 : 100}%` }} />
         </div>
       </div>
 
       {/* Last round results */}
-      <AnimatePresence mode="wait">
-        {state.lastRound && !isDone && (
-          <motion.div key={state.roundIndex} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-            className="w-full max-w-2xl flex flex-col gap-1.5">
-            <p className="text-xs uppercase tracking-widest px-1" style={{ color: 'var(--muted)' }}>
-              Resultaten speeldag {state.roundIndex}
-            </p>
-            {state.lastRound.map((m, i) => (
-              <MatchRow key={i} match={m} />
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Upcoming round preview */}
-      {!isDone && (
-        <div className="w-full max-w-2xl flex flex-col gap-2">
+      {lastRound && lastRound.length > 0 && (
+        <motion.div key={`${regRound}-${playoffs?.round}`} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+          className="w-full max-w-2xl flex flex-col gap-1.5">
           <p className="text-xs uppercase tracking-widest px-1" style={{ color: 'var(--muted)' }}>
-            Speeldag {state.roundIndex + 1} — aankomende wedstrijden
+            {isRegular ? `Resultaten speeldag ${regRound}` : `Resultaten PO speeldag ${playoffs!.round}`}
           </p>
-          {userHasBye && (
-            <div className="rounded-lg px-4 py-3 text-sm"
-              style={{ background: 'rgba(212,148,10,0.06)', border: '1px solid var(--gold-dim)' }}>
-              <span style={{ color: 'var(--gold)' }}>⭐ Jouw XI</span>
-              <span style={{ color: 'var(--muted)' }}> heeft een bye deze speeldag</span>
-            </div>
-          )}
-          {currentPairs.map(([h, a], i) => {
+          {lastRound.map((m, i) => <MatchRow key={i} match={m} />)}
+        </motion.div>
+      )}
+
+      {/* Upcoming fixtures preview (regular season) */}
+      {isRegular && !regDone && (
+        <div className="w-full max-w-2xl flex flex-col gap-1.5">
+          <p className="text-xs uppercase tracking-widest px-1" style={{ color: 'var(--muted)' }}>
+            Speeldag {regRound + 1} — aankomende wedstrijden
+          </p>
+          {upcomingPairs.map(([h, a], i) => {
             const isUser = h === 'Jouw XI' || a === 'Jouw XI';
             return (
-              <div key={i} className="flex items-center justify-between rounded-lg px-4 py-2.5"
-                style={{
-                  background: isUser ? 'rgba(212,148,10,0.06)' : 'var(--surface)',
-                  border: `1px solid ${isUser ? 'var(--gold-dim)' : 'var(--border)'}`,
-                }}>
-                <span className="text-sm flex-1 text-right truncate"
-                  style={{ color: isUser && h === 'Jouw XI' ? 'var(--gold)' : 'var(--text)', fontWeight: h === 'Jouw XI' ? 600 : 400 }}>
-                  {h}
-                </span>
+              <div key={i} className="flex items-center justify-between rounded-lg px-4 py-2"
+                style={{ background: isUser ? 'rgba(212,148,10,0.06)' : 'var(--surface)', border: `1px solid ${isUser ? 'var(--gold-dim)' : 'var(--border)'}` }}>
+                <span className="text-xs flex-1 text-right truncate" style={{ color: h === 'Jouw XI' ? 'var(--gold)' : 'var(--text)', fontWeight: h === 'Jouw XI' ? 600 : 400 }}>{h}</span>
                 <span className="mx-3 text-xs flex-shrink-0" style={{ color: 'var(--muted)' }}>vs</span>
-                <span className="text-sm flex-1 truncate"
-                  style={{ color: isUser && a === 'Jouw XI' ? 'var(--gold)' : 'var(--text)', fontWeight: a === 'Jouw XI' ? 600 : 400 }}>
-                  {a}
-                </span>
+                <span className="text-xs flex-1 truncate" style={{ color: a === 'Jouw XI' ? 'var(--gold)' : 'var(--text)', fontWeight: a === 'Jouw XI' ? 600 : 400 }}>{a}</span>
+              </div>
+            );
+          })}
+        </div>
+      )}
+
+      {/* Upcoming fixtures preview (playoffs) */}
+      {playoffs && !playoffsDone && poUpcomingR >= 0 && (
+        <div className="w-full max-w-2xl flex flex-col gap-2">
+          <p className="text-xs uppercase tracking-widest px-1" style={{ color: 'var(--muted)' }}>
+            PO speeldag {poUpcomingR + 1} — aankomende wedstrijden
+          </p>
+          {(['po1', 'po2', 'rel'] as const).map(group => {
+            const g = playoffs[group];
+            if (poUpcomingR >= g.schedule.length) return null;
+            const label = group === 'po1' ? 'PO1 Championship' : group === 'po2' ? 'PO2 Europa' : 'Relegate PO';
+            const color = group === 'po1' ? 'var(--gold)' : group === 'po2' ? '#3a8fd1' : 'var(--red)';
+            return (
+              <div key={group}>
+                <p className="text-xs mb-1 px-1" style={{ color }}>{label}</p>
+                {g.schedule[poUpcomingR].map(([h, a], i) => {
+                  const isUser = h === 'Jouw XI' || a === 'Jouw XI';
+                  return (
+                    <div key={i} className="flex items-center justify-between rounded-lg px-4 py-2 mb-1"
+                      style={{ background: isUser ? 'rgba(212,148,10,0.06)' : 'var(--surface)', border: `1px solid ${isUser ? 'var(--gold-dim)' : 'var(--border)'}` }}>
+                      <span className="text-xs flex-1 text-right truncate" style={{ color: h === 'Jouw XI' ? 'var(--gold)' : 'var(--text)', fontWeight: h === 'Jouw XI' ? 600 : 400 }}>{h}</span>
+                      <span className="mx-3 text-xs flex-shrink-0" style={{ color: 'var(--muted)' }}>vs</span>
+                      <span className="text-xs flex-1 truncate" style={{ color: a === 'Jouw XI' ? 'var(--gold)' : 'var(--text)', fontWeight: a === 'Jouw XI' ? 600 : 400 }}>{a}</span>
+                    </div>
+                  );
+                })}
               </div>
             );
           })}
@@ -367,37 +333,69 @@ function ManualSim({ squads, pickedPlayers, onDone }: {
       )}
 
       {/* Standings */}
-      <div className="w-full max-w-2xl">
-        <p className="text-xs uppercase tracking-widest mb-2 px-1" style={{ color: 'var(--muted)' }}>
-          Huidige stand
-        </p>
-        <CompactStandings rows={standings} directlyRelegate={state.phase === 'regular' ? state.directlyRelegate : ''} />
+      <div className="w-full max-w-2xl flex flex-col gap-3">
+        {isRegular && (
+          <>
+            <p className="text-xs uppercase tracking-widest px-1" style={{ color: 'var(--muted)' }}>Huidige stand</p>
+            <CompactStandings rows={regStandings} directlyRelegate="" />
+          </>
+        )}
+        {playoffs && po1Standings && po2Standings && relStandings && (
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {[
+              { label: 'PO1 Championship', rows: po1Standings, color: 'var(--gold)' },
+              { label: 'PO2 Europa',       rows: po2Standings, color: '#3a8fd1' },
+              { label: 'Relegate PO',      rows: relStandings, color: 'var(--red)' },
+            ].map(({ label, rows, color }) => (
+              <div key={label}>
+                <p className="text-xs mb-1 px-1" style={{ color }}>{label}</p>
+                <div className="rounded-lg overflow-hidden" style={{ border: '1px solid var(--border)' }}>
+                  {rows.map((row, i) => {
+                    const isUser = row.team === 'Jouw XI';
+                    return (
+                      <div key={row.team} className="flex items-center justify-between px-2 py-1.5 text-xs"
+                        style={{ background: isUser ? 'rgba(212,148,10,0.06)' : i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.015)', borderTop: i > 0 ? '1px solid var(--border)' : 'none' }}>
+                        <span style={{ color: 'var(--muted)', width: 16 }}>{i + 1}</span>
+                        <span className="flex-1 truncate mx-1" style={{ color: isUser ? 'var(--gold)' : 'var(--text)' }}>{isUser ? '⭐ Jouw XI' : row.team}</span>
+                        <span style={{ fontFamily: 'var(--font-display)', color: isUser ? 'var(--gold)' : 'var(--text)' }}>{row.points}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
-      {/* Action buttons */}
-      <div className="flex gap-3">
-        {!isDone ? (
-          <button onClick={handleSimulateRound}
+      {/* Action button */}
+      <div>
+        {isRegular && !regDone && (
+          <button onClick={simulateRegularRound}
             className="px-10 py-3 rounded transition-all duration-150"
-            style={{
-              fontFamily: 'var(--font-display)', fontSize: '1.1rem', letterSpacing: '0.12em',
-              background: phaseColor[state.phase], color: '#090907',
-              border: `2px solid ${phaseColor[state.phase]}`,
-              boxShadow: `0 0 20px ${phaseColor[state.phase]}33`,
-            }}>
-            ▶ Simuleer speeldag {state.roundIndex + 1}
+            style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', letterSpacing: '0.12em', background: 'var(--gold)', color: '#090907', border: '2px solid var(--gold)', boxShadow: '0 0 20px rgba(212,148,10,0.3)' }}>
+            ▶ Simuleer speeldag {regRound + 1}
           </button>
-        ) : (
-          <button onClick={handleTransition}
+        )}
+        {isRegular && regDone && (
+          <button onClick={startPlayoffs}
             className="px-10 py-3 rounded transition-all duration-150"
-            style={{
-              fontFamily: 'var(--font-display)', fontSize: '1.1rem', letterSpacing: '0.12em',
-              background: phaseColor[state.phase], color: '#090907',
-              border: `2px solid ${phaseColor[state.phase]}`,
-            }}>
-            {state.phase === 'regular' ? '→ Start Play-offs' :
-             state.phase === 'po1'    ? '→ Start PO2 Europa' :
-             state.phase === 'po2'    ? '→ Start Relegate PO' : '→ Bekijk eindresultaat'}
+            style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', letterSpacing: '0.12em', background: 'var(--gold)', color: '#090907', border: '2px solid var(--gold)' }}>
+            → Start Play-offs
+          </button>
+        )}
+        {isPlayoffs && (
+          <button onClick={simulatePlayoffRound}
+            className="px-10 py-3 rounded transition-all duration-150"
+            style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', letterSpacing: '0.12em', background: 'var(--gold)', color: '#090907', border: '2px solid var(--gold)', boxShadow: '0 0 20px rgba(212,148,10,0.3)' }}>
+            ▶ Simuleer PO speeldag {playoffs.round + 1}
+          </button>
+        )}
+        {playoffsDone && (
+          <button onClick={finishSimulation}
+            className="px-10 py-3 rounded transition-all duration-150"
+            style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', letterSpacing: '0.12em', background: 'var(--gold)', color: '#090907', border: '2px solid var(--gold)' }}>
+            → Bekijk eindresultaat
           </button>
         )}
       </div>

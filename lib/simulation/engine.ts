@@ -204,6 +204,12 @@ export function simulateSeason(
   userPlayers: PickedPlayer[],
   opponentSquads: Squad[]
 ): SimulatedSeason {
+  // Ensure 16 teams total (even) → authentic Belgian 30-matchday format, no byes
+  // Drop the last squad when needed (16 squads + JX = 17 → odd, so drop one)
+  const squads = (opponentSquads.length + 1) % 2 !== 0
+    ? opponentSquads.slice(0, -1)
+    : opponentSquads;
+
   // Build team pool
   const userTeam: SimTeam = {
     name: 'Jouw XI',
@@ -214,7 +220,7 @@ export function simulateSeason(
   };
   if (!userTeam.scorers.length) userTeam.scorers = userPlayers.map(p => p.player.name);
 
-  const opponents: SimTeam[] = opponentSquads.map(sq => ({
+  const opponents: SimTeam[] = squads.map(sq => ({
     name: sq.team,
     overall: squadOverall(sq),
     scorers: sq.players
@@ -222,22 +228,21 @@ export function simulateSeason(
       .map(p => p.name),
   }));
 
-  const allTeams = [userTeam, ...opponents];
+  const allTeams = [userTeam, ...opponents]; // always 16 teams (even)
 
-  // ── Phase 1: Regular season (home + away) ──────────────────────────────────
+  // ── Phase 1: Regular season (home + away, 30 matchdays) ───────────────────
   const regMatches = roundRobin(allTeams, 1, true);
   const regStandings = buildStandings(allTeams.map(t => t.name), regMatches);
 
   // ── Split into playoff groups ──────────────────────────────────────────────
-  // 17 teams: top 6 → PO1, 7-12 → PO2, 13-16 → Relegation PO, 17th → direct relegation
-  const po1Names         = regStandings.slice(0, 6).map(r => r.team);
-  const po2Names         = regStandings.slice(6, 12).map(r => r.team);
-  const releNames        = regStandings.slice(12, 16).map(r => r.team); // exactly 4 teams
-  const directlyRelegate = regStandings[16]?.team ?? regStandings[regStandings.length - 1].team;
+  // 16 teams: top 6 → PO1, 7-12 → PO2, 13-16 → Relegation PO, no direct relegation
+  const po1Names = regStandings.slice(0, 6).map(r => r.team);
+  const po2Names = regStandings.slice(6, 12).map(r => r.team);
+  const releNames = regStandings.slice(12).map(r => r.team); // 4 teams
 
-  const po1Carry    = Object.fromEntries(regStandings.slice(0, 6).map(r   => [r.team, Math.ceil(r.points / 2)]));
-  const po2Carry    = Object.fromEntries(regStandings.slice(6, 12).map(r  => [r.team, Math.ceil(r.points / 2)]));
-  const releCarry   = Object.fromEntries(regStandings.slice(12, 16).map(r => [r.team, r.points])); // full points
+  const po1Carry  = Object.fromEntries(regStandings.slice(0, 6).map(r  => [r.team, Math.ceil(r.points / 2)]));
+  const po2Carry  = Object.fromEntries(regStandings.slice(6, 12).map(r => [r.team, Math.ceil(r.points / 2)]));
+  const releCarry = Object.fromEntries(regStandings.slice(12).map(r    => [r.team, r.points]));
 
   const po1Teams    = po1Names.map(n  => allTeams.find(t => t.name === n)!);
   const po2Teams    = po2Names.map(n  => allTeams.find(t => t.name === n)!);
@@ -270,6 +275,6 @@ export function simulateSeason(
     champion,
     europeanSpots,
     relegated,
-    directlyRelegate,
+    directlyRelegate: '', // no direct relegation with 16 teams
   };
 }
