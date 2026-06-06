@@ -12,7 +12,8 @@ interface Roll { team: Team; season: string; squad: Squad }
 
 export default function DraftPage() {
   const router = useRouter();
-  const { formation, pickedPlayers, pickPlayer } = useGameStore();
+  const { formation, pickedPlayers, pickPlayer, draftMode } = useGameStore();
+  const blind = draftMode === 'blind';
 
   const [phase, setPhase] = useState<Phase>('idle');
   const [roll, setRoll] = useState<Roll | null>(null);
@@ -345,6 +346,7 @@ export default function DraftPage() {
                         teamColor={roll.team.primaryColor}
                         disabled={disabled}
                         disabledReason={alreadyPicked ? 'Gekozen' : posFull ? 'Vol' : undefined}
+                        blind={blind}
                         onPick={() => !disabled && handleSelectPlayer(player)}
                       />
                     );
@@ -365,7 +367,7 @@ export default function DraftPage() {
               >
                 <p className="label-xs mb-3">Gekozen speler</p>
                 <div className="flex items-center gap-4">
-                  <OverallBadge overall={selectedPlayer.overall} size="lg" />
+                  <OverallBadge overall={selectedPlayer.overall} size="lg" blind={blind} />
                   <div className="flex-1">
                     <p className="font-semibold" style={{ color: 'var(--text)', fontSize: '1.05rem' }}>
                       {selectedPlayer.name}
@@ -416,9 +418,9 @@ export default function DraftPage() {
 
 // ─── Player card ──────────────────────────────────────────────────────────────
 
-function PlayerCard({ player, teamColor, onPick, disabled, disabledReason }: {
+function PlayerCard({ player, teamColor, onPick, disabled, disabledReason, blind }: {
   player: Player; teamColor: string; onPick: () => void;
-  disabled?: boolean; disabledReason?: string;
+  disabled?: boolean; disabledReason?: string; blind?: boolean;
 }) {
   const allPositions = playerPositions(player);
   return (
@@ -446,7 +448,7 @@ function PlayerCard({ player, teamColor, onPick, disabled, disabledReason }: {
       }}
     >
       <div className="flex items-center gap-3">
-        <OverallBadge overall={player.overall} size="sm" />
+        <OverallBadge overall={player.overall} size="sm" blind={blind} />
 
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
@@ -496,10 +498,10 @@ function PlayerCard({ player, teamColor, onPick, disabled, disabledReason }: {
 
 // ─── Overall badge ────────────────────────────────────────────────────────────
 
-function OverallBadge({ overall, size }: { overall: number; size: 'sm' | 'lg' }) {
-  const color = overall >= 80 ? 'var(--gold)' : overall >= 73 ? '#A8E6CF' : overall >= 66 ? 'var(--text-2)' : 'var(--muted)';
-  const bg = overall >= 80 ? 'rgba(212,148,10,0.2)' : overall >= 73 ? 'rgba(168,230,207,0.12)' : overall >= 66 ? 'rgba(237,234,228,0.08)' : 'rgba(104,100,92,0.15)';
-  const dim = size === 'sm' ? { width: 38, height: 38, fontSize: '0.9rem' } : { width: 56, height: 56, fontSize: '1.4rem' };
+function OverallBadge({ overall, size, blind }: { overall: number; size: 'sm' | 'lg'; blind?: boolean }) {
+  const color = blind ? 'var(--muted)' : overall >= 80 ? 'var(--gold)' : overall >= 73 ? '#A8E6CF' : overall >= 66 ? 'var(--text-2)' : 'var(--muted)';
+  const bg    = blind ? 'rgba(104,100,92,0.1)' : overall >= 80 ? 'rgba(212,148,10,0.2)' : overall >= 73 ? 'rgba(168,230,207,0.12)' : overall >= 66 ? 'rgba(237,234,228,0.08)' : 'rgba(104,100,92,0.15)';
+  const dim   = size === 'sm' ? { width: 38, height: 38, fontSize: '0.9rem' } : { width: 56, height: 56, fontSize: '1.4rem' };
 
   return (
     <div style={{
@@ -515,7 +517,7 @@ function OverallBadge({ overall, size }: { overall: number; size: 'sm' | 'lg' })
       flexShrink: 0,
       letterSpacing: '0.02em',
     }}>
-      {overall}
+      {blind ? '?' : overall}
     </div>
   );
 }

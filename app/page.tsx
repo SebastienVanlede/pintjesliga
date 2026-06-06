@@ -14,7 +14,7 @@ const HOW_IT_WORKS = [
 
 export default function HomePage() {
   const router = useRouter();
-  const { setFormation } = useGameStore();
+  const { setFormation, draftMode, setDraftMode } = useGameStore();
   const [selected, setSelected] = useState<Formation | null>(null);
 
   function handleStart() {
@@ -168,6 +168,38 @@ export default function HomePage() {
               />
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* Draft mode toggle */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.25 }}
+          className="flex flex-col gap-2"
+        >
+          <span className="label-xs">Speelmodus</span>
+          <div className="flex gap-2">
+            {([
+              { value: 'normal', label: 'Normaal', desc: 'Ratings zichtbaar' },
+              { value: 'blind',  label: 'From Memory', desc: 'Ratings verborgen' },
+            ] as const).map(({ value, label, desc }) => (
+              <button
+                key={value}
+                onClick={() => setDraftMode(value)}
+                className="flex-1 flex flex-col items-start px-4 py-3 rounded-lg transition-all duration-150"
+                style={{
+                  background: draftMode === value ? 'rgba(212,148,10,0.1)' : 'var(--surface)',
+                  border: `1.5px solid ${draftMode === value ? 'var(--gold)' : 'var(--border)'}`,
+                  cursor: 'pointer',
+                }}
+              >
+                <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.85rem', letterSpacing: '0.08em', color: draftMode === value ? 'var(--gold)' : 'var(--text)' }}>
+                  {label}
+                </span>
+                <span style={{ fontSize: '0.7rem', color: 'var(--muted)', marginTop: 2 }}>{desc}</span>
+              </button>
+            ))}
+          </div>
         </motion.div>
 
         {/* CTA */}
