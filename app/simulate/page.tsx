@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGameStore } from '@/lib/store';
-import { getAvailableRolls, loadSquad } from '@/lib/data';
+import { getAvailableRolls, loadSquad, CURRENT_SEASON } from '@/lib/data';
 import { simulateSeason } from '@/lib/simulation/engine';
 import { Squad, SimulatedSeason, StandingRow, SimulatedMatch } from '@/lib/types';
 
@@ -22,10 +22,10 @@ export default function SimulatePage() {
 
   async function runSimulation() {
     setLoading(true);
-    // Load all available squads as opponents (excluding rolled squads used in user XI)
-    const rolls = getAvailableRolls();
+    // Opponents are always the current Pro League teams (2024-25)
+    const currentRolls = getAvailableRolls().filter(r => r.season === CURRENT_SEASON);
     const squads: Squad[] = [];
-    for (const r of rolls) {
+    for (const r of currentRolls) {
       const sq = await loadSquad(r.team.id, r.season);
       if (sq) squads.push(sq);
     }

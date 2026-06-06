@@ -4,6 +4,7 @@ import { Team, Squad } from './types';
 
 export const teams: Team[] = teamsJson as Team[];
 export const seasons = seasonsJson;
+export const CURRENT_SEASON = '2024-25';
 
 // All squad files — add new entries here when a squad file is created
 const squadModules: Record<string, () => Promise<Squad>> = {
@@ -24,6 +25,23 @@ const squadModules: Record<string, () => Promise<Squad>> = {
   'stvv-2024-25':         () => import('@/data/squads/stvv-2024.json').then(m => m.default as Squad),
   'kortrijk-2024-25':     () => import('@/data/squads/kortrijk-2024.json').then(m => m.default as Squad),
   'beerschot-2024-25':    () => import('@/data/squads/beerschot-2024.json').then(m => m.default as Squad),
+  // 2023-24 season
+  'club-brugge-2023-24':   () => import('@/data/squads/club-brugge-2023.json').then(m => m.default as Squad),
+  'genk-2023-24':          () => import('@/data/squads/genk-2023.json').then(m => m.default as Squad),
+  'union-2023-24':         () => import('@/data/squads/union-2023.json').then(m => m.default as Squad),
+  'anderlecht-2023-24':    () => import('@/data/squads/anderlecht-2023b.json').then(m => m.default as Squad),
+  'antwerp-2023-24':       () => import('@/data/squads/antwerp-2023.json').then(m => m.default as Squad),
+  'gent-2023-24':          () => import('@/data/squads/gent-2023.json').then(m => m.default as Squad),
+  'standard-2023-24':      () => import('@/data/squads/standard-2023.json').then(m => m.default as Squad),
+  'mechelen-2023-24':      () => import('@/data/squads/mechelen-2023.json').then(m => m.default as Squad),
+  'westerlo-2023-24':      () => import('@/data/squads/westerlo-2023.json').then(m => m.default as Squad),
+  'charleroi-2023-24':     () => import('@/data/squads/charleroi-2023.json').then(m => m.default as Squad),
+  'ohl-2023-24':           () => import('@/data/squads/ohl-2023.json').then(m => m.default as Squad),
+  'cercle-brugge-2023-24': () => import('@/data/squads/cercle-brugge-2023.json').then(m => m.default as Squad),
+  'stvv-2023-24':          () => import('@/data/squads/stvv-2023.json').then(m => m.default as Squad),
+  'kortrijk-2023-24':      () => import('@/data/squads/kortrijk-2023.json').then(m => m.default as Squad),
+  'eupen-2023-24':         () => import('@/data/squads/eupen-2023.json').then(m => m.default as Squad),
+  'rwdm-2023-24':          () => import('@/data/squads/rwdm-2023.json').then(m => m.default as Squad),
   // Historic seasons
   'club-brugge-2002-03':  () => import('@/data/squads/club-brugge-2002.json').then(m => m.default as Squad),
   'anderlecht-2003-04':   () => import('@/data/squads/anderlecht-2003.json').then(m => m.default as Squad),

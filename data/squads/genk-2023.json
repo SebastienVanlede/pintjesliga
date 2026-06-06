@@ -1,0 +1,24 @@
+{
+  "team": "KRC Genk",
+  "teamId": "genk",
+  "season": "2023-24",
+  "year": 2023,
+  "players": [
+    {"id":"maarten-vandevoordt-23","name":"Maarten Vandevoordt","position":"GK","nationality":"BEL","age":21,"appearances":34,"goals":0,"assists":0,"marketValue":15000000,"internationalCaps":3,"awards":[],"overall":77},
+    {"id":"mike-penders-23","name":"Mike Penders","position":"GK","nationality":"BEL","age":20,"appearances":2,"goals":0,"assists":0,"marketValue":3000000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"daniel-munoz-23","name":"Daniel Muñoz","position":"RB","nationality":"COL","age":27,"appearances":32,"goals":2,"assists":6,"marketValue":8000000,"internationalCaps":25,"awards":[],"overall":75},
+    {"id":"mark-mckenzie-23","name":"Mark McKenzie","position":"CB","nationality":"USA","age":24,"appearances":28,"goals":1,"assists":0,"marketValue":4000000,"internationalCaps":20,"awards":[],"overall":71},
+    {"id":"carlos-cuesta-23","name":"Carlos Cuesta","position":"CB","nationality":"COL","age":25,"appearances":26,"goals":1,"assists":0,"marketValue":5000000,"internationalCaps":10,"awards":[],"overall":72},
+    {"id":"mujaid-sadick-23","name":"Mujaid Sadick","position":"CB","nationality":"ESP","age":25,"appearances":22,"goals":0,"assists":0,"marketValue":2000000,"internationalCaps":3,"awards":[],"overall":69},
+    {"id":"gerardo-arteaga-23","name":"Gerardo Arteaga","position":"LB","nationality":"MEX","age":25,"appearances":28,"goals":0,"assists":3,"marketValue":4000000,"internationalCaps":30,"awards":[],"overall":72},
+    {"id":"joris-kayembe-23","name":"Joris Kayembe","position":"LB","nationality":"COD","age":26,"appearances":22,"goals":0,"assists":2,"marketValue":1500000,"internationalCaps":10,"awards":[],"overall":69},
+    {"id":"bryan-heynen-23","name":"Bryan Heynen","position":"CDM","nationality":"BEL","age":28,"appearances":34,"goals":3,"assists":6,"marketValue":4000000,"internationalCaps":12,"awards":[],"overall":75},
+    {"id":"patrik-hrosovsky-23","name":"Patrik Hrošovský","position":"CM","nationality":"SVK","age":31,"appearances":28,"goals":2,"assists":4,"marketValue":2500000,"internationalCaps":50,"awards":[],"overall":72},
+    {"id":"bilal-el-khannous-23","name":"Bilal El Khannous","position":"CAM","nationality":"MAR","age":20,"appearances":30,"goals":7,"assists":10,"marketValue":15000000,"internationalCaps":10,"awards":[],"overall":76},
+    {"id":"zakaria-el-ouahdi-23","name":"Zakaria El Ouahdi","position":"RB","nationality":"MAR","age":21,"appearances":20,"goals":1,"assists":3,"marketValue":4000000,"internationalCaps":3,"awards":[],"overall":71},
+    {"id":"joseph-paintsil-23","name":"Joseph Paintsil","position":"RW","nationality":"GHA","age":24,"appearances":32,"goals":11,"assists":9,"marketValue":10000000,"internationalCaps":15,"awards":[],"overall":76},
+    {"id":"luca-oyen-23","name":"Luca Oyen","position":"LW","nationality":"BEL","age":20,"appearances":24,"goals":5,"assists":6,"marketValue":5000000,"internationalCaps":3,"awards":[],"overall":71},
+    {"id":"tolu-arokodare-23","name":"Tolu Arokodare","position":"ST","nationality":"NGA","age":23,"appearances":28,"goals":14,"assists":4,"marketValue":8000000,"internationalCaps":8,"awards":[],"overall":74},
+    {"id":"andi-zeqiri-23","name":"Andi Zeqiri","position":"ST","nationality":"SUI","age":24,"appearances":18,"goals":6,"assists":3,"marketValue":4000000,"internationalCaps":15,"awards":[],"overall":70}
+  ]
+}

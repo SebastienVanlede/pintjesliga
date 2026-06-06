@@ -1,0 +1,24 @@
+{
+  "team": "KV Kortrijk",
+  "teamId": "kortrijk",
+  "season": "2023-24",
+  "year": 2023,
+  "players": [
+    {"id":"tom-vandenberghe-23","name":"Tom Vandenberghe","position":"GK","nationality":"BEL","age":27,"appearances":30,"goals":0,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"ebbe-de-vlaeminck-23","name":"Ebbe De Vlaeminck","position":"GK","nationality":"BEL","age":21,"appearances":6,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":60},
+    {"id":"ryan-alebiosu-23","name":"Ryan Alebiosu","position":"RB","nationality":"ENG","age":22,"appearances":22,"goals":0,"assists":2,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"nayel-mehssatou-23","name":"Nayel Mehssatou","position":"CB","nationality":"CHI","age":22,"appearances":24,"goals":0,"assists":0,"marketValue":1500000,"internationalCaps":5,"awards":[],"overall":65},
+    {"id":"aleksandar-radovanovic-23","name":"Aleksandar Radovanović","position":"CB","nationality":"SRB","age":30,"appearances":20,"goals":0,"assists":0,"marketValue":600000,"internationalCaps":5,"awards":[],"overall":63},
+    {"id":"martin-wasinski-23","name":"Martin Wasinski","position":"LB","nationality":"BEL","age":21,"appearances":18,"goals":0,"assists":1,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":61},
+    {"id":"marco-kana-kortrijk-23","name":"Marco Kana","position":"CDM","nationality":"BEL","age":22,"appearances":24,"goals":1,"assists":2,"marketValue":3000000,"internationalCaps":3,"awards":[],"overall":69},
+    {"id":"youssef-challouk-23","name":"Youssef Challouk","position":"CM","nationality":"BEL","age":21,"appearances":22,"goals":1,"assists":2,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":62},
+    {"id":"abdoulaye-sissako-23","name":"Abdoulaye Sissako","position":"CDM","nationality":"FRA","age":24,"appearances":20,"goals":0,"assists":1,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"massimo-bruno-23","name":"Massimo Bruno","position":"LW","nationality":"BEL","age":29,"appearances":20,"goals":3,"assists":3,"marketValue":800000,"internationalCaps":3,"awards":[],"overall":65},
+    {"id":"abdelkahar-kadri-23","name":"Abdelkahar Kadri","position":"CM","nationality":"ALG","age":28,"appearances":18,"goals":2,"assists":3,"marketValue":1000000,"internationalCaps":10,"awards":[],"overall":65},
+    {"id":"lynnt-audoor-kortrijk-23","name":"Lynnt Audoor","position":"RM","nationality":"BEL","age":21,"appearances":22,"goals":3,"assists":4,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"jonathan-afolabi-23","name":"Jonathan Afolabi","position":"ST","nationality":"IRL","age":23,"appearances":24,"goals":8,"assists":3,"marketValue":1500000,"internationalCaps":3,"awards":[],"overall":66},
+    {"id":"thierry-ambrose-23","name":"Thierry Ambrose","position":"ST","nationality":"GUA","age":27,"appearances":18,"goals":5,"assists":2,"marketValue":800000,"internationalCaps":5,"awards":[],"overall":63},
+    {"id":"dylan-mbayo-23","name":"Dylan Mbayo","position":"LW","nationality":"BEL","age":22,"appearances":18,"goals":3,"assists":3,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":62},
+    {"id":"isaak-davies-23","name":"Isaak Davies","position":"RW","nationality":"WAL","age":21,"appearances":14,"goals":2,"assists":2,"marketValue":1200000,"internationalCaps":5,"awards":[],"overall":62}
+  ]
+}

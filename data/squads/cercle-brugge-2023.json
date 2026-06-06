@@ -1,0 +1,24 @@
+{
+  "team": "Cercle Brugge",
+  "teamId": "cercle-brugge",
+  "season": "2023-24",
+  "year": 2023,
+  "players": [
+    {"id":"warleson-23","name":"Warleson","position":"GK","nationality":"BRA","age":28,"appearances":32,"goals":0,"assists":0,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"maxime-delanghe-23","name":"Maxime Delanghe","position":"GK","nationality":"BEL","age":22,"appearances":4,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":60},
+    {"id":"jesper-daland-23","name":"Jesper Daland","position":"CB","nationality":"NOR","age":24,"appearances":28,"goals":1,"assists":0,"marketValue":2000000,"internationalCaps":5,"awards":[],"overall":68},
+    {"id":"boris-popovic-23","name":"Boris Popović","position":"CB","nationality":"SRB","age":28,"appearances":24,"goals":0,"assists":0,"marketValue":1200000,"internationalCaps":5,"awards":[],"overall":66},
+    {"id":"flavio-nazinho-23","name":"Flávio Nazinho","position":"LB","nationality":"POR","age":23,"appearances":22,"goals":0,"assists":2,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"hugo-siquet-cercle-23","name":"Hugo Siquet","position":"RB","nationality":"BEL","age":22,"appearances":24,"goals":1,"assists":4,"marketValue":3500000,"internationalCaps":3,"awards":[],"overall":70},
+    {"id":"senna-miangue-23","name":"Senna Miangué","position":"LB","nationality":"BEL","age":26,"appearances":18,"goals":0,"assists":1,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"hannes-van-der-bruggen-23","name":"Hannes Van der Bruggen","position":"CDM","nationality":"BEL","age":29,"appearances":28,"goals":1,"assists":3,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"alan-minda-23","name":"Alan Minda","position":"CM","nationality":"ECU","age":22,"appearances":24,"goals":3,"assists":4,"marketValue":1500000,"internationalCaps":10,"awards":[],"overall":66},
+    {"id":"erick-cercle-23","name":"Erick","position":"CM","nationality":"BRA","age":22,"appearances":20,"goals":2,"assists":3,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"nils-de-wilde-23","name":"Nils De Wilde","position":"LW","nationality":"BEL","age":22,"appearances":18,"goals":3,"assists":3,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"kazeem-olaigbe-23","name":"Kazeem Olaigbe","position":"RW","nationality":"BEL","age":21,"appearances":18,"goals":3,"assists":3,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"kevin-denkey-23","name":"Kévin Denkey","position":"ST","nationality":"TGO","age":23,"appearances":32,"goals":23,"assists":6,"marketValue":12000000,"internationalCaps":20,"awards":["Pro League Top Scorer 2024"],"overall":78},
+    {"id":"abdoul-ouattara-23","name":"Abdoul Kader Ouattara","position":"RW","nationality":"BFA","age":22,"appearances":26,"goals":7,"assists":6,"marketValue":3000000,"internationalCaps":6,"awards":[],"overall":70},
+    {"id":"felix-lemarchal-23","name":"Félix Lemaréchal","position":"LW","nationality":"FRA","age":20,"appearances":18,"goals":2,"assists":3,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"thibo-somers-23","name":"Thibo Somers","position":"ST","nationality":"BEL","age":21,"appearances":14,"goals":3,"assists":2,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":62}
+  ]
+}
