@@ -432,6 +432,7 @@ function ResultsView({ sim, onReset, onBack }: {
   sim: SimulatedSeason; onReset: () => void; onBack: () => void;
 }) {
   const [activeTab, setActiveTab] = useState<TabId>('regular');
+  const [matchesOpen, setMatchesOpen] = useState(false);
   const { pickedPlayers, formation, teamName } = useGameStore();
   const score = calculateScore(pickedPlayers as PickedPlayer[], sim);
   const myTeam = teamName.trim() || 'Mijn Droomelftal';
@@ -454,67 +455,45 @@ function ResultsView({ sim, onReset, onBack }: {
   const userInPO1  = sim.po1.standings.some(r => r.team === myTeam);
   const userInPO2  = sim.po2.standings.some(r => r.team === myTeam);
   const userInRele = sim.poRelegation.standings.some(r => r.team === myTeam);
+  const isChampion = sim.champion === myTeam;
+  const isRelegate = [...sim.relegated, sim.directlyRelegate].includes(myTeam);
+
+  const resultLabel = isChampion                        ? 'KAMPIOEN!'
+    : userInPO1                                         ? 'Championship Play-off (PO1)'
+    : userInPO2                                         ? 'Europa Play-off (PO2)'
+    : userInRele                                        ? 'Relegation Play-off'
+    : sim.directlyRelegate === myTeam                   ? 'Rechtstreeks gedegradeerd'
+    : '';
 
   return (
     <PageShell>
-      <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.8rem,6vw,3rem)', color: 'var(--gold)', letterSpacing: '0.08em' }}>
-        SEIZOENSRESULTATEN
-      </h1>
+      <div className="w-full max-w-2xl flex flex-col gap-5">
 
-      <div className="w-full max-w-3xl flex flex-col gap-5">
-        {/* Outcomes banner */}
-        <div className="grid grid-cols-3 gap-3">
-          <div className="rounded-xl p-4 text-center" style={{ background: 'rgba(212,148,10,0.1)', border: '2px solid var(--gold)' }}>
-            <p className="text-xs tracking-widest uppercase mb-1" style={{ color: 'var(--muted)' }}>Kampioen</p>
-            <p style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', color: 'var(--gold)', letterSpacing: '0.05em' }}>
-              {sim.champion === myTeam ? `⭐ ${myTeam}` : sim.champion}
-            </p>
-          </div>
-          <div className="rounded-xl p-4 text-center" style={{ background: 'var(--surface)', border: '1px solid #1a3a6e' }}>
-            <p className="text-xs tracking-widest uppercase mb-1" style={{ color: 'var(--muted)' }}>Europa (top 4 PO1)</p>
-            <div className="flex flex-col gap-0.5">
-              {sim.europeanSpots.map((t, i) => (
-                <p key={i} className="text-xs leading-tight" style={{ color: t === myTeam ? 'var(--gold)' : 'var(--text)' }}>
-                  {t === myTeam ? `⭐ ${myTeam}` : t}
-                </p>
-              ))}
+        {/* Compact result header */}
+        <div className="flex flex-col gap-2">
+          <p className="label-xs">Seizoensresultaten</p>
+          <div className="flex items-center justify-between gap-4 rounded-xl px-5 py-4"
+            style={{ background: 'var(--surface)', border: `1px solid ${isChampion ? 'var(--gold)' : isRelegate ? 'rgba(196,30,58,0.4)' : 'var(--border)'}` }}>
+            <div>
+              <p className="text-xs mb-0.5" style={{ color: 'var(--muted)' }}>{myTeam}</p>
+              <p style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.1rem,3vw,1.5rem)', letterSpacing: '0.06em',
+                color: isChampion ? 'var(--gold)' : isRelegate ? 'var(--red)' : 'var(--text)' }}>
+                {resultLabel}
+              </p>
             </div>
-          </div>
-          <div className="rounded-xl p-4 text-center" style={{ background: 'rgba(196,30,58,0.08)', border: '1px solid rgba(196,30,58,0.3)' }}>
-            <p className="text-xs tracking-widest uppercase mb-1" style={{ color: 'var(--muted)' }}>Gedegradeerd</p>
-            <div className="flex flex-col gap-0.5">
-              {sim.relegated.map((t, i) => (
-                <p key={i} className="text-xs leading-tight" style={{ color: t === myTeam ? 'var(--red)' : 'var(--muted)' }}>
-                  {t === myTeam ? `⭐ ${myTeam}` : t}
-                </p>
-              ))}
-              <p className="text-xs leading-tight mt-1 pt-1" style={{ color: sim.directlyRelegate === myTeam ? 'var(--red)' : 'var(--muted)', borderTop: '1px solid rgba(196,30,58,0.2)' }}>
-                <span style={{ fontSize: '0.6rem', opacity: 0.7 }}>Rechtstreeks: </span>
-                {sim.directlyRelegate === myTeam ? `⭐ ${myTeam}` : sim.directlyRelegate}
+            <div className="text-right shrink-0">
+              <p className="text-xs mb-0.5" style={{ color: 'var(--muted)' }}>Kampioen</p>
+              <p style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', color: 'var(--gold)', letterSpacing: '0.05em' }}>
+                {sim.champion}
               </p>
             </div>
           </div>
         </div>
 
-        {/* User journey */}
-        <div className="rounded-lg px-4 py-3 text-sm" style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}>
-          <span style={{ color: 'var(--muted)' }}>{myTeam} belandde in: </span>
-          <span style={{
-            color: sim.directlyRelegate === myTeam ? 'var(--red)' : 'var(--gold)',
-            fontFamily: 'var(--font-display)', letterSpacing: '0.06em',
-          }}>
-            {userInPO1  ? 'Championship Play-off (PO1)' :
-             userInPO2  ? 'Europa Play-off (PO2)' :
-             userInRele ? 'Relegation Play-off' :
-             sim.directlyRelegate === myTeam ? 'Rechtstreeks gedegradeerd (17e)' : ''}
-          </span>
-          {sim.champion === myTeam && <span style={{ color: 'var(--gold)' }}> · KAMPIOEN!</span>}
-        </div>
-
         {/* Phase tabs */}
         <div className="flex gap-1 p-1 rounded-lg" style={{ background: 'var(--surface)' }}>
           {TABS.map(tab => (
-            <button key={tab.id} onClick={() => setActiveTab(tab.id)}
+            <button key={tab.id} onClick={() => { setActiveTab(tab.id); setMatchesOpen(false); }}
               className="flex-1 py-2 rounded flex flex-col items-center transition-all duration-150"
               style={{ background: activeTab === tab.id ? 'var(--gold)' : 'transparent', color: activeTab === tab.id ? '#090907' : 'var(--muted)' }}>
               <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.85rem', letterSpacing: '0.08em' }}>{tab.label}</span>
@@ -536,9 +515,9 @@ function ResultsView({ sim, onReset, onBack }: {
             }
             const phase = phaseForTab[tab.id]!;
             return (
-              <motion.div key={tab.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+              <motion.div key={tab.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex flex-col gap-3">
                 {tab.id !== 'regular' && (
-                  <p className="text-xs mb-3 px-1" style={{ color: 'var(--muted)' }}>
+                  <p className="text-xs px-1" style={{ color: 'var(--muted)' }}>
                     {tab.id === 'relegation'
                       ? 'Startpunten = volledig regulier seizoen.'
                       : 'Startpunten = helft regulier seizoen (afgerond naar boven).'}
@@ -548,8 +527,24 @@ function ResultsView({ sim, onReset, onBack }: {
                   champion={sim.champion} relegated={sim.relegated}
                   europeanSpots={sim.europeanSpots} directlyRelegate={sim.directlyRelegate} />
                 {phase.matches.length > 0 && (
-                  <div className="mt-4">
-                    <MatchList matches={phase.matches} />
+                  <div>
+                    <button
+                      onClick={() => setMatchesOpen(v => !v)}
+                      className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-xs transition-all duration-150"
+                      style={{ background: 'var(--surface)', border: '1px solid var(--border)', color: 'var(--muted)', cursor: 'pointer' }}>
+                      <span>Wedstrijden ({phase.matches.length})</span>
+                      <span>{matchesOpen ? '▲ Inklappen' : '▼ Uitklappen'}</span>
+                    </button>
+                    <AnimatePresence>
+                      {matchesOpen && (
+                        <motion.div key="matches" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }} style={{ overflow: 'hidden' }}>
+                          <div className="mt-2">
+                            <MatchList matches={phase.matches} />
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
                 )}
               </motion.div>
