@@ -19,6 +19,10 @@ export default function DraftPage() {
   const [roll, setRoll] = useState<Roll | null>(null);
   const [spinLabel, setSpinLabel] = useState('');
   const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null);
+  const [rerollsUsed, setRerollsUsed] = useState(0);
+
+  const MAX_REROLLS = 3;
+  const rerollsLeft = MAX_REROLLS - rerollsUsed;
 
   const positions = formation ? FORMATION_POSITIONS[formation] : [];
 const pickedByIndex = Object.fromEntries(pickedPlayers.map((p) => [p.positionIndex, p]));
@@ -27,7 +31,8 @@ const pickedByIndex = Object.fromEntries(pickedPlayers.map((p) => [p.positionInd
   useEffect(() => { if (!formation) router.replace('/'); }, [formation, router]);
   useEffect(() => { if (filledCount >= positions.length && positions.length > 0) router.push('/xi'); }, [filledCount, positions.length, router]);
 
-  const rollDice = useCallback(() => {
+  const rollDice = useCallback((isReroll = false) => {
+    if (isReroll) setRerollsUsed(prev => prev + 1);
     setPhase('spinning');
     setRoll(null);
     setSelectedPlayer(null);
@@ -67,6 +72,7 @@ const pickedByIndex = Object.fromEntries(pickedPlayers.map((p) => [p.positionInd
     } as PickedPlayer);
     setSelectedPlayer(null);
     setRoll(null);
+    setRerollsUsed(0);
     setPhase('idle');
   }
 
@@ -145,7 +151,7 @@ const pickedByIndex = Object.fromEntries(pickedPlayers.map((p) => [p.positionInd
                 <p style={{ color: 'var(--muted)', fontSize: '0.9rem' }}>
                   {filledCount === 0 ? 'Rol de dobbelstenen om te starten' : `Nog ${positions.length - filledCount} posities te vullen`}
                 </p>
-                <button onClick={rollDice}
+                <button onClick={() => rollDice(false)}
                   className="px-10 py-4 rounded transition-all duration-150"
                   style={{
                     fontFamily: 'var(--font-display)', fontSize: '1.2rem', letterSpacing: '0.15em',
@@ -212,9 +218,28 @@ const pickedByIndex = Object.fromEntries(pickedPlayers.map((p) => [p.positionInd
                   })}
                 </div>
 
-                <button onClick={rollDice} className="text-xs underline self-center mt-1" style={{ color: 'var(--muted)' }}>
-                  Opnieuw rollen
-                </button>
+                <div className="flex items-center gap-3 self-center mt-1">
+                  {/* Reroll pip indicators */}
+                  <div className="flex gap-1">
+                    {Array.from({ length: MAX_REROLLS }).map((_, i) => (
+                      <div key={i} className="w-2 h-2 rounded-full"
+                        style={{ background: i < rerollsLeft ? 'var(--gold)' : 'var(--border)' }} />
+                    ))}
+                  </div>
+                  <button
+                    onClick={() => rollDice(true)}
+                    disabled={rerollsLeft === 0}
+                    className="text-xs transition-all duration-150"
+                    style={{
+                      color: rerollsLeft > 0 ? 'var(--muted)' : 'var(--border)',
+                      textDecoration: rerollsLeft > 0 ? 'underline' : 'none',
+                      cursor: rerollsLeft > 0 ? 'pointer' : 'not-allowed',
+                    }}>
+                    {rerollsLeft > 0
+                      ? `Opnieuw rollen (${rerollsLeft} over)`
+                      : 'Geen herrolls meer — kies een speler'}
+                  </button>
+                </div>
               </motion.div>
             )}
 
@@ -247,9 +272,11 @@ const pickedByIndex = Object.fromEntries(pickedPlayers.map((p) => [p.positionInd
                   </p>
                 )}
 
-                <button onClick={() => { setSelectedPlayer(null); setPhase('squad'); }}
-                  className="text-xs underline" style={{ color: 'var(--muted)' }}>
-                  ← Andere speler kiezen
+                <button
+                  onClick={() => { setSelectedPlayer(null); setPhase('squad'); }}
+                  className="text-xs underline"
+                  style={{ color: 'var(--muted)' }}>
+                  ← Andere speler kiezen uit dit team
                 </button>
               </motion.div>
             )}
