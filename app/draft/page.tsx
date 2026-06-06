@@ -8,7 +8,6 @@ import { FORMATION_POSITIONS, Player, Squad, Team, PickedPlayer, Position, playe
 import FormationPitch from '@/components/FormationPitch';
 
 type Phase = 'idle' | 'spinning' | 'squad' | 'placing';
-
 interface Roll { team: Team; season: string; squad: Squad }
 
 export default function DraftPage() {
@@ -21,7 +20,9 @@ export default function DraftPage() {
   const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null);
   const [rerollsUsed, setRerollsUsed] = useState(0);
 
-  // Shuffled deck — guarantees no repeats until all 32 squads have been seen
+  const MAX_REROLLS = 3;
+  const rerollsLeft = MAX_REROLLS - rerollsUsed;
+
   const deckRef = useRef<{ team: Team; season: string }[]>([]);
 
   useEffect(() => {
@@ -29,11 +30,8 @@ export default function DraftPage() {
     deckRef.current = [...rolls].sort(() => Math.random() - 0.5);
   }, []);
 
-  const MAX_REROLLS = 3;
-  const rerollsLeft = MAX_REROLLS - rerollsUsed;
-
   const positions = formation ? FORMATION_POSITIONS[formation] : [];
-const pickedByIndex = Object.fromEntries(pickedPlayers.map((p) => [p.positionIndex, p]));
+  const pickedByIndex = Object.fromEntries(pickedPlayers.map((p) => [p.positionIndex, p]));
   const filledCount = pickedPlayers.length;
 
   useEffect(() => { if (!formation) router.replace('/'); }, [formation, router]);
@@ -44,24 +42,18 @@ const pickedByIndex = Object.fromEntries(pickedPlayers.map((p) => [p.positionInd
     setPhase('spinning');
     setRoll(null);
     setSelectedPlayer(null);
-
-    // Spinning animation — random flashes for visual effect only
     const allRolls = getAvailableRolls();
     let ticks = 0;
-
     const interval = setInterval(() => {
       const r = allRolls[Math.floor(Math.random() * allRolls.length)];
-      setSpinLabel(`${r.team.name.toUpperCase()} · ${r.season}`);
+      setSpinLabel(`${r.team.shortName || r.team.name.slice(0, 12)} · ${r.season}`);
       ticks++;
       if (ticks >= 18) {
         clearInterval(interval);
-
-        // Draw the actual result from the shuffled deck (no repeats until all seen)
         if (deckRef.current.length === 0) {
           deckRef.current = [...allRolls].sort(() => Math.random() - 0.5);
         }
         const final = deckRef.current.shift()!;
-
         loadSquad(final.team.id, final.season).then((squad) => {
           if (!squad) { rollDice(isReroll); return; }
           setRoll({ team: final.team, season: final.season, squad });
@@ -88,281 +80,441 @@ const pickedByIndex = Object.fromEntries(pickedPlayers.map((p) => [p.positionInd
     } as PickedPlayer);
     setSelectedPlayer(null);
     setRoll(null);
+    setRerollsUsed(0);
     setPhase('idle');
   }
 
   if (!formation) return null;
 
-  // Which player IDs are already drafted (no duplicates)
   const pickedPlayerIds = new Set(pickedPlayers.map((p) => p.player.id));
-
-  // How many slots per position type are already filled
   const filledPerPosition: Record<string, number> = {};
-  for (const p of pickedPlayers) {
-    filledPerPosition[p.position] = (filledPerPosition[p.position] ?? 0) + 1;
-  }
+  for (const p of pickedPlayers) filledPerPosition[p.position] = (filledPerPosition[p.position] ?? 0) + 1;
   const totalPerPosition: Record<string, number> = {};
-  for (const pos of positions) {
-    totalPerPosition[pos] = (totalPerPosition[pos] ?? 0) + 1;
-  }
-  function isPositionFull(pos: Position): boolean {
-    return (filledPerPosition[pos] ?? 0) >= (totalPerPosition[pos] ?? 0);
-  }
+  for (const pos of positions) totalPerPosition[pos] = (totalPerPosition[pos] ?? 0) + 1;
+  function isPositionFull(pos: Position) { return (filledPerPosition[pos] ?? 0) >= (totalPerPosition[pos] ?? 0); }
 
-  // In placing mode, which indices accept this player?
-  const eligibleIndices: Set<number> =
-    selectedPlayer
-      ? new Set(
-          positions
-            .map((pos, i) => ({ pos, i }))
-            .filter(({ pos, i }) => playerPositions(selectedPlayer).includes(pos) && !pickedByIndex[i])
-            .map(({ i }) => i)
-        )
-      : new Set();
+  const eligibleIndices: Set<number> = selectedPlayer
+    ? new Set(positions.map((pos, i) => ({ pos, i })).filter(({ pos, i }) => playerPositions(selectedPlayer).includes(pos) && !pickedByIndex[i]).map(({ i }) => i))
+    : new Set();
+
+  const progressPct = Math.round((filledCount / positions.length) * 100);
 
   return (
-    <main className="min-h-screen flex flex-col items-center px-4 py-8 gap-6">
-      {/* Belgian stripe */}
-      <div className="fixed top-0 left-0 right-0 flex h-1 z-50">
-        <div className="flex-1" style={{ background: '#1A1A1A' }} />
-        <div className="flex-1" style={{ background: 'var(--gold)' }} />
-        <div className="flex-1" style={{ background: 'var(--red)' }} />
-      </div>
+    <div className="flex flex-col lg:flex-row min-h-[calc(100svh-56px)]">
 
-      {/* Header */}
-      <div className="w-full max-w-4xl flex items-center justify-between pt-1">
-        <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', color: 'var(--gold)', letterSpacing: '0.1em' }}>
-          PINTJESLIGA
-        </span>
-        <span className="text-sm" style={{ color: 'var(--muted)' }}>
-          {filledCount}/11 · {formation}
-        </span>
-      </div>
-
-      {/* Main two-column layout */}
-      <div className="w-full max-w-4xl flex flex-col lg:flex-row gap-6">
-
-        {/* Left: Pitch */}
-        <div className="flex-shrink-0 flex flex-col items-center w-full lg:w-auto">
-          <p className="text-xs tracking-widest uppercase mb-2" style={{ color: 'var(--muted)' }}>
-            {phase === 'placing' ? `Klik op een ${selectedPlayer?.position}-positie` : 'Jouw opstelling'}
-          </p>
-          <FormationPitch
-            formation={formation}
-            pickedByIndex={pickedByIndex}
-            eligibleIndices={phase === 'placing' ? eligibleIndices : new Set()}
-            onAssign={phase === 'placing' ? handleAssignPosition : undefined}
-          />
+      {/* ── Left: Pitch column ─────────────────────────────────────────── */}
+      <div
+        className="flex flex-col items-center gap-4 px-6 py-6 lg:py-8 lg:px-8 lg:w-[380px] flex-shrink-0"
+        style={{ borderRight: '1px solid var(--border)', background: 'rgba(0,0,0,0.2)' }}
+      >
+        {/* Progress */}
+        <div className="w-full">
+          <div className="flex items-center justify-between mb-1.5">
+            <span className="label-xs">Jouw opstelling</span>
+            <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.9rem', color: 'var(--gold)', letterSpacing: '0.05em' }}>
+              {filledCount}/{positions.length}
+            </span>
+          </div>
+          <div className="h-1 rounded-full w-full" style={{ background: 'var(--border)' }}>
+            <div
+              className="h-1 rounded-full transition-all duration-500"
+              style={{ background: 'var(--gold)', width: `${progressPct}%` }}
+            />
+          </div>
         </div>
 
-        {/* Right: Action area */}
-        <div className="flex-1 flex flex-col gap-4">
-          <AnimatePresence mode="wait">
+        {/* Formation label */}
+        <div className="flex items-center gap-2 self-start">
+          <span
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: '0.75rem',
+              letterSpacing: '0.12em',
+              color: 'var(--muted)',
+              border: '1px solid var(--border)',
+              padding: '2px 8px',
+              borderRadius: 4,
+            }}
+          >
+            {formation}
+          </span>
+          {phase === 'placing' && (
+            <motion.span
+              initial={{ opacity: 0, x: -6 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="text-xs"
+              style={{ color: 'var(--gold)' }}
+            >
+              ← klik op een positie
+            </motion.span>
+          )}
+        </div>
 
-            {/* IDLE */}
-            {phase === 'idle' && (
-              <motion.div key="idle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                className="flex flex-col items-center justify-center gap-4 flex-1 min-h-64">
-                <p style={{ color: 'var(--muted)', fontSize: '0.9rem' }}>
-                  {filledCount === 0 ? 'Rol de dobbelstenen om te starten' : `Nog ${positions.length - filledCount} posities te vullen`}
+        {/* Pitch */}
+        <FormationPitch
+          formation={formation}
+          pickedByIndex={pickedByIndex}
+          eligibleIndices={phase === 'placing' ? eligibleIndices : new Set()}
+          onAssign={phase === 'placing' ? handleAssignPosition : undefined}
+          size="md"
+        />
+
+        {/* Position chips — quick overview */}
+        <div className="w-full flex flex-wrap gap-1">
+          {positions.map((pos, i) => {
+            const pick = pickedByIndex[i];
+            return (
+              <div
+                key={i}
+                className="flex items-center gap-1 px-2 py-1 rounded text-xs"
+                style={{
+                  background: pick ? `${pick.teamPrimaryColor}20` : 'var(--surface)',
+                  border: `1px solid ${pick ? `${pick.teamPrimaryColor}50` : 'var(--border)'}`,
+                  color: pick ? pick.teamPrimaryColor : 'var(--muted)',
+                  fontFamily: pick ? 'inherit' : 'var(--font-display)',
+                  fontSize: '0.65rem',
+                  letterSpacing: pick ? 0 : '0.06em',
+                }}
+              >
+                {pick ? `${pos} · ${pick.player.name.split(' ').pop()?.slice(0, 8)}` : pos}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* ── Right: Action column ───────────────────────────────────────── */}
+      <div className="flex-1 flex flex-col px-6 py-6 lg:px-10 lg:py-8 gap-6 overflow-y-auto">
+        <AnimatePresence mode="wait">
+
+          {/* IDLE */}
+          {phase === 'idle' && (
+            <motion.div key="idle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              className="flex flex-col items-center justify-center gap-6 flex-1 min-h-72">
+              <div className="text-center">
+                <p className="label-xs mb-2">
+                  {filledCount === 0 ? 'Begin je draft' : `Positie ${filledCount + 1} van ${positions.length}`}
                 </p>
-                <button onClick={() => rollDice(false)}
-                  className="px-10 py-4 rounded transition-all duration-150"
-                  style={{
-                    fontFamily: 'var(--font-display)', fontSize: '1.2rem', letterSpacing: '0.15em',
-                    background: 'var(--gold)', color: '#090907',
-                    border: '2px solid var(--gold)', boxShadow: '0 0 30px rgba(212,148,10,0.25)',
-                  }}>
-                  🎲 ROL DE DOBBELSTENEN
-                </button>
-              </motion.div>
-            )}
+                <p style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.5rem,4vw,2.2rem)', color: 'var(--text)', letterSpacing: '0.08em' }}>
+                  {filledCount === 0 ? 'ROL DE DOBBELSTENEN' : `VOLGENDE: ${positions[filledCount]}`}
+                </p>
+                <p className="text-sm mt-1" style={{ color: 'var(--muted)' }}>
+                  {filledCount === 0 ? 'Een willekeurige Pro League squad wacht op je' : `Jij vult de ${positions[filledCount]}-positie in`}
+                </p>
+              </div>
 
-            {/* SPINNING */}
-            {phase === 'spinning' && (
-              <motion.div key="spinning" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                className="flex flex-col items-center justify-center gap-4 flex-1 min-h-64">
-                <div className="w-full rounded-xl px-6 py-8 flex items-center justify-center"
-                  style={{ border: '2px solid var(--border)', background: 'var(--surface)' }}>
-                  <motion.span key={spinLabel} initial={{ opacity: 0, scale: 0.88 }} animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.07 }}
-                    style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1rem,4vw,1.5rem)', color: 'var(--gold)', letterSpacing: '0.1em', textAlign: 'center' }}>
-                    {spinLabel}
-                  </motion.span>
+              <button
+                onClick={() => rollDice(false)}
+                className="flex flex-col items-center gap-3 px-12 py-6 rounded-xl transition-all duration-200"
+                style={{
+                  background: 'var(--gold)',
+                  border: '2px solid var(--gold)',
+                  boxShadow: '0 0 60px rgba(212,148,10,0.3)',
+                  cursor: 'pointer',
+                }}
+                onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1.04)'; }}
+                onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1)'; }}
+              >
+                <span style={{ fontSize: '2.5rem', lineHeight: 1 }}>🎲</span>
+                <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', color: '#07070A', letterSpacing: '0.15em' }}>
+                  ROL
+                </span>
+              </button>
+            </motion.div>
+          )}
+
+          {/* SPINNING */}
+          {phase === 'spinning' && (
+            <motion.div key="spinning" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+              className="flex flex-col items-center justify-center gap-6 flex-1 min-h-72">
+              <div className="flex flex-col items-center gap-4">
+                <div className="flex gap-1.5">
+                  {[0, 1, 2].map(i => (
+                    <motion.div
+                      key={i}
+                      animate={{ scale: [1, 1.3, 1], opacity: [0.4, 1, 0.4] }}
+                      transition={{ duration: 0.6, delay: i * 0.15, repeat: Infinity }}
+                      style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--gold)' }}
+                    />
+                  ))}
                 </div>
-                <span className="text-xs tracking-widest uppercase" style={{ color: 'var(--muted)' }}>Aan het rollen…</span>
-              </motion.div>
-            )}
+                <motion.p
+                  key={spinLabel}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.07 }}
+                  style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: 'clamp(1.4rem,5vw,2.2rem)',
+                    color: 'var(--gold)',
+                    letterSpacing: '0.12em',
+                    textAlign: 'center',
+                  }}
+                >
+                  {spinLabel}
+                </motion.p>
+                <p className="label-xs">squad laden…</p>
+              </div>
+            </motion.div>
+          )}
 
-            {/* SQUAD */}
-            {phase === 'squad' && roll && (
-              <motion.div key="squad" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-                className="flex flex-col gap-3">
-                {/* Team banner */}
-                <div className="rounded-xl p-4 flex items-center justify-between"
-                  style={{ background: 'var(--surface)', border: `2px solid ${roll.team.primaryColor}`, boxShadow: `0 0 20px ${roll.team.primaryColor}22` }}>
+          {/* SQUAD */}
+          {phase === 'squad' && roll && (
+            <motion.div key="squad" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
+              className="flex flex-col gap-5 flex-1">
+
+              {/* Team banner */}
+              <div
+                className="rounded-xl p-4"
+                style={{
+                  background: `linear-gradient(135deg, ${roll.team.primaryColor}18 0%, transparent 60%)`,
+                  border: `1px solid ${roll.team.primaryColor}40`,
+                }}
+              >
+                <div className="flex items-start justify-between">
                   <div>
-                    <p className="text-xs tracking-widest uppercase" style={{ color: 'var(--muted)' }}>Gerold</p>
-                    <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', color: roll.team.primaryColor, letterSpacing: '0.06em' }}>
+                    <p className="label-xs mb-1">Gerold team</p>
+                    <h2 style={{
+                      fontFamily: 'var(--font-display)',
+                      fontSize: 'clamp(1.4rem,4vw,2rem)',
+                      color: roll.team.primaryColor,
+                      letterSpacing: '0.06em',
+                      lineHeight: 1,
+                      textShadow: `0 0 30px ${roll.team.primaryColor}40`,
+                    }}>
                       {roll.team.name}
                     </h2>
                   </div>
                   <div className="text-right">
-                    <p className="text-xs tracking-widest uppercase" style={{ color: 'var(--muted)' }}>Seizoen</p>
-                    <p style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', color: 'var(--text)', letterSpacing: '0.06em' }}>
+                    <p className="label-xs mb-1">Seizoen</p>
+                    <p style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', color: 'var(--text)', letterSpacing: '0.08em' }}>
                       {roll.season}
                     </p>
                   </div>
                 </div>
-
-                <p className="text-xs" style={{ color: 'var(--muted)' }}>
+                <p className="text-xs mt-2" style={{ color: 'var(--text-2)' }}>
                   Kies een speler — je wijst daarna de positie toe op het veld
                 </p>
+              </div>
 
-                <div className="flex flex-col gap-1.5 max-h-[420px] overflow-y-auto pr-1">
-                  {[...roll.squad.players].sort((a, b) => b.overall - a.overall).map((player) => {
+              {/* Reroll bar */}
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs" style={{ color: 'var(--muted)' }}>Herrolls</span>
+                  <div className="flex gap-1">
+                    {Array.from({ length: MAX_REROLLS }).map((_, i) => (
+                      <div
+                        key={i}
+                        style={{
+                          width: 10, height: 10, borderRadius: '50%',
+                          background: i < rerollsLeft ? 'var(--gold)' : 'var(--border-2)',
+                          transition: 'background 0.2s',
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <button
+                  onClick={() => rollDice(true)}
+                  disabled={rerollsLeft === 0}
+                  className="text-xs transition-all duration-150"
+                  style={{
+                    color: rerollsLeft > 0 ? 'var(--text-2)' : 'var(--border-2)',
+                    textDecoration: rerollsLeft > 0 ? 'underline' : 'none',
+                    cursor: rerollsLeft > 0 ? 'pointer' : 'not-allowed',
+                    padding: '4px 0',
+                  }}
+                >
+                  {rerollsLeft > 0 ? `Opnieuw rollen (${rerollsLeft} over)` : 'Geen herrolls meer'}
+                </button>
+              </div>
+
+              {/* Player list */}
+              <div className="flex flex-col gap-2 flex-1 overflow-y-auto max-h-[420px] pr-1">
+                {[...roll.squad.players]
+                  .sort((a, b) => b.overall - a.overall)
+                  .map((player) => {
                     const alreadyPicked = pickedPlayerIds.has(player.id);
                     const posFull = playerPositions(player).every(pos => isPositionFull(pos));
                     const disabled = alreadyPicked || posFull;
-                    const disabledReason = alreadyPicked ? 'Al gekozen' : posFull ? 'Positie vol' : null;
                     return (
-                      <PlayerRow key={player.id} player={player} teamColor={roll.team.primaryColor}
-                        disabled={disabled} disabledReason={disabledReason ?? undefined}
-                        onPick={() => !disabled && handleSelectPlayer(player)} />
+                      <PlayerCard
+                        key={player.id}
+                        player={player}
+                        teamColor={roll.team.primaryColor}
+                        disabled={disabled}
+                        disabledReason={alreadyPicked ? 'Gekozen' : posFull ? 'Vol' : undefined}
+                        onPick={() => !disabled && handleSelectPlayer(player)}
+                      />
                     );
                   })}
-                </div>
+              </div>
+            </motion.div>
+          )}
 
-                <div className="flex items-center gap-3 self-center mt-1">
-                  {/* Reroll pip indicators */}
-                  <div className="flex gap-1">
-                    {Array.from({ length: MAX_REROLLS }).map((_, i) => (
-                      <div key={i} className="w-2 h-2 rounded-full"
-                        style={{ background: i < rerollsLeft ? 'var(--gold)' : 'var(--border)' }} />
-                    ))}
-                  </div>
-                  <button
-                    onClick={() => rollDice(true)}
-                    disabled={rerollsLeft === 0}
-                    className="text-xs transition-all duration-150"
-                    style={{
-                      color: rerollsLeft > 0 ? 'var(--muted)' : 'var(--border)',
-                      textDecoration: rerollsLeft > 0 ? 'underline' : 'none',
-                      cursor: rerollsLeft > 0 ? 'pointer' : 'not-allowed',
-                    }}>
-                    {rerollsLeft > 0
-                      ? `Opnieuw rollen (${rerollsLeft} herroll${rerollsLeft === 1 ? '' : 's'} resterend)`
-                      : 'Geen herrolls meer — je moet kiezen'}
-                  </button>
-                </div>
-              </motion.div>
-            )}
+          {/* PLACING */}
+          {phase === 'placing' && selectedPlayer && roll && (
+            <motion.div key="placing" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
+              className="flex flex-col gap-5 flex-1 justify-center items-center max-w-lg mx-auto w-full">
 
-            {/* PLACING */}
-            {phase === 'placing' && selectedPlayer && roll && (
-              <motion.div key="placing" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-                className="flex flex-col gap-4 items-center justify-center flex-1 min-h-64">
-                <div className="w-full rounded-xl p-4 flex items-center gap-4"
-                  style={{ background: 'var(--surface)', border: '2px solid var(--gold)' }}>
-                  <div className="w-12 h-12 rounded flex items-center justify-center flex-shrink-0"
-                    style={{ background: overallBg(selectedPlayer.overall), fontFamily: 'var(--font-display)', fontSize: '1.3rem', color: overallColor(selectedPlayer.overall) }}>
-                    {selectedPlayer.overall}
-                  </div>
-                  <div>
-                    <p className="font-medium" style={{ color: 'var(--text)' }}>{selectedPlayer.name}</p>
-                    <p className="text-xs" style={{ color: 'var(--muted)' }}>
-                      {selectedPlayer.position} · {roll.team.name} · {roll.season}
+              {/* Selected player card */}
+              <div
+                className="w-full rounded-xl p-5"
+                style={{ background: 'var(--surface)', border: '2px solid var(--gold)', boxShadow: '0 0 40px rgba(212,148,10,0.15)' }}
+              >
+                <p className="label-xs mb-3">Gekozen speler</p>
+                <div className="flex items-center gap-4">
+                  <OverallBadge overall={selectedPlayer.overall} size="lg" />
+                  <div className="flex-1">
+                    <p className="font-semibold" style={{ color: 'var(--text)', fontSize: '1.05rem' }}>
+                      {selectedPlayer.name}
                     </p>
+                    <div className="flex items-center gap-2 flex-wrap mt-1">
+                      {playerPositions(selectedPlayer).map(pos => (
+                        <span key={pos} className="text-xs px-2 py-0.5 rounded" style={{ background: 'var(--surface-2)', color: 'var(--text-2)', fontFamily: 'var(--font-display)', letterSpacing: '0.05em' }}>
+                          {pos}
+                        </span>
+                      ))}
+                      <span className="text-xs" style={{ color: 'var(--muted)' }}>
+                        {roll.team.name} · {roll.season}
+                      </span>
+                    </div>
                   </div>
                 </div>
+              </div>
 
-                {eligibleIndices.size === 0 ? (
-                  <p className="text-sm text-center" style={{ color: 'var(--red)' }}>
-                    Geen vrije {selectedPlayer.position}-positie beschikbaar in {formation}.
-                    <br />Kies een andere speler.
+              {eligibleIndices.size === 0 ? (
+                <div className="text-center p-4 rounded-xl" style={{ background: 'var(--red-dim)', border: '1px solid var(--red)' }}>
+                  <p className="text-sm" style={{ color: 'var(--red)' }}>
+                    Geen vrije {playerPositions(selectedPlayer).join('/')} positie beschikbaar in {formation}.
                   </p>
-                ) : (
-                  <p className="text-sm text-center" style={{ color: 'var(--muted)' }}>
-                    ← Klik op een oplichtende {selectedPlayer.position}-positie op het veld
+                </div>
+              ) : (
+                <div className="text-center p-4 rounded-xl" style={{ background: 'rgba(212,148,10,0.06)', border: '1px solid var(--gold-dim)' }}>
+                  <p className="text-sm" style={{ color: 'var(--gold)' }}>
+                    ← Klik op een oplichtende positie op het veld om te plaatsen
                   </p>
-                )}
+                </div>
+              )}
 
-                <button
-                  onClick={() => { setSelectedPlayer(null); setPhase('squad'); }}
-                  className="text-xs underline"
-                  style={{ color: 'var(--muted)' }}>
-                  ← Andere speler kiezen uit dit team
-                </button>
-              </motion.div>
-            )}
+              <button
+                onClick={() => { setSelectedPlayer(null); setPhase('squad'); }}
+                className="text-sm"
+                style={{ color: 'var(--muted)', textDecoration: 'underline', cursor: 'pointer' }}
+              >
+                ← Andere speler kiezen
+              </button>
+            </motion.div>
+          )}
 
-          </AnimatePresence>
-        </div>
+        </AnimatePresence>
       </div>
-    </main>
+    </div>
   );
 }
 
-// ─── Player row ───────────────────────────────────────────────────────────────
+// ─── Player card ──────────────────────────────────────────────────────────────
 
-function PlayerRow({
-  player, teamColor, onPick, disabled, disabledReason,
-}: {
-  player: Player;
-  teamColor: string;
-  onPick: () => void;
-  disabled?: boolean;
-  disabledReason?: string;
+function PlayerCard({ player, teamColor, onPick, disabled, disabledReason }: {
+  player: Player; teamColor: string; onPick: () => void;
+  disabled?: boolean; disabledReason?: string;
 }) {
+  const allPositions = playerPositions(player);
   return (
     <button
       onClick={!disabled ? onPick : undefined}
       disabled={disabled}
-      className="w-full flex items-center justify-between rounded-lg px-3 py-2.5 text-left transition-all duration-100 group"
+      className="w-full text-left rounded-lg transition-all duration-100 group"
       style={{
         background: 'var(--surface)',
         border: '1px solid var(--border)',
-        opacity: disabled ? 0.45 : 1,
+        padding: '10px 12px',
+        opacity: disabled ? 0.4 : 1,
         cursor: disabled ? 'not-allowed' : 'pointer',
       }}
-      onMouseEnter={(e) => {
+      onMouseEnter={e => {
         if (disabled) return;
         const el = e.currentTarget as HTMLButtonElement;
-        el.style.borderColor = teamColor;
-        el.style.background = `${teamColor}12`;
+        el.style.borderColor = `${teamColor}80`;
+        el.style.background = `${teamColor}10`;
       }}
-      onMouseLeave={(e) => {
+      onMouseLeave={e => {
         const el = e.currentTarget as HTMLButtonElement;
         el.style.borderColor = 'var(--border)';
         el.style.background = 'var(--surface)';
       }}
     >
       <div className="flex items-center gap-3">
-        <div className="w-9 h-9 rounded flex items-center justify-center flex-shrink-0"
-          style={{ background: overallBg(player.overall), fontFamily: 'var(--font-display)', fontSize: '1rem', color: overallColor(player.overall) }}>
-          {player.overall}
+        <OverallBadge overall={player.overall} size="sm" />
+
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-2">
+            <p className="text-sm font-medium truncate" style={{ color: 'var(--text)' }}>{player.name}</p>
+          </div>
+          <div className="flex items-center gap-1.5 mt-0.5 flex-wrap">
+            {allPositions.map(pos => (
+              <span key={pos} style={{
+                fontSize: '0.6rem', letterSpacing: '0.06em',
+                padding: '1px 5px', borderRadius: 3,
+                background: 'var(--surface-2)',
+                color: 'var(--text-2)',
+                fontFamily: 'var(--font-display)',
+              }}>{pos}</span>
+            ))}
+            <span style={{ fontSize: '0.65rem', color: 'var(--muted)' }}>·</span>
+            <span style={{ fontSize: '0.65rem', color: 'var(--muted)' }}>{player.nationality}</span>
+            <span style={{ fontSize: '0.65rem', color: 'var(--muted)' }}>·</span>
+            <span style={{ fontSize: '0.65rem', color: 'var(--muted)' }}>{player.goals}G {player.assists}A</span>
+          </div>
         </div>
-        <div>
-          <p className="text-sm font-medium" style={{ color: 'var(--text)' }}>{player.name}</p>
-          <p className="text-xs" style={{ color: 'var(--muted)' }}>
-            {playerPositions(player).join(' · ')} · {player.nationality} · {player.goals}D {player.assists}A
-          </p>
-        </div>
+
+        {disabled ? (
+          <span style={{
+            fontSize: '0.6rem', letterSpacing: '0.06em',
+            padding: '3px 7px', borderRadius: 4,
+            background: 'var(--border)', color: 'var(--muted)',
+            fontFamily: 'var(--font-display)', flexShrink: 0,
+          }}>{disabledReason}</span>
+        ) : (
+          <span
+            className="opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0"
+            style={{
+              fontSize: '0.65rem', letterSpacing: '0.1em',
+              padding: '4px 10px', borderRadius: 4,
+              background: teamColor, color: '#07070A',
+              fontFamily: 'var(--font-display)',
+            }}
+          >
+            KIES
+          </span>
+        )}
       </div>
-      {disabled ? (
-        <span className="px-2.5 py-1 rounded text-xs flex-shrink-0"
-          style={{ background: 'var(--border)', color: 'var(--muted)', fontFamily: 'var(--font-display)', letterSpacing: '0.06em', fontSize: '0.65rem' }}>
-          {disabledReason}
-        </span>
-      ) : (
-        <span className="px-2.5 py-1 rounded text-xs opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0"
-          style={{ background: teamColor, color: '#090907', fontFamily: 'var(--font-display)', letterSpacing: '0.08em' }}>
-          KIES
-        </span>
-      )}
     </button>
   );
 }
 
-function overallBg(o: number) { return o >= 80 ? 'rgba(212,148,10,0.25)' : o >= 70 ? 'rgba(237,233,224,0.1)' : 'rgba(107,101,96,0.15)'; }
-function overallColor(o: number) { return o >= 80 ? 'var(--gold)' : o >= 70 ? 'var(--text)' : 'var(--muted)'; }
+// ─── Overall badge ────────────────────────────────────────────────────────────
+
+function OverallBadge({ overall, size }: { overall: number; size: 'sm' | 'lg' }) {
+  const color = overall >= 80 ? 'var(--gold)' : overall >= 73 ? '#A8E6CF' : overall >= 66 ? 'var(--text-2)' : 'var(--muted)';
+  const bg = overall >= 80 ? 'rgba(212,148,10,0.2)' : overall >= 73 ? 'rgba(168,230,207,0.12)' : overall >= 66 ? 'rgba(237,234,228,0.08)' : 'rgba(104,100,92,0.15)';
+  const dim = size === 'sm' ? { width: 38, height: 38, fontSize: '0.9rem' } : { width: 56, height: 56, fontSize: '1.4rem' };
+
+  return (
+    <div style={{
+      ...dim,
+      borderRadius: 8,
+      background: bg,
+      border: `1px solid ${color}40`,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontFamily: 'var(--font-display)',
+      color,
+      flexShrink: 0,
+      letterSpacing: '0.02em',
+    }}>
+      {overall}
+    </div>
+  );
+}

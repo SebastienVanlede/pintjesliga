@@ -1,17 +1,22 @@
 @import "tailwindcss";
 
 :root {
-  --bg:         #090907;
-  --surface:    #111110;
-  --border:     #1E1D1A;
-  --gold:       #D4940A;
-  --gold-light: #F0A800;
-  --gold-dim:   #8A6005;
-  --red:        #C41E3A;
-  --text:       #EDE9E0;
-  --muted:      #6B6560;
-  --pitch:      #2D5A27;
-  --pitch-line: #3A7232;
+  --bg:          #07070A;
+  --surface:     #0E0E12;
+  --surface-2:   #141418;
+  --border:      #1E1E26;
+  --border-2:    #2A2A34;
+  --gold:        #D4940A;
+  --gold-light:  #F2A800;
+  --gold-dim:    #6B4A05;
+  --gold-glow:   rgba(212,148,10,0.18);
+  --red:         #C41E3A;
+  --red-dim:     rgba(196,30,58,0.15);
+  --text:        #EDEAE4;
+  --text-2:      #ACA8A2;
+  --muted:       #68645C;
+  --pitch:       #2A5425;
+  --pitch-alt:   #265020;
 }
 
 @theme inline {
@@ -20,27 +25,81 @@
   --font-sans: var(--font-body);
 }
 
-*, *::before, *::after {
-  box-sizing: border-box;
-}
+*, *::before, *::after { box-sizing: border-box; }
 
-html, body {
-  height: 100%;
-}
+html { scroll-behavior: smooth; }
+
+html, body { height: 100%; }
 
 body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-body), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+/* Grain overlay */
 body::after {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.3;
+  opacity: 0.28;
+}
+
+/* Page wrapper — accounts for fixed nav height */
+.page-root {
+  padding-top: 56px;
+  min-height: 100svh;
+}
+
+/* Card */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+.card-2 {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+/* Gold highlight */
+.gold-glow {
+  box-shadow: 0 0 32px var(--gold-glow);
+}
+
+/* Label */
+.label-xs {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background: var(--border);
+}
+
+/* Display font shorthand */
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Pulse animation for eligible positions */
+@keyframes pulse-ring {
+  0%, 100% { opacity: 0.8; }
+  50% { opacity: 1; }
 }
