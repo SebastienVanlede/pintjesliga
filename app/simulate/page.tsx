@@ -644,7 +644,7 @@ function ShareSection({ sim, pickedPlayers, formation }: {
   formation: string;
 }) {
   const [copied, setCopied] = useState(false);
-  const [copiedImg, setCopiedImg] = useState(false);
+  const [shared, setShared] = useState(false);
   const { teamName } = useGameStore();
   const myTeam = teamName.trim() || 'Mijn Droomelftal';
 
@@ -686,11 +686,48 @@ function ShareSection({ sim, pickedPlayers, formation }: {
     return lines.join('\n');
   }
 
+  function getShortShareText() {
+    // Twitter-vriendelijk (< 280 tekens)
+    const sorted = [...pickedPlayers].sort((a, b) => a.positionIndex - b.positionIndex);
+    const top3 = sorted.slice(0, 3).map(p => `${p.position} ${p.player.name} (${p.player.overall})`).join(' · ');
+    return `🍺 Mijn Pintjesliga XI — ${formation}\n${resultLabel} | gem. OVR ${avgOverall}\n\n${top3}\n\nMaak je eigen droomelf: pintjesliga.vercel.app #Pintjesliga`;
+  }
+
   function handleCopy() {
     navigator.clipboard.writeText(getShareText()).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     });
+  }
+
+  async function handleNativeShare() {
+    const text = getShortShareText();
+    if (!navigator.share) {
+      // Fallback: kopieer tekst
+      navigator.clipboard.writeText(getShareText());
+      setShared(true);
+      setTimeout(() => setShared(false), 2000);
+      return;
+    }
+    try {
+      // Probeer eerst te delen met afbeelding
+      const blob = await buildCanvasBlob();
+      const file = new File([blob], 'pintjesliga-xi.png', { type: 'image/png' });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        await navigator.share({ title: 'Pintjesliga XI', text, files: [file] });
+      } else {
+        await navigator.share({ title: 'Pintjesliga XI', text });
+      }
+      setShared(true);
+      setTimeout(() => setShared(false), 2000);
+    } catch {
+      // Gebruiker annuleerde of fout — geen actie nodig
+    }
+  }
+
+  function handleTwitter() {
+    const tweet = encodeURIComponent(getShortShareText());
+    window.open(`https://twitter.com/intent/tweet?text=${tweet}`, '_blank', 'noopener');
   }
 
   function buildCanvasBlob(): Promise<Blob> {
@@ -824,15 +861,6 @@ function ShareSection({ sim, pickedPlayers, formation }: {
     });
   }
 
-  function handleShareImage() {
-    buildCanvasBlob().then(blob => {
-      navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]).then(() => {
-        setCopiedImg(true);
-        setTimeout(() => setCopiedImg(false), 2000);
-      });
-    });
-  }
-
   return (
     <div className="flex flex-col gap-4 pt-2">
       {/* Divider */}
@@ -928,36 +956,65 @@ function ShareSection({ sim, pickedPlayers, formation }: {
       </div>
 
       {/* Action buttons */}
-      <div className="flex gap-3 justify-center flex-wrap">
-        <button onClick={handleCopy}
-          className="px-5 py-3 rounded transition-all duration-150 text-sm"
+      <div className="flex flex-col gap-2">
+        {/* Primary: native share (mobile) */}
+        <button
+          onClick={handleNativeShare}
+          className="w-full py-3.5 rounded-lg transition-all duration-150"
           style={{
-            fontFamily: 'var(--font-display)', letterSpacing: '0.1em',
-            background: copied ? 'rgba(74,222,128,0.15)' : 'var(--surface)',
-            color: copied ? '#4ade80' : 'var(--text)',
-            border: `1px solid ${copied ? '#4ade80' : 'var(--border)'}`,
+            fontFamily: 'var(--font-display)', fontSize: '1rem', letterSpacing: '0.12em',
+            background: shared ? 'rgba(74,222,128,0.15)' : 'var(--gold)',
+            color: shared ? '#4ade80' : '#07070A',
+            border: `2px solid ${shared ? '#4ade80' : 'var(--gold)'}`,
+            cursor: 'pointer',
           }}>
-          {copied ? '✓ Gekopieerd!' : '📋 Kopieer tekst'}
+          {shared ? '✓ Gedeeld!' : '↑ Deel je resultaat'}
         </button>
-        <button onClick={handleShareImage}
-          className="px-5 py-3 rounded transition-all duration-150 text-sm"
-          style={{
-            fontFamily: 'var(--font-display)', letterSpacing: '0.1em',
-            background: copiedImg ? 'rgba(74,222,128,0.15)' : 'var(--gold)',
-            color: copiedImg ? '#4ade80' : '#090907',
-            border: `1px solid ${copiedImg ? '#4ade80' : 'var(--gold)'}`,
-          }}>
-          {copiedImg ? '✓ Afbeelding gekopieerd!' : '🖼 Kopieer afbeelding'}
-        </button>
-        <button onClick={handleDownload}
-          className="px-5 py-3 rounded transition-all duration-150 text-sm"
-          style={{
-            fontFamily: 'var(--font-display)', letterSpacing: '0.1em',
-            background: 'var(--surface)', color: 'var(--muted)',
-            border: '1px solid var(--border)',
-          }}>
-          📥 Download
-        </button>
+
+        {/* Secondary row */}
+        <div className="flex gap-2">
+          {/* Twitter/X */}
+          <button
+            onClick={handleTwitter}
+            className="flex-1 py-3 rounded-lg transition-all duration-150 flex items-center justify-center gap-2"
+            style={{
+              fontFamily: 'var(--font-display)', fontSize: '0.85rem', letterSpacing: '0.1em',
+              background: 'var(--surface)', color: 'var(--text)',
+              border: '1px solid var(--border)', cursor: 'pointer',
+            }}>
+            <span style={{ fontWeight: 900, fontSize: '1rem' }}>𝕏</span> Tweet
+          </button>
+
+          {/* Copy text */}
+          <button
+            onClick={handleCopy}
+            className="flex-1 py-3 rounded-lg transition-all duration-150"
+            style={{
+              fontFamily: 'var(--font-display)', fontSize: '0.85rem', letterSpacing: '0.1em',
+              background: copied ? 'rgba(74,222,128,0.1)' : 'var(--surface)',
+              color: copied ? '#4ade80' : 'var(--muted)',
+              border: `1px solid ${copied ? '#4ade80' : 'var(--border)'}`,
+              cursor: 'pointer',
+            }}>
+            {copied ? '✓ Gekopieerd' : '📋 Kopieer'}
+          </button>
+
+          {/* Download */}
+          <button
+            onClick={handleDownload}
+            className="flex-1 py-3 rounded-lg transition-all duration-150"
+            style={{
+              fontFamily: 'var(--font-display)', fontSize: '0.85rem', letterSpacing: '0.1em',
+              background: 'var(--surface)', color: 'var(--muted)',
+              border: '1px solid var(--border)', cursor: 'pointer',
+            }}>
+            📥 Download
+          </button>
+        </div>
+
+        <p className="text-xs text-center" style={{ color: 'var(--muted)', opacity: 0.6 }}>
+          Op mobiel opent "Deel" het native deelscherm — WhatsApp, Instagram, X, …
+        </p>
       </div>
     </div>
   );
