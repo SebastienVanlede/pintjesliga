@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Bebas_Neue, DM_Sans } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 import Nav from '@/components/Nav';
+import ThemeApplier from '@/components/ThemeApplier';
 import './globals.css';
 
 const bebasNeue = Bebas_Neue({
@@ -26,6 +27,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="nl" className={`${bebasNeue.variable} ${dmSans.variable}`}>
       <body>
+        <ThemeApplier />
         <Nav />
         <div className="page-root">{children}</div>
         <Analytics />

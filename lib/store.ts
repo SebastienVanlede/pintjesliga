@@ -11,6 +11,7 @@ interface GameState {
   teamName: string;
   draftMode: 'normal' | 'blind';
   simSeason: string;
+  theme: 'dark' | 'light';
 
   setFormation: (f: Formation) => void;
   pickPlayer: (p: PickedPlayer) => void;
@@ -18,7 +19,9 @@ interface GameState {
   setTeamName: (n: string) => void;
   setDraftMode: (m: 'normal' | 'blind') => void;
   setSimSeason: (s: string) => void;
+  setTheme: (t: 'dark' | 'light') => void;
   reset: () => void;
+  resetKeepFormation: () => void;
 }
 
 export const useGameStore = create<GameState>()(
@@ -31,6 +34,7 @@ export const useGameStore = create<GameState>()(
       teamName: 'Mijn Droomelftal',
       draftMode: 'normal',
       simSeason: '2024-25',
+      theme: 'dark',
 
       setFormation: (formation) =>
         set({ formation, pickedPlayers: [], currentPositionIndex: 0, simulatedSeason: null }),
@@ -49,8 +53,13 @@ export const useGameStore = create<GameState>()(
 
       setSimSeason: (simSeason) => set({ simSeason }),
 
+      setTheme: (theme) => set({ theme }),
+
       reset: () =>
         set({ formation: null, pickedPlayers: [], currentPositionIndex: 0, simulatedSeason: null }),
+
+      resetKeepFormation: () =>
+        set({ pickedPlayers: [], currentPositionIndex: 0, simulatedSeason: null }),
     }),
     {
       name: 'pintjesliga-state',
@@ -62,6 +71,7 @@ export const useGameStore = create<GameState>()(
         teamName:         state.teamName,
         draftMode:        state.draftMode,
         simSeason:        state.simSeason,
+        theme:            state.theme,
       }),
     }
   )

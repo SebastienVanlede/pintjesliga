@@ -17,6 +17,27 @@
   --muted:       #68645C;
   --pitch:       #2A5425;
   --pitch-alt:   #265020;
+  --nav-bg:      rgba(7,7,10,0.88);
+}
+
+[data-theme="light"] {
+  --bg:          #F5F2EE;
+  --surface:     #EDEAE4;
+  --surface-2:   #E4E0D8;
+  --border:      #D0CBC0;
+  --border-2:    #BDB8B0;
+  --gold:        #B8780A;
+  --gold-light:  #D4940A;
+  --gold-dim:    #B8780A;
+  --gold-glow:   rgba(184,120,10,0.14);
+  --red:         #C41E3A;
+  --red-dim:     rgba(196,30,58,0.12);
+  --text:        #1C1A16;
+  --text-2:      #5C5850;
+  --muted:       #8C8880;
+  --pitch:       #2A5425;
+  --pitch-alt:   #265020;
+  --nav-bg:      rgba(245,242,238,0.92);
 }
 
 @theme inline {
@@ -55,6 +76,7 @@ body::after {
   z-index: 9999;
   opacity: 0.28;
 }
+[data-theme="light"] body::after { opacity: 0.10; }
 
 /* Page wrapper — accounts for fixed nav height */
 .page-root {

@@ -8,7 +8,7 @@ import FormationPitch from '@/components/FormationPitch';
 
 export default function XIPage() {
   const router = useRouter();
-  const { formation, pickedPlayers, reset } = useGameStore();
+  const { formation, pickedPlayers, reset, resetKeepFormation } = useGameStore();
 
   useEffect(() => {
     if (!formation || pickedPlayers.length < 11) router.replace('/');
@@ -94,6 +94,23 @@ export default function XIPage() {
             onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1)'; }}
           >
             Simuleer het Seizoen →
+          </button>
+          <button
+            onClick={() => { resetKeepFormation(); router.push('/draft'); }}
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: '0.85rem',
+              letterSpacing: '0.1em',
+              padding: '10px 0',
+              width: '100%',
+              background: 'transparent',
+              color: 'var(--text)',
+              border: '1px solid var(--border)',
+              borderRadius: 8,
+              cursor: 'pointer',
+            }}
+          >
+            Nieuwe draft ({formation})
           </button>
           <button
             onClick={() => { reset(); router.push('/'); }}

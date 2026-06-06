@@ -19,7 +19,7 @@ function currentStepIndex(pathname: string): number {
 
 export default function Nav() {
   const pathname = usePathname();
-  const { formation, pickedPlayers, simulatedSeason } = useGameStore();
+  const { formation, pickedPlayers, simulatedSeason, theme, setTheme } = useGameStore();
   const currentStep = currentStepIndex(pathname);
 
   const stepReachable = [
@@ -44,7 +44,7 @@ export default function Nav() {
       {/* Nav bar */}
       <div
         style={{
-          background: 'rgba(7,7,10,0.88)',
+          background: 'var(--nav-bg)',
           borderBottom: '1px solid var(--border)',
           height: 52,
           display: 'flex',
@@ -135,23 +135,42 @@ export default function Nav() {
           })}
         </nav>
 
-        {/* Leaderboard link */}
-        <Link
-          href="/leaderboard"
-          style={{
-            textDecoration: 'none',
-            fontSize: '0.65rem',
-            letterSpacing: '0.1em',
-            textTransform: 'uppercase',
-            color: pathname === '/leaderboard' ? 'var(--gold)' : 'var(--muted)',
-            padding: '4px 8px',
-            border: '1px solid var(--border)',
-            borderRadius: 4,
-            transition: 'all 0.15s',
-          }}
-        >
-          🏆 Board
-        </Link>
+        {/* Right actions */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <Link
+            href="/leaderboard"
+            style={{
+              textDecoration: 'none',
+              fontSize: '0.65rem',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              color: pathname === '/leaderboard' ? 'var(--gold)' : 'var(--muted)',
+              padding: '4px 8px',
+              border: '1px solid var(--border)',
+              borderRadius: 4,
+              transition: 'all 0.15s',
+            }}
+          >
+            🏆 Board
+          </Link>
+          <button
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            title={theme === 'dark' ? 'Schakel naar licht' : 'Schakel naar donker'}
+            style={{
+              background: 'transparent',
+              border: '1px solid var(--border)',
+              borderRadius: 4,
+              padding: '4px 8px',
+              cursor: 'pointer',
+              fontSize: '0.9rem',
+              lineHeight: 1,
+              color: 'var(--muted)',
+              transition: 'all 0.15s',
+            }}
+          >
+            {theme === 'dark' ? '☀️' : '🌙'}
+          </button>
+        </div>
       </div>
     </header>
   );
