@@ -1136,7 +1136,7 @@ function ScoreCard({ score, sim, formation }: { score: ScoreBreakdown; sim: Simu
   const router = useRouter();
 
   async function handleSubmit() {
-    if (!name.trim() || status !== 'idle') return;
+    if (!name.trim() || status === 'submitting') return;
     setStatus('submitting');
     try {
       const res = await fetch('/api/scores', {
@@ -1222,7 +1222,7 @@ function ScoreCard({ score, sim, formation }: { score: ScoreBreakdown; sim: Simu
         <div className="flex gap-2">
           <input
             value={name}
-            onChange={e => setName(e.target.value.slice(0, 24))}
+            onChange={e => { setName(e.target.value.slice(0, 24)); if (status === 'error') setStatus('idle'); }}
             placeholder="Jouw naam (max. 24 tekens)"
             maxLength={24}
             onKeyDown={e => e.key === 'Enter' && handleSubmit()}
@@ -1247,9 +1247,14 @@ function ScoreCard({ score, sim, formation }: { score: ScoreBreakdown; sim: Simu
         </div>
       )}
       {status === 'error' && (
-        <p className="text-xs" style={{ color: 'var(--red)' }}>
-          Kon score niet opslaan. Controleer of Supabase geconfigureerd is.
-        </p>
+        <div className="flex items-center justify-between rounded-lg px-3 py-2" style={{ background: 'rgba(196,30,58,0.08)', border: '1px solid rgba(196,30,58,0.3)' }}>
+          <p className="text-xs" style={{ color: 'var(--red)' }}>
+            Kon score niet opslaan. Probeer opnieuw.
+          </p>
+          <button onClick={() => setStatus('idle')} className="text-xs underline ml-3 shrink-0" style={{ color: 'var(--red)', cursor: 'pointer' }}>
+            Wis fout
+          </button>
+        </div>
       )}
     </div>
   );
