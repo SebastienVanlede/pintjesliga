@@ -1,0 +1,272 @@
+[
+  {
+    "id": "anderlecht",
+    "name": "RSC Anderlecht",
+    "shortName": "AND",
+    "city": "Brussel",
+    "primaryColor": "#6B21A8",
+    "secondaryColor": "#FFFFFF",
+    "seasons": ["2000-01","2001-02","2002-03","2003-04","2004-05","2005-06","2006-07","2007-08","2008-09","2009-10","2010-11","2011-12","2012-13","2013-14","2014-15","2015-16","2016-17","2017-18","2018-19","2019-20","2020-21","2021-22","2022-23","2023-24"]
+  },
+  {
+    "id": "club-brugge",
+    "name": "Club Brugge KV",
+    "shortName": "CLB",
+    "city": "Brugge",
+    "primaryColor": "#003F8A",
+    "secondaryColor": "#000000",
+    "seasons": ["2000-01","2001-02","2002-03","2003-04","2004-05","2005-06","2006-07","2007-08","2008-09","2009-10","2010-11","2011-12","2012-13","2013-14","2014-15","2015-16","2016-17","2017-18","2018-19","2019-20","2020-21","2021-22","2022-23","2023-24"]
+  },
+  {
+    "id": "standard",
+    "name": "Standard Liège",
+    "shortName": "STD",
+    "city": "Luik",
+    "primaryColor": "#C8102E",
+    "secondaryColor": "#000000",
+    "seasons": ["2000-01","2001-02","2002-03","2003-04","2004-05","2005-06","2006-07","2007-08","2008-09","2009-10","2010-11","2011-12","2012-13","2013-14","2014-15","2015-16","2016-17","2017-18","2018-19","2019-20","2020-21","2021-22","2022-23","2023-24"]
+  },
+  {
+    "id": "genk",
+    "name": "KRC Genk",
+    "shortName": "GNK",
+    "city": "Genk",
+    "primaryColor": "#0052A5",
+    "secondaryColor": "#FFFFFF",
+    "seasons": ["2000-01","2001-02","2002-03","2003-04","2004-05","2005-06","2006-07","2007-08","2008-09","2009-10","2010-11","2011-12","2012-13","2013-14","2014-15","2015-16","2016-17","2017-18","2018-19","2019-20","2020-21","2021-22","2022-23","2023-24"]
+  },
+  {
+    "id": "gent",
+    "name": "AA Gent",
+    "shortName": "GNT",
+    "city": "Gent",
+    "primaryColor": "#003087",
+    "secondaryColor": "#FFFFFF",
+    "seasons": ["2000-01","2001-02","2002-03","2003-04","2004-05","2005-06","2006-07","2007-08","2008-09","2009-10","2010-11","2011-12","2012-13","2013-14","2014-15","2015-16","2016-17","2017-18","2018-19","2019-20","2020-21","2021-22","2022-23","2023-24"]
+  },
+  {
+    "id": "charleroi",
+    "name": "Sporting Charleroi",
+    "shortName": "CHA",
+    "city": "Charleroi",
+    "primaryColor": "#1A1A1A",
+    "secondaryColor": "#FFFFFF",
+    "seasons": ["2000-01","2001-02","2002-03","2003-04","2004-05","2005-06","2006-07","2007-08","2008-09","2009-10","2010-11","2011-12","2012-13","2013-14","2014-15","2015-16","2016-17","2017-18","2018-19","2019-20","2020-21","2021-22","2022-23","2023-24"]
+  },
+  {
+    "id": "mechelen",
+    "name": "KV Mechelen",
+    "shortName": "MEC",
+    "city": "Mechelen",
+    "primaryColor": "#E4082D",
+    "secondaryColor": "#FFD700",
+    "seasons": ["2000-01","2001-02","2002-03","2003-04","2004-05","2016-17","2018-19","2019-20","2020-21","2021-22","2022-23","2023-24"]
+  },
+  {
+    "id": "cercle-brugge",
+    "name": "Cercle Brugge",
+    "shortName": "CER",
+    "city": "Brugge",
+    "primaryColor": "#007B3B",
+    "secondaryColor": "#000000",
+    "seasons": ["2000-01","2001-02","2002-03","2003-04","2005-06","2006-07","2017-18","2018-19","2019-20","2020-21","2021-22","2022-23","2023-24"]
+  },
+  {
+    "id": "stvv",
+    "name": "Sint-Truidense VV",
+    "shortName": "STVV",
+    "city": "Sint-Truiden",
+    "primaryColor": "#FFD700",
+    "secondaryColor": "#000000",
+    "seasons": ["2002-03","2003-04","2004-05","2009-10","2010-11","2011-12","2012-13","2016-17","2017-18","2018-19","2019-20","2020-21","2021-22","2022-23","2023-24"]
+  },
+  {
+    "id": "kortrijk",
+    "name": "KV Kortrijk",
+    "shortName": "KOR",
+    "city": "Kortrijk",
+    "primaryColor": "#C8102E",
+    "secondaryColor": "#FFFFFF",
+    "seasons": ["2009-10","2010-11","2011-12","2012-13","2013-14","2014-15","2015-16","2016-17","2017-18","2018-19","2019-20","2020-21","2021-22","2022-23","2023-24"]
+  },
+  {
+    "id": "zulte-waregem",
+    "name": "SV Zulte Waregem",
+    "shortName": "ESS",
+    "city": "Waregem",
+    "primaryColor": "#005B99",
+    "secondaryColor": "#FFFFFF",
+    "seasons": ["2005-06","2006-07","2007-08","2008-09","2009-10","2010-11","2011-12","2012-13","2013-14","2014-15","2015-16","2016-17","2017-18","2018-19","2019-20","2020-21","2021-22","2022-23"]
+  },
+  {
+    "id": "antwerp",
+    "name": "Royal Antwerp FC",
+    "shortName": "ANT",
+    "city": "Antwerpen",
+    "primaryColor": "#E4082D",
+    "secondaryColor": "#FFFFFF",
+    "seasons": ["2000-01","2017-18","2018-19","2019-20","2020-21","2021-22","2022-23","2023-24"]
+  },
+  {
+    "id": "union",
+    "name": "Royale Union Saint-Gilloise",
+    "shortName": "USG",
+    "city": "Brussel",
+    "primaryColor": "#FFCC00",
+    "secondaryColor": "#003F8A",
+    "seasons": ["2021-22","2022-23","2023-24"]
+  },
+  {
+    "id": "ohl",
+    "name": "OH Leuven",
+    "shortName": "OHL",
+    "city": "Leuven",
+    "primaryColor": "#C8102E",
+    "secondaryColor": "#003087",
+    "seasons": ["2020-21","2021-22","2022-23","2023-24"]
+  },
+  {
+    "id": "eupen",
+    "name": "KAS Eupen",
+    "shortName": "EUP",
+    "city": "Eupen",
+    "primaryColor": "#FFCC00",
+    "secondaryColor": "#003F8A",
+    "seasons": ["2010-11","2016-17","2017-18","2018-19","2019-20","2020-21","2021-22","2022-23","2023-24"]
+  },
+  {
+    "id": "westerlo",
+    "name": "KVC Westerlo",
+    "shortName": "WES",
+    "city": "Westerlo",
+    "primaryColor": "#FFD700",
+    "secondaryColor": "#000000",
+    "seasons": ["2000-01","2001-02","2002-03","2003-04","2022-23","2023-24"]
+  },
+  {
+    "id": "rwdm",
+    "name": "RWDM Brussels",
+    "shortName": "RWD",
+    "city": "Brussel",
+    "primaryColor": "#003087",
+    "secondaryColor": "#FFFFFF",
+    "seasons": ["2023-24"]
+  },
+  {
+    "id": "oostende",
+    "name": "KV Oostende",
+    "shortName": "OOS",
+    "city": "Oostende",
+    "primaryColor": "#C8102E",
+    "secondaryColor": "#007B3B",
+    "seasons": ["2004-05","2013-14","2014-15","2015-16","2016-17","2017-18","2018-19","2019-20","2020-21","2021-22","2022-23"]
+  },
+  {
+    "id": "lokeren",
+    "name": "KSC Lokeren",
+    "shortName": "LOK",
+    "city": "Lokeren",
+    "primaryColor": "#FF6B00",
+    "secondaryColor": "#000000",
+    "seasons": ["2000-01","2001-02","2002-03","2003-04","2004-05","2005-06","2006-07","2007-08","2008-09","2009-10","2010-11","2011-12","2012-13","2013-14","2014-15","2015-16","2016-17","2017-18"]
+  },
+  {
+    "id": "lierse",
+    "name": "Lierse SK",
+    "shortName": "LIE",
+    "city": "Lier",
+    "primaryColor": "#007A33",
+    "secondaryColor": "#FFD700",
+    "seasons": ["2000-01","2001-02","2002-03","2003-04","2004-05","2005-06","2006-07","2010-11","2011-12","2012-13","2013-14","2014-15"]
+  },
+  {
+    "id": "germinal-beerschot",
+    "name": "Germinal Beerschot",
+    "shortName": "GBE",
+    "city": "Antwerpen",
+    "primaryColor": "#5B2D8E",
+    "secondaryColor": "#FFD700",
+    "seasons": ["2000-01","2001-02","2002-03","2003-04","2004-05","2005-06","2006-07","2007-08","2008-09","2009-10","2010-11","2011-12","2012-13"]
+  },
+  {
+    "id": "beerschot",
+    "name": "Beerschot VA",
+    "shortName": "BEE",
+    "city": "Antwerpen",
+    "primaryColor": "#5B2D8E",
+    "secondaryColor": "#FFD700",
+    "seasons": ["2020-21","2021-22"]
+  },
+  {
+    "id": "mouscron",
+    "name": "Royal Excel Mouscron",
+    "shortName": "MOU",
+    "city": "Moeskroen",
+    "primaryColor": "#003087",
+    "secondaryColor": "#FFFFFF",
+    "seasons": ["2000-01","2001-02","2002-03","2003-04","2004-05","2005-06","2006-07","2007-08","2008-09","2014-15","2015-16","2016-17","2017-18","2018-19","2019-20","2020-21"]
+  },
+  {
+    "id": "roeselare",
+    "name": "KSV Roeselare",
+    "shortName": "ROE",
+    "city": "Roeselare",
+    "primaryColor": "#8B0000",
+    "secondaryColor": "#FFFFFF",
+    "seasons": ["2005-06","2006-07","2007-08","2008-09","2009-10"]
+  },
+  {
+    "id": "waasland-beveren",
+    "name": "Waasland-Beveren",
+    "shortName": "WAB",
+    "city": "Beveren",
+    "primaryColor": "#003087",
+    "secondaryColor": "#FFD700",
+    "seasons": ["2011-12","2012-13","2013-14","2014-15","2015-16","2016-17","2017-18","2018-19","2019-20","2020-21"]
+  },
+  {
+    "id": "beveren",
+    "name": "KSK Beveren",
+    "shortName": "BEV",
+    "city": "Beveren",
+    "primaryColor": "#FFD700",
+    "secondaryColor": "#003087",
+    "seasons": ["2000-01","2001-02","2002-03","2003-04","2004-05"]
+  },
+  {
+    "id": "seraing",
+    "name": "RFC Seraing",
+    "shortName": "SER",
+    "city": "Seraing",
+    "primaryColor": "#CC0000",
+    "secondaryColor": "#FFFFFF",
+    "seasons": ["2021-22"]
+  },
+  {
+    "id": "la-louviere",
+    "name": "R.A.A. Louviéroise",
+    "shortName": "LOU",
+    "city": "La Louvière",
+    "primaryColor": "#CC0000",
+    "secondaryColor": "#000000",
+    "seasons": ["2000-01","2001-02","2002-03","2003-04","2004-05"]
+  },
+  {
+    "id": "aalst",
+    "name": "Eendracht Aalst",
+    "shortName": "AAL",
+    "city": "Aalst",
+    "primaryColor": "#CC0000",
+    "secondaryColor": "#000000",
+    "seasons": ["2000-01"]
+  },
+  {
+    "id": "harelbeke",
+    "name": "SC Harelbeke",
+    "shortName": "HAR",
+    "city": "Harelbeke",
+    "primaryColor": "#007A33",
+    "secondaryColor": "#FFFFFF",
+    "seasons": ["2000-01","2001-02"]
+  }
+]

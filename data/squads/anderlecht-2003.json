@@ -1,0 +1,24 @@
+{
+  "team": "RSC Anderlecht",
+  "teamId": "anderlecht",
+  "season": "2003-04",
+  "year": 2003,
+  "players": [
+    {"id":"daniel-zitka","name":"Daniel Zítka","position":"GK","nationality":"CZE","age":28,"appearances":32,"goals":0,"assists":0,"marketValue":1500000,"internationalCaps":18,"awards":[],"overall":76},
+    {"id":"tomasz-kuszczak","name":"Tomasz Kuszczak","position":"GK","nationality":"POL","age":21,"appearances":4,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":62},
+    {"id":"roland-juhasz","name":"Roland Juhász","position":"CB","nationality":"HUN","age":20,"appearances":24,"goals":1,"assists":0,"marketValue":1000000,"internationalCaps":8,"awards":[],"overall":68},
+    {"id":"olivier-deschacht","name":"Olivier Deschacht","position":"CB","nationality":"BEL","age":22,"appearances":30,"goals":2,"assists":1,"marketValue":2000000,"internationalCaps":3,"awards":[],"overall":73},
+    {"id":"hannu-tihinen","name":"Hannu Tihinen","position":"CB","nationality":"FIN","age":30,"appearances":28,"goals":1,"assists":0,"marketValue":1200000,"internationalCaps":38,"awards":[],"overall":71},
+    {"id":"piet-veltman","name":"Piet Veltman","position":"RB","nationality":"NED","age":31,"appearances":26,"goals":0,"assists":2,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"par-zetterberg","name":"Pär Zetterberg","position":"CAM","nationality":"SWE","age":36,"appearances":22,"goals":4,"assists":10,"marketValue":800000,"internationalCaps":5,"awards":["Gouden Schoen 1995"],"overall":77},
+    {"id":"yves-vanderhaeghe","name":"Yves Vanderhaeghe","position":"CDM","nationality":"BEL","age":33,"appearances":28,"goals":2,"assists":5,"marketValue":900000,"internationalCaps":31,"awards":[],"overall":72},
+    {"id":"tomas-cizek","name":"Tomáš Čížek","position":"CM","nationality":"CZE","age":25,"appearances":26,"goals":3,"assists":4,"marketValue":1500000,"internationalCaps":15,"awards":[],"overall":73},
+    {"id":"walter-baseggio","name":"Walter Baseggio","position":"CM","nationality":"ITA","age":28,"appearances":24,"goals":4,"assists":6,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":74},
+    {"id":"luigi-almiron","name":"Luigi Almirón","position":"CM","nationality":"ARG","age":27,"appearances":20,"goals":2,"assists":3,"marketValue":1200000,"internationalCaps":5,"awards":[],"overall":69},
+    {"id":"aruna-dindane","name":"Aruna Dindane","position":"LW","nationality":"CIV","age":23,"appearances":28,"goals":9,"assists":5,"marketValue":3500000,"internationalCaps":20,"awards":[],"overall":75},
+    {"id":"nicolas-frutos","name":"Nicolás Frutos","position":"ST","nationality":"ARG","age":28,"appearances":30,"goals":16,"assists":6,"marketValue":3000000,"internationalCaps":8,"awards":[],"overall":76},
+    {"id":"mbo-mpenza","name":"Mbo Mpenza","position":"ST","nationality":"BEL","age":27,"appearances":18,"goals":7,"assists":2,"marketValue":2000000,"internationalCaps":38,"awards":[],"overall":73},
+    {"id":"christian-wilhelmsson","name":"Christian Wilhelmsson","position":"RW","nationality":"SWE","age":23,"appearances":22,"goals":5,"assists":7,"marketValue":2500000,"internationalCaps":10,"awards":[],"overall":74},
+    {"id":"nenad-jestrovic","name":"Nenad Jestrović","position":"ST","nationality":"SRB","age":28,"appearances":16,"goals":6,"assists":2,"marketValue":1500000,"internationalCaps":12,"awards":[],"overall":70}
+  ]
+}
