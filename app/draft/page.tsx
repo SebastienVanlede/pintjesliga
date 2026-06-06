@@ -193,13 +193,13 @@ export default function DraftPage() {
               className="flex flex-col items-center justify-center gap-6 flex-1 min-h-72">
               <div className="text-center">
                 <p className="label-xs mb-2">
-                  {filledCount === 0 ? 'Begin je draft' : `Positie ${filledCount + 1} van ${positions.length}`}
+                  {filledCount === 0 ? 'Begin je draft' : `Speler ${filledCount + 1} van ${positions.length}`}
                 </p>
                 <p style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.5rem,4vw,2.2rem)', color: 'var(--text)', letterSpacing: '0.08em' }}>
-                  {filledCount === 0 ? 'ROL DE DOBBELSTENEN' : `VOLGENDE: ${positions[filledCount]}`}
+                  ROL EEN TEAM + SEIZOEN
                 </p>
                 <p className="text-sm mt-1" style={{ color: 'var(--muted)' }}>
-                  {filledCount === 0 ? 'Een willekeurige Pro League squad wacht op je' : `Jij vult de ${positions[filledCount]}-positie in`}
+                  {filledCount === 0 ? 'Een willekeurige Pro League squad wacht op je' : 'Jij kiest zelf de speler en positie na de rol'}
                 </p>
               </div>
 
