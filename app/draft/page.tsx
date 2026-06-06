@@ -86,7 +86,8 @@ export default function DraftPage() {
 
   if (!formation) return null;
 
-  const pickedPlayerIds = new Set(pickedPlayers.map((p) => p.player.id));
+  const pickedPlayerIds    = new Set(pickedPlayers.map((p) => p.player.id));
+  const pickedPlayerNames  = new Set(pickedPlayers.map((p) => p.player.name.toLowerCase()));
   const filledPerPosition: Record<string, number> = {};
   for (const p of pickedPlayers) filledPerPosition[p.position] = (filledPerPosition[p.position] ?? 0) + 1;
   const totalPerPosition: Record<string, number> = {};
@@ -334,7 +335,7 @@ export default function DraftPage() {
                 {[...roll.squad.players]
                   .sort((a, b) => b.overall - a.overall)
                   .map((player) => {
-                    const alreadyPicked = pickedPlayerIds.has(player.id);
+                    const alreadyPicked = pickedPlayerIds.has(player.id) || pickedPlayerNames.has(player.name.toLowerCase());
                     const posFull = playerPositions(player).every(pos => isPositionFull(pos));
                     const disabled = alreadyPicked || posFull;
                     return (
