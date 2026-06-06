@@ -160,68 +160,6 @@ export default function DraftPage() {
           size="md"
         />
 
-        {/* Lineup lijst — vervangt de kleine chips */}
-        <div className="flex flex-col gap-1">
-          {positions.map((pos, i) => {
-            const pick = pickedByIndex[i];
-            const isNext = !pick && phase !== 'placing' && i === filledCount;
-            return (
-              <motion.div
-                key={i}
-                layout
-                className="flex items-center gap-2 rounded-lg px-3 py-2"
-                style={{
-                  background: pick
-                    ? `${pick.teamPrimaryColor}12`
-                    : isNext
-                      ? 'rgba(212,148,10,0.06)'
-                      : 'transparent',
-                  border: `1px solid ${pick
-                    ? `${pick.teamPrimaryColor}35`
-                    : isNext
-                      ? 'rgba(212,148,10,0.3)'
-                      : 'var(--border)'}`,
-                }}
-              >
-                {/* Positie badge */}
-                <span style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: '0.6rem',
-                  letterSpacing: '0.08em',
-                  color: pick ? pick.teamPrimaryColor : isNext ? 'var(--gold)' : 'var(--muted)',
-                  width: 30,
-                  flexShrink: 0,
-                }}>{pos}</span>
-
-                {pick ? (
-                  <>
-                    {/* Overall */}
-                    <span style={{
-                      fontFamily: 'var(--font-display)',
-                      fontSize: '0.75rem',
-                      color: pick.player.overall >= 80 ? 'var(--gold)' : pick.player.overall >= 73 ? '#A8E6CF' : 'var(--text-2)',
-                      width: 22,
-                      flexShrink: 0,
-                      textAlign: 'center',
-                    }}>{blind ? '?' : pick.player.overall}</span>
-                    {/* Naam */}
-                    <span className="text-xs truncate flex-1" style={{ color: 'var(--text)', fontWeight: 500 }}>
-                      {pick.player.name.split(' ').pop()}
-                    </span>
-                    {/* Seizoen */}
-                    <span className="text-xs flex-shrink-0" style={{ color: 'var(--muted)', fontSize: '0.58rem' }}>
-                      {pick.season.slice(-2)}
-                    </span>
-                  </>
-                ) : (
-                  <span className="text-xs flex-1" style={{ color: isNext ? 'var(--gold)' : 'var(--border-2)' }}>
-                    {isNext ? '← aan de beurt' : '——'}
-                  </span>
-                )}
-              </motion.div>
-            );
-          })}
-        </div>
       </div>
 
       {/* ── Rechts: Actie ─────────────────────────────────────────────── */}
