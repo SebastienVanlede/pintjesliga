@@ -8,7 +8,6 @@
     {"id":"bram-verstocken-23","name":"Bram Verstocken","position":"GK","nationality":"BEL","age":23,"appearances":10,"goals":0,"assists":0,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":60},
     {"id":"jens-teunckels-23","name":"Jens Teunckels","position":"CB","nationality":"BEL","age":24,"appearances":24,"goals":0,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":62},
     {"id":"brian-plat-23","name":"Brian Plat","position":"CB","nationality":"NED","age":27,"appearances":22,"goals":0,"assists":0,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":63},
-    {"id":"nikki-havenaar-23","name":"Nikki Havenaar","position":"CB","nationality":"JPN","age":32,"appearances":20,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":30,"awards":[],"overall":64},
     {"id":"andres-labie-23","name":"Andres Labie","position":"RB","alternativePositions":["RM"],"nationality":"BEL","age":26,"appearances":22,"goals":0,"assists":2,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":61},
     {"id":"edisson-jordanov-23","name":"Edisson Jordanov","position":"LB","alternativePositions":["LM"],"nationality":"BUL","age":22,"appearances":20,"goals":0,"assists":1,"marketValue":500000,"internationalCaps":3,"awards":[],"overall":61},
     {"id":"lukas-van-eenoo-23","name":"Lukas Van Eenoo","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":26,"appearances":24,"goals":1,"assists":2,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":63},
