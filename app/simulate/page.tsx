@@ -613,7 +613,7 @@ function ShareSection({ sim, pickedPlayers, formation }: {
       `⭐ ${myTeam}: ${resultLabel}`,
       ...(degraded ? [`🔴 Gedegradeerd: ${degraded}`] : []),
       '',
-      'Maak je eigen droomelf: pintjesliga.be',
+      'Maak je eigen droomelf: pintjesliga.vercel.app',
     ];
     return lines.join('\n');
   }
@@ -739,7 +739,7 @@ function ShareSection({ sim, pickedPlayers, formation }: {
       ctx.font = '14px Arial, sans-serif';
       ctx.fillStyle = MUTED;
       ctx.textAlign = 'center';
-      ctx.fillText('pintjesliga.be', W / 2, y);
+      ctx.fillText('pintjesliga.vercel.app', W / 2, y);
 
       canvas.toBlob(blob => resolve(blob!), 'image/png');
     });
@@ -854,7 +854,7 @@ function ShareSection({ sim, pickedPlayers, formation }: {
 
           {/* Footer */}
           <div style={{ marginTop: 14, paddingTop: 10, borderTop: '1px solid #1E1D1A', fontSize: 11, color: '#6B6560', textAlign: 'center' }}>
-            pintjesliga.be
+            pintjesliga.vercel.app
           </div>
         </div>
       </div>
