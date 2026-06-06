@@ -1,0 +1,20 @@
+{
+  "team": "Royal Excel Mouscron",
+  "teamId": "mouscron",
+  "season": "2019-20",
+  "year": 2019,
+  "players": [
+    {"id":"gillekens-19","name":"Nick Gillekens","position":"GK","nationality":"BEL","age":22,"appearances":20,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":61},
+    {"id":"silvestre-19","name":"Matías Silvestre","position":"CB","nationality":"ARG","age":33,"appearances":18,"goals":0,"assists":0,"marketValue":300000,"internationalCaps":26,"awards":[],"overall":60},
+    {"id":"keita-m-19","name":"Cheick Keita","position":"LB","nationality":"MLI","age":22,"appearances":16,"goals":0,"assists":1,"marketValue":600000,"internationalCaps":3,"awards":[],"overall":59,"alternativePositions":["LM"]},
+    {"id":"ousou-m-19","name":"Aiham Ousou","position":"CB","nationality":"SYR","age":21,"appearances":16,"goals":0,"assists":0,"marketValue":600000,"internationalCaps":5,"awards":[],"overall":58},
+    {"id":"gueye-m-19","name":"El Hadji Gueye","position":"LB","alternativePositions":["RB","LM"],"nationality":"SEN","age":21,"appearances":14,"goals":0,"assists":1,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":55},
+    {"id":"bakic-m-19","name":"Marko Bakić","position":"CM","alternativePositions":["CAM","CDM"],"nationality":"MNE","age":23,"appearances":18,"goals":2,"assists":3,"marketValue":700000,"internationalCaps":15,"awards":[],"overall":61},
+    {"id":"onana-m-19","name":"Jean Onana","position":"CDM","alternativePositions":["CM"],"nationality":"CMR","age":18,"appearances":14,"goals":0,"assists":1,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":60},
+    {"id":"xadas-m-19","name":"Xadas","position":"CAM","alternativePositions":["LW","CM"],"nationality":"POR","age":21,"appearances":16,"goals":2,"assists":3,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":61},
+    {"id":"nuno-m-19","name":"Nuno da Costa","position":"RW","alternativePositions":["ST"],"nationality":"CPV","age":27,"appearances":18,"goals":5,"assists":3,"marketValue":700000,"internationalCaps":30,"awards":[],"overall":62},
+    {"id":"gnohere-m-19","name":"Harlem Gnohéré","position":"ST","nationality":"FRA","age":29,"appearances":18,"goals":5,"assists":2,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":61},
+    {"id":"badibanga-m-19","name":"Beni Badibanga","position":"LW","nationality":"BEL","age":23,"appearances":16,"goals":2,"assists":2,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":57},
+    {"id":"bocat-m-19","name":"Eric Bocat","position":"LB","nationality":"FRA","age":20,"appearances":12,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":55,"alternativePositions":["LM"]}
+  ]
+}

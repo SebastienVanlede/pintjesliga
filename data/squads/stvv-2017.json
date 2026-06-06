@@ -1,0 +1,16 @@
+{
+  "team": "Sint-Truidense VV",
+  "teamId": "stvv",
+  "season": "2017-18",
+  "year": 2017,
+  "players": [
+    {"id":"schmidt-17","name":"Daniel Schmidt","position":"GK","nationality":"JPN","age":26,"appearances":18,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":5,"awards":[],"overall":63},
+    {"id":"hashioka-17","name":"Daiki Hashioka","position":"RB","nationality":"JPN","age":18,"appearances":12,"goals":0,"assists":1,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":56,"alternativePositions":["RM"]},
+    {"id":"teixeira-17","name":"Jorge Teixeira","position":"CB","nationality":"POR","age":25,"appearances":16,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":58},
+    {"id":"morita-17","name":"Hidemasa Morita","position":"CDM","alternativePositions":["CM"],"nationality":"JPN","age":22,"appearances":18,"goals":1,"assists":2,"marketValue":1000000,"internationalCaps":3,"awards":[],"overall":62},
+    {"id":"kamada-17","name":"Daichi Kamada","position":"CAM","alternativePositions":["CM","ST"],"nationality":"JPN","age":21,"appearances":20,"goals":5,"assists":5,"marketValue":2500000,"internationalCaps":2,"awards":[],"overall":66},
+    {"id":"okazaki-17","name":"Shinji Okazaki","position":"ST","nationality":"JPN","age":31,"appearances":20,"goals":6,"assists":3,"marketValue":800000,"internationalCaps":119,"awards":[],"overall":66},
+    {"id":"suzuki-17","name":"Yuma Suzuki","position":"ST","nationality":"JPN","age":20,"appearances":14,"goals":3,"assists":1,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":58},
+    {"id":"koita-17","name":"Aboubakary Koita","position":"ST","alternativePositions":["LW"],"nationality":"BEL","age":16,"appearances":8,"goals":1,"assists":0,"marketValue":200000,"internationalCaps":0,"awards":[],"overall":50}
+  ]
+}

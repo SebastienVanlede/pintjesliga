@@ -1,0 +1,22 @@
+{
+  "team": "AA Gent",
+  "teamId": "gent",
+  "season": "2018-19",
+  "year": 2018,
+  "players": [
+    {"id":"kaminski-18","name":"Thomas Kaminski","position":"GK","nationality":"BEL","age":26,"appearances":26,"goals":0,"assists":0,"marketValue":2500000,"internationalCaps":5,"awards":[],"overall":70},
+    {"id":"ngadeu-18","name":"Michael Ngadeu-Ngadjui","position":"CB","nationality":"CMR","age":27,"appearances":22,"goals":1,"assists":0,"marketValue":3000000,"internationalCaps":18,"awards":[],"overall":69},
+    {"id":"bronn-18","name":"Dylan Bronn","position":"CB","nationality":"TUN","age":23,"appearances":20,"goals":1,"assists":0,"marketValue":2500000,"internationalCaps":15,"awards":[],"overall":67},
+    {"id":"plastun-18","name":"Ihor Plastun","position":"CB","alternativePositions":["LB"],"nationality":"UKR","age":24,"appearances":18,"goals":0,"assists":0,"marketValue":1200000,"internationalCaps":8,"awards":[],"overall":64},
+    {"id":"castro-montes-18","name":"Alessio Castro-Montes","position":"RB","alternativePositions":["RM"],"nationality":"BEL","age":21,"appearances":20,"goals":1,"assists":3,"marketValue":2000000,"internationalCaps":1,"awards":[],"overall":65},
+    {"id":"mohammadi-18","name":"Milad Mohammadi","position":"LB","alternativePositions":["LM"],"nationality":"IRN","age":24,"appearances":18,"goals":0,"assists":2,"marketValue":1200000,"internationalCaps":25,"awards":[],"overall":62},
+    {"id":"odjidja-18","name":"Vadis Odjidja-Ofoe","position":"CM","alternativePositions":["CAM","CDM"],"nationality":"BEL","age":29,"appearances":24,"goals":3,"assists":5,"marketValue":3500000,"internationalCaps":44,"awards":[],"overall":71},
+    {"id":"kums-gent-18","name":"Sven Kums","position":"CM","alternativePositions":["CAM","CDM"],"nationality":"BEL","age":30,"appearances":20,"goals":2,"assists":4,"marketValue":1500000,"internationalCaps":16,"awards":["Pro League Best Midfielder 2015"],"overall":70},
+    {"id":"dejaegere-18","name":"Brecht Dejaegere","position":"CM","alternativePositions":["CAM","CDM"],"nationality":"BEL","age":26,"appearances":20,"goals":3,"assists":3,"marketValue":2500000,"internationalCaps":3,"awards":[],"overall":68},
+    {"id":"chakvetadze-18","name":"Giorgi Chakvetadze","position":"CAM","alternativePositions":["CM"],"nationality":"GEO","age":19,"appearances":18,"goals":4,"assists":5,"marketValue":3000000,"internationalCaps":8,"awards":[],"overall":68},
+    {"id":"yaremchuk-18","name":"Roman Yaremchuk","position":"ST","nationality":"UKR","age":22,"appearances":22,"goals":9,"assists":3,"marketValue":5000000,"internationalCaps":10,"awards":[],"overall":70},
+    {"id":"david-gent-18","name":"Jonathan David","position":"ST","alternativePositions":["LW"],"nationality":"CAN","age":18,"appearances":18,"goals":9,"assists":4,"marketValue":6000000,"internationalCaps":3,"awards":[],"overall":71},
+    {"id":"dompé-18","name":"Jean-Luc Dompé","position":"LW","alternativePositions":["RW"],"nationality":"FRA","age":22,"appearances":16,"goals":3,"assists":4,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"depoitre-18","name":"Laurent Depoitre","position":"ST","nationality":"BEL","age":26,"appearances":16,"goals":5,"assists":2,"marketValue":2500000,"internationalCaps":7,"awards":["Pro League Top Scorer 2015"],"overall":67}
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "team": "Cercle Brugge",
+  "teamId": "cercle-brugge",
+  "season": "2017-18",
+  "year": 2017,
+  "players": [
+    {"id":"warleson-17","name":"Warleson","position":"GK","nationality":"BRA","age":21,"appearances":16,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":60},
+    {"id":"daland-17","name":"Jesper Daland","position":"CB","nationality":"NOR","age":18,"appearances":10,"goals":0,"assists":0,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":55},
+    {"id":"miangue-17","name":"Senna Miangué","position":"LB","nationality":"BEL","age":20,"appearances":14,"goals":0,"assists":1,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":57,"alternativePositions":["LM"]},
+    {"id":"van-der-bruggen-17","name":"Hannes Van der Bruggen","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":23,"appearances":16,"goals":1,"assists":2,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":59},
+    {"id":"lopes-17","name":"Leonardo Lopes","position":"CM","alternativePositions":["CDM"],"nationality":"POR","age":18,"appearances":10,"goals":0,"assists":1,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":53},
+    {"id":"minda-17","name":"Alan Minda","position":"CAM","alternativePositions":["LW","CM"],"nationality":"ECU","age":19,"appearances":12,"goals":1,"assists":2,"marketValue":500000,"internationalCaps":2,"awards":[],"overall":55},
+    {"id":"denkey-17","name":"Kévin Denkey","position":"ST","alternativePositions":["LW"],"nationality":"TGO","age":17,"appearances":10,"goals":2,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":53},
+    {"id":"espinoza-17","name":"Dagoberto Espinoza","position":"CM","nationality":"MEX","age":20,"appearances":10,"goals":0,"assists":1,"marketValue":200000,"internationalCaps":0,"awards":[],"overall":51,"alternativePositions":["CDM"]}
+  ]
+}

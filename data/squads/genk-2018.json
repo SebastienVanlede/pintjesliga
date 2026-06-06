@@ -1,0 +1,24 @@
+{
+  "team": "KRC Genk",
+  "teamId": "genk",
+  "season": "2018-19",
+  "year": 2018,
+  "players": [
+    {"id":"vukovic-18","name":"Danny Vukovic","position":"GK","nationality":"AUS","age":32,"appearances":30,"goals":0,"assists":0,"marketValue":1500000,"internationalCaps":12,"awards":[],"overall":68},
+    {"id":"jackers-18","name":"Nordin Jackers","position":"GK","nationality":"BEL","age":19,"appearances":4,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":60},
+    {"id":"maehle-18","name":"Joakim Mæhle","position":"RB","alternativePositions":["RM","LB"],"nationality":"DEN","age":21,"appearances":28,"goals":2,"assists":5,"marketValue":4000000,"internationalCaps":5,"awards":[],"overall":71},
+    {"id":"lucumi-18","name":"Jhon Lucumí","position":"CB","alternativePositions":["CDM"],"nationality":"COL","age":19,"appearances":18,"goals":0,"assists":0,"marketValue":3000000,"internationalCaps":2,"awards":[],"overall":67},
+    {"id":"dewaest-18","name":"Sébastien Dewaest","position":"CB","nationality":"BEL","age":28,"appearances":26,"goals":1,"assists":0,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"aidoo-18","name":"Joseph Aidoo","position":"CB","nationality":"GHA","age":23,"appearances":24,"goals":0,"assists":0,"marketValue":4000000,"internationalCaps":10,"awards":[],"overall":68},
+    {"id":"uronen-18","name":"Jere Uronen","position":"LB","alternativePositions":["LM"],"nationality":"FIN","age":24,"appearances":22,"goals":0,"assists":3,"marketValue":2000000,"internationalCaps":30,"awards":[],"overall":65},
+    {"id":"heynen-18","name":"Bryan Heynen","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":23,"appearances":28,"goals":3,"assists":5,"marketValue":3000000,"internationalCaps":2,"awards":[],"overall":71},
+    {"id":"berge-18","name":"Sander Berge","position":"CDM","alternativePositions":["CM"],"nationality":"NOR","age":20,"appearances":26,"goals":2,"assists":4,"marketValue":10000000,"internationalCaps":10,"awards":[],"overall":74},
+    {"id":"malinovskyi-18","name":"Ruslan Malinovskyi","position":"CM","alternativePositions":["CAM","CDM"],"nationality":"UKR","age":25,"appearances":28,"goals":5,"assists":8,"marketValue":8000000,"internationalCaps":20,"awards":[],"overall":75},
+    {"id":"trossard-18","name":"Leandro Trossard","position":"LW","alternativePositions":["RW","CAM"],"nationality":"BEL","age":24,"appearances":30,"goals":14,"assists":12,"marketValue":12000000,"internationalCaps":5,"awards":["Gouden Schoen 2019"],"overall":79},
+    {"id":"pozuelo-18","name":"Alejandro Pozuelo","position":"CAM","alternativePositions":["CM"],"nationality":"ESP","age":26,"appearances":28,"goals":8,"assists":14,"marketValue":6000000,"internationalCaps":0,"awards":[],"overall":77},
+    {"id":"ito-18","name":"Junya Itō","position":"RW","alternativePositions":["LW","ST"],"nationality":"JPN","age":25,"appearances":26,"goals":8,"assists":7,"marketValue":4000000,"internationalCaps":18,"awards":[],"overall":73},
+    {"id":"samatta-18","name":"Mbwana Samatta","position":"ST","nationality":"TAN","age":26,"appearances":26,"goals":12,"assists":4,"marketValue":5000000,"internationalCaps":35,"awards":[],"overall":70},
+    {"id":"paintsil-18","name":"Joseph Paintsil","position":"RW","alternativePositions":["LW"],"nationality":"GHA","age":21,"appearances":18,"goals":5,"assists":4,"marketValue":3000000,"internationalCaps":3,"awards":[],"overall":67},
+    {"id":"ingvartsen-18","name":"Marcus Ingvartsen","position":"ST","alternativePositions":["LW"],"nationality":"DEN","age":22,"appearances":14,"goals":4,"assists":2,"marketValue":2000000,"internationalCaps":5,"awards":[],"overall":65}
+  ]
+}

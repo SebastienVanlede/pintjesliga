@@ -1,0 +1,23 @@
+{
+  "team": "RSC Anderlecht",
+  "teamId": "anderlecht",
+  "season": "2019-20",
+  "year": 2019,
+  "players": [
+    {"id":"van-crombrugge-19","name":"Hendrik Van Crombrugge","position":"GK","nationality":"BEL","age":26,"appearances":26,"goals":0,"assists":0,"marketValue":4000000,"internationalCaps":5,"awards":[],"overall":73},
+    {"id":"boeckx-19","name":"Frank Boeckx","position":"GK","nationality":"BEL","age":33,"appearances":4,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"kompany-19","name":"Vincent Kompany","position":"CB","alternativePositions":["CDM"],"nationality":"BEL","age":33,"appearances":14,"goals":1,"assists":0,"marketValue":1500000,"internationalCaps":89,"awards":[],"overall":74},
+    {"id":"bornauw-19","name":"Sebastiaan Bornauw","position":"CB","nationality":"BEL","age":20,"appearances":24,"goals":2,"assists":0,"marketValue":8000000,"internationalCaps":3,"awards":[],"overall":72},
+    {"id":"sardella-19","name":"Killian Sardella","position":"RB","alternativePositions":["CB","RM"],"nationality":"BEL","age":18,"appearances":16,"goals":0,"assists":2,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":62},
+    {"id":"murillo-19","name":"Michael Amir Murillo","position":"RB","nationality":"PAN","age":23,"appearances":18,"goals":0,"assists":1,"marketValue":2000000,"internationalCaps":18,"awards":[],"overall":64,"alternativePositions":["RM"]},
+    {"id":"lawrence-19","name":"James Lawrence","position":"CB","alternativePositions":["LB"],"nationality":"WAL","age":27,"appearances":16,"goals":0,"assists":0,"marketValue":1500000,"internationalCaps":12,"awards":[],"overall":63},
+    {"id":"trebel-19","name":"Adrien Trebel","position":"CM","alternativePositions":["CDM"],"nationality":"FRA","age":28,"appearances":20,"goals":2,"assists":3,"marketValue":3000000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"kana-19","name":"Marco Kana","position":"CDM","alternativePositions":["CM","CB"],"nationality":"BEL","age":18,"appearances":14,"goals":0,"assists":1,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":62},
+    {"id":"verschaeren-19","name":"Yari Verschaeren","position":"CAM","alternativePositions":["CM","LW"],"nationality":"BEL","age":18,"appearances":22,"goals":4,"assists":5,"marketValue":5000000,"internationalCaps":3,"awards":[],"overall":70},
+    {"id":"saelemaekers-19","name":"Alexis Saelemaekers","position":"RW","alternativePositions":["LW","CM"],"nationality":"BEL","age":20,"appearances":24,"goals":3,"assists":5,"marketValue":6000000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"amuzu-19","name":"Francis Amuzu","position":"LW","alternativePositions":["RW","ST"],"nationality":"BEL","age":19,"appearances":18,"goals":3,"assists":3,"marketValue":3000000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"dimata-19","name":"Landry Dimata","position":"ST","nationality":"BEL","age":22,"appearances":18,"goals":5,"assists":2,"marketValue":4000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"lokonga-19","name":"Albert Sambi Lokonga","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":19,"appearances":14,"goals":0,"assists":2,"marketValue":3000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"doku-19","name":"Jérémy Doku","position":"LW","alternativePositions":["RW"],"nationality":"BEL","age":17,"appearances":10,"goals":1,"assists":1,"marketValue":5000000,"internationalCaps":0,"awards":[],"overall":65}
+  ]
+}

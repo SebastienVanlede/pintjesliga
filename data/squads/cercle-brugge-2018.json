@@ -1,0 +1,17 @@
+{
+  "team": "Cercle Brugge",
+  "teamId": "cercle-brugge",
+  "season": "2018-19",
+  "year": 2018,
+  "players": [
+    {"id":"warleson-18","name":"Warleson","position":"GK","nationality":"BRA","age":22,"appearances":20,"goals":0,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"daland-18","name":"Jesper Daland","position":"CB","nationality":"NOR","age":19,"appearances":14,"goals":0,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":59},
+    {"id":"miangue-18","name":"Senna Miangué","position":"LB","nationality":"BEL","age":21,"appearances":16,"goals":0,"assists":1,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":58,"alternativePositions":["LM"]},
+    {"id":"siquet-18","name":"Hugo Siquet","position":"RB","alternativePositions":["RM"],"nationality":"BEL","age":16,"appearances":8,"goals":0,"assists":0,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":52},
+    {"id":"van-der-bruggen-18","name":"Hannes Van der Bruggen","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":24,"appearances":18,"goals":1,"assists":2,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":61},
+    {"id":"lopes-18","name":"Leonardo Lopes","position":"CM","alternativePositions":["CDM"],"nationality":"POR","age":19,"appearances":14,"goals":1,"assists":1,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":58},
+    {"id":"denkey-18","name":"Kévin Denkey","position":"ST","alternativePositions":["LW"],"nationality":"TGO","age":18,"appearances":12,"goals":2,"assists":1,"marketValue":700000,"internationalCaps":2,"awards":[],"overall":57},
+    {"id":"minda-18","name":"Alan Minda","position":"CAM","alternativePositions":["LW","CM"],"nationality":"ECU","age":20,"appearances":14,"goals":2,"assists":3,"marketValue":700000,"internationalCaps":5,"awards":[],"overall":58},
+    {"id":"espinoza-18","name":"Dagoberto Espinoza","position":"CM","nationality":"MEX","age":21,"appearances":12,"goals":0,"assists":1,"marketValue":300000,"internationalCaps":1,"awards":[],"overall":54,"alternativePositions":["CDM"]}
+  ]
+}

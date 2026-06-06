@@ -1,0 +1,20 @@
+{
+  "team": "Cercle Brugge",
+  "teamId": "cercle-brugge",
+  "season": "2019-20",
+  "year": 2019,
+  "players": [
+    {"id":"warleson-19","name":"Warleson","position":"GK","nationality":"BRA","age":23,"appearances":22,"goals":0,"assists":0,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"dompé-c-19","name":"Jean-Luc Dompé","position":"LW","alternativePositions":["RW"],"nationality":"FRA","age":23,"appearances":20,"goals":4,"assists":5,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"daland-19","name":"Jesper Daland","position":"CB","nationality":"NOR","age":20,"appearances":18,"goals":0,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":62},
+    {"id":"miangue-19","name":"Senna Miangué","position":"LB","nationality":"BEL","age":22,"appearances":18,"goals":0,"assists":1,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":60,"alternativePositions":["LM"]},
+    {"id":"popovic-c-19","name":"Boris Popović","position":"CB","nationality":"SRB","age":23,"appearances":16,"goals":0,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":61},
+    {"id":"van-der-bruggen-19","name":"Hannes Van der Bruggen","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":25,"appearances":20,"goals":1,"assists":2,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"lopes-c-19","name":"Leonardo Lopes","position":"CM","alternativePositions":["CDM"],"nationality":"POR","age":20,"appearances":16,"goals":1,"assists":2,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":61},
+    {"id":"siquet-19","name":"Hugo Siquet","position":"RB","alternativePositions":["RM"],"nationality":"BEL","age":17,"appearances":12,"goals":0,"assists":1,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":56},
+    {"id":"denkey-19","name":"Kévin Denkey","position":"ST","alternativePositions":["LW"],"nationality":"TGO","age":19,"appearances":18,"goals":4,"assists":2,"marketValue":1500000,"internationalCaps":5,"awards":[],"overall":62},
+    {"id":"ferrara-19","name":"Thibo Somers","position":"ST","alternativePositions":["LW"],"nationality":"BEL","age":16,"appearances":10,"goals":1,"assists":1,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":55},
+    {"id":"espinoza-19","name":"Dagoberto Espinoza","position":"CM","nationality":"MEX","age":23,"appearances":14,"goals":0,"assists":2,"marketValue":400000,"internationalCaps":2,"awards":[],"overall":57,"alternativePositions":["CDM"]},
+    {"id":"ravych-19","name":"Christiaan Ravych","position":"CM","nationality":"BEL","age":21,"appearances":14,"goals":1,"assists":1,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":56,"alternativePositions":["CDM"]}
+  ]
+}

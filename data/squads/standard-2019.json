@@ -1,0 +1,22 @@
+{
+  "team": "Standard Liège",
+  "teamId": "standard",
+  "season": "2019-20",
+  "year": 2019,
+  "players": [
+    {"id":"bodart-19","name":"Arnaud Bodart","position":"GK","nationality":"BEL","age":24,"appearances":27,"goals":0,"assists":0,"marketValue":2500000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"milinkovsavic-19","name":"Vanja Milinković-Savić","position":"GK","nationality":"SRB","age":22,"appearances":4,"goals":0,"assists":0,"marketValue":3000000,"internationalCaps":5,"awards":[],"overall":68},
+    {"id":"vanheusden-19","name":"Zinho Vanheusden","position":"CB","alternativePositions":["CDM"],"nationality":"BEL","age":20,"appearances":24,"goals":1,"assists":0,"marketValue":5000000,"internationalCaps":5,"awards":[],"overall":70},
+    {"id":"laifis-19","name":"Konstantinos Laifis","position":"CB","alternativePositions":["LB"],"nationality":"CYP","age":26,"appearances":22,"goals":0,"assists":0,"marketValue":1800000,"internationalCaps":35,"awards":[],"overall":66},
+    {"id":"vojvoda-19","name":"Mërgim Vojvoda","position":"RB","alternativePositions":["CB","RM"],"nationality":"KOS","age":23,"appearances":20,"goals":0,"assists":2,"marketValue":2000000,"internationalCaps":15,"awards":[],"overall":64},
+    {"id":"gavory-19","name":"Nicolas Gavory","position":"LB","nationality":"FRA","age":24,"appearances":20,"goals":0,"assists":2,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":62,"alternativePositions":["LM"]},
+    {"id":"cimirot-19","name":"Gojko Cimirot","position":"CDM","alternativePositions":["CM"],"nationality":"BIH","age":27,"appearances":22,"goals":1,"assists":2,"marketValue":1200000,"internationalCaps":32,"awards":[],"overall":67},
+    {"id":"amallah-19","name":"Selim Amallah","position":"CM","alternativePositions":["CAM","CDM"],"nationality":"MAR","age":22,"appearances":22,"goals":4,"assists":4,"marketValue":4000000,"internationalCaps":5,"awards":[],"overall":70},
+    {"id":"mpoku-19","name":"Paul-José M'Poku","position":"CAM","alternativePositions":["CM","LW"],"nationality":"COD","age":26,"appearances":20,"goals":4,"assists":5,"marketValue":2000000,"internationalCaps":30,"awards":[],"overall":69},
+    {"id":"carcela-19","name":"Mehdi Carcela","position":"LW","alternativePositions":["RW","CAM"],"nationality":"MAR","age":28,"appearances":20,"goals":3,"assists":4,"marketValue":1500000,"internationalCaps":40,"awards":[],"overall":67},
+    {"id":"raskin-19","name":"Nicolas Raskin","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":17,"appearances":12,"goals":1,"assists":2,"marketValue":3000000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"bastien-19","name":"Samuel Bastien","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":22,"appearances":18,"goals":2,"assists":3,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"cop-19","name":"Duje Čop","position":"ST","nationality":"CRO","age":29,"appearances":20,"goals":7,"assists":2,"marketValue":2000000,"internationalCaps":12,"awards":[],"overall":68},
+    {"id":"oulare-19","name":"Obbi Oulare","position":"ST","alternativePositions":["LW"],"nationality":"BEL","age":23,"appearances":14,"goals":4,"assists":2,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":64}
+  ]
+}

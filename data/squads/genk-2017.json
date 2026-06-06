@@ -1,0 +1,20 @@
+{
+  "team": "KRC Genk",
+  "teamId": "genk",
+  "season": "2017-18",
+  "year": 2017,
+  "players": [
+    {"id":"vukovic-17","name":"Danny Vukovic","position":"GK","nationality":"AUS","age":31,"appearances":26,"goals":0,"assists":0,"marketValue":1200000,"internationalCaps":8,"awards":[],"overall":66},
+    {"id":"castagne-17","name":"Timothy Castagne","position":"RB","alternativePositions":["LB","RM"],"nationality":"BEL","age":21,"appearances":26,"goals":2,"assists":4,"marketValue":5000000,"internationalCaps":5,"awards":[],"overall":72},
+    {"id":"maehle-17","name":"Joakim Mæhle","position":"LB","alternativePositions":["RB","LM"],"nationality":"DEN","age":20,"appearances":22,"goals":1,"assists":3,"marketValue":2500000,"internationalCaps":2,"awards":[],"overall":67},
+    {"id":"dewaest-17","name":"Sébastien Dewaest","position":"CB","nationality":"BEL","age":26,"appearances":24,"goals":1,"assists":0,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"aidoo-17","name":"Joseph Aidoo","position":"CB","nationality":"GHA","age":21,"appearances":18,"goals":0,"assists":0,"marketValue":2000000,"internationalCaps":5,"awards":[],"overall":64},
+    {"id":"heynen-17","name":"Bryan Heynen","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":22,"appearances":24,"goals":2,"assists":3,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"pozuelo-17","name":"Alejandro Pozuelo","position":"CAM","alternativePositions":["CM"],"nationality":"ESP","age":25,"appearances":26,"goals":7,"assists":12,"marketValue":5000000,"internationalCaps":0,"awards":[],"overall":75},
+    {"id":"trossard-17","name":"Leandro Trossard","position":"LW","alternativePositions":["RW","CAM"],"nationality":"BEL","age":23,"appearances":24,"goals":8,"assists":8,"marketValue":5000000,"internationalCaps":2,"awards":[],"overall":74},
+    {"id":"samatta-17","name":"Mbwana Samatta","position":"ST","nationality":"TAN","age":24,"appearances":22,"goals":9,"assists":3,"marketValue":3000000,"internationalCaps":28,"awards":[],"overall":68},
+    {"id":"berge-17","name":"Sander Berge","position":"CDM","alternativePositions":["CM"],"nationality":"NOR","age":19,"appearances":18,"goals":1,"assists":2,"marketValue":4000000,"internationalCaps":5,"awards":[],"overall":70},
+    {"id":"ingvartsen-17","name":"Marcus Ingvartsen","position":"ST","alternativePositions":["LW"],"nationality":"DEN","age":21,"appearances":18,"goals":5,"assists":2,"marketValue":1500000,"internationalCaps":3,"awards":[],"overall":63},
+    {"id":"wouters-17","name":"Dries Wouters","position":"CDM","alternativePositions":["CB","CM"],"nationality":"BEL","age":20,"appearances":14,"goals":0,"assists":1,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":62}
+  ]
+}

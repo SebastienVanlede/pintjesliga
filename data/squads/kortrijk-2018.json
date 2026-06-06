@@ -1,0 +1,16 @@
+{
+  "team": "KV Kortrijk",
+  "teamId": "kortrijk",
+  "season": "2018-19",
+  "year": 2018,
+  "players": [
+    {"id":"vandenberghe-18","name":"Tom Vandenberghe","position":"GK","nationality":"BEL","age":22,"appearances":20,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":60},
+    {"id":"d-haene-18","name":"Kristof D'haene","position":"LB","nationality":"BEL","age":28,"appearances":18,"goals":0,"assists":1,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":60,"alternativePositions":["LM"]},
+    {"id":"derijck-k-18","name":"Timothy Derijck","position":"CB","nationality":"BEL","age":29,"appearances":16,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":59},
+    {"id":"watanabe-k-18","name":"Tsuyoshi Watanabe","position":"CB","nationality":"JPN","age":21,"appearances":16,"goals":0,"assists":0,"marketValue":700000,"internationalCaps":3,"awards":[],"overall":60},
+    {"id":"kadri-k-18","name":"Abdelkahar Kadri","position":"CM","alternativePositions":["CAM","CDM"],"nationality":"ALG","age":22,"appearances":18,"goals":2,"assists":2,"marketValue":700000,"internationalCaps":2,"awards":[],"overall":60},
+    {"id":"massimo-k-18","name":"Massimo Bruno","position":"LW","nationality":"BEL","age":23,"appearances":18,"goals":3,"assists":2,"marketValue":600000,"internationalCaps":1,"awards":[],"overall":61},
+    {"id":"avenatti-k-18","name":"Felipe Avenatti","position":"ST","nationality":"URU","age":23,"appearances":18,"goals":5,"assists":2,"marketValue":700000,"internationalCaps":1,"awards":[],"overall":61},
+    {"id":"selemani-k-18","name":"Faïz Selemani","position":"RW","alternativePositions":["ST"],"nationality":"COM","age":22,"appearances":16,"goals":3,"assists":3,"marketValue":600000,"internationalCaps":7,"awards":[],"overall":60}
+  ]
+}

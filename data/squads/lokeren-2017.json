@@ -1,0 +1,16 @@
+{
+  "team": "KSC Lokeren",
+  "teamId": "lokeren",
+  "season": "2017-18",
+  "year": 2017,
+  "players": [
+    {"id":"verhulst-17","name":"Davino Verhulst","position":"GK","nationality":"BEL","age":22,"appearances":20,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":60},
+    {"id":"derijck-17","name":"Timothy Derijck","position":"CB","nationality":"BEL","age":30,"appearances":18,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":59},
+    {"id":"nana-17","name":"Nana Asare","position":"RB","alternativePositions":["CB","RM"],"nationality":"GHA","age":31,"appearances":16,"goals":0,"assists":1,"marketValue":300000,"internationalCaps":18,"awards":[],"overall":57},
+    {"id":"kara-17","name":"Ibrahima Conté","position":"CDM","alternativePositions":["CM"],"nationality":"GUI","age":25,"appearances":14,"goals":1,"assists":1,"marketValue":400000,"internationalCaps":3,"awards":[],"overall":57},
+    {"id":"akpala-17","name":"Joseph Akpala","position":"ST","alternativePositions":["LW"],"nationality":"NGA","age":30,"appearances":16,"goals":4,"assists":1,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":57},
+    {"id":"perbet-17","name":"Jérémy Perbet","position":"ST","nationality":"BEL","age":30,"appearances":14,"goals":4,"assists":1,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":60},
+    {"id":"peeters-17","name":"Stef Peeters","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":25,"appearances":14,"goals":1,"assists":1,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":57},
+    {"id":"doumbia-17","name":"Souleyman Doumbia","position":"RB","nationality":"CIV","age":22,"appearances":12,"goals":0,"assists":1,"marketValue":300000,"internationalCaps":1,"awards":[],"overall":55,"alternativePositions":["RM"]}
+  ]
+}

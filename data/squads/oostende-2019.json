@@ -1,0 +1,20 @@
+{
+  "team": "KV Oostende",
+  "teamId": "oostende",
+  "season": "2019-20",
+  "year": 2019,
+  "players": [
+    {"id":"espeel-19","name":"Arne Espeel","position":"GK","nationality":"BEL","age":28,"appearances":24,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"theate-19","name":"Arthur Theate","position":"CB","alternativePositions":["LB"],"nationality":"BEL","age":19,"appearances":18,"goals":0,"assists":0,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"capon-19","name":"Brecht Capon","position":"CB","nationality":"BEL","age":30,"appearances":18,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":59},
+    {"id":"lopes-o-19","name":"Vinicius Lopes","position":"LB","alternativePositions":["LW","LM"],"nationality":"BRA","age":24,"appearances":20,"goals":1,"assists":3,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":61},
+    {"id":"lankester-19","name":"Jack Lankester","position":"RB","alternativePositions":["RM"],"nationality":"ENG","age":20,"appearances":14,"goals":0,"assists":1,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":57},
+    {"id":"coopman-o-19","name":"Sander Coopman","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":24,"appearances":18,"goals":2,"assists":2,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":61},
+    {"id":"musaba-19","name":"Emmanuel Musaba","position":"LW","alternativePositions":["ST"],"nationality":"COD","age":20,"appearances":16,"goals":3,"assists":3,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":60},
+    {"id":"atanga-oos-19","name":"David Atanga","position":"RW","alternativePositions":["LW"],"nationality":"GHA","age":21,"appearances":16,"goals":2,"assists":2,"marketValue":500000,"internationalCaps":2,"awards":[],"overall":58},
+    {"id":"thiam-o-19","name":"Mamadou Thiam","position":"ST","nationality":"SEN","age":26,"appearances":18,"goals":6,"assists":1,"marketValue":600000,"internationalCaps":3,"awards":[],"overall":61},
+    {"id":"rafia-o-19","name":"Hamza Rafia","position":"CM","alternativePositions":["CAM","CDM"],"nationality":"TUN","age":19,"appearances":14,"goals":1,"assists":2,"marketValue":700000,"internationalCaps":2,"awards":[],"overall":57},
+    {"id":"biset-o-19","name":"Maxime Biset","position":"CB","nationality":"BEL","age":21,"appearances":12,"goals":0,"assists":0,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":53},
+    {"id":"nishio-o-19","name":"Ryuya Nishio","position":"CM","alternativePositions":["CDM"],"nationality":"JPN","age":21,"appearances":12,"goals":0,"assists":1,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":54}
+  ]
+}

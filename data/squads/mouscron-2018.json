@@ -1,0 +1,16 @@
+{
+  "team": "Royal Excel Mouscron",
+  "teamId": "mouscron",
+  "season": "2018-19",
+  "year": 2018,
+  "players": [
+    {"id":"gillekens-18","name":"Nick Gillekens","position":"GK","nationality":"BEL","age":21,"appearances":18,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":59},
+    {"id":"silvestre-18","name":"Matías Silvestre","position":"CB","nationality":"ARG","age":32,"appearances":16,"goals":0,"assists":0,"marketValue":300000,"internationalCaps":24,"awards":[],"overall":59},
+    {"id":"keita-m-18","name":"Cheick Keita","position":"LB","nationality":"MLI","age":21,"appearances":14,"goals":0,"assists":1,"marketValue":500000,"internationalCaps":1,"awards":[],"overall":57,"alternativePositions":["LM"]},
+    {"id":"onana-m-18","name":"Jean Onana","position":"CDM","alternativePositions":["CM"],"nationality":"CMR","age":17,"appearances":10,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":55},
+    {"id":"bakic-m-18","name":"Marko Bakić","position":"CM","alternativePositions":["CAM","CDM"],"nationality":"MNE","age":22,"appearances":16,"goals":2,"assists":2,"marketValue":600000,"internationalCaps":12,"awards":[],"overall":59},
+    {"id":"nuno-m-18","name":"Nuno da Costa","position":"RW","alternativePositions":["ST"],"nationality":"CPV","age":26,"appearances":18,"goals":5,"assists":3,"marketValue":700000,"internationalCaps":25,"awards":[],"overall":61},
+    {"id":"gnohere-m-18","name":"Harlem Gnohéré","position":"ST","nationality":"FRA","age":28,"appearances":16,"goals":4,"assists":2,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":59},
+    {"id":"ousou-m-18","name":"Aiham Ousou","position":"CB","nationality":"SYR","age":20,"appearances":12,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":3,"awards":[],"overall":55}
+  ]
+}

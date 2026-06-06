@@ -1,0 +1,16 @@
+{
+  "team": "KAS Eupen",
+  "teamId": "eupen",
+  "season": "2018-19",
+  "year": 2018,
+  "players": [
+    {"id":"moser-18","name":"Lennart Moser","position":"GK","nationality":"GER","age":22,"appearances":18,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":61},
+    {"id":"palsson-18","name":"Victor Pálsson","position":"CB","alternativePositions":["CDM"],"nationality":"ISL","age":27,"appearances":18,"goals":0,"assists":0,"marketValue":700000,"internationalCaps":25,"awards":[],"overall":62},
+    {"id":"davidson-18","name":"Jason Davidson","position":"LB","nationality":"AUS","age":26,"appearances":16,"goals":0,"assists":1,"marketValue":400000,"internationalCaps":22,"awards":[],"overall":59,"alternativePositions":["LM"]},
+    {"id":"gorenc-18","name":"Jan Gorenc","position":"CB","nationality":"SVN","age":22,"appearances":14,"goals":0,"assists":0,"marketValue":300000,"internationalCaps":3,"awards":[],"overall":56},
+    {"id":"peeters-18","name":"Stef Peeters","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":26,"appearances":16,"goals":1,"assists":2,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":59},
+    {"id":"charles-cook-18","name":"Regan Charles-Cook","position":"RW","alternativePositions":["ST"],"nationality":"GRN","age":21,"appearances":16,"goals":3,"assists":2,"marketValue":600000,"internationalCaps":4,"awards":[],"overall":59},
+    {"id":"prevljak-18","name":"Smail Prevljak","position":"ST","nationality":"BIH","age":22,"appearances":18,"goals":5,"assists":2,"marketValue":800000,"internationalCaps":5,"awards":[],"overall":61},
+    {"id":"ndri-18","name":"Konan N'Dri","position":"RW","alternativePositions":["LW"],"nationality":"CIV","age":16,"appearances":10,"goals":1,"assists":1,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":55}
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "team": "Royal Antwerp FC",
+  "teamId": "antwerp",
+  "season": "2019-20",
+  "year": 2019,
+  "players": [
+    {"id":"butez-19","name":"Jean Butez","position":"GK","nationality":"FRA","age":24,"appearances":28,"goals":0,"assists":0,"marketValue":3000000,"internationalCaps":0,"awards":[],"overall":72},
+    {"id":"de-laet-19","name":"Ritchie De Laet","position":"RB","alternativePositions":["CB","RM"],"nationality":"BEL","age":31,"appearances":22,"goals":0,"assists":2,"marketValue":1000000,"internationalCaps":24,"awards":[],"overall":65},
+    {"id":"seck-19","name":"Abdoulaye Seck","position":"CB","nationality":"SEN","age":27,"appearances":24,"goals":1,"assists":0,"marketValue":1500000,"internationalCaps":10,"awards":[],"overall":65},
+    {"id":"jukleroed-19","name":"Simen Juklerød","position":"LB","alternativePositions":["LM"],"nationality":"NOR","age":23,"appearances":22,"goals":0,"assists":3,"marketValue":1500000,"internationalCaps":5,"awards":[],"overall":64},
+    {"id":"buta-19","name":"Aurélio Buta","position":"RB","alternativePositions":["RM"],"nationality":"POR","age":22,"appearances":18,"goals":1,"assists":3,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"hongla-19","name":"Martin Hongla","position":"CDM","alternativePositions":["CM"],"nationality":"CMR","age":21,"appearances":20,"goals":1,"assists":2,"marketValue":2000000,"internationalCaps":5,"awards":[],"overall":65},
+    {"id":"haroun-19","name":"Faris Haroun","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":33,"appearances":22,"goals":1,"assists":3,"marketValue":700000,"internationalCaps":5,"awards":[],"overall":66},
+    {"id":"refaelov-19","name":"Lior Refaelov","position":"CAM","alternativePositions":["CM","RW"],"nationality":"ISR","age":32,"appearances":26,"goals":7,"assists":9,"marketValue":1500000,"internationalCaps":42,"awards":[],"overall":70},
+    {"id":"miyoshi-19","name":"Koji Miyoshi","position":"RW","alternativePositions":["LW","CAM"],"nationality":"JPN","age":23,"appearances":22,"goals":4,"assists":5,"marketValue":2000000,"internationalCaps":10,"awards":[],"overall":66},
+    {"id":"verstraete-19","name":"Birger Verstraete","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":27,"appearances":18,"goals":2,"assists":3,"marketValue":1500000,"internationalCaps":2,"awards":[],"overall":65},
+    {"id":"lamkel-ze-19","name":"Didier Lamkel Zé","position":"LW","alternativePositions":["RW","ST"],"nationality":"CMR","age":23,"appearances":20,"goals":5,"assists":4,"marketValue":2000000,"internationalCaps":5,"awards":[],"overall":67},
+    {"id":"mbokani-19","name":"Dieumerci Mbokani","position":"ST","nationality":"COD","age":33,"appearances":22,"goals":8,"assists":3,"marketValue":1000000,"internationalCaps":40,"awards":[],"overall":67},
+    {"id":"benson-19","name":"Manuel Benson","position":"RW","alternativePositions":["LW"],"nationality":"BEL","age":22,"appearances":16,"goals":3,"assists":3,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"rodrigues-19","name":"Ivo Rodrigues","position":"LM","alternativePositions":["LW","CM"],"nationality":"POR","age":25,"appearances":16,"goals":2,"assists":3,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":62}
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "team": "Royal Excel Mouscron",
+  "teamId": "mouscron",
+  "season": "2017-18",
+  "year": 2017,
+  "players": [
+    {"id":"gillekens-17","name":"Nick Gillekens","position":"GK","nationality":"BEL","age":20,"appearances":14,"goals":0,"assists":0,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":57},
+    {"id":"silvestre-17","name":"Matías Silvestre","position":"CB","nationality":"ARG","age":31,"appearances":16,"goals":0,"assists":0,"marketValue":300000,"internationalCaps":22,"awards":[],"overall":58},
+    {"id":"keita-m-17","name":"Cheick Keita","position":"LB","nationality":"MLI","age":20,"appearances":14,"goals":0,"assists":1,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":55,"alternativePositions":["LM"]},
+    {"id":"bakic-m-17","name":"Marko Bakić","position":"CM","alternativePositions":["CAM","CDM"],"nationality":"MNE","age":21,"appearances":14,"goals":1,"assists":2,"marketValue":500000,"internationalCaps":8,"awards":[],"overall":57},
+    {"id":"nuno-m-17","name":"Nuno da Costa","position":"RW","alternativePositions":["ST"],"nationality":"CPV","age":25,"appearances":14,"goals":4,"assists":2,"marketValue":600000,"internationalCaps":20,"awards":[],"overall":59},
+    {"id":"gnohere-m-17","name":"Harlem Gnohéré","position":"ST","nationality":"FRA","age":27,"appearances":14,"goals":4,"assists":1,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":57},
+    {"id":"badibanga-m-17","name":"Beni Badibanga","position":"LW","nationality":"BEL","age":21,"appearances":12,"goals":2,"assists":2,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":55}
+  ]
+}

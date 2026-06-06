@@ -57,7 +57,7 @@ export default function HomePage() {
           </h1>
 
           <p style={{ color: 'var(--text-2)', maxWidth: '36ch', lineHeight: 1.6, fontSize: '0.95rem' }}>
-            Bouw je ultieme Belgische Pro League droomelf uit 5 seizoenen historische squads — en bewijs dat jij de beste coach bent.
+            Bouw je ultieme Belgische Pro League droomelf uit 8 seizoenen historische squads — en bewijs dat jij de beste coach bent.
           </p>
         </motion.div>
 
@@ -110,8 +110,8 @@ export default function HomePage() {
           style={{ borderTop: '1px solid var(--border)' }}
         >
           {[
-            ['83', 'squads'],
-            ['5', 'seizoenen'],
+            ['129', 'squads'],
+            ['8', 'seizoenen'],
             ['3', 'herrolls'],
             ['PO1 · PO2', 'playoffs'],
           ].map(([val, label]) => (
