@@ -640,6 +640,7 @@ function ShareSection({ sim, pickedPlayers, formation }: {
 }) {
   const [copied, setCopied] = useState(false);
   const [shared, setShared] = useState(false);
+  const [twitterImgCopied, setTwitterImgCopied] = useState(false);
   const { teamName } = useGameStore();
   const myTeam = teamName.trim() || 'Mijn Droomelftal';
 
@@ -721,8 +722,16 @@ function ShareSection({ sim, pickedPlayers, formation }: {
   }
 
   function handleTwitter() {
+    // Open Twitter synchronously (must stay in the click handler to avoid popup blocker)
     const tweet = encodeURIComponent(getShortShareText());
     window.open(`https://twitter.com/intent/tweet?text=${tweet}`, '_blank', 'noopener');
+    // Copy image to clipboard async so user can paste it in the tweet
+    buildCanvasBlob().then(blob => {
+      navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]).then(() => {
+        setTwitterImgCopied(true);
+        setTimeout(() => setTwitterImgCopied(false), 4000);
+      }).catch(() => {});
+    });
   }
 
   function buildCanvasBlob(): Promise<Blob> {
@@ -969,16 +978,23 @@ function ShareSection({ sim, pickedPlayers, formation }: {
         {/* Secondary row */}
         <div className="flex gap-2">
           {/* Twitter/X */}
-          <button
-            onClick={handleTwitter}
-            className="flex-1 py-3 rounded-lg transition-all duration-150 flex items-center justify-center gap-2"
-            style={{
-              fontFamily: 'var(--font-display)', fontSize: '0.85rem', letterSpacing: '0.1em',
-              background: 'var(--surface)', color: 'var(--text)',
-              border: '1px solid var(--border)', cursor: 'pointer',
-            }}>
-            <span style={{ fontWeight: 900, fontSize: '1rem' }}>𝕏</span> Tweet
-          </button>
+          <div className="flex-1 flex flex-col gap-1">
+            <button
+              onClick={handleTwitter}
+              className="w-full py-3 rounded-lg transition-all duration-150 flex items-center justify-center gap-2"
+              style={{
+                fontFamily: 'var(--font-display)', fontSize: '0.85rem', letterSpacing: '0.1em',
+                background: 'var(--surface)', color: 'var(--text)',
+                border: '1px solid var(--border)', cursor: 'pointer',
+              }}>
+              <span style={{ fontWeight: 900, fontSize: '1rem' }}>𝕏</span> Tweet
+            </button>
+            {twitterImgCopied && (
+              <p className="text-center" style={{ fontSize: '0.65rem', color: '#4ade80' }}>
+                ✓ Afbeelding gekopieerd — plak in je tweet
+              </p>
+            )}
+          </div>
 
           {/* Copy text */}
           <button
