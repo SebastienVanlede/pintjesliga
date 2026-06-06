@@ -4,13 +4,20 @@
   "season": "2018-19",
   "year": 2018,
   "players": [
-    {"id":"gillekens-18","name":"Nick Gillekens","position":"GK","nationality":"BEL","age":21,"appearances":18,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":59},
-    {"id":"silvestre-18","name":"Matías Silvestre","position":"CB","nationality":"ARG","age":32,"appearances":16,"goals":0,"assists":0,"marketValue":300000,"internationalCaps":24,"awards":[],"overall":59},
-    {"id":"keita-m-18","name":"Cheick Keita","position":"LB","nationality":"MLI","age":21,"appearances":14,"goals":0,"assists":1,"marketValue":500000,"internationalCaps":1,"awards":[],"overall":57,"alternativePositions":["LM"]},
-    {"id":"onana-m-18","name":"Jean Onana","position":"CDM","alternativePositions":["CM"],"nationality":"CMR","age":17,"appearances":10,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":55},
-    {"id":"bakic-m-18","name":"Marko Bakić","position":"CM","alternativePositions":["CAM","CDM"],"nationality":"MNE","age":22,"appearances":16,"goals":2,"assists":2,"marketValue":600000,"internationalCaps":12,"awards":[],"overall":59},
-    {"id":"nuno-m-18","name":"Nuno da Costa","position":"RW","alternativePositions":["ST"],"nationality":"CPV","age":26,"appearances":18,"goals":5,"assists":3,"marketValue":700000,"internationalCaps":25,"awards":[],"overall":61},
-    {"id":"gnohere-m-18","name":"Harlem Gnohéré","position":"ST","nationality":"FRA","age":28,"appearances":16,"goals":4,"assists":2,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":59},
-    {"id":"ousou-m-18","name":"Aiham Ousou","position":"CB","nationality":"SYR","age":20,"appearances":12,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":3,"awards":[],"overall":55}
+    {"id":"butez-mou-18","name":"Jean Butez","position":"GK","nationality":"FRA","age":23,"appearances":26,"goals":0,"assists":0,"marketValue":3000000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"godeau-mou-18","name":"Bruno Godeau","position":"CB","alternativePositions":["LB"],"nationality":"BEL","age":26,"appearances":24,"goals":1,"assists":1,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"dussenne-mou-18","name":"Noë Dussenne","position":"CB","nationality":"BEL","age":26,"appearances":22,"goals":1,"assists":0,"marketValue":650000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"de-medina-18","name":"Nathan de Medina","position":"CB","nationality":"BEL","age":20,"appearances":18,"goals":0,"assists":0,"marketValue":200000,"internationalCaps":0,"awards":[],"overall":60},
+    {"id":"diedhiou-mou-18","name":"Christophe Diedhiou","position":"CB","nationality":"SEN","age":30,"appearances":18,"goals":0,"assists":0,"marketValue":200000,"internationalCaps":0,"awards":[],"overall":59},
+    {"id":"mohamed-mou-18","name":"Dimitri Mohamed","position":"LB","alternativePositions":["LM"],"nationality":"FRA","age":29,"appearances":22,"goals":0,"assists":2,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":62},
+    {"id":"katranis-18","name":"Alexandros Katranis","position":"LB","alternativePositions":["LM"],"nationality":"GRE","age":20,"appearances":18,"goals":0,"assists":1,"marketValue":700000,"internationalCaps":3,"awards":[],"overall":62},
+    {"id":"vojvoda-mou-18","name":"Mërgim Vojvoda","position":"RB","alternativePositions":["RM"],"nationality":"KOS","age":23,"appearances":24,"goals":1,"assists":2,"marketValue":1000000,"internationalCaps":10,"awards":[],"overall":65},
+    {"id":"boya-mou-18","name":"Frank Boya","position":"CDM","alternativePositions":["CM"],"nationality":"CMR","age":21,"appearances":22,"goals":1,"assists":2,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":62},
+    {"id":"bakic-mou-18","name":"Marko Bakić","position":"CM","alternativePositions":["CDM","CAM"],"nationality":"MNE","age":24,"appearances":22,"goals":2,"assists":3,"marketValue":850000,"internationalCaps":15,"awards":[],"overall":63},
+    {"id":"amallah-mou-18","name":"Selim Amallah","position":"CAM","alternativePositions":["CM"],"nationality":"MAR","age":21,"appearances":24,"goals":4,"assists":5,"marketValue":1500000,"internationalCaps":3,"awards":[],"overall":67},
+    {"id":"olinga-mou-18","name":"Fabrice Olinga","position":"LW","alternativePositions":["RW"],"nationality":"CMR","age":22,"appearances":20,"goals":5,"assists":3,"marketValue":500000,"internationalCaps":12,"awards":[],"overall":63},
+    {"id":"benson-mou-18","name":"Manuel Benson","position":"RW","alternativePositions":["LW"],"nationality":"AGO","age":21,"appearances":22,"goals":5,"assists":4,"marketValue":4000000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"awoniyi-mou-18","name":"Taiwo Awoniyi","position":"ST","nationality":"NGA","age":20,"appearances":18,"goals":5,"assists":2,"marketValue":4500000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"pierrot-mou-18","name":"Frantzdy Pierrot","position":"ST","nationality":"HAI","age":23,"appearances":16,"goals":4,"assists":1,"marketValue":800000,"internationalCaps":12,"awards":[],"overall":62}
   ]
 }

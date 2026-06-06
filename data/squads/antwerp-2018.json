@@ -4,17 +4,21 @@
   "season": "2018-19",
   "year": 2018,
   "players": [
-    {"id":"butez-18","name":"Jean Butez","position":"GK","nationality":"FRA","age":23,"appearances":26,"goals":0,"assists":0,"marketValue":2500000,"internationalCaps":0,"awards":[],"overall":70},
-    {"id":"de-laet-18","name":"Ritchie De Laet","position":"RB","alternativePositions":["CB","RM"],"nationality":"BEL","age":30,"appearances":20,"goals":0,"assists":1,"marketValue":1200000,"internationalCaps":24,"awards":[],"overall":65},
+    {"id":"butez-18","name":"Jean Butez","position":"GK","nationality":"FRA","age":23,"appearances":26,"goals":0,"assists":0,"marketValue":3000000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"bolat-at-18","name":"Sinan Bolat","position":"GK","nationality":"TUR","age":29,"appearances":8,"goals":0,"assists":0,"marketValue":1500000,"internationalCaps":7,"awards":[],"overall":67},
+    {"id":"arslanagic-at-18","name":"Dino Arslanagić","position":"CB","nationality":"BIH","age":25,"appearances":24,"goals":1,"assists":0,"marketValue":3000000,"internationalCaps":2,"awards":[],"overall":67},
+    {"id":"batubinsika-18","name":"Dylan Batubinsika","position":"CB","nationality":"COD","age":22,"appearances":20,"goals":0,"assists":0,"marketValue":1000000,"internationalCaps":2,"awards":[],"overall":63},
+    {"id":"van-damme-at-18","name":"Jelle Van Damme","position":"CB","nationality":"BEL","age":34,"appearances":16,"goals":1,"assists":0,"marketValue":300000,"internationalCaps":36,"awards":[],"overall":64},
     {"id":"seck-18","name":"Abdoulaye Seck","position":"CB","nationality":"SEN","age":26,"appearances":22,"goals":1,"assists":0,"marketValue":1500000,"internationalCaps":8,"awards":[],"overall":64},
-    {"id":"jukleroed-18","name":"Simen Juklerød","position":"LB","alternativePositions":["LM"],"nationality":"NOR","age":22,"appearances":20,"goals":0,"assists":2,"marketValue":1200000,"internationalCaps":3,"awards":[],"overall":63},
-    {"id":"buta-18","name":"Aurélio Buta","position":"RB","alternativePositions":["RM"],"nationality":"POR","age":21,"appearances":16,"goals":0,"assists":2,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":62},
-    {"id":"haroun-18","name":"Faris Haroun","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":32,"appearances":24,"goals":1,"assists":3,"marketValue":700000,"internationalCaps":5,"awards":[],"overall":65},
-    {"id":"verstraete-18","name":"Birger Verstraete","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":26,"appearances":22,"goals":2,"assists":3,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":65},
-    {"id":"refaelov-18","name":"Lior Refaelov","position":"CAM","alternativePositions":["CM","RW"],"nationality":"ISR","age":31,"appearances":26,"goals":8,"assists":10,"marketValue":2000000,"internationalCaps":40,"awards":[],"overall":71},
-    {"id":"miyoshi-18","name":"Koji Miyoshi","position":"RW","alternativePositions":["LW","CAM"],"nationality":"JPN","age":22,"appearances":20,"goals":3,"assists":4,"marketValue":1500000,"internationalCaps":8,"awards":[],"overall":64},
-    {"id":"lamkel-ze-18","name":"Didier Lamkel Zé","position":"LW","alternativePositions":["RW","ST"],"nationality":"CMR","age":22,"appearances":18,"goals":5,"assists":3,"marketValue":2000000,"internationalCaps":3,"awards":[],"overall":65},
-    {"id":"mbokani-18","name":"Dieumerci Mbokani","position":"ST","nationality":"COD","age":32,"appearances":22,"goals":10,"assists":3,"marketValue":1200000,"internationalCaps":38,"awards":[],"overall":68},
-    {"id":"benson-18","name":"Manuel Benson","position":"RW","alternativePositions":["LW"],"nationality":"BEL","age":21,"appearances":14,"goals":2,"assists":2,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":60}
+    {"id":"jukleroed-18","name":"Simen Juklerød","position":"LB","alternativePositions":["LM"],"nationality":"NOR","age":24,"appearances":20,"goals":0,"assists":2,"marketValue":2500000,"internationalCaps":3,"awards":[],"overall":65},
+    {"id":"buta-18","name":"Aurélio Buta","position":"RB","alternativePositions":["RM"],"nationality":"POR","age":21,"appearances":18,"goals":0,"assists":2,"marketValue":3000000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"de-laet-18","name":"Ritchie De Laet","position":"RB","alternativePositions":["CB","RM"],"nationality":"BEL","age":29,"appearances":20,"goals":0,"assists":1,"marketValue":1200000,"internationalCaps":5,"awards":[],"overall":65},
+    {"id":"govea-18","name":"Omar Govea","position":"CDM","alternativePositions":["CM"],"nationality":"MEX","age":22,"appearances":22,"goals":2,"assists":3,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"haroun-18","name":"Faris Haroun","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":32,"appearances":22,"goals":1,"assists":2,"marketValue":600000,"internationalCaps":5,"awards":[],"overall":64},
+    {"id":"refaelov-18","name":"Lior Refaelov","position":"CAM","alternativePositions":["CM","RW"],"nationality":"ISR","age":32,"appearances":26,"goals":8,"assists":10,"marketValue":900000,"internationalCaps":40,"awards":[],"overall":71},
+    {"id":"rodrigues-at-18","name":"Ivo Rodrigues","position":"RW","alternativePositions":["LW","CAM"],"nationality":"POR","age":23,"appearances":22,"goals":4,"assists":4,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"lamkel-ze-18","name":"Didier Lamkel Zé","position":"LW","alternativePositions":["RW","ST"],"nationality":"CMR","age":21,"appearances":18,"goals":4,"assists":3,"marketValue":1800000,"internationalCaps":3,"awards":[],"overall":65},
+    {"id":"mbokani-18","name":"Dieumerci Mbokani","position":"ST","nationality":"COD","age":32,"appearances":24,"goals":13,"assists":3,"marketValue":3500000,"internationalCaps":40,"awards":[],"overall":70},
+    {"id":"owusu-at-18","name":"William Owusu","position":"ST","nationality":"GHA","age":28,"appearances":18,"goals":4,"assists":2,"marketValue":1300000,"internationalCaps":0,"awards":[],"overall":64}
   ]
 }

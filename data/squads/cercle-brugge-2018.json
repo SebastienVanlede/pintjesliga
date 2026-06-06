@@ -4,14 +4,20 @@
   "season": "2018-19",
   "year": 2018,
   "players": [
-    {"id":"warleson-18","name":"Warleson","position":"GK","nationality":"BRA","age":22,"appearances":20,"goals":0,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":64},
-    {"id":"daland-18","name":"Jesper Daland","position":"CB","nationality":"NOR","age":19,"appearances":14,"goals":0,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":59},
-    {"id":"miangue-18","name":"Senna Miangué","position":"LB","nationality":"BEL","age":21,"appearances":16,"goals":0,"assists":1,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":58,"alternativePositions":["LM"]},
-    {"id":"siquet-18","name":"Hugo Siquet","position":"RB","alternativePositions":["RM"],"nationality":"BEL","age":16,"appearances":8,"goals":0,"assists":0,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":52},
-    {"id":"van-der-bruggen-18","name":"Hannes Van der Bruggen","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":24,"appearances":18,"goals":1,"assists":2,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":61},
-    {"id":"lopes-18","name":"Leonardo Lopes","position":"CM","alternativePositions":["CDM"],"nationality":"POR","age":19,"appearances":14,"goals":1,"assists":1,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":58},
-    {"id":"denkey-18","name":"Kévin Denkey","position":"ST","alternativePositions":["LW"],"nationality":"TGO","age":18,"appearances":12,"goals":2,"assists":1,"marketValue":700000,"internationalCaps":2,"awards":[],"overall":57},
-    {"id":"minda-18","name":"Alan Minda","position":"CAM","alternativePositions":["LW","CM"],"nationality":"ECU","age":20,"appearances":14,"goals":2,"assists":3,"marketValue":700000,"internationalCaps":5,"awards":[],"overall":58},
-    {"id":"espinoza-18","name":"Dagoberto Espinoza","position":"CM","nationality":"MEX","age":21,"appearances":12,"goals":0,"assists":1,"marketValue":300000,"internationalCaps":1,"awards":[],"overall":54,"alternativePositions":["CDM"]}
+    {"id":"nardi-cb-18","name":"Paul Nardi","position":"GK","nationality":"FRA","age":24,"appearances":26,"goals":0,"assists":0,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"ueda-cb-18","name":"Naomichi Ueda","position":"CB","nationality":"JPN","age":23,"appearances":22,"goals":1,"assists":0,"marketValue":1000000,"internationalCaps":3,"awards":[],"overall":65},
+    {"id":"taravel-cb-18","name":"Jérémy Taravel","position":"CB","nationality":"FRA","age":31,"appearances":22,"goals":1,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":62},
+    {"id":"lambot-cb-18","name":"Benjamin Lambot","position":"CB","nationality":"BEL","age":31,"appearances":20,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":60},
+    {"id":"marega-cb-18","name":"Issa Marega","position":"CB","nationality":"SEN","age":20,"appearances":16,"goals":0,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":61},
+    {"id":"etienne-cb-18","name":"Yoann Etienne","position":"LB","alternativePositions":["LM"],"nationality":"HAI","age":21,"appearances":22,"goals":0,"assists":2,"marketValue":800000,"internationalCaps":18,"awards":[],"overall":62},
+    {"id":"palun-cb-18","name":"Lloyd Palun","position":"RB","alternativePositions":["RM"],"nationality":"GAB","age":29,"appearances":18,"goals":0,"assists":1,"marketValue":650000,"internationalCaps":15,"awards":[],"overall":62},
+    {"id":"omolo-cb-18","name":"Johanna Omolo","position":"CDM","alternativePositions":["CM"],"nationality":"KEN","age":28,"appearances":24,"goals":1,"assists":2,"marketValue":600000,"internationalCaps":15,"awards":[],"overall":62},
+    {"id":"kone-cb-18","name":"Isaac Koné","position":"CDM","alternativePositions":["CM"],"nationality":"CIV","age":27,"appearances":18,"goals":0,"assists":1,"marketValue":600000,"internationalCaps":3,"awards":[],"overall":61},
+    {"id":"traore-cb-18","name":"Adama Traoré","position":"CM","alternativePositions":["CDM"],"nationality":"MLI","age":23,"appearances":24,"goals":2,"assists":4,"marketValue":2200000,"internationalCaps":12,"awards":[],"overall":67},
+    {"id":"lusamba-cb-18","name":"Arnaud Lusamba","position":"CM","alternativePositions":["CAM"],"nationality":"COD","age":21,"appearances":18,"goals":2,"assists":3,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"mercier-cb-18","name":"Xavier Mercier","position":"CAM","alternativePositions":["CM"],"nationality":"FRA","age":28,"appearances":22,"goals":5,"assists":7,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"hazard-k-18","name":"Kylian Hazard","position":"LW","alternativePositions":["CAM"],"nationality":"BEL","age":22,"appearances":20,"goals":4,"assists":4,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"cardona-cb-18","name":"Irvin Cardona","position":"RW","alternativePositions":["ST"],"nationality":"FRA","age":20,"appearances":22,"goals":5,"assists":3,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"bruno-cb-18","name":"Gianni Bruno","position":"ST","alternativePositions":["LW"],"nationality":"BEL","age":26,"appearances":24,"goals":9,"assists":3,"marketValue":1800000,"internationalCaps":0,"awards":[],"overall":68}
   ]
 }
