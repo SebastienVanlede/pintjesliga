@@ -4,19 +4,18 @@
   "season": "2023-24",
   "year": 2023,
   "players": [
-    {"id":"sebastien-bruzzese-23","name":"Sébastien Bruzzese","position":"GK","nationality":"BEL","age":34,"appearances":26,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":65},
-    {"id":"bram-verstocken-23","name":"Bram Verstocken","position":"GK","nationality":"BEL","age":23,"appearances":10,"goals":0,"assists":0,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":60},
-    {"id":"jens-teunckels-23","name":"Jens Teunckels","position":"CB","nationality":"BEL","age":24,"appearances":24,"goals":0,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":62},
-    {"id":"brian-plat-23","name":"Brian Plat","position":"CB","nationality":"NED","age":27,"appearances":22,"goals":0,"assists":0,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":63},
-    {"id":"andres-labie-23","name":"Andres Labie","position":"RB","alternativePositions":["RM"],"nationality":"BEL","age":26,"appearances":22,"goals":0,"assists":2,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":61},
-    {"id":"edisson-jordanov-23","name":"Edisson Jordanov","position":"LB","alternativePositions":["LM"],"nationality":"BUL","age":22,"appearances":20,"goals":0,"assists":1,"marketValue":500000,"internationalCaps":3,"awards":[],"overall":61},
-    {"id":"lukas-van-eenoo-23","name":"Lukas Van Eenoo","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":26,"appearances":24,"goals":1,"assists":2,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":63},
-    {"id":"glenn-claes-23","name":"Glenn Claes","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":29,"appearances":22,"goals":2,"assists":3,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":63},
-    {"id":"rayhan-el-grafel-23","name":"Rayhan El Grafel","position":"CAM","nationality":"BEL","age":21,"appearances":20,"goals":3,"assists":4,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":64},
-    {"id":"rajiv-van-la-parra-23","name":"Rajiv van La Parra","position":"LW","nationality":"NED","age":30,"appearances":22,"goals":4,"assists":4,"marketValue":800000,"internationalCaps":3,"awards":[],"overall":66},
-    {"id":"sabri-guendouz-23","name":"Sabri Guendouz","position":"LW","nationality":"FRA","age":26,"appearances":20,"goals":3,"assists":4,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":65},
-    {"id":"anas-haj-mohammed-23","name":"Anas Haj Mohamed","position":"ST","nationality":"TUN","age":26,"appearances":22,"goals":7,"assists":2,"marketValue":1500000,"internationalCaps":5,"awards":[],"overall":66},
-    {"id":"oscar-vargas-23","name":"Oscar Vargas","position":"ST","nationality":"ESP","age":25,"appearances":18,"goals":4,"assists":2,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":62},
-    {"id":"siviwe-magidigidi-23","name":"Siviwe Magidigidi","position":"RW","nationality":"RSA","age":24,"appearances":16,"goals":3,"assists":3,"marketValue":1000000,"internationalCaps":3,"awards":[],"overall":63}
+    {"id":"theo-defourny-23","name":"Théo Defourny","position":"GK","nationality":"BEL","age":31,"appearances":22,"goals":0,"assists":0,"marketValue":550000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"guillaume-hubert-23","name":"Guillaume Hubert","position":"GK","nationality":"BEL","age":29,"appearances":8,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":62},
+    {"id":"luis-segovia-23","name":"Luis Segovia","position":"CB","nationality":"ECU","age":25,"appearances":22,"goals":0,"assists":0,"marketValue":1500000,"internationalCaps":5,"awards":[],"overall":65},
+    {"id":"florian-le-joncour-23","name":"Florian Le Joncour","position":"CB","nationality":"FRA","age":28,"appearances":24,"goals":1,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"mamadou-sarr-23","name":"Mamadou Sarr","position":"CB","nationality":"SEN","age":18,"appearances":18,"goals":0,"assists":0,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"youssouf-kone-23","name":"Youssouf Koné","position":"LB","alternativePositions":["LM"],"nationality":"MLI","age":27,"appearances":22,"goals":0,"assists":1,"marketValue":800000,"internationalCaps":25,"awards":[],"overall":64},
+    {"id":"zakaria-el-ouahdi-23","name":"Zakaria El Ouahdi","position":"RB","alternativePositions":["RM"],"nationality":"MAR","age":21,"appearances":26,"goals":1,"assists":3,"marketValue":4500000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"pierre-dwomoh-23","name":"Pierre Dwomoh","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":19,"appearances":24,"goals":2,"assists":3,"marketValue":2500000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"alexis-de-sart-23","name":"Alexis De Sart","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":26,"appearances":24,"goals":1,"assists":2,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"jeff-reine-adelaide-23","name":"Jeff Reine-Adélaïde","position":"CAM","alternativePositions":["CM"],"nationality":"FRA","age":25,"appearances":16,"goals":2,"assists":3,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"kylian-hazard-23","name":"Kylian Hazard","position":"LW","alternativePositions":["CAM"],"nationality":"BEL","age":27,"appearances":22,"goals":3,"assists":3,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"mickael-biron-23","name":"Mickaël Biron","position":"ST","nationality":"FRA","age":25,"appearances":28,"goals":9,"assists":2,"marketValue":2500000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"makhtar-gueye-23","name":"Makhtar Gueye","position":"ST","alternativePositions":["LW"],"nationality":"SEN","age":25,"appearances":20,"goals":5,"assists":2,"marketValue":2000000,"internationalCaps":5,"awards":[],"overall":67}
   ]
 }

@@ -4,13 +4,15 @@
   "season": "2018-19",
   "year": 2018,
   "players": [
-    {"id":"vandenberghe-18","name":"Tom Vandenberghe","position":"GK","nationality":"BEL","age":22,"appearances":20,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":60},
-    {"id":"d-haene-18","name":"Kristof D'haene","position":"LB","nationality":"BEL","age":28,"appearances":18,"goals":0,"assists":1,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":60,"alternativePositions":["LM"]},
-    {"id":"derijck-k-18","name":"Timothy Derijck","position":"CB","nationality":"BEL","age":29,"appearances":16,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":59},
-    {"id":"watanabe-k-18","name":"Tsuyoshi Watanabe","position":"CB","nationality":"JPN","age":21,"appearances":16,"goals":0,"assists":0,"marketValue":700000,"internationalCaps":3,"awards":[],"overall":60},
-    {"id":"kadri-k-18","name":"Abdelkahar Kadri","position":"CM","alternativePositions":["CAM","CDM"],"nationality":"ALG","age":22,"appearances":18,"goals":2,"assists":2,"marketValue":700000,"internationalCaps":2,"awards":[],"overall":60},
-    {"id":"massimo-k-18","name":"Massimo Bruno","position":"LW","nationality":"BEL","age":23,"appearances":18,"goals":3,"assists":2,"marketValue":600000,"internationalCaps":1,"awards":[],"overall":61},
-    {"id":"avenatti-k-18","name":"Felipe Avenatti","position":"ST","nationality":"URU","age":23,"appearances":18,"goals":5,"assists":2,"marketValue":700000,"internationalCaps":1,"awards":[],"overall":61},
-    {"id":"selemani-k-18","name":"Faïz Selemani","position":"RW","alternativePositions":["ST"],"nationality":"COM","age":22,"appearances":16,"goals":3,"assists":3,"marketValue":600000,"internationalCaps":7,"awards":[],"overall":60}
+    {"id":"kaminski-k-18","name":"Thomas Kaminski","position":"GK","nationality":"BEL","age":25,"appearances":28,"goals":0,"assists":0,"marketValue":3000000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"d-haene-18","name":"Kristof D'Haene","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":28,"appearances":28,"goals":0,"assists":2,"marketValue":850000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"hines-ike-k-18","name":"Brendan Hines-Ike","position":"CB","nationality":"USA","age":23,"appearances":24,"goals":0,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"kagelmacher-k-18","name":"Gary Kagelmacher","position":"CB","nationality":"URU","age":30,"appearances":22,"goals":0,"assists":0,"marketValue":750000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"van-der-bruggen-k-18","name":"Hannes Van der Bruggen","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":25,"appearances":28,"goals":2,"assists":3,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"de-sart-k-18","name":"Julien De Sart","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":23,"appearances":26,"goals":1,"assists":3,"marketValue":1500000,"internationalCaps":1,"awards":[],"overall":67},
+    {"id":"azouni-k-18","name":"Larry Azouni","position":"CM","alternativePositions":["CAM"],"nationality":"TUN","age":24,"appearances":24,"goals":2,"assists":3,"marketValue":900000,"internationalCaps":3,"awards":[],"overall":64},
+    {"id":"stojanovic-k-18","name":"Jovan Stojanović","position":"CAM","alternativePositions":["LW"],"nationality":"SRB","age":26,"appearances":22,"goals":3,"assists":4,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"avenatti-k-18","name":"Felipe Avenatti","position":"ST","nationality":"URU","age":25,"appearances":28,"goals":12,"assists":3,"marketValue":5000000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"chevalier-k-18","name":"Teddy Chevalier","position":"ST","nationality":"FRA","age":31,"appearances":20,"goals":6,"assists":2,"marketValue":900000,"internationalCaps":0,"awards":[],"overall":65}
   ]
 }
