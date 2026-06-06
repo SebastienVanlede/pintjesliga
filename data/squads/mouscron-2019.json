@@ -4,17 +4,20 @@
   "season": "2019-20",
   "year": 2019,
   "players": [
-    {"id":"gillekens-19","name":"Nick Gillekens","position":"GK","nationality":"BEL","age":22,"appearances":20,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":61},
-    {"id":"silvestre-19","name":"Matías Silvestre","position":"CB","nationality":"ARG","age":33,"appearances":18,"goals":0,"assists":0,"marketValue":300000,"internationalCaps":26,"awards":[],"overall":60},
-    {"id":"keita-m-19","name":"Cheick Keita","position":"LB","nationality":"MLI","age":22,"appearances":16,"goals":0,"assists":1,"marketValue":600000,"internationalCaps":3,"awards":[],"overall":59,"alternativePositions":["LM"]},
-    {"id":"ousou-m-19","name":"Aiham Ousou","position":"CB","nationality":"SYR","age":21,"appearances":16,"goals":0,"assists":0,"marketValue":600000,"internationalCaps":5,"awards":[],"overall":58},
-    {"id":"gueye-m-19","name":"El Hadji Gueye","position":"LB","alternativePositions":["RB","LM"],"nationality":"SEN","age":21,"appearances":14,"goals":0,"assists":1,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":55},
-    {"id":"bakic-m-19","name":"Marko Bakić","position":"CM","alternativePositions":["CAM","CDM"],"nationality":"MNE","age":23,"appearances":18,"goals":2,"assists":3,"marketValue":700000,"internationalCaps":15,"awards":[],"overall":61},
-    {"id":"onana-m-19","name":"Jean Onana","position":"CDM","alternativePositions":["CM"],"nationality":"CMR","age":18,"appearances":14,"goals":0,"assists":1,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":60},
-    {"id":"xadas-m-19","name":"Xadas","position":"CAM","alternativePositions":["LW","CM"],"nationality":"POR","age":21,"appearances":16,"goals":2,"assists":3,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":61},
-    {"id":"nuno-m-19","name":"Nuno da Costa","position":"RW","alternativePositions":["ST"],"nationality":"CPV","age":27,"appearances":18,"goals":5,"assists":3,"marketValue":700000,"internationalCaps":30,"awards":[],"overall":62},
-    {"id":"gnohere-m-19","name":"Harlem Gnohéré","position":"ST","nationality":"FRA","age":29,"appearances":18,"goals":5,"assists":2,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":61},
-    {"id":"badibanga-m-19","name":"Beni Badibanga","position":"LW","nationality":"BEL","age":23,"appearances":16,"goals":2,"assists":2,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":57},
-    {"id":"bocat-m-19","name":"Eric Bocat","position":"LB","nationality":"FRA","age":20,"appearances":12,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":55,"alternativePositions":["LM"]}
+    {"id":"vasic-19","name":"Vaso Vasić","position":"GK","nationality":"SRB","age":29,"appearances":22,"goals":0,"assists":0,"marketValue":450000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"gillekens-19","name":"Nick Gillekens","position":"GK","nationality":"BEL","age":23,"appearances":8,"goals":0,"assists":0,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":61},
+    {"id":"queiros-19","name":"Diogo Queirós","position":"CB","nationality":"POR","age":20,"appearances":22,"goals":1,"assists":0,"marketValue":3200000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"wimmer-19","name":"Kevin Wimmer","position":"CB","nationality":"AUT","age":26,"appearances":20,"goals":1,"assists":0,"marketValue":2400000,"internationalCaps":15,"awards":[],"overall":68},
+    {"id":"sobiech-19","name":"Lasse Sobiech","position":"CB","nationality":"GER","age":28,"appearances":18,"goals":0,"assists":0,"marketValue":950000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"godeau-m-19","name":"Bruno Godeau","position":"CB","alternativePositions":["LB"],"nationality":"BEL","age":27,"appearances":18,"goals":0,"assists":1,"marketValue":725000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"de-medina-19","name":"Nathan de Medina","position":"CB","alternativePositions":["RB"],"nationality":"BEL","age":21,"appearances":18,"goals":0,"assists":1,"marketValue":650000,"internationalCaps":0,"awards":[],"overall":62},
+    {"id":"antonov-19","name":"Nemanja Antonov","position":"LB","alternativePositions":["LM"],"nationality":"SRB","age":24,"appearances":20,"goals":0,"assists":2,"marketValue":550000,"internationalCaps":0,"awards":[],"overall":61},
+    {"id":"ciranni-19","name":"Alessandro Ciranni","position":"RB","alternativePositions":["RM"],"nationality":"BEL","age":23,"appearances":22,"goals":0,"assists":2,"marketValue":675000,"internationalCaps":0,"awards":[],"overall":62},
+    {"id":"boya-19","name":"Frank Boya","position":"CDM","alternativePositions":["CM"],"nationality":"CMR","age":22,"appearances":22,"goals":1,"assists":2,"marketValue":1700000,"internationalCaps":3,"awards":[],"overall":66},
+    {"id":"bakic-m-19","name":"Marko Bakić","position":"CM","alternativePositions":["CDM","CAM"],"nationality":"MNE","age":25,"appearances":20,"goals":2,"assists":3,"marketValue":675000,"internationalCaps":18,"awards":[],"overall":63},
+    {"id":"garcia-19","name":"Aleix García","position":"CM","alternativePositions":["CAM"],"nationality":"ESP","age":22,"appearances":22,"goals":2,"assists":4,"marketValue":3200000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"olinga-m-19","name":"Fabrice Olinga","position":"LW","alternativePositions":["RW"],"nationality":"CMR","age":23,"appearances":18,"goals":3,"assists":3,"marketValue":475000,"internationalCaps":15,"awards":[],"overall":62},
+    {"id":"perica-19","name":"Stipe Perica","position":"ST","nationality":"CRO","age":23,"appearances":22,"goals":7,"assists":2,"marketValue":1400000,"internationalCaps":2,"awards":[],"overall":66},
+    {"id":"pierrot-19","name":"Frantzdy Pierrot","position":"ST","nationality":"HAI","age":24,"appearances":18,"goals":5,"assists":1,"marketValue":800000,"internationalCaps":15,"awards":[],"overall":63}
   ]
 }

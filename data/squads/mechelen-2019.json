@@ -4,17 +4,21 @@
   "season": "2019-20",
   "year": 2019,
   "players": [
-    {"id":"coucke-19","name":"Gaëtan Coucke","position":"GK","nationality":"BEL","age":26,"appearances":26,"goals":0,"assists":0,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":66},
-    {"id":"walsh-19","name":"Sandy Walsh","position":"RB","alternativePositions":["RM"],"nationality":"IDN","age":25,"appearances":24,"goals":1,"assists":3,"marketValue":1500000,"internationalCaps":15,"awards":[],"overall":67},
-    {"id":"de-witte-19","name":"Seth De Witte","position":"CB","nationality":"BEL","age":31,"appearances":22,"goals":0,"assists":0,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":63},
-    {"id":"bijker-19","name":"Lucas Bijker","position":"LB","nationality":"NED","age":25,"appearances":20,"goals":0,"assists":2,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":62,"alternativePositions":["LM"]},
-    {"id":"van-damme-19","name":"Joachim Van Damme","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":30,"appearances":22,"goals":1,"assists":2,"marketValue":1000000,"internationalCaps":2,"awards":[],"overall":65},
-    {"id":"schoofs-19","name":"Rob Schoofs","position":"CM","alternativePositions":["CDM","CAM"],"nationality":"BEL","age":25,"appearances":22,"goals":3,"assists":4,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":66},
-    {"id":"storm-19","name":"Nikola Storm","position":"RW","nationality":"BEL","age":25,"appearances":20,"goals":4,"assists":3,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":64},
-    {"id":"hairemans-19","name":"Geoffry Hairemans","position":"RW","alternativePositions":["LW","CM"],"nationality":"BEL","age":25,"appearances":18,"goals":3,"assists":3,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":64},
-    {"id":"mrabti-19","name":"Kerim Mrabti","position":"CM","alternativePositions":["CAM","CDM"],"nationality":"SWE","age":23,"appearances":16,"goals":2,"assists":2,"marketValue":1000000,"internationalCaps":5,"awards":[],"overall":63},
-    {"id":"van-hecke-19","name":"Jannes Van Hecke","position":"CB","alternativePositions":["CDM"],"nationality":"BEL","age":21,"appearances":16,"goals":0,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":61},
-    {"id":"peyre-19","name":"Thibault Peyre","position":"LB","alternativePositions":["CB","LM"],"nationality":"FRA","age":22,"appearances":14,"goals":0,"assists":1,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":60},
-    {"id":"ngoy-19","name":"Julien Ngoy","position":"ST","alternativePositions":["LW"],"nationality":"BEL","age":21,"appearances":16,"goals":4,"assists":2,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":62}
+    {"id":"verrips-19","name":"Michael Verrips","position":"GK","nationality":"NED","age":22,"appearances":24,"goals":0,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"thoelen-19","name":"Yannick Thoelen","position":"GK","nationality":"BEL","age":28,"appearances":6,"goals":0,"assists":0,"marketValue":525000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"vanlerberghe-19","name":"Jordi Vanlerberghe","position":"CB","nationality":"BEL","age":23,"appearances":22,"goals":1,"assists":0,"marketValue":1100000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"peyre-19","name":"Thibault Peyre","position":"CB","alternativePositions":["LB","LM"],"nationality":"FRA","age":26,"appearances":22,"goals":0,"assists":1,"marketValue":725000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"bateau-19","name":"Sheldon Bateau","position":"CB","nationality":"TRI","age":28,"appearances":20,"goals":0,"assists":0,"marketValue":675000,"internationalCaps":40,"awards":[],"overall":62},
+    {"id":"corryn-m-19","name":"Alexander Corryn","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":25,"appearances":18,"goals":0,"assists":1,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"bijker-19","name":"Lucas Bijker","position":"LB","alternativePositions":["LM"],"nationality":"NED","age":26,"appearances":20,"goals":0,"assists":2,"marketValue":650000,"internationalCaps":0,"awards":[],"overall":62},
+    {"id":"kabore-19","name":"Issa Kaboré","position":"RB","alternativePositions":["RM"],"nationality":"BFA","age":18,"appearances":22,"goals":1,"assists":3,"marketValue":1300000,"internationalCaps":5,"awards":[],"overall":67},
+    {"id":"van-damme-19","name":"Joachim Van Damme","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":27,"appearances":22,"goals":1,"assists":2,"marketValue":800000,"internationalCaps":2,"awards":[],"overall":64},
+    {"id":"vranckx-19","name":"Aster Vranckx","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":16,"appearances":18,"goals":2,"assists":2,"marketValue":4000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"schoofs-19","name":"Rob Schoofs","position":"CM","alternativePositions":["CDM","CAM"],"nationality":"BEL","age":25,"appearances":22,"goals":3,"assists":4,"marketValue":1400000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"kaya-m-19","name":"Onur Kaya","position":"CAM","alternativePositions":["CM"],"nationality":"BEL","age":33,"appearances":18,"goals":3,"assists":4,"marketValue":525000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"storm-19","name":"Nikola Storm","position":"LW","alternativePositions":["RW"],"nationality":"BEL","age":24,"appearances":22,"goals":5,"assists":3,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"hairemans-19","name":"Geoffry Hairemans","position":"RW","alternativePositions":["LW","CM"],"nationality":"BEL","age":27,"appearances":20,"goals":4,"assists":3,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"engvall-19","name":"Gustav Engvall","position":"ST","nationality":"SWE","age":23,"appearances":22,"goals":8,"assists":2,"marketValue":1600000,"internationalCaps":3,"awards":[],"overall":66},
+    {"id":"vanzeir-19","name":"Dante Vanzeir","position":"ST","nationality":"BEL","age":21,"appearances":18,"goals":4,"assists":2,"marketValue":1300000,"internationalCaps":0,"awards":[],"overall":65}
   ]
 }
