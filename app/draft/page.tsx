@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGameStore } from '@/lib/store';
@@ -21,6 +21,14 @@ export default function DraftPage() {
   const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null);
   const [rerollsUsed, setRerollsUsed] = useState(0);
 
+  // Shuffled deck — guarantees no repeats until all 32 squads have been seen
+  const deckRef = useRef<{ team: Team; season: string }[]>([]);
+
+  useEffect(() => {
+    const rolls = getAvailableRolls();
+    deckRef.current = [...rolls].sort(() => Math.random() - 0.5);
+  }, []);
+
   const MAX_REROLLS = 3;
   const rerollsLeft = MAX_REROLLS - rerollsUsed;
 
@@ -36,18 +44,26 @@ const pickedByIndex = Object.fromEntries(pickedPlayers.map((p) => [p.positionInd
     setPhase('spinning');
     setRoll(null);
     setSelectedPlayer(null);
-    const available = getAvailableRolls();
+
+    // Spinning animation — random flashes for visual effect only
+    const allRolls = getAvailableRolls();
     let ticks = 0;
 
     const interval = setInterval(() => {
-      const r = available[Math.floor(Math.random() * available.length)];
+      const r = allRolls[Math.floor(Math.random() * allRolls.length)];
       setSpinLabel(`${r.team.name.toUpperCase()} · ${r.season}`);
       ticks++;
       if (ticks >= 18) {
         clearInterval(interval);
-        const final = available[Math.floor(Math.random() * available.length)];
+
+        // Draw the actual result from the shuffled deck (no repeats until all seen)
+        if (deckRef.current.length === 0) {
+          deckRef.current = [...allRolls].sort(() => Math.random() - 0.5);
+        }
+        const final = deckRef.current.shift()!;
+
         loadSquad(final.team.id, final.season).then((squad) => {
-          if (!squad) { rollDice(); return; }
+          if (!squad) { rollDice(isReroll); return; }
           setRoll({ team: final.team, season: final.season, squad });
           setPhase('squad');
         });
