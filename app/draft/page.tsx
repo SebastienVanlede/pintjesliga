@@ -180,30 +180,6 @@ export default function DraftPage() {
             <motion.div key="idle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               className="flex flex-col items-center justify-center gap-8 flex-1 min-h-72">
 
-              {/* Volgende positie */}
-              {nextPos && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="text-center flex flex-col gap-2"
-                >
-                  <span className="label-xs">Volgende positie te vullen</span>
-                  <span style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: 'clamp(3rem,10vw,5rem)',
-                    color: 'var(--gold)',
-                    letterSpacing: '0.12em',
-                    lineHeight: 1,
-                    textShadow: '0 0 60px rgba(212,148,10,0.4)',
-                  }}>
-                    {nextPos}
-                  </span>
-                  <span className="text-sm" style={{ color: 'var(--muted)' }}>
-                    {filledCount === 0 ? 'Kies jouw eerste speler' : `${positions.length - filledCount} posities resterend`}
-                  </span>
-                </motion.div>
-              )}
-
               {/* Rol knop */}
               <motion.button
                 onClick={() => rollDice(false)}
