@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pintjesliga
 
-## Getting Started
+Belgische Pro League droomelf simulator. Rol de dobbelstenen, kies je spelers uit historische squads en simuleer een volledig seizoen — inclusief Play-off 1, Play-off 2 en Relegation Play-off.
 
-First, run the development server:
+🔗 **[pintjesliga.vercel.app](https://pintjesliga.vercel.app)**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Wat is het?
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Pintjesliga is een browsergebaseerde draft- en simulatiegame op basis van de Belgische Pro League. Je bouwt een elftal samen via een dobbelsteendraft uit seizoenen 2021 en 2022, en simuleert daarna een volledig competitieseizoen met play-offs.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Speelflow
 
-## Learn More
+1. **Kies een formatie** — 4-3-3, 4-4-2, 4-2-3-1 en meer
+2. **Kies een speelmodus** — Normaal (ratings zichtbaar) of From Memory (ratings verborgen)
+3. **Draft je elftal** — dobbelstenen bepalen welk team je trekt, jij kiest de speler en positie
+4. **Simuleer het seizoen** — automatisch of speeldag per speeldag (manueel)
+5. **Deel je resultaat** — kopieer de sharekaart als afbeelding of tekst
 
-To learn more about Next.js, take a look at the following resources:
+### Simulatie
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- 16 teams, 30 speeldagen regulier seizoen
+- Play-off 1 (top 6): volledige dubbele competitie — elke ploeg speelt 2x tegen elke andere
+- Play-off 2 (7–12): Europa play-off
+- Relegation play-off (13–16)
+- Matchsimulatie via Poisson-verdeling op basis van teamkwaliteit en thuisvoordeel
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Tech stack
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [Next.js](https://nextjs.org) (App Router)
+- [Zustand](https://zustand-demo.pmnd.rs) — state management
+- [Framer Motion](https://www.framer.com/motion) — animaties
+- [Vercel Analytics](https://vercel.com/analytics)
+- Squads in statische JSON-bestanden onder `data/squads/`
