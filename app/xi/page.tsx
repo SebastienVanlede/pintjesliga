@@ -1,5 +1,5 @@
 'use client';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { useGameStore } from '@/lib/store';
@@ -9,12 +9,16 @@ import FormationPitch from '@/components/FormationPitch';
 export default function XIPage() {
   const router = useRouter();
   const { formation, pickedPlayers, reset, resetKeepFormation } = useGameStore();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => { setMounted(true); }, []);
 
   useEffect(() => {
+    if (!mounted) return;
     if (!formation || pickedPlayers.length < 11) router.replace('/');
-  }, [formation, pickedPlayers.length, router]);
+  }, [mounted, formation, pickedPlayers.length, router]);
 
-  if (!formation || pickedPlayers.length < 11) return null;
+  if (!mounted || !formation || pickedPlayers.length < 11) return null;
 
   const pickedByIndex = Object.fromEntries(pickedPlayers.map((p) => [p.positionIndex, p]));
   const positions = FORMATION_POSITIONS[formation];

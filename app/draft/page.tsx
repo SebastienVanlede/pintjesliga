@@ -38,10 +38,18 @@ export default function DraftPage() {
   const filledCount = pickedPlayers.length;
   const nextPos = positions[filledCount] ?? null;
 
-  useEffect(() => { if (!formation) router.replace('/'); }, [formation, router]);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
+
   useEffect(() => {
+    if (!mounted) return;
+    if (!formation) router.replace('/');
+  }, [mounted, formation, router]);
+
+  useEffect(() => {
+    if (!mounted) return;
     if (filledCount >= positions.length && positions.length > 0) router.push('/xi');
-  }, [filledCount, positions.length, router]);
+  }, [mounted, filledCount, positions.length, router]);
 
   const rollDice = useCallback((isReroll = false) => {
     if (isReroll) setRerollsUsed(prev => prev + 1);

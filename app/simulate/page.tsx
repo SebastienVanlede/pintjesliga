@@ -26,10 +26,15 @@ export default function SimulatePage() {
   const { formation, pickedPlayers, simulatedSeason, setSimulatedSeason, reset, teamName, setTeamName, simSeason, setSimSeason } = useGameStore();
   const [mode, setMode] = useState<SimMode | null>(null);
   const [squads, setSquads] = useState<Squad[] | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  // Wacht tot de Zustand store gehydrateerd is voor de redirect-check
+  useEffect(() => { setMounted(true); }, []);
 
   useEffect(() => {
-    if (!formation || pickedPlayers.length < 11) { router.replace('/'); return; }
-  }, []);
+    if (!mounted) return;
+    if (!formation || pickedPlayers.length < 11) { router.replace('/'); }
+  }, [mounted, formation, pickedPlayers.length, router]);
 
   useEffect(() => {
     if (!formation || pickedPlayers.length < 11) return;
@@ -39,7 +44,7 @@ export default function SimulatePage() {
       .then(results => setSquads(results.filter(Boolean) as Squad[]));
   }, [simSeason]);
 
-  if (!formation || pickedPlayers.length < 11) return null;
+  if (!mounted || !formation || pickedPlayers.length < 11) return null;
 
   const sim = simulatedSeason as SimulatedSeason | null;
 
