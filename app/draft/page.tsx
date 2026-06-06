@@ -334,7 +334,9 @@ export default function DraftPage() {
               {/* Player list */}
               <div className="flex flex-col gap-2 flex-1 overflow-y-auto max-h-[420px] pr-1">
                 {[...roll.squad.players]
-                  .sort((a, b) => b.overall - a.overall)
+                  .sort((a, b) => blind
+                    ? ['GK','RB','CB','LB','CDM','CM','CAM','RM','LM','RW','LW','ST'].indexOf(a.position) - ['GK','RB','CB','LB','CDM','CM','CAM','RM','LM','RW','LW','ST'].indexOf(b.position)
+                    : b.overall - a.overall)
                   .map((player) => {
                     const alreadyPicked = pickedPlayerIds.has(player.id) || pickedPlayerNames.has(player.name.toLowerCase());
                     const posFull = playerPositions(player).every(pos => isPositionFull(pos));
