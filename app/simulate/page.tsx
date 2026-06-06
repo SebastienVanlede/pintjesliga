@@ -241,6 +241,22 @@ function ManualSim({ squads, pickedPlayers, teamName, onDone }: {
     setRegRound(prev => prev + 1);
   }
 
+  function simulateAllRegular() {
+    if (regDone) return;
+    let allMatches = [...regMatches];
+    let c = counter;
+    const remaining = regSched.current.slice(regRound);
+    for (const pairs of remaining) {
+      const results = simulateRound(pairs, teams.current, c);
+      allMatches = [...allMatches, ...results];
+      c += results.length;
+    }
+    setRegMatches(allMatches);
+    setLastRound(null);
+    setCounter(c);
+    setRegRound(regSched.current.length);
+  }
+
   function startPlayoffs() {
     const finalStandings = computeStandings(teamNames.current, regMatches);
     const po1Names = finalStandings.slice(0, 6).map(r => r.team);
@@ -266,7 +282,6 @@ function ManualSim({ squads, pickedPlayers, teamName, onDone }: {
     const r = playoffs.round;
     let c = counter;
 
-    // All three playoff groups advance simultaneously
     const po1R = r < playoffs.po1.schedule.length ? simulateRound(playoffs.po1.schedule[r], teams.current, c) : [];
     c += po1R.length;
     const po2R = r < playoffs.po2.schedule.length ? simulateRound(playoffs.po2.schedule[r], teams.current, c) : [];
@@ -282,6 +297,36 @@ function ManualSim({ squads, pickedPlayers, teamName, onDone }: {
       po1: { ...prev.po1, matches: [...prev.po1.matches, ...po1R] },
       po2: { ...prev.po2, matches: [...prev.po2.matches, ...po2R] },
       rel: { ...prev.rel, matches: [...prev.rel.matches, ...relR] },
+    }));
+  }
+
+  function simulateAllPlayoffs() {
+    if (!playoffs || playoffsDone) return;
+    let po1M = [...playoffs.po1.matches];
+    let po2M = [...playoffs.po2.matches];
+    let relM = [...playoffs.rel.matches];
+    let c = counter;
+    const remaining = playoffs.maxRounds - playoffs.round;
+    for (let step = 0; step < remaining; step++) {
+      const r = playoffs.round + step;
+      const po1R = r < playoffs.po1.schedule.length ? simulateRound(playoffs.po1.schedule[r], teams.current, c) : [];
+      c += po1R.length;
+      const po2R = r < playoffs.po2.schedule.length ? simulateRound(playoffs.po2.schedule[r], teams.current, c) : [];
+      c += po2R.length;
+      const relR = r < playoffs.rel.schedule.length ? simulateRound(playoffs.rel.schedule[r], teams.current, c) : [];
+      c += relR.length;
+      po1M = [...po1M, ...po1R];
+      po2M = [...po2M, ...po2R];
+      relM = [...relM, ...relR];
+    }
+    setCounter(c);
+    setLastRound(null);
+    setPlayoffs(prev => prev && ({
+      ...prev,
+      round: prev.maxRounds,
+      po1: { ...prev.po1, matches: po1M },
+      po2: { ...prev.po2, matches: po2M },
+      rel: { ...prev.rel, matches: relM },
     }));
   }
 
@@ -423,32 +468,46 @@ function ManualSim({ squads, pickedPlayers, teamName, onDone }: {
         )}
       </div>
 
-      {/* Action button */}
-      <div>
+      {/* Action buttons */}
+      <div className="flex flex-col gap-2 w-full max-w-2xl">
         {isRegular && !regDone && (
-          <button onClick={simulateRegularRound}
-            className="px-10 py-3 rounded transition-all duration-150"
-            style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', letterSpacing: '0.12em', background: 'var(--gold)', color: '#090907', border: '2px solid var(--gold)', boxShadow: '0 0 20px rgba(212,148,10,0.3)' }}>
-            ▶ Simuleer speeldag {regRound + 1}
-          </button>
+          <>
+            <button onClick={simulateRegularRound}
+              className="w-full px-10 py-3 rounded transition-all duration-150"
+              style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', letterSpacing: '0.12em', background: 'var(--gold)', color: '#090907', border: '2px solid var(--gold)', boxShadow: '0 0 20px rgba(212,148,10,0.3)' }}>
+              ▶ Simuleer speeldag {regRound + 1}
+            </button>
+            <button onClick={simulateAllRegular}
+              className="w-full px-10 py-2.5 rounded transition-all duration-150"
+              style={{ fontFamily: 'var(--font-display)', fontSize: '0.85rem', letterSpacing: '0.1em', background: 'transparent', color: 'var(--muted)', border: '1px solid var(--border)' }}>
+              ⚡ Simuleer alle {totalRegRounds - regRound} resterende speeldagen in 1x
+            </button>
+          </>
         )}
         {isRegular && regDone && (
           <button onClick={startPlayoffs}
-            className="px-10 py-3 rounded transition-all duration-150"
+            className="w-full px-10 py-3 rounded transition-all duration-150"
             style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', letterSpacing: '0.12em', background: 'var(--gold)', color: '#090907', border: '2px solid var(--gold)' }}>
             → Start Play-offs
           </button>
         )}
         {isPlayoffs && (
-          <button onClick={simulatePlayoffRound}
-            className="px-10 py-3 rounded transition-all duration-150"
-            style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', letterSpacing: '0.12em', background: 'var(--gold)', color: '#090907', border: '2px solid var(--gold)', boxShadow: '0 0 20px rgba(212,148,10,0.3)' }}>
-            ▶ Simuleer PO speeldag {playoffs.round + 1}
-          </button>
+          <>
+            <button onClick={simulatePlayoffRound}
+              className="w-full px-10 py-3 rounded transition-all duration-150"
+              style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', letterSpacing: '0.12em', background: 'var(--gold)', color: '#090907', border: '2px solid var(--gold)', boxShadow: '0 0 20px rgba(212,148,10,0.3)' }}>
+              ▶ Simuleer PO speeldag {playoffs.round + 1}
+            </button>
+            <button onClick={simulateAllPlayoffs}
+              className="w-full px-10 py-2.5 rounded transition-all duration-150"
+              style={{ fontFamily: 'var(--font-display)', fontSize: '0.85rem', letterSpacing: '0.1em', background: 'transparent', color: 'var(--muted)', border: '1px solid var(--border)' }}>
+              ⚡ Simuleer alle {playoffs.maxRounds - playoffs.round} resterende PO speeldagen in 1x
+            </button>
+          </>
         )}
         {playoffsDone && (
           <button onClick={finishSimulation}
-            className="px-10 py-3 rounded transition-all duration-150"
+            className="w-full px-10 py-3 rounded transition-all duration-150"
             style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', letterSpacing: '0.12em', background: 'var(--gold)', color: '#090907', border: '2px solid var(--gold)' }}>
             → Bekijk eindresultaat
           </button>
