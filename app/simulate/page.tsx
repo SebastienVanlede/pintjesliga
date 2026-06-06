@@ -576,6 +576,7 @@ function ShareSection({ sim, pickedPlayers, formation }: {
   formation: string;
 }) {
   const [copied, setCopied] = useState(false);
+  const [copiedImg, setCopiedImg] = useState(false);
   const { teamName } = useGameStore();
   const myTeam = teamName.trim() || 'Mijn Droomelftal';
 
@@ -624,152 +625,144 @@ function ShareSection({ sim, pickedPlayers, formation }: {
     });
   }
 
-  function handleDownload() {
-    const W = 800;
-    const PLAYER_H = 40;
-    const PAD = 44;
-    const H = 180 + pickedPlayers.length * PLAYER_H + 180;
+  function buildCanvasBlob(): Promise<Blob> {
+    return new Promise(resolve => {
+      const W = 800;
+      const PLAYER_H = 40;
+      const PAD = 44;
+      const H = 180 + pickedPlayers.length * PLAYER_H + 180;
 
-    const canvas = document.createElement('canvas');
-    canvas.width = W;
-    canvas.height = H;
-    const ctx = canvas.getContext('2d')!;
+      const canvas = document.createElement('canvas');
+      canvas.width = W;
+      canvas.height = H;
+      const ctx = canvas.getContext('2d')!;
 
-    const GOLD = '#D4940A', RED = '#C41E3A', DARK = '#090907',
-          SURFACE = '#111110', BORDER = '#1E1D1A', TEXT = '#EDE9E0', MUTED = '#6B6560';
+      const GOLD = '#D4940A', RED = '#C41E3A', DARK = '#090907',
+            BORDER = '#1E1D1A', TEXT = '#EDE9E0', MUTED = '#6B6560';
 
-    // Background
-    ctx.fillStyle = DARK;
-    ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = DARK;
+      ctx.fillRect(0, 0, W, H);
 
-    // Belgian stripe
-    ctx.fillStyle = '#1A1A1A'; ctx.fillRect(0, 0, W / 3, 7);
-    ctx.fillStyle = GOLD;      ctx.fillRect(W / 3, 0, W / 3, 7);
-    ctx.fillStyle = RED;       ctx.fillRect((W / 3) * 2, 0, W / 3, 7);
+      ctx.fillStyle = '#1A1A1A'; ctx.fillRect(0, 0, W / 3, 7);
+      ctx.fillStyle = GOLD;      ctx.fillRect(W / 3, 0, W / 3, 7);
+      ctx.fillStyle = RED;       ctx.fillRect((W / 3) * 2, 0, W / 3, 7);
 
-    let y = 60;
+      let y = 60;
 
-    // Title
-    ctx.font = '700 52px Impact, Arial Black, sans-serif';
-    ctx.fillStyle = GOLD;
-    ctx.textAlign = 'left';
-    ctx.fillText('PINTJESLIGA', PAD, y);
-
-    // Formation pill (right)
-    ctx.font = '700 18px Arial, sans-serif';
-    ctx.fillStyle = MUTED;
-    ctx.textAlign = 'right';
-    ctx.fillText(formation, W - PAD, y);
-
-    y += 26;
-    ctx.font = '14px Arial, sans-serif';
-    ctx.fillStyle = MUTED;
-    ctx.textAlign = 'left';
-    ctx.fillText(`Gem. overall: ${avgOverall}  ·  Belgische Pro League Simulator`, PAD, y);
-
-    y += 20;
-
-    // Divider
-    ctx.strokeStyle = BORDER; ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W - PAD, y); ctx.stroke();
-    y += 18;
-
-    // Section label
-    ctx.font = '11px Arial, sans-serif';
-    ctx.fillStyle = MUTED;
-    ctx.textAlign = 'left';
-    ctx.letterSpacing = '2px';
-    ctx.fillText('JOUW ELF', PAD, y);
-    y += 22;
-
-    // Players
-    const sorted = [...pickedPlayers].sort((a, b) => a.positionIndex - b.positionIndex);
-    for (let i = 0; i < sorted.length; i++) {
-      const p = sorted[i];
-
-      if (i % 2 === 1) {
-        ctx.fillStyle = 'rgba(255,255,255,0.025)';
-        ctx.fillRect(PAD - 10, y - 22, W - 2 * PAD + 20, PLAYER_H);
-      }
-
-      // Position tag
-      ctx.font = 'bold 12px Arial, sans-serif';
+      ctx.font = '700 52px Impact, Arial Black, sans-serif';
       ctx.fillStyle = GOLD;
       ctx.textAlign = 'left';
-      ctx.fillText(p.position, PAD, y);
+      ctx.fillText('PINTJESLIGA', PAD, y);
 
-      // Name
-      ctx.font = '15px Arial, sans-serif';
-      ctx.fillStyle = TEXT;
-      ctx.fillText(p.player.name, PAD + 50, y);
-
-      // Overall
-      const ovColor = p.player.overall >= 80 ? GOLD : p.player.overall >= 70 ? TEXT : MUTED;
-      ctx.font = 'bold 15px Arial, sans-serif';
-      ctx.fillStyle = ovColor;
-      ctx.textAlign = 'center';
-      ctx.fillText(String(p.player.overall), W / 2 + 40, y);
-
-      // Team · season
-      ctx.font = '12px Arial, sans-serif';
+      ctx.font = '700 18px Arial, sans-serif';
       ctx.fillStyle = MUTED;
       ctx.textAlign = 'right';
-      ctx.fillText(`${p.teamName}  ${p.season}`, W - PAD, y);
+      ctx.fillText(formation, W - PAD, y);
 
-      y += PLAYER_H;
-    }
+      y += 26;
+      ctx.font = '14px Arial, sans-serif';
+      ctx.fillStyle = MUTED;
+      ctx.textAlign = 'left';
+      ctx.fillText(`Gem. overall: ${avgOverall}  ·  Belgische Pro League Simulator`, PAD, y);
+      y += 20;
 
-    y += 16;
+      ctx.strokeStyle = BORDER; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W - PAD, y); ctx.stroke();
+      y += 18;
 
-    // Results divider
-    ctx.strokeStyle = BORDER; ctx.lineWidth = 1;
-    ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W - PAD, y); ctx.stroke();
-    y += 22;
+      ctx.font = '11px Arial, sans-serif';
+      ctx.fillStyle = MUTED;
+      ctx.textAlign = 'left';
+      ctx.letterSpacing = '2px';
+      ctx.fillText('JOUW ELF', PAD, y);
+      y += 22;
 
-    ctx.font = '11px Arial, sans-serif';
-    ctx.fillStyle = MUTED;
-    ctx.textAlign = 'left';
-    ctx.fillText('SEIZOENSRESULTAAT', PAD, y);
-    y += 34;
+      const sorted = [...pickedPlayers].sort((a, b) => a.positionIndex - b.positionIndex);
+      for (let i = 0; i < sorted.length; i++) {
+        const p = sorted[i];
+        if (i % 2 === 1) {
+          ctx.fillStyle = 'rgba(255,255,255,0.025)';
+          ctx.fillRect(PAD - 10, y - 22, W - 2 * PAD + 20, PLAYER_H);
+        }
+        ctx.font = 'bold 12px Arial, sans-serif';
+        ctx.fillStyle = GOLD;
+        ctx.textAlign = 'left';
+        ctx.fillText(p.position, PAD, y);
+        ctx.font = '15px Arial, sans-serif';
+        ctx.fillStyle = TEXT;
+        ctx.fillText(p.player.name, PAD + 50, y);
+        const ovColor = p.player.overall >= 80 ? GOLD : p.player.overall >= 70 ? TEXT : MUTED;
+        ctx.font = 'bold 15px Arial, sans-serif';
+        ctx.fillStyle = ovColor;
+        ctx.textAlign = 'center';
+        ctx.fillText(String(p.player.overall), W / 2 + 40, y);
+        ctx.font = '12px Arial, sans-serif';
+        ctx.fillStyle = MUTED;
+        ctx.textAlign = 'right';
+        ctx.fillText(`${p.teamName}  ${p.season}`, W - PAD, y);
+        y += PLAYER_H;
+      }
 
-    ctx.font = 'bold 22px Arial, sans-serif';
-    ctx.fillStyle = GOLD;
-    ctx.fillText(`Kampioen: ${sim.champion}`, PAD, y);
-    y += 34;
+      y += 16;
+      ctx.strokeStyle = BORDER; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W - PAD, y); ctx.stroke();
+      y += 22;
 
-    ctx.font = 'bold 22px Arial, sans-serif';
-    ctx.fillStyle = isChampion ? GOLD : TEXT;
-    ctx.fillText(`${myTeam}: ${resultLabel}`, PAD, y);
-    y += 34;
+      ctx.font = '11px Arial, sans-serif';
+      ctx.fillStyle = MUTED;
+      ctx.textAlign = 'left';
+      ctx.fillText('SEIZOENSRESULTAAT', PAD, y);
+      y += 34;
 
-    if (degraded) {
-      ctx.font = '16px Arial, sans-serif';
-      ctx.fillStyle = RED;
-      ctx.fillText(`Gedegradeerd: ${degraded}`, PAD, y);
-      y += 30;
-    }
+      ctx.font = 'bold 22px Arial, sans-serif';
+      ctx.fillStyle = GOLD;
+      ctx.fillText(`Kampioen: ${sim.champion}`, PAD, y);
+      y += 34;
 
-    y += 16;
+      ctx.font = 'bold 22px Arial, sans-serif';
+      ctx.fillStyle = isChampion ? GOLD : TEXT;
+      ctx.fillText(`${myTeam}: ${resultLabel}`, PAD, y);
+      y += 34;
 
-    // Footer
-    ctx.strokeStyle = BORDER;
-    ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W - PAD, y); ctx.stroke();
-    y += 22;
+      if (degraded) {
+        ctx.font = '16px Arial, sans-serif';
+        ctx.fillStyle = RED;
+        ctx.fillText(`Gedegradeerd: ${degraded}`, PAD, y);
+        y += 30;
+      }
 
-    ctx.font = '14px Arial, sans-serif';
-    ctx.fillStyle = MUTED;
-    ctx.textAlign = 'center';
-    ctx.fillText('pintjesliga.be', W / 2, y);
+      y += 16;
+      ctx.strokeStyle = BORDER;
+      ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W - PAD, y); ctx.stroke();
+      y += 22;
 
-    canvas.toBlob(blob => {
-      if (!blob) return;
+      ctx.font = '14px Arial, sans-serif';
+      ctx.fillStyle = MUTED;
+      ctx.textAlign = 'center';
+      ctx.fillText('pintjesliga.be', W / 2, y);
+
+      canvas.toBlob(blob => resolve(blob!), 'image/png');
+    });
+  }
+
+  function handleDownload() {
+    buildCanvasBlob().then(blob => {
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
       a.download = 'pintjesliga-xi.png';
       a.click();
       URL.revokeObjectURL(url);
-    }, 'image/png');
+    });
+  }
+
+  function handleShareImage() {
+    buildCanvasBlob().then(blob => {
+      navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]).then(() => {
+        setCopiedImg(true);
+        setTimeout(() => setCopiedImg(false), 2000);
+      });
+    });
   }
 
   return (
@@ -867,9 +860,9 @@ function ShareSection({ sim, pickedPlayers, formation }: {
       </div>
 
       {/* Action buttons */}
-      <div className="flex gap-3 justify-center">
+      <div className="flex gap-3 justify-center flex-wrap">
         <button onClick={handleCopy}
-          className="px-6 py-3 rounded transition-all duration-150 text-sm"
+          className="px-5 py-3 rounded transition-all duration-150 text-sm"
           style={{
             fontFamily: 'var(--font-display)', letterSpacing: '0.1em',
             background: copied ? 'rgba(74,222,128,0.15)' : 'var(--surface)',
@@ -878,14 +871,24 @@ function ShareSection({ sim, pickedPlayers, formation }: {
           }}>
           {copied ? '✓ Gekopieerd!' : '📋 Kopieer tekst'}
         </button>
-        <button onClick={handleDownload}
-          className="px-6 py-3 rounded transition-all duration-150 text-sm"
+        <button onClick={handleShareImage}
+          className="px-5 py-3 rounded transition-all duration-150 text-sm"
           style={{
             fontFamily: 'var(--font-display)', letterSpacing: '0.1em',
-            background: 'var(--gold)', color: '#090907',
-            border: '1px solid var(--gold)',
+            background: copiedImg ? 'rgba(74,222,128,0.15)' : 'var(--gold)',
+            color: copiedImg ? '#4ade80' : '#090907',
+            border: `1px solid ${copiedImg ? '#4ade80' : 'var(--gold)'}`,
           }}>
-          📥 Download afbeelding
+          {copiedImg ? '✓ Afbeelding gekopieerd!' : '🖼 Kopieer afbeelding'}
+        </button>
+        <button onClick={handleDownload}
+          className="px-5 py-3 rounded transition-all duration-150 text-sm"
+          style={{
+            fontFamily: 'var(--font-display)', letterSpacing: '0.1em',
+            background: 'var(--surface)', color: 'var(--muted)',
+            border: '1px solid var(--border)',
+          }}>
+          📥 Download
         </button>
       </div>
     </div>
@@ -896,12 +899,7 @@ function ShareSection({ sim, pickedPlayers, formation }: {
 
 function PageShell({ children }: { children: React.ReactNode }) {
   return (
-    <main className="min-h-screen flex flex-col items-center px-4 py-8 gap-6">
-      <div className="fixed top-0 left-0 right-0 flex h-1 z-50">
-        <div className="flex-1" style={{ background: '#1A1A1A' }} />
-        <div className="flex-1" style={{ background: 'var(--gold)' }} />
-        <div className="flex-1" style={{ background: 'var(--red)' }} />
-      </div>
+    <main className="min-h-[calc(100svh-56px)] flex flex-col items-center px-4 py-8 gap-6">
       {children}
     </main>
   );
