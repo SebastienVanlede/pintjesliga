@@ -22,6 +22,7 @@ export default function DraftPage() {
   const [spinLabel, setSpinLabel] = useState('');
   const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null);
   const [rerollsUsed, setRerollsUsed] = useState(0);
+  const [sortBy, setSortBy] = useState<'position' | 'rating'>('position');
 
   const MAX_REROLLS = 3;
   const rerollsLeft = MAX_REROLLS - rerollsUsed;
@@ -371,15 +372,40 @@ export default function DraftPage() {
                 </button>
               </div>
 
-              {/* Instructie */}
-              <p className="text-xs px-1" style={{ color: 'var(--muted)' }}>
-                Kies een speler → wijs daarna de positie toe op het veld
-              </p>
+              {/* Instructie + sort toggle */}
+              <div className="flex items-center justify-between px-1">
+                <p className="text-xs" style={{ color: 'var(--muted)' }}>
+                  Kies een speler → wijs daarna de positie toe
+                </p>
+                {!blind && (
+                  <div className="flex rounded-lg overflow-hidden" style={{ border: '1px solid var(--border)' }}>
+                    {(['position', 'rating'] as const).map(opt => (
+                      <button
+                        key={opt}
+                        onClick={() => setSortBy(opt)}
+                        style={{
+                          padding: '3px 10px',
+                          fontSize: '0.6rem',
+                          letterSpacing: '0.08em',
+                          fontFamily: 'var(--font-display)',
+                          background: sortBy === opt ? 'var(--gold)' : 'transparent',
+                          color: sortBy === opt ? '#07070A' : 'var(--muted)',
+                          border: 'none',
+                          cursor: 'pointer',
+                          transition: 'all 0.15s',
+                        }}
+                      >
+                        {opt === 'position' ? 'POS' : 'OVR'}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
 
               {/* Spelerslijst */}
               <div className="flex flex-col gap-1.5 flex-1 overflow-y-auto pr-1" style={{ maxHeight: 440 }}>
                 {[...roll.squad.players]
-                  .sort((a, b) => blind
+                  .sort((a, b) => blind || sortBy === 'position'
                     ? POSITION_ORDER.indexOf(a.position) - POSITION_ORDER.indexOf(b.position)
                     : b.overall - a.overall)
                   .map((player, idx) => {
