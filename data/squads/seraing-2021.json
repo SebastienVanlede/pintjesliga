@@ -8,7 +8,6 @@
     {"id":"moser-seraing-21","name":"Lennart Moser","position":"GK","nationality":"GER","age":24,"appearances":12,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":62},
     {"id":"maziz-seraing-21","name":"Youssef Maziz","position":"LW","alternativePositions":["CAM"],"nationality":"MAR","age":23,"appearances":24,"goals":4,"assists":5,"marketValue":800000,"internationalCaps":2,"awards":[],"overall":63},
     {"id":"gorenc-21","name":"Jan Gorenc","position":"CB","nationality":"SVN","age":28,"appearances":22,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":8,"awards":[],"overall":61},
-    {"id":"gillet-21","name":"Moussa Djenepo","position":"LW","alternativePositions":["RW"],"nationality":"MLI","age":23,"appearances":18,"goals":3,"assists":3,"marketValue":3000000,"internationalCaps":15,"awards":[],"overall":67},
     {"id":"lambert-21","name":"Boris Lambert","position":"CB","alternativePositions":["CDM"],"nationality":"BEL","age":26,"appearances":20,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":60},
     {"id":"bitumazala-21","name":"Nathan Bitumazala","position":"CM","alternativePositions":["CAM","CDM"],"nationality":"FRA","age":21,"appearances":18,"goals":2,"assists":3,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":61},
     {"id":"prevljak-seraing-21","name":"Smail Prevljak","position":"ST","nationality":"BIH","age":25,"appearances":22,"goals":7,"assists":3,"marketValue":1000000,"internationalCaps":10,"awards":[],"overall":64},
