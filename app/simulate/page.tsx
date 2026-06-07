@@ -859,8 +859,8 @@ function ResultsView({ sim, onReset, onBack }: {
     });
 
     // Daily: ook bewaar in dailyResults + update streak (eenmalig)
+    // Flag isDailyChallenge blijft actief tot user nieuw spel start (zo weet share card het)
     if (isDailyChallenge) {
-      // Haal vandaag's datum (Brussel-tijd) — async import om SSR-issues te vermijden
       import('@/lib/daily').then(({ getTodayDateKey }) => {
         const dateKey = getTodayDateKey();
         recordDailyResult({
@@ -873,7 +873,6 @@ function ResultsView({ sim, onReset, onBack }: {
           avgOverall: Math.round(score.avgOverall),
           playedAt: Date.now(),
         });
-        endDailyChallenge();
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -968,7 +967,13 @@ function ResultsView({ sim, onReset, onBack }: {
         <ScoreCard score={score} sim={sim} formation={formation!} />
 
         {/* Share card */}
-        <ShareSection sim={sim} pickedPlayers={pickedPlayers as PickedPlayer[]} formation={formation!} score={score} />
+        <ShareSection
+          sim={sim}
+          pickedPlayers={pickedPlayers as PickedPlayer[]}
+          formation={formation!}
+          score={score}
+          isDaily={isDailyChallenge}
+        />
 
         {/* Data correction link */}
         <p className="text-xs text-center" style={{ color: 'var(--muted)' }}>
@@ -1114,16 +1119,24 @@ function TopScorers({ sim, pickedPlayers, myTeam }: {
 
 // ─── Share section ────────────────────────────────────────────────────────────
 
-function ShareSection({ sim, pickedPlayers, formation, score }: {
+function ShareSection({ sim, pickedPlayers, formation, score, isDaily = false }: {
   sim: SimulatedSeason;
   pickedPlayers: PickedPlayer[];
   formation: string;
   score: ScoreBreakdown;
+  isDaily?: boolean;
 }) {
   const [copied, setCopied] = useState(false);
   const [shared, setShared] = useState(false);
   const [twitterImgCopied, setTwitterImgCopied] = useState(false);
-  const { teamName, simSeason, language, classicSquads } = useGameStore();
+  const { teamName, simSeason, language, classicSquads, dailyStreak } = useGameStore();
+  const [todayKey, setTodayKey] = useState<string>('');
+  useEffect(() => {
+    if (isDaily) import('@/lib/daily').then(({ getTodayDateKey }) => setTodayKey(getTodayDateKey()));
+  }, [isDaily]);
+  const dailyDateFormatted = todayKey
+    ? new Date(todayKey + 'T12:00:00').toLocaleDateString(language === 'nl' ? 'nl-BE' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
+    : '';
   const t = useT();
   const myTeam = teamName.trim() || t.simMode.teamNamePlaceholder;
 
@@ -1196,10 +1209,13 @@ function ShareSection({ sim, pickedPlayers, formation, score }: {
 
   function getShareText() {
     const sorted = [...pickedPlayers].sort((a, b) => a.positionIndex - b.positionIndex);
+    const header = isDaily
+      ? [t.daily.shareTextHeader, dailyDateFormatted, ...(dailyStreak > 0 ? [`🔥 Streak: ${dailyStreak}`] : [])]
+      : [t.share.shareTextHeader];
     const lines = [
-      t.share.shareTextHeader,
+      ...header,
       '',
-      `Formatie: ${formation}  |  Gem. overall: ${avgOverall}`,
+      `Formatie: ${formation}  |  Gem. overall: ${avgOverall}  |  Score: ${score.total.toLocaleString('nl-BE')}`,
       '',
       ...sorted.map(p => {
         const stat = playerStat(p);
@@ -1212,13 +1228,16 @@ function ShareSection({ sim, pickedPlayers, formation, score }: {
       `⭐ ${myTeam}: ${resultLabel}`,
       ...(degraded ? [`🔴 Gedegradeerd: ${degraded}`] : []),
       '',
-      `pintjesliga.vercel.app`,
+      `pintjesliga.vercel.app${isDaily ? '/daily' : ''}`,
     ];
     return lines.join('\n');
   }
 
   function getShortShareText() {
-    // Twitter-vriendelijk (< 280 tekens)
+    if (isDaily) {
+      const streakStr = dailyStreak > 0 ? ` · 🔥 ${dailyStreak}` : '';
+      return `🎯 PINTJESLIGA DAILY — ${dailyDateFormatted}${streakStr}\n${resultLabel} | ${score.total.toLocaleString('nl-BE')} pts\n${formation} · ${t.score.avgOvr(avgOverall)}\n\npintjesliga.vercel.app/daily #Pintjesliga`;
+    }
     const sorted = [...pickedPlayers].sort((a, b) => a.positionIndex - b.positionIndex);
     const top3 = sorted.slice(0, 3).map(p => `${p.position} ${p.player.name} (${p.player.overall})`).join(' · ');
     return `${t.share.shortSharePrefix} — ${formation}\n${resultLabel} | ${t.score.avgOvr(avgOverall)}\n\n${top3}\n\npintjesliga.vercel.app #Pintjesliga`;
@@ -1274,7 +1293,7 @@ function ShareSection({ sim, pickedPlayers, formation, score }: {
       const W           = 760;
       const PAD         = 28;
       const ROW_H       = 48;
-      const HEADER_H    = 92;   // branding (incl. seizoen)
+      const HEADER_H    = isDaily ? 116 : 92;   // branding (incl. seizoen, daily badge)
       const RESULT_H    = 88;   // resultaatblok
       const CHAMPION_H  = 64;   // kampioen footer
       const ROWS_H      = pickedPlayers.length * ROW_H + 16;
@@ -1315,22 +1334,51 @@ function ShareSection({ sim, pickedPlayers, formation, score }: {
       let y = 4;
       const headerBottom = y + HEADER_H;
 
-      // Subtiele radial highlight rechtsboven
+      // Subtiele radial highlight rechtsboven (rood-getint bij daily)
       const radial = ctx.createRadialGradient(W - 100, 30, 0, W - 100, 30, 280);
-      radial.addColorStop(0, 'rgba(212,148,10,0.08)');
+      if (isDaily) {
+        radial.addColorStop(0, 'rgba(196,30,58,0.10)');
+      } else {
+        radial.addColorStop(0, 'rgba(212,148,10,0.08)');
+      }
       radial.addColorStop(1, 'transparent');
       ctx.fillStyle = radial;
       ctx.fillRect(0, y, W, HEADER_H);
 
+      // Daily badge bovenaan (push branding naar beneden)
+      const brandingOffsetY = isDaily ? 24 : 0;
+
+      if (isDaily) {
+        ctx.font = 'bold 10px Arial, sans-serif';
+        ctx.letterSpacing = '2px';
+        const badgeText = `🎯  ${t.daily.shareBadge}`;
+        const badgeW = ctx.measureText(badgeText).width + 24;
+        ctx.fillStyle = 'rgba(196,30,58,0.15)';
+        ctx.strokeStyle = 'rgba(196,30,58,0.5)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.roundRect(PAD, y + 14, badgeW, 18, 3);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = '#E66070';
+        ctx.textAlign = 'left';
+        ctx.fillText(badgeText, PAD + 12, y + 27);
+        ctx.letterSpacing = '0px';
+      }
+
       ctx.font = '800 36px Impact, Arial Black, sans-serif';
       ctx.fillStyle = GOLD;
       ctx.textAlign = 'left';
-      ctx.fillText('PINTJESLIGA', PAD, y + 44);
+      ctx.fillText('PINTJESLIGA', PAD, y + 44 + brandingOffsetY);
 
       ctx.font = '11px Arial, sans-serif';
       ctx.fillStyle = MUTED;
       ctx.letterSpacing = '1.5px';
-      ctx.fillText(`${language === 'nl' ? 'SEIZOEN' : 'SEASON'} ${simSeason}`, PAD, y + 66);
+      if (isDaily) {
+        ctx.fillText(`${t.daily.shareDateLabel.toUpperCase()} ${dailyDateFormatted}`, PAD, y + 66 + brandingOffsetY);
+      } else {
+        ctx.fillText(`${language === 'nl' ? 'SEIZOEN' : 'SEASON'} ${simSeason}`, PAD, y + 66 + brandingOffsetY);
+      }
       ctx.letterSpacing = '0px';
 
       // Formatie chip (rechts)
@@ -1343,12 +1391,12 @@ function ShareSection({ sim, pickedPlayers, formation, score }: {
       ctx.strokeStyle = 'rgba(212,148,10,0.4)';
       ctx.lineWidth = 1;
       ctx.beginPath();
-      ctx.roundRect(chipX, y + 28, chipW, 22, 4);
+      ctx.roundRect(chipX, y + 28 + brandingOffsetY, chipW, 22, 4);
       ctx.fill();
       ctx.stroke();
       ctx.fillStyle = GOLD;
       ctx.textAlign = 'center';
-      ctx.fillText(formationText, chipX + chipW / 2, y + 43);
+      ctx.fillText(formationText, chipX + chipW / 2, y + 43 + brandingOffsetY);
 
       // Gem. OVR onder chip
       ctx.font = '11px Arial, sans-serif';
@@ -1356,10 +1404,29 @@ function ShareSection({ sim, pickedPlayers, formation, score }: {
       ctx.textAlign = 'right';
       const avgLabel = language === 'nl' ? 'gem. OVR ' : 'avg. OVR ';
       const avgValue = String(avgOverall);
-      ctx.fillText(avgLabel, W - PAD - ctx.measureText(avgValue).width - 4, y + 66);
+      ctx.fillText(avgLabel, W - PAD - ctx.measureText(avgValue).width - 4, y + 66 + brandingOffsetY);
       ctx.fillStyle = TEXT;
       ctx.font = 'bold 11px Arial, sans-serif';
-      ctx.fillText(avgValue, W - PAD, y + 66);
+      ctx.fillText(avgValue, W - PAD, y + 66 + brandingOffsetY);
+
+      // Daily streak chip onder formatie chip
+      if (isDaily && dailyStreak > 0) {
+        ctx.font = 'bold 11px Arial, sans-serif';
+        const streakText = `🔥 ${dailyStreak}`;
+        const streakW = ctx.measureText(streakText).width + 16;
+        const sx = W - PAD - streakW;
+        const sy = y + 14;
+        ctx.fillStyle = 'rgba(212,148,10,0.12)';
+        ctx.strokeStyle = 'rgba(212,148,10,0.45)';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.roundRect(sx, sy, streakW, 18, 3);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = GOLD;
+        ctx.textAlign = 'left';
+        ctx.fillText(streakText, sx + 8, sy + 13);
+      }
 
       // Separator
       ctx.strokeStyle = BORDER;
@@ -1625,8 +1692,28 @@ function ShareSection({ sim, pickedPlayers, formation, score }: {
             <div style={{
               padding: '18px 22px 14px',
               borderBottom: '1px solid #1E1D1A',
-              background: 'radial-gradient(ellipse at top right, rgba(212,148,10,0.08) 0%, transparent 60%)',
+              background: isDaily
+                ? 'radial-gradient(ellipse at top right, rgba(196,30,58,0.10) 0%, transparent 60%)'
+                : 'radial-gradient(ellipse at top right, rgba(212,148,10,0.08) 0%, transparent 60%)',
             }}>
+              {/* Daily badge — alleen bij daily */}
+              {isDaily && (
+                <div style={{ marginBottom: 8 }}>
+                  <span style={{
+                    display: 'inline-flex', alignItems: 'center', gap: 6,
+                    padding: '3px 9px',
+                    background: 'rgba(196,30,58,0.15)',
+                    border: '1px solid rgba(196,30,58,0.45)',
+                    borderRadius: 4,
+                    fontSize: 9, letterSpacing: 1.8,
+                    color: '#E66070',
+                    fontWeight: 700,
+                  }}>
+                    <span style={{ fontSize: 10, lineHeight: 1 }}>🎯</span>
+                    {t.daily.shareBadge}
+                  </span>
+                </div>
+              )}
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12 }}>
                 <div>
                   <p style={{
@@ -1637,7 +1724,9 @@ function ShareSection({ sim, pickedPlayers, formation, score }: {
                     PINTJESLIGA
                   </p>
                   <p style={{ fontSize: 10, color: '#6B6560', marginTop: 5, letterSpacing: 1.5, textTransform: 'uppercase' }}>
-                    {language === 'nl' ? 'Seizoen' : 'Season'} {simSeason}
+                    {isDaily
+                      ? `${t.daily.shareDateLabel} ${dailyDateFormatted}`
+                      : `${language === 'nl' ? 'Seizoen' : 'Season'} ${simSeason}`}
                   </p>
                 </div>
                 <div style={{ textAlign: 'right' }}>
@@ -1655,6 +1744,21 @@ function ShareSection({ sim, pickedPlayers, formation, score }: {
                   <p style={{ fontSize: 9.5, color: '#6B6560', marginTop: 5, letterSpacing: 0.6 }}>
                     {language === 'nl' ? 'gem. OVR' : 'avg. OVR'} <span style={{ color: '#EDE9E0', fontWeight: 600 }}>{avgOverall}</span>
                   </p>
+                  {isDaily && dailyStreak > 0 && (
+                    <div style={{
+                      marginTop: 6,
+                      display: 'inline-flex', alignItems: 'center', gap: 4,
+                      padding: '2px 7px',
+                      background: 'rgba(212,148,10,0.12)',
+                      border: '1px solid rgba(212,148,10,0.4)',
+                      borderRadius: 4,
+                    }}>
+                      <span style={{ fontSize: 11, lineHeight: 1 }}>🔥</span>
+                      <span style={{ fontSize: 10, color: '#D4940A', fontWeight: 700, letterSpacing: 0.4 }}>
+                        {dailyStreak}
+                      </span>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

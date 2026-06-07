@@ -129,7 +129,7 @@ export const useGameStore = create<GameState>()(
       lastDailyDate: null,
 
       setFormation: (formation) =>
-        set({ formation, pickedPlayers: [], currentPositionIndex: 0, simulatedSeason: null, rerollsUsed: 0, classicSquads: null }),
+        set({ formation, pickedPlayers: [], currentPositionIndex: 0, simulatedSeason: null, rerollsUsed: 0, classicSquads: null, isDailyChallenge: false, dailyDeck: null }),
 
       pickPlayer: (player) =>
         set((state) => ({

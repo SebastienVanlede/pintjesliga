@@ -276,6 +276,11 @@ export const translations = {
       noStreak: 'Speel om je streak te starten',
       viewAllOpponents: 'Toon alle 16 tegenstanders',
       hideOpponents: 'Verberg',
+      shareTitle: 'Deel je daily-resultaat',
+      shareBadge: 'DAILY CHALLENGE',
+      shareDateLabel: 'Uitdaging',
+      shareStreakLabel: 'STREAK',
+      shareTextHeader: '🎯 PINTJESLIGA DAILY CHALLENGE',
     },
 
     // ── Achievements ──────────────────────────────────────────────────────────
@@ -631,6 +636,11 @@ export const translations = {
       noStreak: 'Play to start your streak',
       viewAllOpponents: 'Show all 16 opponents',
       hideOpponents: 'Hide',
+      shareTitle: 'Share your daily result',
+      shareBadge: 'DAILY CHALLENGE',
+      shareDateLabel: 'Challenge',
+      shareStreakLabel: 'STREAK',
+      shareTextHeader: '🎯 PINTJESLIGA DAILY CHALLENGE',
     },
 
     // ── Achievements ──────────────────────────────────────────────────────────

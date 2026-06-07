@@ -118,7 +118,7 @@ export default function HomePage() {
       {/* ── Right: Formation selector ─────────────────────────────────── */}
       <div className="flex flex-col justify-center px-6 py-6 lg:px-16 lg:py-16 flex-1 gap-5 lg:gap-8">
 
-        {/* Daily Challenge banner */}
+        {/* Daily Challenge — prominente CTA */}
         <motion.div
           initial={{ opacity: 0, y: -4 }}
           animate={{ opacity: 1, y: 0 }}
@@ -131,41 +131,61 @@ export default function HomePage() {
               alignItems: 'center',
               justifyContent: 'space-between',
               gap: 12,
-              padding: '12px 16px',
-              borderRadius: 10,
-              background: dailyPlayedToday ? 'var(--surface)' : 'rgba(212,148,10,0.08)',
-              border: `1px solid ${dailyPlayedToday ? 'var(--border)' : 'var(--gold-dim)'}`,
+              padding: '16px 20px',
+              borderRadius: 12,
+              background: dailyPlayedToday
+                ? 'linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%)'
+                : 'linear-gradient(135deg, rgba(212,148,10,0.18) 0%, rgba(212,148,10,0.06) 100%)',
+              border: `1.5px solid ${dailyPlayedToday ? 'var(--border)' : 'var(--gold)'}`,
               textDecoration: 'none',
               cursor: 'pointer',
-              transition: 'all 0.15s',
-              boxShadow: dailyPlayedToday ? 'none' : '0 0 24px rgba(212,148,10,0.1)',
+              transition: 'all 0.2s',
+              boxShadow: dailyPlayedToday ? 'none' : '0 0 40px rgba(212,148,10,0.2)',
+              position: 'relative',
+              overflow: 'hidden',
             }}
+            onMouseEnter={e => { if (!dailyPlayedToday) (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(-1px)'; }}
+            onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.transform = 'translateY(0)'; }}
           >
             <div className="flex items-center gap-3 min-w-0">
-              <span style={{ fontSize: '1.5rem', flexShrink: 0 }}>{dailyPlayedToday ? '✓' : '🎯'}</span>
+              <span style={{ fontSize: '1.8rem', flexShrink: 0, lineHeight: 1 }}>
+                {dailyPlayedToday ? '✓' : '🎯'}
+              </span>
               <div className="min-w-0">
                 <p style={{
                   fontFamily: 'var(--font-display)',
-                  fontSize: '0.85rem',
+                  fontSize: '0.95rem',
                   color: dailyPlayedToday ? 'var(--text-2)' : 'var(--gold)',
-                  letterSpacing: '0.1em',
-                  lineHeight: 1.2,
+                  letterSpacing: '0.12em',
+                  lineHeight: 1.1,
+                  fontWeight: 600,
                 }}>
-                  {t.daily.navLink.toUpperCase()}
+                  {dailyPlayedToday ? t.daily.alreadyPlayed.toUpperCase() : t.daily.startBtn.toUpperCase()}
                 </p>
-                <p className="text-xs mt-0.5" style={{ color: 'var(--muted)' }}>
-                  {dailyPlayedToday ? t.daily.alreadyPlayed : t.daily.subtitle}
+                <p className="text-xs mt-1" style={{ color: 'var(--muted)' }}>
+                  {t.daily.navLink} · {t.daily.subtitle}
                 </p>
               </div>
             </div>
-            {dailyStreak > 0 && (
-              <div className="flex items-center gap-1 flex-shrink-0">
-                <span style={{ fontSize: '1rem' }}>🔥</span>
-                <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', color: 'var(--gold)', letterSpacing: '0.02em' }}>
-                  {dailyStreak}
-                </span>
-              </div>
-            )}
+            <div className="flex items-center gap-3 flex-shrink-0">
+              {dailyStreak > 0 && (
+                <div className="flex items-center gap-1.5"
+                  style={{
+                    padding: '4px 9px',
+                    borderRadius: 6,
+                    background: 'rgba(212,148,10,0.12)',
+                    border: '1px solid var(--gold-dim)',
+                  }}>
+                  <span style={{ fontSize: '0.95rem', lineHeight: 1 }}>🔥</span>
+                  <span style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', color: 'var(--gold)', letterSpacing: '0.02em', lineHeight: 1 }}>
+                    {dailyStreak}
+                  </span>
+                </div>
+              )}
+              {!dailyPlayedToday && (
+                <span style={{ color: 'var(--gold)', fontSize: '1.2rem', lineHeight: 1 }}>→</span>
+              )}
+            </div>
           </Link>
         </motion.div>
 
