@@ -933,10 +933,8 @@ function ResultsView({ sim, onReset, onBack }: {
         {/* Score + submit */}
         <ScoreCard score={score} sim={sim} formation={formation!} />
 
-        {/* Share card — ingeklapt, opent via knop */}
-        <CollapsibleShare>
-          <ShareSection sim={sim} pickedPlayers={pickedPlayers as PickedPlayer[]} formation={formation!} score={score} />
-        </CollapsibleShare>
+        {/* Share card */}
+        <ShareSection sim={sim} pickedPlayers={pickedPlayers as PickedPlayer[]} formation={formation!} score={score} />
 
         {/* Data correction link */}
         <p className="text-xs text-center" style={{ color: 'var(--muted)' }}>
@@ -1079,42 +1077,6 @@ function TopScorers({ sim, pickedPlayers, myTeam }: {
 // ─── Shared UI components ─────────────────────────────────────────────────────
 
 // ─── Inklapbare share-sectie ──────────────────────────────────────────────────
-
-function CollapsibleShare({ children }: { children: React.ReactNode }) {
-  const [open, setOpen] = useState(false);
-  const t = useT();
-
-  if (open) {
-    return (
-      <div className="flex flex-col gap-3">
-        <button
-          onClick={() => setOpen(false)}
-          className="text-xs self-end transition-all"
-          style={{ color: 'var(--muted)', cursor: 'pointer', background: 'none', border: 'none' }}
-        >
-          ▲ {t.results.collapse}
-        </button>
-        {children}
-      </div>
-    );
-  }
-
-  return (
-    <button
-      onClick={() => setOpen(true)}
-      className="w-full py-3.5 rounded-xl transition-all duration-150 flex items-center justify-center gap-2.5"
-      style={{
-        fontFamily: 'var(--font-display)', fontSize: '0.85rem', letterSpacing: '0.12em',
-        background: 'var(--surface)', color: 'var(--gold)',
-        border: '1px solid var(--gold-dim)',
-        cursor: 'pointer',
-      }}
-    >
-      <span style={{ fontSize: '1rem', lineHeight: 1 }}>↑</span>
-      {t.share.title.toUpperCase()}
-    </button>
-  );
-}
 
 // ─── Share section ────────────────────────────────────────────────────────────
 
