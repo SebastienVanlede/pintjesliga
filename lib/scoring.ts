@@ -74,8 +74,8 @@ export function calculateScore(
   const avgOverall = Math.round(pickedPlayers.reduce((s, p) => s + p.player.overall, 0) / pickedPlayers.length);
   const underdogBonus = Math.max(0, (75 - avgOverall) * 20);
 
-  // Diversity bonus
-  const uniqueTeams = new Set(pickedPlayers.map(p => `${p.teamName}|${p.season}`)).size;
+  // Diversity bonus — unique clubs, not unique squad snapshots (same club, different season = 1 club)
+  const uniqueTeams = new Set(pickedPlayers.map(p => p.teamName)).size;
   const diversityBonus = uniqueTeams * 15;
 
   const baseTotal = resultScore + underdogBonus + diversityBonus;
