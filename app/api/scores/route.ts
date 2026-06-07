@@ -43,6 +43,9 @@ export async function POST(req: NextRequest) {
       unique_teams,
     });
 
-  if (error) return NextResponse.json({ error: error.message }, { status: 500 });
+  if (error) {
+    console.error('Supabase insert error:', JSON.stringify(error));
+    return NextResponse.json({ error: error.message, details: error }, { status: 500 });
+  }
   return NextResponse.json({ ok: true }, { status: 201 });
 }
