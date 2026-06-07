@@ -127,17 +127,10 @@ export default function LeaderboardPage() {
       <div className="flex gap-3">
         <button
           onClick={() => router.push('/')}
-          className="px-6 py-3 rounded text-sm transition-all"
-          style={{ fontFamily: 'var(--font-display)', letterSpacing: '0.1em', background: 'var(--gold)', color: '#07070A', border: '2px solid var(--gold)' }}
+          className="px-8 py-3.5 rounded-lg text-sm transition-all"
+          style={{ fontFamily: 'var(--font-display)', letterSpacing: '0.12em', background: 'var(--gold)', color: '#07070A', border: '2px solid var(--gold)', cursor: 'pointer', boxShadow: '0 0 30px rgba(212,148,10,0.2)' }}
         >
           {t.leaderboard.newGame}
-        </button>
-        <button
-          onClick={() => window.location.reload()}
-          className="px-6 py-3 rounded text-sm transition-all"
-          style={{ fontFamily: 'var(--font-display)', letterSpacing: '0.1em', background: 'transparent', color: 'var(--muted)', border: '1px solid var(--border)' }}
-        >
-          {t.leaderboard.refresh}
         </button>
       </div>
     </div>
