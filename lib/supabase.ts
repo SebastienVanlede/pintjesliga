@@ -14,6 +14,19 @@ export interface LeaderboardEntry {
   unique_teams: number;
 }
 
+export interface DailyLeaderboardEntry {
+  id: string;
+  created_at: string;
+  daily_date: string;
+  player_name: string;
+  score: number;
+  formation: string;
+  avg_overall: number;
+  result_label: string;
+  is_champion: boolean;
+  streak: number;
+}
+
 const url  = process.env.NEXT_PUBLIC_SUPABASE_URL  ?? '';
 const key  = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? '';
 

@@ -964,7 +964,7 @@ function ResultsView({ sim, onReset, onBack }: {
         </AnimatePresence>
 
         {/* Score + submit */}
-        <ScoreCard score={score} sim={sim} formation={formation!} />
+        <ScoreCard score={score} sim={sim} formation={formation!} isDaily={isDailyChallenge} />
 
         {/* Share card */}
         <ShareSection
@@ -1995,32 +1995,52 @@ function ShareSection({ sim, pickedPlayers, formation, score, isDaily = false }:
 
 // ─── Score card ───────────────────────────────────────────────────────────────
 
-function ScoreCard({ score, sim, formation }: { score: ScoreBreakdown; sim: SimulatedSeason; formation: string }) {
+function ScoreCard({ score, sim, formation, isDaily = false }: { score: ScoreBreakdown; sim: SimulatedSeason; formation: string; isDaily?: boolean }) {
   const [name, setName] = useState('');
   const [status, setStatus] = useState<'idle' | 'submitting' | 'done' | 'error'>('idle');
   const router = useRouter();
   const t = useT();
+  const { dailyStreak } = useGameStore();
 
   async function handleSubmit() {
     if (!name.trim() || status === 'submitting') return;
     setStatus('submitting');
     try {
-      const res = await fetch('/api/scores', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          player_name: name.trim(),
-          score: score.total,
-          formation,
-          avg_overall: Math.round(score.avgOverall),
-          result_label: score.resultLabel,
-          result_score: score.resultScore,
-          underdog_bonus: score.underdogBonus,
-          diversity_bonus: score.diversityBonus,
-          unique_teams: score.uniqueTeams,
-        }),
-      });
-      setStatus(res.ok ? 'done' : 'error');
+      if (isDaily) {
+        const { getTodayDateKey } = await import('@/lib/daily');
+        const res = await fetch('/api/daily-scores', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            player_name: name.trim(),
+            score: score.total,
+            daily_date: getTodayDateKey(),
+            formation,
+            avg_overall: Math.round(score.avgOverall),
+            result_label: score.resultLabel,
+            is_champion: sim.champion === (useGameStore.getState().teamName.trim() || 'Mijn Droomelftal'),
+            streak: dailyStreak,
+          }),
+        });
+        setStatus(res.ok ? 'done' : 'error');
+      } else {
+        const res = await fetch('/api/scores', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            player_name: name.trim(),
+            score: score.total,
+            formation,
+            avg_overall: Math.round(score.avgOverall),
+            result_label: score.resultLabel,
+            result_score: score.resultScore,
+            underdog_bonus: score.underdogBonus,
+            diversity_bonus: score.diversityBonus,
+            unique_teams: score.uniqueTeams,
+          }),
+        });
+        setStatus(res.ok ? 'done' : 'error');
+      }
     } catch {
       setStatus('error');
     }
