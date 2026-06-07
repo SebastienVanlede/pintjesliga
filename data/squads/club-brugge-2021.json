@@ -26,6 +26,7 @@
     {"id":"lang-21","name":"Noa Lang","position":"LW","alternativePositions":["RW","CAM"],"nationality":"NED","age":22,"appearances":30,"goals":9,"assists":10,"marketValue":22000000,"internationalCaps":3,"awards":["Pro League Young Player 2021"],"overall":77},
     {"id":"skov-olsen-21","name":"Andreas Skov Olsen","position":"RW","alternativePositions":["LW"],"nationality":"DEN","age":21,"appearances":28,"goals":7,"assists":6,"marketValue":12000000,"internationalCaps":8,"awards":[],"overall":74},
     {"id":"buchanan-21","name":"Tajon Buchanan","position":"RW","alternativePositions":["LW","RB"],"nationality":"CAN","age":22,"appearances":18,"goals":4,"assists":3,"marketValue":9500000,"internationalCaps":12,"awards":[],"overall":72},
+    {"id":"nusa-21","name":"Antonio Nusa","position":"LW","alternativePositions":["RW"],"nationality":"NOR","age":16,"appearances":3,"goals":1,"assists":0,"marketValue":3000000,"internationalCaps":0,"awards":[],"overall":66},
     {"id":"wesley-21","name":"Wesley Moraes","position":"ST","nationality":"BRA","age":24,"appearances":20,"goals":7,"assists":2,"marketValue":6000000,"internationalCaps":0,"awards":[],"overall":70},
     {"id":"okereke-21","name":"David Okereke","position":"ST","nationality":"NGA","age":23,"appearances":18,"goals":5,"assists":3,"marketValue":4500000,"internationalCaps":0,"awards":[],"overall":69},
     {"id":"bas-dost-21","name":"Bas Dost","position":"ST","nationality":"NED","age":32,"appearances":18,"goals":5,"assists":2,"marketValue":2500000,"internationalCaps":18,"awards":[],"overall":68},
