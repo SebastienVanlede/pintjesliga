@@ -185,12 +185,15 @@ export default function DraftPage() {
 
   const progressPct = Math.round((filledCount / positions.length) * 100);
 
+  const showLeftMobile = phase === 'idle' || phase === 'placing';
+  const showRightMobile = phase === 'spinning' || phase === 'squad';
+
   return (
-    <div className="flex flex-col lg:flex-row min-h-[calc(100svh-56px)]">
+    <div className="flex flex-col lg:flex-row min-h-[calc(100svh-56px)] relative">
 
       {/* ── Links: Pitch + Lineup ─────────────────────────────────────── */}
       <div
-        className="flex flex-col gap-5 px-5 py-6 lg:py-8 lg:px-7 lg:w-[360px] xl:w-[400px] flex-shrink-0"
+        className={`${showLeftMobile ? 'flex' : 'hidden'} lg:flex flex-col gap-5 px-5 py-6 pb-40 lg:py-8 lg:px-7 lg:pb-8 lg:w-[360px] xl:w-[400px] flex-shrink-0`}
         style={{ borderRight: '1px solid var(--border)', background: 'rgba(0,0,0,0.15)' }}
       >
         {/* Voortgangsbalk */}
@@ -240,13 +243,13 @@ export default function DraftPage() {
       </div>
 
       {/* ── Rechts: Actie ─────────────────────────────────────────────── */}
-      <div className="flex-1 flex flex-col px-6 py-6 lg:px-10 lg:py-8 gap-5 overflow-y-auto">
+      <div className={`${showRightMobile ? 'flex' : 'hidden'} lg:flex flex-1 flex-col px-6 py-6 lg:px-10 lg:py-8 gap-5 lg:overflow-y-auto`}>
         <AnimatePresence mode="wait">
 
-          {/* IDLE */}
+          {/* IDLE — desktop alleen, mobile gebruikt sticky bottom bar */}
           {phase === 'idle' && (
             <motion.div key="idle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              className="flex flex-col items-center justify-center gap-7 flex-1 min-h-72">
+              className="hidden lg:flex flex-col items-center justify-center gap-7 flex-1 min-h-72">
 
               <motion.button
                 onClick={() => rollDice(false)}
@@ -346,13 +349,14 @@ export default function DraftPage() {
             <motion.div key="squad" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
               className="flex flex-col gap-4 flex-1">
 
-              {/* Team reveal banner — compacter, reroll inline */}
+              {/* Team reveal banner — compacter, reroll inline, sticky top op mobile */}
               <div
-                className="rounded-2xl overflow-hidden"
+                className="rounded-2xl overflow-hidden sticky top-[56px] lg:top-0 z-10"
                 style={{
-                  background: `linear-gradient(135deg, ${roll.team.primaryColor}1c 0%, transparent 70%)`,
+                  background: `linear-gradient(135deg, ${roll.team.primaryColor}1c 0%, var(--bg) 70%)`,
                   border: `1.5px solid ${roll.team.primaryColor}44`,
                   boxShadow: `0 0 18px ${roll.team.primaryColor}10`,
+                  backdropFilter: 'blur(8px)',
                 }}
               >
                 <div className="px-5 py-4 flex items-start justify-between gap-4">
@@ -410,8 +414,11 @@ export default function DraftPage() {
                 }} />
               </div>
 
-              {/* Gegroepeerde spelerslijst — 2-koloms op desktop */}
-              <div className="flex flex-col gap-3 flex-1 overflow-y-auto pr-1" style={{ maxHeight: 'calc(100svh - 280px)' }}>
+              {/* Gegroepeerde spelerslijst — 2-koloms op desktop, natuurlijke pagescroll op mobile */}
+              <div className="flex flex-col gap-3 flex-1 lg:overflow-y-auto lg:max-h-[calc(100svh-280px)] lg:pr-1 pb-6">
+                <p className="text-xs px-1 lg:hidden" style={{ color: 'var(--muted)' }}>
+                  {t.draft.chooseHint}
+                </p>
                 {GROUP_ORDER.map(groupKey => {
                   const players = groupedPlayers[groupKey];
                   if (players.length === 0) return null;
@@ -450,10 +457,10 @@ export default function DraftPage() {
             </motion.div>
           )}
 
-          {/* PLACING */}
+          {/* PLACING — desktop alleen, mobile gebruikt sticky bottom bar */}
           {phase === 'placing' && selectedPlayer && roll && (
             <motion.div key="placing" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
-              className="flex flex-col gap-5 flex-1 justify-center items-center max-w-lg mx-auto w-full">
+              className="hidden lg:flex flex-col gap-5 flex-1 justify-center items-center max-w-lg mx-auto w-full">
 
               {/* Gekozen speler card */}
               <div className="w-full rounded-2xl p-5" style={{
@@ -517,6 +524,87 @@ export default function DraftPage() {
 
         </AnimatePresence>
       </div>
+
+      {/* ── MOBILE: sticky roll-knop tijdens idle ─────────────────────── */}
+      {phase === 'idle' && (
+        <div
+          className="lg:hidden fixed bottom-0 inset-x-0 z-30 px-4 pt-8 pb-5"
+          style={{
+            background: 'linear-gradient(to top, var(--bg) 55%, transparent)',
+          }}
+        >
+          <motion.button
+            onClick={() => rollDice(false)}
+            whileTap={{ scale: 0.97 }}
+            className="w-full flex items-center justify-center gap-3 rounded-2xl"
+            style={{
+              background: 'var(--gold)',
+              border: '2px solid var(--gold)',
+              boxShadow: '0 0 28px rgba(212,148,10,0.28)',
+              padding: '18px 24px',
+              cursor: 'pointer',
+              color: '#07070A',
+            }}
+          >
+            <span style={{ fontSize: '1.8rem', lineHeight: 1 }}>🎲</span>
+            <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.15rem', letterSpacing: '0.22em' }}>
+              ROL
+            </span>
+          </motion.button>
+          <p className="text-center text-xs mt-2.5" style={{ color: 'var(--muted)' }}>
+            {t.draft.randomHint}
+          </p>
+        </div>
+      )}
+
+      {/* ── MOBILE: sticky bar tijdens placing ───────────────────────── */}
+      {phase === 'placing' && selectedPlayer && roll && (
+        <div
+          className="lg:hidden fixed bottom-0 inset-x-0 z-30 px-3 pt-8 pb-4"
+          style={{
+            background: 'linear-gradient(to top, var(--bg) 55%, transparent)',
+          }}
+        >
+          <div
+            className="rounded-2xl p-3"
+            style={{
+              background: 'var(--surface)',
+              border: '2px solid var(--gold)',
+              boxShadow: '0 0 22px rgba(212,148,10,0.18)',
+            }}
+          >
+            <div className="flex items-center gap-3">
+              <OverallBadge overall={selectedPlayer.overall} size="sm" blind={blind} />
+              <div className="flex-1 min-w-0">
+                <p className="text-sm font-semibold truncate" style={{ color: 'var(--text)' }}>
+                  {selectedPlayer.name}
+                </p>
+                <p className="text-xs truncate mt-0.5" style={{
+                  color: eligibleIndices.size === 0 ? 'var(--red)' : 'var(--gold)',
+                }}>
+                  {eligibleIndices.size === 0
+                    ? t.draft.noFreePos(playerPositions(selectedPlayer).join('/'), formation)
+                    : t.draft.clickHighlight(playerPositions(selectedPlayer).join('/'))}
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={() => { setSelectedPlayer(null); setPhase('squad'); }}
+              className="w-full mt-2.5 rounded-lg text-xs py-2"
+              style={{
+                background: 'var(--surface-2)',
+                border: '1px solid var(--border)',
+                color: 'var(--text-2)',
+                fontFamily: 'var(--font-display)',
+                letterSpacing: '0.08em',
+              }}
+            >
+              {t.draft.otherPlayer}
+            </button>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
