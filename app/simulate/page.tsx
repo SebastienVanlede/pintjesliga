@@ -8,7 +8,6 @@ import {
   simulateSeason,
   buildSimTeams,
   generateFullSchedule,
-  generatePlayoffSchedule,
   simulateRound,
   computeStandings,
   SimTeamPublic,
@@ -268,9 +267,9 @@ function ManualSim({ squads, pickedPlayers, teamName, onDone }: {
     const po2Names = finalStandings.slice(6, 12).map(r => r.team);
     const relNames = finalStandings.slice(12).map(r => r.team); // 4 teams
 
-    const po1Sched = generateFullSchedule(po1Names);   // home + away: 10 rounds
-    const po2Sched = generatePlayoffSchedule(po2Names); // single: 5 rounds
-    const relSched = generatePlayoffSchedule(relNames);  // single: 3 rounds
+    const po1Sched = generateFullSchedule(po1Names); // home + away: 10 rounds
+    const po2Sched = generateFullSchedule(po2Names); // home + away: 10 rounds
+    const relSched = generateFullSchedule(relNames);  // home + away:  6 rounds
     setPlayoffs({
       round: 0,
       maxRounds: Math.max(po1Sched.length, po2Sched.length, relSched.length),

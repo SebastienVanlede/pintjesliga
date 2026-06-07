@@ -261,11 +261,11 @@ export function simulateSeason(
   const po1Standings = buildStandings(po1Names, po1Matches, po1Carry);
 
   // ── Phase 3: Play-off 2 — Europe (7-12, half points rounded up) ───────────
-  const po2Matches   = roundRobin(po2Teams, regEnd + po1Matches.length + 1, false);
+  const po2Matches   = roundRobin(po2Teams, regEnd + po1Matches.length + 1, true);
   const po2Standings = buildStandings(po2Names, po2Matches, po2Carry);
 
   // ── Phase 4: Relegation Play-off (13-16, full regular season points) ───────
-  const relMatches   = roundRobin(releTeams, regEnd + po1Matches.length + po2Matches.length + 1, false);
+  const relMatches   = roundRobin(releTeams, regEnd + po1Matches.length + po2Matches.length + 1, true);
   const relStandings = buildStandings(releNames, relMatches, releCarry);
 
   // ── Outcomes ───────────────────────────────────────────────────────────────
