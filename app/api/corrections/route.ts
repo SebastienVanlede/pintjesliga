@@ -15,15 +15,13 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Name and message are required' }, { status: 400 });
   }
 
-  const { data, error } = await supabase
+  const { error } = await supabase
     .from('corrections')
     .insert({
       name: name.trim().slice(0, 64),
       message: message.trim().slice(0, 1000),
-    })
-    .select()
-    .single();
+    });
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-  return NextResponse.json(data, { status: 201 });
+  return NextResponse.json({ ok: true }, { status: 201 });
 }
