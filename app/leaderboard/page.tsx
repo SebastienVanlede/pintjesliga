@@ -102,6 +102,36 @@ export default function LeaderboardPage() {
         ))}
       </div>
 
+      {/* Context banner — alleen op Vandaag tab */}
+      {tab === 'today' && (
+        <motion.div
+          initial={{ opacity: 0, y: -4 }} animate={{ opacity: 1, y: 0 }}
+          className="w-full rounded-xl px-4 py-3 flex items-center justify-between gap-3"
+          style={{
+            background: 'rgba(196,30,58,0.06)',
+            border: '1px solid rgba(196,30,58,0.3)',
+          }}
+        >
+          <div className="flex items-center gap-3 min-w-0">
+            <span style={{ fontSize: '1.4rem', flexShrink: 0 }}>🎯</span>
+            <div className="min-w-0">
+              <p style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: '0.7rem',
+                letterSpacing: '0.14em',
+                color: '#E66070',
+                fontWeight: 700,
+              }}>
+                {t.daily.shareBadge}
+              </p>
+              <p className="text-xs mt-0.5" style={{ color: 'var(--muted)' }}>
+                {t.leaderboard.dailyBannerDesc}
+              </p>
+            </div>
+          </div>
+        </motion.div>
+      )}
+
       <AnimatePresence mode="wait">
         {tab === 'today' ? (
           <motion.div

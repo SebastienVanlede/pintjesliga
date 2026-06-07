@@ -229,11 +229,12 @@ export const translations = {
       emptyDesc: 'Er zijn nog geen scores ingediend. Speel het spel en zet jouw naam op de board!',
       newGame: 'Nieuw spel',
       refresh: 'Vernieuwen',
-      tabToday: 'Vandaag',
+      tabToday: 'Daily',
       tabAll: 'Aller tijden',
       tabAllSub: 'Alle scores',
       dailyEmpty: 'WEES DE EERSTE VANDAAG',
       dailyEmptyDesc: 'Niemand heeft vandaag de Daily Challenge al voltooid. Speel hem en zet je naam bovenaan!',
+      dailyBannerDesc: 'Enkel scores van de Daily Challenge — iedereen speelde dezelfde uitdaging vandaag',
     },
 
     // ── Standings ─────────────────────────────────────────────────────────────
@@ -597,11 +598,12 @@ export const translations = {
       emptyDesc: 'No scores have been submitted yet. Play the game and put your name on the board!',
       newGame: 'New game',
       refresh: 'Refresh',
-      tabToday: 'Today',
+      tabToday: 'Daily',
       tabAll: 'All time',
       tabAllSub: 'Every score',
       dailyEmpty: 'BE THE FIRST TODAY',
       dailyEmptyDesc: 'Nobody has finished today\'s Daily Challenge yet. Play it and claim the top spot!',
+      dailyBannerDesc: "Only Daily Challenge scores — everyone played the same challenge today",
     },
 
     standings: {

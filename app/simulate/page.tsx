@@ -2000,25 +2000,25 @@ function ScoreCard({ score, sim, formation, isDaily = false }: { score: ScoreBre
   const [status, setStatus] = useState<'idle' | 'submitting' | 'done' | 'error'>('idle');
   const router = useRouter();
   const t = useT();
-  const { dailyStreak } = useGameStore();
+  const { dailyStreak, dailyDate, isDailyChallenge: storeIsDaily, teamName: storeTeamName } = useGameStore();
 
   async function handleSubmit() {
     if (!name.trim() || status === 'submitting') return;
     setStatus('submitting');
     try {
-      if (isDaily) {
-        const { getTodayDateKey } = await import('@/lib/daily');
+      // Strikte check: alleen daily-flow + opgeslagen dailyDate accepteren
+      if (isDaily && storeIsDaily && dailyDate) {
         const res = await fetch('/api/daily-scores', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             player_name: name.trim(),
             score: score.total,
-            daily_date: getTodayDateKey(),
+            daily_date: dailyDate,
             formation,
             avg_overall: Math.round(score.avgOverall),
             result_label: score.resultLabel,
-            is_champion: sim.champion === (useGameStore.getState().teamName.trim() || 'Mijn Droomelftal'),
+            is_champion: sim.champion === (storeTeamName.trim() || 'Mijn Droomelftal'),
             streak: dailyStreak,
           }),
         });

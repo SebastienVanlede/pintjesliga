@@ -22,7 +22,7 @@ export default function DailyPage() {
 
   function handleStart() {
     if (!challenge) return;
-    startDailyChallenge(challenge.formation, challenge.opponents, challenge.rollDeck);
+    startDailyChallenge(challenge.formation, challenge.opponents, challenge.rollDeck, challenge.dateKey);
     router.push('/draft');
   }
 
