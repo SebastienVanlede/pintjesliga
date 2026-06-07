@@ -1205,7 +1205,7 @@ function ScoreCard({ score, sim, formation }: { score: ScoreBreakdown; sim: Simu
           player_name: name.trim(),
           score: score.total,
           formation,
-          avg_overall: score.avgOverall,
+          avg_overall: Math.round(score.avgOverall),
           result_label: score.resultLabel,
           result_score: score.resultScore,
           underdog_bonus: score.underdogBonus,
