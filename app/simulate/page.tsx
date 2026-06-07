@@ -643,7 +643,7 @@ function ResultsView({ sim, onReset, onBack }: {
         <ScoreCard score={score} sim={sim} formation={formation!} />
 
         {/* Share card */}
-        <ShareSection sim={sim} pickedPlayers={pickedPlayers as PickedPlayer[]} formation={formation!} />
+        <ShareSection sim={sim} pickedPlayers={pickedPlayers as PickedPlayer[]} formation={formation!} score={score} />
 
         {/* Data correction link */}
         <p className="text-xs text-center" style={{ color: 'var(--muted)' }}>
@@ -787,10 +787,11 @@ function TopScorers({ sim, pickedPlayers, myTeam }: {
 
 // ─── Share section ────────────────────────────────────────────────────────────
 
-function ShareSection({ sim, pickedPlayers, formation }: {
+function ShareSection({ sim, pickedPlayers, formation, score }: {
   sim: SimulatedSeason;
   pickedPlayers: PickedPlayer[];
   formation: string;
+  score: ScoreBreakdown;
 }) {
   const [copied, setCopied] = useState(false);
   const [shared, setShared] = useState(false);
@@ -921,125 +922,148 @@ function ShareSection({ sim, pickedPlayers, formation }: {
 
   function buildCanvasBlob(): Promise<Blob> {
     return new Promise(resolve => {
-      const W = 800;
-      const PLAYER_H = 40;
-      const PAD = 44;
-      const H = 180 + pickedPlayers.length * PLAYER_H + 180;
+      const W       = 720;
+      const PAD     = 40;
+      const ROW_H   = 46;
+      const HEADER  = 160; // branding + resultaat blok
+      const FOOTER  = 48;
+      const H       = HEADER + pickedPlayers.length * ROW_H + FOOTER;
 
       const canvas = document.createElement('canvas');
-      canvas.width = W;
+      canvas.width  = W;
       canvas.height = H;
       const ctx = canvas.getContext('2d')!;
 
-      const GOLD = '#D4940A', RED = '#C41E3A', DARK = '#090907',
-            BORDER = '#1E1D1A', TEXT = '#EDE9E0', MUTED = '#6B6560';
+      const GOLD   = '#D4940A';
+      const DARK   = '#090907';
+      const BORDER = '#1E1D1A';
+      const TEXT   = '#EDE9E0';
+      const MUTED  = '#6B6560';
+      const DIM    = '#2a2825';
+      const resultCanvasColor = isChampion ? GOLD : userInPO1 ? GOLD : userInPO2 ? '#3a8fd1' : userInRele ? '#C41E3A' : MUTED;
 
+      // Achtergrond
       ctx.fillStyle = DARK;
       ctx.fillRect(0, 0, W, H);
 
-      ctx.fillStyle = '#1A1A1A'; ctx.fillRect(0, 0, W / 3, 7);
-      ctx.fillStyle = GOLD;      ctx.fillRect(W / 3, 0, W / 3, 7);
-      ctx.fillStyle = RED;       ctx.fillRect((W / 3) * 2, 0, W / 3, 7);
+      // Belgische balk
+      ctx.fillStyle = '#1A1A1A'; ctx.fillRect(0, 0, W / 3, 5);
+      ctx.fillStyle = GOLD;      ctx.fillRect(W / 3, 0, W / 3, 5);
+      ctx.fillStyle = '#C41E3A'; ctx.fillRect((W / 3) * 2, 0, W / 3, 5);
 
-      let y = 60;
+      let y = 46;
 
-      ctx.font = '700 52px Impact, Arial Black, sans-serif';
+      // Branding
+      ctx.font = '700 38px Impact, Arial Black, sans-serif';
       ctx.fillStyle = GOLD;
       ctx.textAlign = 'left';
       ctx.fillText('PINTJESLIGA', PAD, y);
 
-      ctx.font = '700 18px Arial, sans-serif';
+      ctx.font = '14px Arial, sans-serif';
       ctx.fillStyle = MUTED;
       ctx.textAlign = 'right';
-      ctx.fillText(formation, W - PAD, y);
+      ctx.fillText(`${formation}  ·  gem. OVR ${avgOverall}`, W - PAD, y);
 
-      y += 26;
-      ctx.font = '14px Arial, sans-serif';
-      ctx.fillStyle = MUTED;
-      ctx.textAlign = 'left';
-      ctx.fillText(`Gem. overall: ${avgOverall}  ·  Belgische Pro League Simulator`, PAD, y);
-      y += 20;
+      y += 22;
 
-      ctx.strokeStyle = BORDER; ctx.lineWidth = 1;
-      ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W - PAD, y); ctx.stroke();
-      y += 18;
+      // Resultaat blok
+      ctx.fillStyle = 'rgba(255,255,255,0.03)';
+      ctx.beginPath();
+      ctx.roundRect(PAD, y, W - PAD * 2, 58, 6);
+      ctx.fill();
 
       ctx.font = '11px Arial, sans-serif';
       ctx.fillStyle = MUTED;
       ctx.textAlign = 'left';
-      ctx.letterSpacing = '2px';
-      ctx.fillText('JOUW ELF', PAD, y);
-      y += 22;
+      ctx.fillText(myTeam.toUpperCase(), PAD + 12, y + 18);
 
+      ctx.font = 'bold 20px Arial, sans-serif';
+      ctx.fillStyle = resultCanvasColor;
+      ctx.fillText(resultLabel, PAD + 12, y + 42);
+
+      ctx.font = 'bold 28px Impact, Arial Black, sans-serif';
+      ctx.fillStyle = GOLD;
+      ctx.textAlign = 'right';
+      ctx.fillText(score.total.toLocaleString('nl-BE'), W - PAD - 12, y + 42);
+
+      ctx.font = '11px Arial, sans-serif';
+      ctx.fillStyle = MUTED;
+      ctx.fillText('pts', W - PAD - 12, y + 18);
+
+      y = HEADER;
+
+      // Spelersrijen
       const sorted = [...pickedPlayers].sort((a, b) => a.positionIndex - b.positionIndex);
       for (let i = 0; i < sorted.length; i++) {
-        const p = sorted[i];
+        const p    = sorted[i];
         const stat = playerStat(p);
+        const rowY = y + i * ROW_H;
+
         if (i % 2 === 1) {
-          ctx.fillStyle = 'rgba(255,255,255,0.025)';
-          ctx.fillRect(PAD - 10, y - 22, W - 2 * PAD + 20, PLAYER_H);
+          ctx.fillStyle = 'rgba(255,255,255,0.02)';
+          ctx.fillRect(0, rowY, W, ROW_H);
         }
-        ctx.font = 'bold 12px Arial, sans-serif';
+
+        // Scheidingslijn
+        if (i > 0) {
+          ctx.strokeStyle = BORDER;
+          ctx.lineWidth = 0.5;
+          ctx.beginPath();
+          ctx.moveTo(PAD, rowY);
+          ctx.lineTo(W - PAD, rowY);
+          ctx.stroke();
+        }
+
+        const midY = rowY + ROW_H / 2;
+
+        // Positie
+        ctx.font = 'bold 10px Arial, sans-serif';
         ctx.fillStyle = GOLD;
         ctx.textAlign = 'left';
-        ctx.fillText(p.position, PAD, y);
-        ctx.font = '15px Arial, sans-serif';
+        ctx.fillText(p.position, PAD, midY - 4);
+
+        // Naam
+        ctx.font = '500 15px Arial, sans-serif';
         ctx.fillStyle = TEXT;
-        ctx.fillText(p.player.name, PAD + 50, y);
-        const ovColor = p.player.overall >= 80 ? GOLD : p.player.overall >= 70 ? TEXT : MUTED;
-        ctx.font = 'bold 15px Arial, sans-serif';
-        ctx.fillStyle = ovColor;
-        ctx.textAlign = 'center';
-        ctx.fillText(String(p.player.overall), W / 2 + 20, y);
-        // Stats (goals/assists/clean sheets)
-        ctx.font = 'bold 12px Arial, sans-serif';
-        ctx.fillStyle = stat === '—' ? '#3a3a38' : GOLD;
-        ctx.textAlign = 'center';
-        ctx.fillText(stat, W / 2 + 100, y);
-        ctx.font = '12px Arial, sans-serif';
-        ctx.fillStyle = MUTED;
-        ctx.textAlign = 'right';
-        ctx.fillText(`${p.teamName}  ${p.season}`, W - PAD, y);
-        y += PLAYER_H;
+        ctx.fillText(p.player.name, PAD + 44, midY - 4);
+
+        // Club · seizoen
+        ctx.font = '10px Arial, sans-serif';
+        ctx.fillStyle = DIM;
+        ctx.fillText(`${p.teamName} · ${p.season}`, PAD + 44, midY + 11);
+
+        // Stat badge
+        if (stat !== '—') {
+          const bw = ctx.measureText(stat).width + 16;
+          ctx.fillStyle = 'rgba(212,148,10,0.15)';
+          ctx.beginPath();
+          ctx.roundRect(W - PAD - bw, midY - 11, bw, 20, 4);
+          ctx.fill();
+          ctx.font = 'bold 11px Arial, sans-serif';
+          ctx.fillStyle = GOLD;
+          ctx.textAlign = 'right';
+          ctx.fillText(stat, W - PAD - 8, midY + 4);
+        } else {
+          ctx.font = '11px Arial, sans-serif';
+          ctx.fillStyle = '#2a2825';
+          ctx.textAlign = 'right';
+          ctx.fillText('—', W - PAD, midY + 4);
+        }
       }
 
-      y += 16;
-      ctx.strokeStyle = BORDER; ctx.lineWidth = 1;
-      ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W - PAD, y); ctx.stroke();
-      y += 22;
+      // Footer
+      const footerY = HEADER + sorted.length * ROW_H;
+      ctx.strokeStyle = BORDER;
+      ctx.lineWidth = 0.5;
+      ctx.beginPath();
+      ctx.moveTo(PAD, footerY);
+      ctx.lineTo(W - PAD, footerY);
+      ctx.stroke();
 
       ctx.font = '11px Arial, sans-serif';
-      ctx.fillStyle = MUTED;
-      ctx.textAlign = 'left';
-      ctx.fillText('SEIZOENSRESULTAAT', PAD, y);
-      y += 34;
-
-      ctx.font = 'bold 22px Arial, sans-serif';
-      ctx.fillStyle = GOLD;
-      ctx.fillText(`Kampioen: ${sim.champion}`, PAD, y);
-      y += 34;
-
-      ctx.font = 'bold 22px Arial, sans-serif';
-      ctx.fillStyle = isChampion ? GOLD : TEXT;
-      ctx.fillText(`${myTeam}: ${resultLabel}`, PAD, y);
-      y += 34;
-
-      if (degraded) {
-        ctx.font = '16px Arial, sans-serif';
-        ctx.fillStyle = RED;
-        ctx.fillText(`Gedegradeerd: ${degraded}`, PAD, y);
-        y += 30;
-      }
-
-      y += 16;
-      ctx.strokeStyle = BORDER;
-      ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(W - PAD, y); ctx.stroke();
-      y += 22;
-
-      ctx.font = '14px Arial, sans-serif';
-      ctx.fillStyle = MUTED;
+      ctx.fillStyle = '#3a3835';
       ctx.textAlign = 'center';
-      ctx.fillText('pintjesliga.vercel.app', W / 2, y);
+      ctx.fillText('pintjesliga.vercel.app', W / 2, footerY + 28);
 
       canvas.toBlob(blob => resolve(blob!), 'image/png');
     });
@@ -1066,98 +1090,96 @@ function ShareSection({ sim, pickedPlayers, formation }: {
       </div>
 
       {/* Preview card */}
-      <div style={{
-        background: '#090907', borderRadius: 12, overflow: 'hidden',
-        border: '1px solid #1E1D1A', fontFamily: 'system-ui, Arial, sans-serif',
-      }}>
-        {/* Belgian stripe */}
-        <div style={{ display: 'flex', height: 5 }}>
-          <div style={{ flex: 1, background: '#1A1A1A' }} />
-          <div style={{ flex: 1, background: '#D4940A' }} />
-          <div style={{ flex: 1, background: '#C41E3A' }} />
-        </div>
-
-        <div style={{ padding: '20px 24px' }}>
-          {/* Header */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 4 }}>
-            <span style={{ fontFamily: 'Impact, Arial Black, sans-serif', fontSize: 28, color: '#D4940A', letterSpacing: 2 }}>
-              PINTJESLIGA
-            </span>
-            <span style={{ fontSize: 13, color: '#6B6560' }}>
-              {formation} · gem. {avgOverall}
-            </span>
-          </div>
-          <div style={{ fontSize: 11, color: '#6B6560', marginBottom: 14 }}>
-            Belgische Pro League Simulator
-          </div>
-
-          {/* Players */}
-          <div style={{ borderTop: '1px solid #1E1D1A', paddingTop: 10, marginBottom: 10 }}>
-            {[...pickedPlayers]
-              .sort((a, b) => a.positionIndex - b.positionIndex)
-              .map((p, i) => {
-                const stat = playerStat(p);
-                const statColor = stat === '—' ? '#3a3a38'
-                  : p.position === 'GK' ? (cleanSheets >= 10 ? '#D4940A' : '#EDE9E0')
-                  : '#D4940A';
-                return (
-                  <div key={i} style={{
-                    display: 'flex', alignItems: 'center', gap: 6, padding: '5px 0',
-                    background: i % 2 === 1 ? 'rgba(255,255,255,0.02)' : 'transparent',
-                  }}>
-                    <span style={{ fontSize: 10, color: '#D4940A', width: 30, fontWeight: 700, flexShrink: 0 }}>
-                      {p.position}
-                    </span>
-                    <span style={{ flex: 1, fontSize: 13, color: '#EDE9E0', fontWeight: 500, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                      {p.player.name}
-                    </span>
-                    <span style={{
-                      fontSize: 13, fontWeight: 700, width: 26, textAlign: 'center', flexShrink: 0,
-                      color: p.player.overall >= 80 ? '#D4940A' : p.player.overall >= 70 ? '#EDE9E0' : '#6B6560',
-                    }}>
-                      {p.player.overall}
-                    </span>
-                    <span style={{ fontSize: 10, color: statColor, textAlign: 'right', width: 42, flexShrink: 0, fontWeight: stat !== '—' ? 700 : 400 }}>
-                      {stat}
-                    </span>
-                    <span style={{ fontSize: 10, color: '#6B6560', textAlign: 'right', width: 120, flexShrink: 0 }}>
-                      {p.teamName} {p.season}
-                    </span>
-                  </div>
-                );
-              })}
-          </div>
-
-          {/* Results */}
-          <div style={{ borderTop: '1px solid #1E1D1A', paddingTop: 12, display: 'flex', flexDirection: 'column', gap: 4 }}>
-            <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-              <span style={{ fontSize: 14, color: '#D4940A', fontWeight: 700 }}>
-                Kampioen:
-              </span>
-              <span style={{ fontSize: 14, color: sim.champion === myTeam ? '#D4940A' : '#EDE9E0' }}>
-                {sim.champion}
-              </span>
+      {(() => {
+        const resultColor = isChampion ? '#D4940A' : userInPO1 ? '#D4940A' : userInPO2 ? '#3a8fd1' : userInRele ? '#C41E3A' : '#6B6560';
+        const resultBg    = isChampion ? 'rgba(212,148,10,0.12)' : userInPO2 ? 'rgba(58,143,209,0.08)' : userInRele ? 'rgba(196,30,58,0.08)' : 'rgba(255,255,255,0.04)';
+        return (
+          <div style={{ background: '#090907', borderRadius: 12, overflow: 'hidden', border: '1px solid #1E1D1A', fontFamily: 'system-ui, Arial, sans-serif' }}>
+            {/* Belgian stripe */}
+            <div style={{ display: 'flex', height: 4 }}>
+              <div style={{ flex: 1, background: '#1A1A1A' }} />
+              <div style={{ flex: 1, background: '#D4940A' }} />
+              <div style={{ flex: 1, background: '#C41E3A' }} />
             </div>
-            <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-              <span style={{ fontSize: 14, color: '#6B6560' }}>{myTeam}:</span>
-              <span style={{ fontSize: 14, color: isChampion ? '#D4940A' : '#EDE9E0', fontWeight: 600 }}>
-                {resultLabel}
-              </span>
-            </div>
-            {degraded && (
-              <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
-                <span style={{ fontSize: 12, color: '#6B6560' }}>Gedegradeerd:</span>
-                <span style={{ fontSize: 12, color: '#C41E3A' }}>{degraded}</span>
+
+            <div style={{ padding: '18px 20px', display: 'flex', flexDirection: 'column', gap: 14 }}>
+
+              {/* Branding + formatie */}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontFamily: 'Impact, Arial Black, sans-serif', fontSize: 22, color: '#D4940A', letterSpacing: 2 }}>
+                  PINTJESLIGA
+                </span>
+                <span style={{ fontSize: 11, color: '#6B6560', letterSpacing: 1 }}>{formation}</span>
               </div>
-            )}
-          </div>
 
-          {/* Footer */}
-          <div style={{ marginTop: 14, paddingTop: 10, borderTop: '1px solid #1E1D1A', fontSize: 11, color: '#6B6560', textAlign: 'center' }}>
-            pintjesliga.vercel.app
+              {/* Resultaat + score */}
+              <div style={{ borderRadius: 8, padding: '10px 14px', background: resultBg, border: `1px solid ${resultColor}30`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div>
+                  <p style={{ fontSize: 10, color: '#6B6560', marginBottom: 2 }}>{myTeam}</p>
+                  <p style={{ fontSize: 18, fontWeight: 700, color: resultColor, letterSpacing: 0.5 }}>{resultLabel}</p>
+                </div>
+                <div style={{ textAlign: 'right', display: 'flex', flexDirection: 'column', gap: 4 }}>
+                  <div>
+                    <p style={{ fontSize: 10, color: '#6B6560', marginBottom: 2 }}>Score</p>
+                    <p style={{ fontFamily: 'Impact, Arial Black, sans-serif', fontSize: 22, color: '#D4940A', letterSpacing: 1 }}>
+                      {score.total.toLocaleString('nl-BE')}
+                    </p>
+                  </div>
+                  <p style={{ fontSize: 10, color: '#6B6560' }}>gem. OVR {avgOverall}</p>
+                </div>
+              </div>
+
+              {/* Spelerslijst */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+                {[...pickedPlayers].sort((a, b) => a.positionIndex - b.positionIndex).map((p, i) => {
+                  const stat = playerStat(p);
+                  const hasStat = stat !== '—';
+                  return (
+                    <div key={i} style={{
+                      display: 'flex', alignItems: 'center', gap: 8,
+                      padding: '6px 0',
+                      borderBottom: i < 10 ? '1px solid #141412' : 'none',
+                    }}>
+                      {/* Positie */}
+                      <span style={{ fontSize: 9, color: '#D4940A', width: 28, fontWeight: 700, flexShrink: 0, letterSpacing: 0.5 }}>
+                        {p.position}
+                      </span>
+                      {/* Naam + club */}
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <p style={{ fontSize: 13, color: '#EDE9E0', fontWeight: 600, margin: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                          {p.player.name}
+                        </p>
+                        <p style={{ fontSize: 9, color: '#4a4845', margin: 0, marginTop: 1 }}>
+                          {p.teamName} · {p.season}
+                        </p>
+                      </div>
+                      {/* Stat badge */}
+                      {hasStat ? (
+                        <span style={{
+                          fontSize: 10, fontWeight: 700, flexShrink: 0,
+                          padding: '2px 6px', borderRadius: 4,
+                          background: 'rgba(212,148,10,0.12)',
+                          color: '#D4940A',
+                          letterSpacing: 0.3,
+                        }}>
+                          {stat}
+                        </span>
+                      ) : (
+                        <span style={{ fontSize: 10, color: '#2a2825', width: 36, textAlign: 'right', flexShrink: 0 }}>—</span>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Footer */}
+              <div style={{ fontSize: 10, color: '#3a3835', textAlign: 'center', letterSpacing: 1 }}>
+                pintjesliga.vercel.app
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
+        );
+      })()}
 
       {/* Action buttons */}
       <div className="flex flex-col gap-2">
