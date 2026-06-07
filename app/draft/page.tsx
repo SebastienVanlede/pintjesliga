@@ -42,15 +42,18 @@ export default function DraftPage() {
   const rerollsLeft = MAX_REROLLS - rerollsUsed;
   const deckRef = useRef<{ team: Team; season: string }[]>([]);
 
+  // Voor daily mode: track hoeveel keer er voor de huidige pick gerold is (0 = basis, 1-3 = herrolls)
+  const [dailyAttempt, setDailyAttempt] = useState(0);
+
+  // Reset attempt counter zodra een pick is voltooid (pickedPlayers.length verandert)
   useEffect(() => {
-    // Daily mode: gebruik de seeded deck van de challenge
+    setDailyAttempt(0);
+  }, [pickedPlayers.length]);
+
+  useEffect(() => {
+    // Daily mode gebruikt geen deck-shifting, maar pick-gebonden indexering (zie rollDice)
     if (isDailyChallenge && dailyDeck) {
-      const allRolls = getAvailableRolls();
-      // Map deck entries → volwaardige roll-objecten met team-data
-      deckRef.current = dailyDeck.map(d => {
-        const match = allRolls.find(r => r.team.id === d.teamId && r.season === d.season);
-        return match ? { team: match.team, season: match.season } : null;
-      }).filter((r): r is { team: Team; season: string } => r !== null);
+      deckRef.current = [];
     } else {
       const rolls = getAvailableRolls();
       deckRef.current = [...rolls].sort(() => Math.random() - 0.5);
@@ -94,12 +97,28 @@ export default function DraftPage() {
     setSelectedPlayer(null);
 
     const allRolls = getAvailableRolls();
-    if (deckRef.current.length === 0) {
-      // In daily mode mag het deck niet random worden bijgevuld (zou determinisme breken).
-      // Maar in praktijk is 20 entries genoeg voor 11 picks + 3 herrolls. Fallback voor safety:
-      deckRef.current = [...allRolls].sort(() => Math.random() - 0.5);
+    let final: { team: Team; season: string };
+
+    if (isDailyChallenge && dailyDeck) {
+      // Pick-gebonden indexering: zelfde slot voor iedereen, ongeacht herrolls op eerdere picks
+      const pickIdx = pickedPlayers.length;
+      const attemptIdx = isReroll ? dailyAttempt + 1 : 0;
+      setDailyAttempt(attemptIdx);
+      const deckIdx = pickIdx * 4 + attemptIdx;
+      const entry = dailyDeck[deckIdx];
+      const resolved = entry ? allRolls.find(r => r.team.id === entry.teamId && r.season === entry.season) : null;
+      if (!resolved) {
+        // Fallback (zou niet mogen gebeuren bij geldige challenge)
+        final = allRolls[Math.floor(Math.random() * allRolls.length)];
+      } else {
+        final = resolved;
+      }
+    } else {
+      if (deckRef.current.length === 0) {
+        deckRef.current = [...allRolls].sort(() => Math.random() - 0.5);
+      }
+      final = deckRef.current.shift()!;
     }
-    const final = deckRef.current.shift()!;
 
     // Bouw de reel: random tussen-items + finaal item op het einde
     const reel: ReelItem[] = Array.from({ length: REEL_LENGTH - 1 }, () => {
@@ -121,7 +140,7 @@ export default function DraftPage() {
       setRoll({ team: final.team, season: final.season, squad });
       setPhase('squad');
     });
-  }, [useReroll, setPendingRoll]);
+  }, [useReroll, setPendingRoll, isDailyChallenge, dailyDeck, dailyAttempt, pickedPlayers.length]);
 
   function handleSelectPlayer(player: Player) {
     if (!roll) return;

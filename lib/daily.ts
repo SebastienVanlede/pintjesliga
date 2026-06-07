@@ -64,9 +64,19 @@ export interface DailyOpponent {
 export interface DailyChallenge {
   dateKey: string;
   formation: Formation;
-  opponents: DailyOpponent[];        // 16 unieke clubs
-  rollDeck: { teamId: string; season: string }[]; // vaste volgorde voor draft
+  opponents: DailyOpponent[];                          // 16 unieke clubs
+  /**
+   * Vaste rolls voor de draft, geïndexeerd als pickIndex * 4 + attemptIndex.
+   * 11 picks × 4 pogingen (1 basis + 3 herrolls) = 44 items.
+   * Iedereen die op dezelfde dag speelt krijgt hetzelfde team voor dezelfde pick + herroll-aantal,
+   * ongeacht of een andere speler op een eerdere pick herrold heeft.
+   */
+  rollDeck: { teamId: string; season: string }[];
 }
+
+export const DAILY_PICKS         = 11;
+export const DAILY_MAX_ATTEMPTS  = 4; // 1 basis + 3 herrolls
+export const DAILY_DECK_SIZE     = DAILY_PICKS * DAILY_MAX_ATTEMPTS;
 
 /** Genereer een deterministische daily challenge voor de gegeven dagkey. */
 export function generateDailyChallenge(dateKey: string): DailyChallenge {
@@ -94,9 +104,12 @@ export function generateDailyChallenge(dateKey: string): DailyChallenge {
     }
   }
 
-  // 3. Roll deck — vaste volgorde van rolls voor de draft (11 initial + 3 herrolls + buffer)
+  // 3. Roll deck — 44 vaste rolls, pick-gebonden (zie interface comment)
   const shuffledDeck = seededShuffle(allRolls, rand);
-  const rollDeck = shuffledDeck.slice(0, 20).map(r => ({ teamId: r.team.id, season: r.season }));
+  // Als allRolls < 44, vul met seeded herhalingen (zou niet mogen gebeuren — 129 squads beschikbaar)
+  const trimmed = shuffledDeck.slice(0, DAILY_DECK_SIZE);
+  while (trimmed.length < DAILY_DECK_SIZE) trimmed.push(shuffledDeck[trimmed.length % shuffledDeck.length]);
+  const rollDeck = trimmed.map(r => ({ teamId: r.team.id, season: r.season }));
 
   return { dateKey, formation, opponents, rollDeck };
 }
