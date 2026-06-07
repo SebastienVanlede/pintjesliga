@@ -35,7 +35,6 @@ export default function SimulatePage() {
   const [squads, setSquads] = useState<Squad[] | null>(null);
   const [mounted, setMounted] = useState(false);
   const [odds, setOdds] = useState<SeasonOdds | null>(null);
-  const [oddsConfirmed, setOddsConfirmed] = useState(false);
 
   useEffect(() => { setMounted(true); }, []);
 
@@ -44,17 +43,15 @@ export default function SimulatePage() {
     if (!formation || pickedPlayers.length < 11) { router.replace('/'); }
   }, [mounted, formation, pickedPlayers.length, router]);
 
-  // Bereken kansen zodra mode + squads beschikbaar zijn
+  // Bereken kansen op de achtergrond zodra squads klaar zijn — blokkeert de UI niet
   useEffect(() => {
-    if (!mode || !squads || odds) return;
+    if (!squads || odds) return;
     const name = teamName.trim() || 'Mijn Droomelftal';
-    // setTimeout zodat de UI eerst kan renderen (loading state)
     const id = setTimeout(() => {
-      const result = calculateOdds(pickedPlayers, squads, name, formation ?? undefined, 1000);
-      setOdds(result);
-    }, 30);
+      setOdds(calculateOdds(pickedPlayers, squads, name, formation ?? undefined, 1000));
+    }, 50);
     return () => clearTimeout(id);
-  }, [mode, squads]);
+  }, [squads]);
 
   useEffect(() => {
     if (!formation || pickedPlayers.length < 11) return;
@@ -93,6 +90,7 @@ export default function SimulatePage() {
       <ModeSelector
         teamName={teamName} setTeamName={setTeamName}
         simSeason={simSeason} setSimSeason={setSimSeason}
+        odds={odds}
         onSelect={handleModeSelect}
       />
     );
@@ -100,19 +98,6 @@ export default function SimulatePage() {
 
   if (!squads) {
     return <LoadingView label="Squads laden…" />;
-  }
-
-  // Kansen berekenen of tonen
-  if (!oddsConfirmed) {
-    if (!odds) return <LoadingView label="Kansen berekenen…" />;
-    return (
-      <PreSeasonOdds
-        odds={odds}
-        mode={mode!}
-        teamName={teamName.trim() || 'Mijn Droomelftal'}
-        onConfirm={() => setOddsConfirmed(true)}
-      />
-    );
   }
 
   if (mode === 'auto') {
@@ -142,9 +127,10 @@ export default function SimulatePage() {
 
 const SIM_SEASONS = ['2025-26', '2024-25', '2023-24', '2022-23', '2021-22', '2020-21', '2019-20', '2018-19', '2017-18'] as const;
 
-function ModeSelector({ teamName, setTeamName, simSeason, setSimSeason, onSelect }: {
+function ModeSelector({ teamName, setTeamName, simSeason, setSimSeason, odds, onSelect }: {
   teamName: string; setTeamName: (n: string) => void;
   simSeason: string; setSimSeason: (s: string) => void;
+  odds: SeasonOdds | null;
   onSelect: (m: SimMode, classicOpponents?: ClassicOpponent[]) => void;
 }) {
   const t = useT();
@@ -300,6 +286,68 @@ function ModeSelector({ teamName, setTeamName, simSeason, setSimSeason, onSelect
         </div>
       )}
 
+      {/* Pre-season prognose — toont terwijl gebruiker nog bezig is met setup */}
+      <div className="w-full max-w-xl">
+        <AnimatePresence>
+          {odds ? (
+            <motion.div
+              key="odds"
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="rounded-xl overflow-hidden mb-4"
+              style={{ border: '1px solid var(--border)' }}
+            >
+              <div className="px-4 py-2.5 flex items-center justify-between"
+                style={{ background: 'var(--surface-2)', borderBottom: '1px solid var(--border)' }}>
+                <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.7rem', letterSpacing: '0.1em', color: 'var(--gold)' }}>
+                  {t.simMode.oddsTitle}
+                </span>
+                <span className="text-xs" style={{ color: 'var(--muted)' }}>
+                  {t.simMode.oddsSubtitle(1000)}
+                </span>
+              </div>
+              {ODDS_ROWS.map(({ key, icon, labelKey, color }, i) => {
+                const pct = odds[key];
+                const maxPct = Math.max(odds.champion, odds.po1, odds.po2, odds.relSurvived, odds.relegated, 1);
+                return (
+                  <div key={key} className="flex items-center gap-3 px-4 py-2.5"
+                    style={{ borderTop: i > 0 ? '1px solid var(--border)' : 'none' }}>
+                    <span style={{ fontSize: '1rem', width: 22, textAlign: 'center', flexShrink: 0 }}>{icon}</span>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-xs" style={{ color: 'var(--muted)' }}>{t.simMode[labelKey]}</span>
+                        <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.85rem', color }}>{pct}%</span>
+                      </div>
+                      <div className="h-1 rounded-full w-full" style={{ background: 'var(--border)' }}>
+                        <motion.div
+                          className="h-1 rounded-full"
+                          initial={{ width: 0 }}
+                          animate={{ width: `${Math.round(pct / maxPct * 100)}%` }}
+                          transition={{ duration: 0.5, delay: i * 0.06, ease: 'easeOut' }}
+                          style={{ background: color }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </motion.div>
+          ) : (
+            <motion.div
+              key="calculating"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="flex items-center gap-2 mb-4 px-1"
+            >
+              <div className="w-3 h-3 rounded-full border border-current animate-spin flex-shrink-0"
+                style={{ borderColor: 'var(--muted)', borderTopColor: 'transparent' }} />
+              <span className="text-xs" style={{ color: 'var(--muted)' }}>{t.simMode.oddsCalculating}</span>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
       <div className="flex flex-col sm:flex-row gap-4 w-full max-w-xl">
         <ModeCard icon="⚡" title={t.simMode.autoTitle}   description={t.simMode.autoDesc}   onClick={() => handleModeCardClick('auto')} />
         <ModeCard icon="▶" title={t.simMode.manualTitle} description={t.simMode.manualDesc} onClick={() => handleModeCardClick('manual')} highlight />
@@ -328,125 +376,20 @@ function ModeCard({ icon, title, description, onClick, highlight }: {
   );
 }
 
-// ─── Pre-season kansen ────────────────────────────────────────────────────────
+// ─── Pre-season kansen (inline config voor ModeSelector) ─────────────────────
 
 const ODDS_ROWS: {
   key: keyof SeasonOdds;
   icon: string;
   labelKey: 'oddsChampion' | 'oddsPO1' | 'oddsPO2' | 'oddsRelSurvived' | 'oddsRelegated';
   color: string;
-  bg: string;
 }[] = [
-  { key: 'champion',    icon: '🥇', labelKey: 'oddsChampion',    color: '#D4940A', bg: 'rgba(212,148,10,0.12)' },
-  { key: 'po1',         icon: '🏆', labelKey: 'oddsPO1',         color: '#D4940A', bg: 'rgba(212,148,10,0.06)' },
-  { key: 'po2',         icon: '🌍', labelKey: 'oddsPO2',         color: '#3a8fd1', bg: 'rgba(58,143,209,0.08)' },
-  { key: 'relSurvived', icon: '⚠️', labelKey: 'oddsRelSurvived', color: 'var(--text-2)', bg: 'transparent' },
-  { key: 'relegated',   icon: '🔴', labelKey: 'oddsRelegated',   color: 'var(--red)', bg: 'rgba(196,30,58,0.06)' },
+  { key: 'champion',    icon: '🥇', labelKey: 'oddsChampion',    color: '#D4940A' },
+  { key: 'po1',         icon: '🏆', labelKey: 'oddsPO1',         color: '#D4940A' },
+  { key: 'po2',         icon: '🌍', labelKey: 'oddsPO2',         color: '#3a8fd1' },
+  { key: 'relSurvived', icon: '⚠️', labelKey: 'oddsRelSurvived', color: 'var(--text-2)' },
+  { key: 'relegated',   icon: '🔴', labelKey: 'oddsRelegated',   color: 'var(--red)' },
 ];
-
-function PreSeasonOdds({ odds, mode, teamName, onConfirm }: {
-  odds: SeasonOdds; mode: SimMode; teamName: string; onConfirm: () => void;
-}) {
-  const t = useT();
-  const max = Math.max(odds.champion, odds.po1, odds.po2, odds.relSurvived, odds.relegated, 1);
-
-  return (
-    <PageShell>
-      <div className="w-full max-w-lg flex flex-col gap-6">
-
-        {/* Header */}
-        <div className="text-center">
-          <p className="label-xs mb-2">{teamName}</p>
-          <h1 style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(1.6rem,5vw,2.4rem)',
-            color: 'var(--gold)',
-            letterSpacing: '0.1em',
-            lineHeight: 1,
-          }}>
-            {t.simMode.oddsTitle}
-          </h1>
-          <p className="text-xs mt-2" style={{ color: 'var(--muted)' }}>
-            {t.simMode.oddsSubtitle(1000)}
-          </p>
-        </div>
-
-        {/* Kansen-kaart */}
-        <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--border)' }}>
-          {ODDS_ROWS.map(({ key, icon, labelKey, color, bg }, i) => {
-            const pct = odds[key];
-            const barW = Math.round((pct / max) * 100);
-            return (
-              <div
-                key={key}
-                className="flex items-center gap-4 px-5 py-4"
-                style={{
-                  background: bg,
-                  borderTop: i > 0 ? '1px solid var(--border)' : 'none',
-                }}
-              >
-                <span style={{ fontSize: '1.25rem', width: 28, textAlign: 'center', flexShrink: 0 }}>{icon}</span>
-
-                <div className="flex-1 min-w-0">
-                  <p className="text-xs mb-2" style={{ color: 'var(--muted)', letterSpacing: '0.04em' }}>
-                    {t.simMode[labelKey]}
-                  </p>
-                  {/* Progress bar */}
-                  <div className="h-1.5 rounded-full w-full" style={{ background: 'var(--border)' }}>
-                    <motion.div
-                      className="h-1.5 rounded-full"
-                      initial={{ width: 0 }}
-                      animate={{ width: `${barW}%` }}
-                      transition={{ duration: 0.6, delay: i * 0.08, ease: 'easeOut' }}
-                      style={{ background: color }}
-                    />
-                  </div>
-                </div>
-
-                {/* Percentage */}
-                <span style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: '1.4rem',
-                  color,
-                  letterSpacing: '0.02em',
-                  width: 54,
-                  textAlign: 'right',
-                  flexShrink: 0,
-                }}>
-                  {pct}%
-                </span>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Start knop */}
-        <motion.button
-          onClick={onConfirm}
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: '1rem',
-            letterSpacing: '0.12em',
-            padding: '14px 0',
-            background: 'var(--gold)',
-            color: '#07070A',
-            border: '2px solid var(--gold)',
-            borderRadius: 10,
-            cursor: 'pointer',
-            boxShadow: '0 0 40px rgba(212,148,10,0.25)',
-          }}
-        >
-          {mode === 'auto' ? t.simMode.oddsStartAuto : t.simMode.oddsStartManual}
-        </motion.button>
-      </div>
-    </PageShell>
-  );
-}
 
 // ─── Auto simulation ──────────────────────────────────────────────────────────
 
