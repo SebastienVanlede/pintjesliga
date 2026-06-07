@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Formation, FORMATIONS } from '@/lib/types';
 import { useGameStore } from '@/lib/store';
 import { useT } from '@/lib/useT';
@@ -12,6 +12,8 @@ export default function HomePage() {
   const { setFormation, draftMode, setDraftMode } = useGameStore();
   const t = useT();
   const [selected, setSelected] = useState<Formation | null>(null);
+  const [hovered, setHovered] = useState<Formation | null>(null);
+  const activeFormation = hovered ?? selected;
 
   function handleStart() {
     if (!selected) return;
@@ -133,6 +135,8 @@ export default function HomePage() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 + i * 0.04 }}
+              onMouseEnter={() => setHovered(f)}
+              onMouseLeave={() => setHovered(null)}
             >
               <FormationCard
                 formation={f}
@@ -142,6 +146,47 @@ export default function HomePage() {
             </motion.div>
           ))}
         </motion.div>
+
+        {/* Formation description */}
+        <div style={{ minHeight: 56 }}>
+          <AnimatePresence mode="wait">
+            {activeFormation && t.home.formations[activeFormation] && (
+              <motion.div
+                key={activeFormation}
+                initial={{ opacity: 0, y: 4 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -4 }}
+                transition={{ duration: 0.15 }}
+                className="flex items-start gap-3 rounded-lg px-4 py-3"
+                style={{
+                  background: 'var(--surface)',
+                  border: '1px solid var(--gold-dim)',
+                }}
+              >
+                <span style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: '0.6rem',
+                  letterSpacing: '0.1em',
+                  textTransform: 'uppercase',
+                  color: '#07070A',
+                  background: 'var(--gold)',
+                  padding: '2px 7px',
+                  borderRadius: 3,
+                  flexShrink: 0,
+                  marginTop: 2,
+                }}>
+                  {t.home.formations[activeFormation].tag}
+                </span>
+                <p className="text-xs leading-relaxed" style={{ color: 'var(--text-2)' }}>
+                  <span style={{ fontFamily: 'var(--font-display)', color: 'var(--gold)', marginRight: 6, letterSpacing: '0.06em' }}>
+                    {activeFormation}
+                  </span>
+                  {t.home.formations[activeFormation].desc}
+                </p>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
 
         {/* Draft mode toggle */}
         <motion.div

@@ -30,6 +30,17 @@ export const translations = {
       startBtn: (f: string) => `Start de Draft → ${f}`,
       selectFirst: 'Selecteer een formatie',
       willFill: 'Je vult 11 posities in via de dobbelsteendraft.',
+      formations: {
+        '4-3-3':   { tag: 'Aanvallend',   desc: 'Drie aanvallers zetten druk vooraan terwijl drie centrale middenvelders het spel controleren. De Belgische standaard.' },
+        '4-4-2':   { tag: 'Tijdloos',     desc: 'Twee spitsen die samen de druk opvoeren, gesteund door vier middenvelders. Eenvoudig maar doeltreffend.' },
+        '4-2-3-1': { tag: 'Gebalanceerd', desc: 'Twee houdende middenvelders beschermen achterin, een trequartista maakt het spel. De meest gespeelde formatie ter wereld.' },
+        '3-5-2':   { tag: 'Dominant',     desc: 'Vijf middenvelders controleren het veld. De vleugelspelers zijn cruciaal — aanvallend én verdedigend.' },
+        '5-3-2':   { tag: 'Verdedigend',  desc: 'Vijf achterin geeft een solide basis. Gevaarlijk bij snel omschakelen via de vleugels.' },
+        '4-1-4-1': { tag: 'Compact',      desc: 'Eén diepe middenvelder beschermt een hecht blok van vier. Moeilijk te bespelen, sterk in omschakeling.' },
+        '3-4-3':   { tag: 'Vurig',        desc: 'Drie aanvallers en brede vleugels — geen compromissen. Maximale aanvalslust met een risico achterin.' },
+        '4-3-2-1': { tag: 'Kerstboom',    desc: 'Twee aanvallende middenvelders achter één spits. Een speciaal systeem dat ruimte creëert door de lijnen.' },
+        '4-2-4':   { tag: 'Ultra-aanval', desc: 'Vier aanvallers, twee houdende middenvelders. Je gaat voluit voor doelpunten — verdedigen is bijzaak.' },
+      } as Record<string, { tag: string; desc: string }>,
     },
 
     // ── Draft ─────────────────────────────────────────────────────────────────
@@ -279,6 +290,17 @@ export const translations = {
       startBtn: (f: string) => `Start the Draft → ${f}`,
       selectFirst: 'Select a formation',
       willFill: 'You will fill 11 positions through the dice draft.',
+      formations: {
+        '4-3-3':   { tag: 'Attacking',   desc: 'Three forwards press high while three central midfielders control the game. The Belgian standard.' },
+        '4-4-2':   { tag: 'Timeless',    desc: 'Two strikers working in tandem, supported by four midfielders. Simple but highly effective.' },
+        '4-2-3-1': { tag: 'Balanced',    desc: 'Two defensive mids protect the back, a trequartista pulls the strings. The world\'s most popular system.' },
+        '3-5-2':   { tag: 'Dominant',    desc: 'Five midfielders command the pitch. The wing-backs are key — attacking and defending alike.' },
+        '5-3-2':   { tag: 'Defensive',   desc: 'Five at the back gives a solid foundation. Dangerous on the counter through the flanks.' },
+        '4-1-4-1': { tag: 'Compact',     desc: 'One holding midfielder shields a tight defensive block. Hard to break down, deadly on transitions.' },
+        '3-4-3':   { tag: 'Bold',        desc: 'Three forwards and wide wing-backs — no compromises. Maximum attacking intent with defensive risk.' },
+        '4-3-2-1': { tag: 'Christmas Tree', desc: 'Two attacking midfielders behind a lone striker. A special system that carves space between the lines.' },
+        '4-2-4':   { tag: 'Ultra-attack', desc: 'Four forwards, two holding mids. You\'re going all out for goals — defending is secondary.' },
+      } as Record<string, { tag: string; desc: string }>,
     },
 
     draft: {
