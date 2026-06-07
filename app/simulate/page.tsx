@@ -816,6 +816,34 @@ function ShareSection({ sim, pickedPlayers, formation }: {
 
   const degraded = [...sim.relegated, sim.directlyRelegate].filter(Boolean).join(', ');
 
+  // ── Spelerstatistieken ────────────────────────────────────────────────────
+  const allMatches = [
+    ...sim.regularSeason.matches, ...sim.po1.matches,
+    ...sim.po2.matches,           ...sim.poRelegation.matches,
+  ];
+  const goalMap:   Record<string, number> = {};
+  const assistMap: Record<string, number> = {};
+  for (const m of allMatches) {
+    for (const s of m.scorers)           goalMap[s]   = (goalMap[s]   ?? 0) + 1;
+    for (const a of (m.assisters ?? [])) assistMap[a] = (assistMap[a] ?? 0) + 1;
+  }
+  // Clean sheets: wedstrijden waarbij myTeam 0 tegendoelpunten kreeg
+  const cleanSheets = allMatches.filter(m =>
+    (m.home === myTeam && m.awayGoals === 0) ||
+    (m.away === myTeam && m.homeGoals === 0)
+  ).length;
+
+  function playerStat(p: PickedPlayer): string {
+    if (p.position === 'GK') return `${cleanSheets} CS`;
+    const g = goalMap[p.player.name] ?? 0;
+    const a = assistMap[p.player.name] ?? 0;
+    if (g === 0 && a === 0) return '—';
+    const parts: string[] = [];
+    if (g > 0) parts.push(`${g}G`);
+    if (a > 0) parts.push(`${a}A`);
+    return parts.join(' ');
+  }
+
   function getShareText() {
     const sorted = [...pickedPlayers].sort((a, b) => a.positionIndex - b.positionIndex);
     const lines = [
@@ -823,9 +851,11 @@ function ShareSection({ sim, pickedPlayers, formation }: {
       '',
       `Formatie: ${formation}  |  Gem. overall: ${avgOverall}`,
       '',
-      ...sorted.map(p =>
-        `${p.position.padEnd(4)} ${p.player.name} (${p.player.overall}) — ${p.teamName} ${p.season}`
-      ),
+      ...sorted.map(p => {
+        const stat = playerStat(p);
+        const statStr = stat !== '—' ? ` · ${stat}` : '';
+        return `${p.position.padEnd(4)} ${p.player.name} (${p.player.overall})${statStr} — ${p.teamName} ${p.season}`;
+      }),
       '',
       '─────────────────────',
       `🏆 Kampioen: ${sim.champion}`,
@@ -944,6 +974,7 @@ function ShareSection({ sim, pickedPlayers, formation }: {
       const sorted = [...pickedPlayers].sort((a, b) => a.positionIndex - b.positionIndex);
       for (let i = 0; i < sorted.length; i++) {
         const p = sorted[i];
+        const stat = playerStat(p);
         if (i % 2 === 1) {
           ctx.fillStyle = 'rgba(255,255,255,0.025)';
           ctx.fillRect(PAD - 10, y - 22, W - 2 * PAD + 20, PLAYER_H);
@@ -959,7 +990,12 @@ function ShareSection({ sim, pickedPlayers, formation }: {
         ctx.font = 'bold 15px Arial, sans-serif';
         ctx.fillStyle = ovColor;
         ctx.textAlign = 'center';
-        ctx.fillText(String(p.player.overall), W / 2 + 40, y);
+        ctx.fillText(String(p.player.overall), W / 2 + 20, y);
+        // Stats (goals/assists/clean sheets)
+        ctx.font = 'bold 12px Arial, sans-serif';
+        ctx.fillStyle = stat === '—' ? '#3a3a38' : GOLD;
+        ctx.textAlign = 'center';
+        ctx.fillText(stat, W / 2 + 100, y);
         ctx.font = '12px Arial, sans-serif';
         ctx.fillStyle = MUTED;
         ctx.textAlign = 'right';
@@ -1059,28 +1095,37 @@ function ShareSection({ sim, pickedPlayers, formation }: {
           <div style={{ borderTop: '1px solid #1E1D1A', paddingTop: 10, marginBottom: 10 }}>
             {[...pickedPlayers]
               .sort((a, b) => a.positionIndex - b.positionIndex)
-              .map((p, i) => (
-                <div key={i} style={{
-                  display: 'flex', alignItems: 'center', gap: 8, padding: '5px 0',
-                  background: i % 2 === 1 ? 'rgba(255,255,255,0.02)' : 'transparent',
-                }}>
-                  <span style={{ fontSize: 10, color: '#D4940A', width: 32, fontWeight: 700, flexShrink: 0 }}>
-                    {p.position}
-                  </span>
-                  <span style={{ flex: 1, fontSize: 13, color: '#EDE9E0', fontWeight: 500 }}>
-                    {p.player.name}
-                  </span>
-                  <span style={{
-                    fontSize: 13, fontWeight: 700, width: 28, textAlign: 'center',
-                    color: p.player.overall >= 80 ? '#D4940A' : p.player.overall >= 70 ? '#EDE9E0' : '#6B6560',
+              .map((p, i) => {
+                const stat = playerStat(p);
+                const statColor = stat === '—' ? '#3a3a38'
+                  : p.position === 'GK' ? (cleanSheets >= 10 ? '#D4940A' : '#EDE9E0')
+                  : '#D4940A';
+                return (
+                  <div key={i} style={{
+                    display: 'flex', alignItems: 'center', gap: 6, padding: '5px 0',
+                    background: i % 2 === 1 ? 'rgba(255,255,255,0.02)' : 'transparent',
                   }}>
-                    {p.player.overall}
-                  </span>
-                  <span style={{ fontSize: 10, color: '#6B6560', textAlign: 'right', width: 160, flexShrink: 0 }}>
-                    {p.teamName} {p.season}
-                  </span>
-                </div>
-              ))}
+                    <span style={{ fontSize: 10, color: '#D4940A', width: 30, fontWeight: 700, flexShrink: 0 }}>
+                      {p.position}
+                    </span>
+                    <span style={{ flex: 1, fontSize: 13, color: '#EDE9E0', fontWeight: 500, minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                      {p.player.name}
+                    </span>
+                    <span style={{
+                      fontSize: 13, fontWeight: 700, width: 26, textAlign: 'center', flexShrink: 0,
+                      color: p.player.overall >= 80 ? '#D4940A' : p.player.overall >= 70 ? '#EDE9E0' : '#6B6560',
+                    }}>
+                      {p.player.overall}
+                    </span>
+                    <span style={{ fontSize: 10, color: statColor, textAlign: 'right', width: 42, flexShrink: 0, fontWeight: stat !== '—' ? 700 : 400 }}>
+                      {stat}
+                    </span>
+                    <span style={{ fontSize: 10, color: '#6B6560', textAlign: 'right', width: 120, flexShrink: 0 }}>
+                      {p.teamName} {p.season}
+                    </span>
+                  </div>
+                );
+              })}
           </div>
 
           {/* Results */}

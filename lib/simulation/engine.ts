@@ -21,16 +21,16 @@ interface SimTeam {
 
 // ─── Position weights ─────────────────────────────────────────────────────────
 
-// Realistic relative scoring frequency per position
+// Scoring frequency per position — balanced zodat een topspits ~20-28 goals/seizoen haalt
 const GOAL_WEIGHT: Record<string, number> = {
-  ST: 30, RW: 12, LW: 12, CAM: 10, CM: 7,
-  RM: 5,  LM: 5,  CDM: 3, RB: 2,  LB: 2, CB: 1, GK: 0.2,
+  ST: 14, RW: 7, LW: 7, CAM: 6, CM: 4,
+  RM: 3,  LM: 3, CDM: 2, RB: 1, LB: 1, CB: 0.5, GK: 0.1,
 };
 
-// Realistic assist frequency per position
+// Assist frequency per position
 const ASSIST_WEIGHT: Record<string, number> = {
-  CAM: 20, RW: 12, LW: 12, CM: 10, ST: 8,
-  RM: 8,   LM: 8,  CDM: 5, RB: 3,  LB: 3, CB: 1, GK: 0,
+  CAM: 14, RW: 9, LW: 9, CM: 8, ST: 6,
+  RM: 6,   LM: 6, CDM: 4, RB: 3, LB: 3, CB: 1, GK: 0,
 };
 
 function weightedPick(players: SimPlayer[], weights: Record<string, number>): string {
