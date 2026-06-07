@@ -26,14 +26,14 @@ export default function HomePage() {
 
       {/* ── Left: Hero ──────────────────────────────────────────────────── */}
       <div
-        className="flex flex-col justify-between px-8 py-12 lg:px-16 lg:py-16 lg:w-[44%] lg:min-h-[calc(100svh-56px)]"
+        className="flex flex-col justify-between px-6 py-6 lg:px-16 lg:py-16 lg:w-[44%] lg:min-h-[calc(100svh-56px)]"
         style={{ borderRight: '1px solid var(--border)' }}
       >
         {/* Brand */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          className="flex flex-col gap-5"
+          className="flex flex-col gap-3 lg:gap-5"
         >
           <span className="label-xs">{t.home.subtitle}</span>
 
@@ -41,7 +41,7 @@ export default function HomePage() {
             className="leading-none"
             style={{
               fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(4.5rem, 10vw, 8rem)',
+              fontSize: 'clamp(2.8rem, 10vw, 8rem)',
               lineHeight: 0.9,
               color: 'var(--text)',
               letterSpacing: '0.02em',
@@ -54,17 +54,17 @@ export default function HomePage() {
             </span>
           </h1>
 
-          <p style={{ color: 'var(--text-2)', maxWidth: '36ch', lineHeight: 1.6, fontSize: '0.95rem' }}>
+          <p className="hidden lg:block" style={{ color: 'var(--text-2)', maxWidth: '36ch', lineHeight: 1.6, fontSize: '0.95rem' }}>
             {t.home.heroDesc}
           </p>
         </motion.div>
 
-        {/* How it works */}
+        {/* How it works — verborgen op mobiel (te lange scroll voor je kan kiezen) */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.15 }}
-          className="flex flex-col gap-4 mt-12 lg:mt-0"
+          className="hidden lg:flex flex-col gap-4 mt-12 lg:mt-0"
         >
           <span className="label-xs">{t.home.howItWorks}</span>
           <div className="flex flex-col gap-3">
@@ -89,12 +89,12 @@ export default function HomePage() {
           </div>
         </motion.div>
 
-        {/* Stats bar */}
+        {/* Stats bar — verborgen op mobiel om scroll te beperken */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
-          className="flex items-center gap-4 pt-8 mt-4 flex-wrap"
+          className="hidden lg:flex items-center gap-4 pt-8 mt-4 flex-wrap"
           style={{ borderTop: '1px solid var(--border)' }}
         >
           {(['129', '8', '3', 'PO1 · PO2'] as string[]).map((val, i) => (
@@ -107,7 +107,7 @@ export default function HomePage() {
       </div>
 
       {/* ── Right: Formation selector ─────────────────────────────────── */}
-      <div className="flex flex-col justify-center px-8 py-12 lg:px-16 lg:py-16 flex-1 gap-8">
+      <div className="flex flex-col justify-center px-6 py-6 lg:px-16 lg:py-16 flex-1 gap-5 lg:gap-8">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}

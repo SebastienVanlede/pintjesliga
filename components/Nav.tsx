@@ -113,11 +113,13 @@ export default function Nav() {
                     }}>
                     {isDone ? '✓' : i + 1}
                   </span>
-                  <span className="hidden sm:inline" style={{
-                    fontSize: '0.65rem', letterSpacing: '0.06em', textTransform: 'uppercase',
-                    color: isActive ? 'var(--gold)' : isDone ? 'var(--text-2)' : 'var(--muted)',
-                    fontWeight: isActive ? 600 : 400,
-                  }}>
+                  <span
+                    className={isActive ? '' : 'hidden sm:inline'}
+                    style={{
+                      fontSize: '0.65rem', letterSpacing: '0.06em', textTransform: 'uppercase',
+                      color: isActive ? 'var(--gold)' : isDone ? 'var(--text-2)' : 'var(--muted)',
+                      fontWeight: isActive ? 600 : 400,
+                    }}>
                     {label}
                   </span>
                 </Link>
