@@ -17,7 +17,7 @@
     {"id":"bizimana-wb","name":"Djihad Bizimana","position":"CM","nationality":"RWA","age":23,"appearances":16,"goals":0,"assists":1,"marketValue":300000,"internationalCaps":5,"awards":[],"overall":57},
     {"id":"bertone-wb","name":"Leonardo Bertone","position":"CM","alternativePositions":["CDM"],"nationality":"SUI","age":26,"appearances":16,"goals":1,"assists":2,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":59},
     {"id":"sinani-wb","name":"Danel Sinani","position":"LW","alternativePositions":["CAM","RW"],"nationality":"LUX","age":23,"appearances":24,"goals":5,"assists":6,"marketValue":1500000,"internationalCaps":30,"awards":[],"overall":65},
-    {"id":"frey-wb","name":"Michael Frey","position":"ST","nationality":"SUI","age":25,"appearances":22,"goals":8,"assists":2,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"frey-wb","name":"Michael Frey","position":"ST","nationality":"SUI","age":25,"appearances":22,"goals":8,"assists":2,"marketValue":2000000,"internationalCaps":0,"awards":["Pro League Top Scorer 2022 (shared)"],"overall":68},
     {"id":"koita-wb","name":"Aboubakary Koita","position":"ST","alternativePositions":["LW"],"nationality":"BEL","age":20,"appearances":16,"goals":4,"assists":2,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":60},
     {"id":"jubitana-wb","name":"Denzel Jubitana","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":22,"appearances":14,"goals":0,"assists":1,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":57}
   ]

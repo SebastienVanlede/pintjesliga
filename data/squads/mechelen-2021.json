@@ -23,7 +23,7 @@
     {"id":"hairemans-21","name":"Geoffry Hairemans","position":"RW","alternativePositions":["LW","CM"],"nationality":"BEL","age":29,"appearances":24,"goals":4,"assists":4,"marketValue":750000,"internationalCaps":0,"awards":[],"overall":66},
     {"id":"shved-21","name":"Maryan Shved","position":"RW","alternativePositions":["LW"],"nationality":"UKR","age":23,"appearances":18,"goals":3,"assists":3,"marketValue":900000,"internationalCaps":7,"awards":[],"overall":65},
     {"id":"youan-21","name":"Élie Youan","position":"LW","alternativePositions":["ST"],"nationality":"FRA","age":22,"appearances":18,"goals":3,"assists":3,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":65},
-    {"id":"cuypers-m-21","name":"Hugo Cuypers","position":"ST","nationality":"BEL","age":24,"appearances":26,"goals":11,"assists":4,"marketValue":3000000,"internationalCaps":0,"awards":[],"overall":72},
+    {"id":"cuypers-m-21","name":"Hugo Cuypers","position":"ST","nationality":"BEL","age":24,"appearances":26,"goals":11,"assists":4,"marketValue":3000000,"internationalCaps":0,"awards":["Pro League Top Scorer 2023"],"overall":72},
     {"id":"druijf-21","name":"Ferdy Druijf","position":"ST","nationality":"NED","age":23,"appearances":20,"goals":6,"assists":2,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":67},
     {"id":"engvall-21","name":"Gustav Engvall","position":"ST","nationality":"SWE","age":25,"appearances":16,"goals":4,"assists":2,"marketValue":450000,"internationalCaps":3,"awards":[],"overall":64}
   ]

@@ -23,7 +23,7 @@
     {"id":"ito-20","name":"Junya Itō","position":"RW","alternativePositions":["LW","ST"],"nationality":"JPN","age":27,"appearances":24,"goals":7,"assists":6,"marketValue":8000000,"internationalCaps":22,"awards":[],"overall":73},
     {"id":"paintsil-20","name":"Joseph Paintsil","position":"LW","alternativePositions":["RW","CAM"],"nationality":"GHA","age":22,"appearances":24,"goals":5,"assists":6,"marketValue":2500000,"internationalCaps":7,"awards":[],"overall":69},
     {"id":"oyen-20","name":"Luca Oyen","position":"LW","alternativePositions":["CAM"],"nationality":"BEL","age":17,"appearances":16,"goals":2,"assists":3,"marketValue":3000000,"internationalCaps":0,"awards":[],"overall":66},
-    {"id":"onuachu-20","name":"Paul Onuachu","position":"ST","nationality":"NGA","age":26,"appearances":34,"goals":33,"assists":6,"marketValue":20000000,"internationalCaps":18,"awards":["Pro League Player of the Year 2021","Pro League Top Scorer 2021"],"overall":82},
+    {"id":"onuachu-20","name":"Paul Onuachu","position":"ST","nationality":"NGA","age":26,"appearances":34,"goals":33,"assists":6,"marketValue":20000000,"internationalCaps":18,"awards":["Gouden Schoen 2021","Pro League Player of the Year 2021","Pro League Top Scorer 2021"],"overall":82},
     {"id":"dessers-20","name":"Cyriel Dessers","position":"ST","nationality":"NGA","age":25,"appearances":18,"goals":6,"assists":2,"marketValue":3000000,"internationalCaps":5,"awards":[],"overall":67}
   ]
 }

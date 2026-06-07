@@ -5,7 +5,7 @@
   "year": 2025,
   "players": [
     {"id":"nordin-jackers-25","name":"Nordin Jackers","position":"GK","nationality":"BEL","age":28,"appearances":28,"goals":0,"assists":0,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":70},
-    {"id":"simon-mignolet-25","name":"Simon Mignolet","position":"GK","nationality":"BEL","age":38,"appearances":6,"goals":0,"assists":0,"marketValue":1000000,"internationalCaps":78,"awards":[],"overall":74},
+    {"id":"simon-mignolet-25","name":"Simon Mignolet","position":"GK","nationality":"BEL","age":38,"appearances":6,"goals":0,"assists":0,"marketValue":1000000,"internationalCaps":78,"awards":["Gouden Schoen 2022"],"overall":74},
     {"id":"joel-ordonez-25","name":"Joel Ordóñez","position":"CB","nationality":"ECU","age":22,"appearances":30,"goals":2,"assists":0,"marketValue":33000000,"internationalCaps":15,"awards":[],"overall":79},
     {"id":"jorne-spileers-25","name":"Jorne Spileers","position":"CB","nationality":"BEL","age":21,"appearances":24,"goals":1,"assists":0,"marketValue":3000000,"internationalCaps":0,"awards":[],"overall":70},
     {"id":"brandon-mechele-25","name":"Brandon Mechele","position":"CB","nationality":"BEL","age":33,"appearances":18,"goals":1,"assists":0,"marketValue":2800000,"internationalCaps":8,"awards":[],"overall":71},
@@ -15,7 +15,7 @@
     {"id":"hugo-siquet-25","name":"Hugo Siquet","position":"RB","alternativePositions":["RM"],"nationality":"BEL","age":23,"appearances":18,"goals":0,"assists":2,"marketValue":4000000,"internationalCaps":5,"awards":[],"overall":70},
     {"id":"aleksandar-stankovic","name":"Aleksandar Stanković","position":"CDM","alternativePositions":["CM"],"nationality":"SRB","age":20,"appearances":30,"goals":3,"assists":5,"marketValue":32000000,"internationalCaps":6,"awards":[],"overall":78},
     {"id":"raphael-onyedika-25","name":"Raphael Onyedika","position":"CDM","alternativePositions":["CM"],"nationality":"NGA","age":25,"appearances":28,"goals":2,"assists":4,"marketValue":23000000,"internationalCaps":15,"awards":[],"overall":78},
-    {"id":"hans-vanaken-25","name":"Hans Vanaken","position":"CAM","alternativePositions":["CM"],"nationality":"BEL","age":33,"appearances":30,"goals":7,"assists":9,"marketValue":5000000,"internationalCaps":42,"awards":["Gouden Schoen 2019","Gouden Schoen 2020"],"overall":76},
+    {"id":"hans-vanaken-25","name":"Hans Vanaken","position":"CAM","alternativePositions":["CM"],"nationality":"BEL","age":33,"appearances":30,"goals":7,"assists":9,"marketValue":5000000,"internationalCaps":42,"awards":["Gouden Schoen 2018","Gouden Schoen 2019","Gouden Schoen 2024"],"overall":76},
     {"id":"christos-tzolis-25","name":"Christos Tzolis","position":"LW","alternativePositions":["RW","ST"],"nationality":"GRE","age":24,"appearances":34,"goals":15,"assists":21,"marketValue":40000000,"internationalCaps":15,"awards":["Pro League Top Assists 2026"],"overall":82},
     {"id":"carlos-forbs","name":"Carlos Forbs","position":"RW","alternativePositions":["LW"],"nationality":"POR","age":22,"appearances":28,"goals":7,"assists":6,"marketValue":20000000,"internationalCaps":0,"awards":[],"overall":75},
     {"id":"nicolo-tresoldi","name":"Nicolò Tresoldi","position":"ST","nationality":"GER","age":21,"appearances":30,"goals":12,"assists":5,"marketValue":25000000,"internationalCaps":5,"awards":[],"overall":76},

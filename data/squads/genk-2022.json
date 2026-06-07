@@ -18,7 +18,7 @@
     {"id":"hrosovsky-22","name":"Patrik Hrošovský","position":"CDM","alternativePositions":["CM"],"nationality":"SVK","age":30,"appearances":26,"goals":2,"assists":3,"marketValue":5000000,"internationalCaps":50,"awards":[],"overall":72},
     {"id":"ouattara-22","name":"Aziz Ouattara","position":"CDM","alternativePositions":["CM"],"nationality":"CIV","age":21,"appearances":18,"goals":1,"assists":2,"marketValue":1500000,"internationalCaps":5,"awards":[],"overall":66},
     {"id":"galarza-22","name":"Matías Galarza","position":"CDM","alternativePositions":["CM"],"nationality":"ARG","age":20,"appearances":14,"goals":1,"assists":1,"marketValue":1000000,"internationalCaps":3,"awards":[],"overall":65},
-    {"id":"tresor-22","name":"Mike Tresor","position":"CAM","alternativePositions":["LW","CM"],"nationality":"BEL","age":23,"appearances":34,"goals":10,"assists":21,"marketValue":15000000,"internationalCaps":3,"awards":[],"overall":78},
+    {"id":"tresor-22","name":"Mike Tresor","position":"CAM","alternativePositions":["LW","CM"],"nationality":"BEL","age":23,"appearances":34,"goals":10,"assists":21,"marketValue":15000000,"internationalCaps":3,"awards":["Pro League Top Assists 2023"],"overall":79},
     {"id":"el-khannous-22","name":"Bilal El Khannouss","position":"CAM","alternativePositions":["CM"],"nationality":"MAR","age":18,"appearances":28,"goals":6,"assists":7,"marketValue":13000000,"internationalCaps":3,"awards":[],"overall":75},
     {"id":"castro-22","name":"Nicolás Castro","position":"CAM","alternativePositions":["CM"],"nationality":"ARG","age":21,"appearances":16,"goals":2,"assists":3,"marketValue":3000000,"internationalCaps":0,"awards":[],"overall":68},
     {"id":"carstensen-22","name":"Rasmus Carstensen","position":"RM","alternativePositions":["RB"],"nationality":"DEN","age":21,"appearances":18,"goals":1,"assists":2,"marketValue":1500000,"internationalCaps":3,"awards":[],"overall":66},
@@ -26,8 +26,8 @@
     {"id":"sor-22","name":"Yira Sor","position":"LW","alternativePositions":["RW","ST"],"nationality":"NGA","age":21,"appearances":20,"goals":4,"assists":3,"marketValue":3500000,"internationalCaps":3,"awards":[],"overall":68},
     {"id":"oyen-22","name":"Luca Oyen","position":"LW","alternativePositions":["CAM"],"nationality":"BEL","age":19,"appearances":14,"goals":2,"assists":3,"marketValue":3500000,"internationalCaps":2,"awards":[],"overall":68},
     {"id":"ito-22","name":"Junya Itō","position":"RW","alternativePositions":["LW","ST"],"nationality":"JPN","age":29,"appearances":18,"goals":4,"assists":3,"marketValue":10000000,"internationalCaps":50,"awards":[],"overall":75},
-    {"id":"onuachu-22","name":"Paul Onuachu","position":"ST","nationality":"NGA","age":28,"appearances":18,"goals":15,"assists":2,"marketValue":13000000,"internationalCaps":30,"awards":[],"overall":78},
-    {"id":"arokodare-22","name":"Tolu Arokodare","position":"ST","nationality":"NGA","age":21,"appearances":18,"goals":5,"assists":2,"marketValue":3000000,"internationalCaps":2,"awards":[],"overall":68},
+    {"id":"onuachu-22","name":"Paul Onuachu","position":"ST","nationality":"NGA","age":28,"appearances":18,"goals":15,"assists":2,"marketValue":13000000,"internationalCaps":30,"awards":["Gouden Schoen 2021","Pro League Player of the Year 2021","Pro League Top Scorer 2021"],"overall":78},
+    {"id":"arokodare-22","name":"Tolu Arokodare","position":"ST","nationality":"NGA","age":21,"appearances":18,"goals":5,"assists":2,"marketValue":3000000,"internationalCaps":2,"awards":["Pro League Top Scorer 2025"],"overall":68},
     {"id":"samatta-22","name":"Mbwana Samatta","position":"ST","nationality":"TAN","age":29,"appearances":18,"goals":4,"assists":2,"marketValue":2500000,"internationalCaps":55,"awards":[],"overall":68},
     {"id":"nemeth-22","name":"András Németh","position":"ST","nationality":"HUN","age":19,"appearances":14,"goals":3,"assists":1,"marketValue":1500000,"internationalCaps":3,"awards":[],"overall":65}
   ]

@@ -18,6 +18,6 @@
     {"id":"ito-19","name":"Junya Itō","position":"RW","alternativePositions":["LW","ST"],"nationality":"JPN","age":26,"appearances":22,"goals":7,"assists":6,"marketValue":4000000,"internationalCaps":20,"awards":[],"overall":72},
     {"id":"samatta-19","name":"Mbwana Samatta","position":"ST","nationality":"TAN","age":27,"appearances":20,"goals":8,"assists":3,"marketValue":5000000,"internationalCaps":40,"awards":[],"overall":68},
     {"id":"paintsil-19","name":"Joseph Paintsil","position":"RW","alternativePositions":["LW","CAM"],"nationality":"GHA","age":22,"appearances":18,"goals":5,"assists":5,"marketValue":4000000,"internationalCaps":5,"awards":[],"overall":69},
-    {"id":"onuachu-19","name":"Paul Onuachu","position":"ST","nationality":"NGA","age":25,"appearances":12,"goals":5,"assists":2,"marketValue":5000000,"internationalCaps":5,"awards":[],"overall":72}
+    {"id":"onuachu-19","name":"Paul Onuachu","position":"ST","nationality":"NGA","age":25,"appearances":12,"goals":5,"assists":2,"marketValue":5000000,"internationalCaps":5,"awards":["Gouden Schoen 2021","Pro League Player of the Year 2021","Pro League Top Scorer 2021"],"overall":72}
   ]
 }

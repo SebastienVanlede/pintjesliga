@@ -24,7 +24,7 @@
     {"id":"tamari-21","name":"Mousa Tamari","position":"RW","alternativePositions":["LW","CAM"],"nationality":"JOR","age":24,"appearances":24,"goals":5,"assists":4,"marketValue":1200000,"internationalCaps":30,"awards":[],"overall":69},
     {"id":"shengelia-21","name":"Levan Shengelia","position":"RW","alternativePositions":["LW"],"nationality":"GEO","age":25,"appearances":18,"goals":3,"assists":3,"marketValue":1000000,"internationalCaps":18,"awards":[],"overall":67},
     {"id":"sekidika-21","name":"Jesse Sekidika","position":"LW","alternativePositions":["RW"],"nationality":"NGA","age":24,"appearances":16,"goals":3,"assists":2,"marketValue":650000,"internationalCaps":0,"awards":[],"overall":63},
-    {"id":"henry-21","name":"Thomas Henry","position":"ST","nationality":"FRA","age":26,"appearances":30,"goals":13,"assists":4,"marketValue":5000000,"internationalCaps":0,"awards":[],"overall":74},
+    {"id":"henry-21","name":"Thomas Henry","position":"ST","nationality":"FRA","age":26,"appearances":30,"goals":13,"assists":4,"marketValue":5000000,"internationalCaps":0,"awards":["Pro League Top Scorer (shared) 2021"],"overall":74},
     {"id":"kaba-21","name":"Sory Kaba","position":"ST","nationality":"GUI","age":25,"appearances":20,"goals":7,"assists":2,"marketValue":2500000,"internationalCaps":18,"awards":[],"overall":69},
     {"id":"rezaei-21","name":"Kaveh Rezaei","position":"ST","nationality":"IRN","age":29,"appearances":16,"goals":4,"assists":2,"marketValue":900000,"internationalCaps":35,"awards":[],"overall":66},
     {"id":"kukharevych-21","name":"Mykola Kukharevych","position":"ST","nationality":"UKR","age":20,"appearances":12,"goals":2,"assists":1,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":63}
