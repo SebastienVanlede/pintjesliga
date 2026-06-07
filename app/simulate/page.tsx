@@ -17,6 +17,7 @@ import {
 } from '@/lib/simulation/engine';
 import { Squad, SimulatedSeason, SimulatedPhase, StandingRow, SimulatedMatch, Formation, PickedPlayer } from '@/lib/types';
 import { calculateScore, ScoreBreakdown } from '@/lib/scoring';
+import { ACHIEVEMENTS, RARITY_COLOR, getGameAchievements, AchievementId } from '@/lib/achievements';
 import { useT } from '@/lib/useT';
 
 type SimMode = 'auto' | 'manual';
@@ -1126,7 +1127,7 @@ function ShareSection({ sim, pickedPlayers, formation, score }: {
   const [copied, setCopied] = useState(false);
   const [shared, setShared] = useState(false);
   const [twitterImgCopied, setTwitterImgCopied] = useState(false);
-  const { teamName, simSeason, language } = useGameStore();
+  const { teamName, simSeason, language, classicSquads } = useGameStore();
   const t = useT();
   const myTeam = teamName.trim() || t.simMode.teamNamePlaceholder;
 
@@ -1163,6 +1164,28 @@ function ShareSection({ sim, pickedPlayers, formation, score }: {
     (m.home === myTeam && m.awayGoals === 0) ||
     (m.away === myTeam && m.homeGoals === 0)
   ).length;
+
+  // Achievements unlocked door deze ene game
+  const userGoals = allMatches.reduce((s, m) => s + m.scorers.filter(x => pickedPlayers.some(p => p.player.name === x)).length, 0);
+  const gameAchievements = getGameAchievements({
+    id: '', playedAt: 0,
+    formation,
+    draftMode: useGameStore.getState().draftMode,
+    opponentMode: classicSquads && classicSquads.length > 0 ? 'classic' : 'season',
+    teamName: myTeam,
+    avgOverall,
+    totalScore: score.total,
+    resultLabel: score.resultLabel,
+    isChampion,
+    champion: sim.champion,
+    players: pickedPlayers.map(p => ({
+      name: p.player.name, teamName: p.teamName, season: p.season,
+      position: p.position, overall: p.player.overall,
+    })),
+    uniqueTeams: score.uniqueTeams,
+    uniqueSeasons: score.uniqueSeasons,
+    goalsScored: userGoals,
+  });
 
   function playerStat(p: PickedPlayer): string {
     if (p.position === 'GK') return `${cleanSheets} CS`;
@@ -1259,7 +1282,12 @@ function ShareSection({ sim, pickedPlayers, formation, score }: {
       const RESULT_H    = 88;   // resultaatblok
       const CHAMPION_H  = 64;   // kampioen footer
       const ROWS_H      = pickedPlayers.length * ROW_H + 16;
-      const H           = 4 + HEADER_H + RESULT_H + ROWS_H + CHAMPION_H;
+      // Achievement-balk: hoogte afhankelijk van aantal rijen (max 2 per regel à 4 badges)
+      const ACH_BADGE_H = 26;
+      const ACH_PER_ROW = 4;
+      const ACH_ROWS    = gameAchievements.length > 0 ? Math.ceil(gameAchievements.length / ACH_PER_ROW) : 0;
+      const ACH_H       = ACH_ROWS > 0 ? 22 + ACH_ROWS * (ACH_BADGE_H + 6) : 0;
+      const H           = 4 + HEADER_H + RESULT_H + ROWS_H + ACH_H + CHAMPION_H;
 
       const canvas = document.createElement('canvas');
       canvas.width  = W;
@@ -1458,8 +1486,68 @@ function ShareSection({ sim, pickedPlayers, formation, score }: {
         }
       }
 
+      // ── Achievements balk (indien er unlocks zijn) ───
+      const achTop = HEADER_H + RESULT_H + ROWS_H + 4;
+      if (ACH_ROWS > 0) {
+        ctx.strokeStyle = BORDER;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(0, achTop);
+        ctx.lineTo(W, achTop);
+        ctx.stroke();
+
+        ctx.font = '10px Arial, sans-serif';
+        ctx.fillStyle = MUTED;
+        ctx.textAlign = 'left';
+        ctx.letterSpacing = '1.5px';
+        ctx.fillText(language === 'nl' ? 'BEHAALDE ACHIEVEMENTS' : 'ACHIEVEMENTS UNLOCKED', PAD, achTop + 16);
+        ctx.letterSpacing = '0px';
+
+        // Render badges
+        const badgesPerRow = ACH_PER_ROW;
+        const startY = achTop + 22;
+        gameAchievements.forEach((id, i) => {
+          const def  = ACHIEVEMENTS.find(a => a.id === id);
+          const meta = t.achievements.defs[id];
+          if (!def || !meta) return;
+          const color = RARITY_COLOR[def.rarity];
+          const row   = Math.floor(i / badgesPerRow);
+          const col   = i % badgesPerRow;
+          const badgeW = (W - PAD * 2 - (badgesPerRow - 1) * 6) / badgesPerRow;
+          const x = PAD + col * (badgeW + 6);
+          const y = startY + row * (ACH_BADGE_H + 6);
+
+          // Achtergrond chip
+          ctx.fillStyle = `${color.replace('var(--red)', '#C41E3A')}22`;
+          ctx.strokeStyle = `${color.replace('var(--red)', '#C41E3A')}66`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.roundRect(x, y, badgeW, ACH_BADGE_H, 4);
+          ctx.fill();
+          ctx.stroke();
+
+          // Icoon
+          ctx.font = '13px Arial, sans-serif';
+          ctx.fillStyle = TEXT;
+          ctx.textAlign = 'left';
+          ctx.fillText(def.icon, x + 7, y + 18);
+
+          // Naam
+          ctx.font = 'bold 10px Arial, sans-serif';
+          ctx.fillStyle = color.replace('var(--red)', '#C41E3A');
+          // Trim te lange namen
+          const maxNameW = badgeW - 30;
+          let name = meta.name;
+          while (ctx.measureText(name).width > maxNameW && name.length > 4) {
+            name = name.slice(0, -1);
+          }
+          if (name !== meta.name) name = name.slice(0, -1) + '…';
+          ctx.fillText(name, x + 26, y + 17);
+        });
+      }
+
       // ── Kampioen footer ────────────────────────────────
-      const footerTop = HEADER_H + RESULT_H + ROWS_H + 4;
+      const footerTop = HEADER_H + RESULT_H + ROWS_H + ACH_H + 4;
       ctx.fillStyle = 'rgba(212,148,10,0.04)';
       ctx.fillRect(0, footerTop, W, CHAMPION_H);
       ctx.strokeStyle = BORDER;
@@ -1667,6 +1755,40 @@ function ShareSection({ sim, pickedPlayers, formation, score }: {
                 );
               })}
             </div>
+
+            {/* ── Achievements unlocked deze game ── */}
+            {gameAchievements.length > 0 && (
+              <div style={{
+                padding: '10px 22px',
+                borderTop: '1px solid #1E1D1A',
+                display: 'flex', flexDirection: 'column', gap: 6,
+              }}>
+                <p style={{ fontSize: 9, color: '#6B6560', letterSpacing: 1.5, textTransform: 'uppercase' }}>
+                  {language === 'nl' ? 'Behaalde Achievements' : 'Achievements Unlocked'}
+                </p>
+                <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+                  {gameAchievements.map(id => {
+                    const def     = ACHIEVEMENTS.find(a => a.id === id);
+                    const meta    = t.achievements.defs[id];
+                    if (!def || !meta) return null;
+                    const color   = RARITY_COLOR[def.rarity];
+                    return (
+                      <div key={id} style={{
+                        display: 'flex', alignItems: 'center', gap: 4,
+                        padding: '3px 8px', borderRadius: 4,
+                        background: `${color}15`,
+                        border: `1px solid ${color}40`,
+                      }}>
+                        <span style={{ fontSize: 12, lineHeight: 1 }}>{def.icon}</span>
+                        <span style={{ fontSize: 10, color, fontWeight: 600, letterSpacing: 0.2 }}>
+                          {meta.name}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
 
             {/* ── Kampioen footer ── */}
             <div style={{

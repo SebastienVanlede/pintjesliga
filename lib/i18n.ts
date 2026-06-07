@@ -255,6 +255,36 @@ export const translations = {
       showAll: (n: number) => `Toon alle ${n}`,
     },
 
+    // ── Achievements ──────────────────────────────────────────────────────────
+    achievements: {
+      title: 'Achievements',
+      earned: (n: number, total: number) => `${n} / ${total} behaald`,
+      unlocked: 'Behaald',
+      locked: 'Nog te behalen',
+      newlyEarned: 'Nieuw behaald!',
+      defs: {
+        first_brew:       { name: 'Eerste Pintje',        desc: 'Speel je eerste seizoen' },
+        champion:         { name: 'Op Het Schavot',       desc: 'Win je eerste titel' },
+        treble:           { name: 'Hat-trick',            desc: 'Win 3 titels' },
+        legend:           { name: 'Belgische Legende',    desc: 'Win 10 titels' },
+        underdog:         { name: 'Underdog',             desc: 'Kampioen met gem. OVR onder 70' },
+        david:            { name: 'David',                desc: 'Kampioen met gem. OVR onder 65' },
+        galactico:        { name: 'Galacticos',           desc: 'XI met gem. OVR 75 of meer' },
+        time_traveler:    { name: 'Tijdsreiziger',        desc: 'Spelers uit 6+ seizoenen in je XI' },
+        complete_history: { name: 'Compleet Archief',     desc: 'Spelers uit alle 9 seizoenen in je XI' },
+        purist:           { name: 'Purist',               desc: 'XI uit één enkel seizoen' },
+        diverse:          { name: 'Multikulti',           desc: 'XI uit 10+ verschillende clubs' },
+        mind_coach:       { name: 'Geheugenkampioen',     desc: 'Win in de From Memory modus' },
+        memory_master:    { name: 'Memory Master',        desc: '5 From Memory seizoenen gespeeld' },
+        classic_king:     { name: 'Klassiek Kampioen',    desc: 'Win in de Klassiek modus' },
+        goal_machine:     { name: 'Doelpuntenmachine',    desc: '50+ doelpunten in één seizoen' },
+        goal_legend:      { name: '100 Club',             desc: '100+ doelpunten lifetime' },
+        pintje_perfect:   { name: 'Pintje Perfect',       desc: 'Score van 1500+ in één seizoen' },
+        frequent_flyer:   { name: 'Vaste Klant',          desc: '10 seizoenen gespeeld' },
+        dedicated:        { name: 'Toegewijde',           desc: '25 seizoenen gespeeld' },
+      } as Record<string, { name: string; desc: string }>,
+    },
+
     // ── Stats ─────────────────────────────────────────────────────────────────
     stats: {
       navLink: 'Mijn statistieken',
@@ -555,6 +585,36 @@ export const translations = {
       results: (n: number) => `Results (${n} matches)`,
       onlyTeam: (name: string) => `Only ${name}`,
       showAll: (n: number) => `Show all ${n}`,
+    },
+
+    // ── Achievements ──────────────────────────────────────────────────────────
+    achievements: {
+      title: 'Achievements',
+      earned: (n: number, total: number) => `${n} / ${total} unlocked`,
+      unlocked: 'Unlocked',
+      locked: 'Locked',
+      newlyEarned: 'Newly unlocked!',
+      defs: {
+        first_brew:       { name: 'First Brew',           desc: 'Play your first season' },
+        champion:         { name: 'On The Podium',        desc: 'Win your first title' },
+        treble:           { name: 'Hat-trick',            desc: 'Win 3 titles' },
+        legend:           { name: 'Belgian Legend',       desc: 'Win 10 titles' },
+        underdog:         { name: 'Underdog',             desc: 'Champion with avg. OVR below 70' },
+        david:            { name: 'David',                desc: 'Champion with avg. OVR below 65' },
+        galactico:        { name: 'Galacticos',           desc: 'XI with avg. OVR of 75 or more' },
+        time_traveler:    { name: 'Time Traveler',        desc: 'Players from 6+ seasons in your XI' },
+        complete_history: { name: 'Complete Archive',     desc: 'Players from all 9 seasons in your XI' },
+        purist:           { name: 'Purist',               desc: 'XI from a single season' },
+        diverse:          { name: 'Multicultural',        desc: 'XI from 10+ different clubs' },
+        mind_coach:       { name: 'Mind Coach',           desc: 'Win in From Memory mode' },
+        memory_master:    { name: 'Memory Master',        desc: 'Play 5 From Memory seasons' },
+        classic_king:     { name: 'Classic King',         desc: 'Win in Classic mode' },
+        goal_machine:     { name: 'Goal Machine',         desc: '50+ goals in one season' },
+        goal_legend:      { name: '100 Club',             desc: '100+ goals lifetime' },
+        pintje_perfect:   { name: 'Pintje Perfect',       desc: 'Score of 1500+ in one season' },
+        frequent_flyer:   { name: 'Regular',              desc: 'Play 10 seasons' },
+        dedicated:        { name: 'Dedicated',            desc: 'Play 25 seasons' },
+      } as Record<string, { name: string; desc: string }>,
     },
 
     // ── Stats ─────────────────────────────────────────────────────────────────

@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGameStore, PlayedGame } from '@/lib/store';
 import { useT } from '@/lib/useT';
+import { ACHIEVEMENTS, RARITY_COLOR, getAllEarnedAchievements, AchievementId } from '@/lib/achievements';
 
 export default function StatsPage() {
   const router = useRouter();
@@ -14,6 +15,7 @@ export default function StatsPage() {
   useEffect(() => { setMounted(true); }, []);
 
   const stats = useMemo(() => computeStats(playHistory), [playHistory]);
+  const earnedSet = useMemo(() => getAllEarnedAchievements(playHistory), [playHistory]);
 
   if (!mounted) return null;
 
@@ -86,6 +88,29 @@ export default function StatsPage() {
             <Tile icon="🏆" label={t.stats.titlesWon}   value={stats.championships} />
             <Tile icon="⭐" label={t.stats.bestScore}   value={stats.bestScore.toLocaleString('nl-BE')} highlight />
             <Tile icon="📊" label={t.stats.avgOverall}  value={stats.avgOverall} />
+          </div>
+        </Section>
+
+        {/* ── Achievements ── */}
+        <Section
+          title={t.achievements.title}
+          rightLabel={t.achievements.earned(earnedSet.size, ACHIEVEMENTS.length)}
+        >
+          <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-6 gap-2">
+            {ACHIEVEMENTS.map(a => {
+              const earned = earnedSet.has(a.id);
+              const def    = t.achievements.defs[a.id];
+              return (
+                <AchievementBadge
+                  key={a.id}
+                  icon={a.icon}
+                  name={def?.name ?? a.id}
+                  desc={def?.desc ?? ''}
+                  color={RARITY_COLOR[a.rarity]}
+                  earned={earned}
+                />
+              );
+            })}
           </div>
         </Section>
 
@@ -258,17 +283,66 @@ function computeStats(games: PlayedGame[]): Stats {
 
 // ─── Sub-componenten ──────────────────────────────────────────────────────────
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({ title, children, rightLabel }: { title: string; children: React.ReactNode; rightLabel?: string }) {
   return (
     <motion.section
       initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
       className="flex flex-col gap-3"
     >
-      <h2 className="text-xs uppercase tracking-widest px-1" style={{ color: 'var(--muted)', letterSpacing: '0.14em' }}>
-        {title}
-      </h2>
+      <div className="flex items-center justify-between px-1">
+        <h2 className="text-xs uppercase tracking-widest" style={{ color: 'var(--muted)', letterSpacing: '0.14em' }}>
+          {title}
+        </h2>
+        {rightLabel && (
+          <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.7rem', color: 'var(--gold)', letterSpacing: '0.06em' }}>
+            {rightLabel}
+          </span>
+        )}
+      </div>
       {children}
     </motion.section>
+  );
+}
+
+function AchievementBadge({ icon, name, desc, color, earned }: {
+  icon: string; name: string; desc: string; color: string; earned: boolean;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.92 }}
+      animate={{ opacity: 1, scale: 1 }}
+      whileHover={{ scale: earned ? 1.04 : 1.02 }}
+      className="flex flex-col items-center gap-1 px-2 py-3 rounded-xl text-center group relative"
+      style={{
+        background: earned ? `${color}12` : 'var(--surface)',
+        border: `1px solid ${earned ? `${color}55` : 'var(--border)'}`,
+        cursor: 'help',
+        boxShadow: earned ? `0 0 18px ${color}18` : 'none',
+        opacity: earned ? 1 : 0.6,
+      }}
+      title={`${name} — ${desc}`}
+    >
+      <span style={{
+        fontSize: '1.55rem',
+        lineHeight: 1,
+        filter: earned ? 'none' : 'grayscale(1) opacity(0.5)',
+      }}>
+        {icon}
+      </span>
+      <span
+        className="truncate w-full"
+        style={{
+          fontFamily: 'var(--font-display)',
+          fontSize: '0.6rem',
+          letterSpacing: '0.04em',
+          color: earned ? color : 'var(--muted)',
+          fontWeight: earned ? 600 : 400,
+          lineHeight: 1.2,
+        }}
+      >
+        {name}
+      </span>
+    </motion.div>
   );
 }
 
