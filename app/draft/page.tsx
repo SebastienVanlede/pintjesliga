@@ -3,6 +3,7 @@ import { useEffect, useState, useCallback, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGameStore } from '@/lib/store';
+import { useT } from '@/lib/useT';
 import { getAvailableRolls, loadSquad } from '@/lib/data';
 import { FORMATION_POSITIONS, Player, Squad, Team, PickedPlayer, Position, playerPositions } from '@/lib/types';
 import FormationPitch from '@/components/FormationPitch';
@@ -15,6 +16,7 @@ const POSITION_ORDER = ['GK','RB','CB','LB','CDM','CM','CAM','RM','LM','RW','LW'
 export default function DraftPage() {
   const router = useRouter();
   const { formation, pickedPlayers, pickPlayer, draftMode } = useGameStore();
+  const t = useT();
   const blind = draftMode === 'blind';
 
   const [phase, setPhase] = useState<Phase>('idle');
@@ -128,7 +130,7 @@ export default function DraftPage() {
         {/* Voortgangsbalk */}
         <div>
           <div className="flex items-center justify-between mb-2">
-            <span className="label-xs">Jouw opstelling</span>
+            <span className="label-xs">{t.draft.yourLineup}</span>
             <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.85rem', color: 'var(--gold)', letterSpacing: '0.06em' }}>
               {filledCount}/{positions.length}
             </span>
@@ -154,7 +156,7 @@ export default function DraftPage() {
           {phase === 'placing' && (
             <motion.span initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }}
               className="text-xs" style={{ color: 'var(--gold)' }}>
-              ← klik op een positie
+              {t.draft.clickPos}
             </motion.span>
           )}
         </div>
@@ -201,7 +203,7 @@ export default function DraftPage() {
               </motion.button>
 
               <p className="text-xs text-center" style={{ color: 'var(--muted)' }}>
-                Een willekeurig Pro League team uit 8 seizoenen
+                {t.draft.randomHint}
               </p>
             </motion.div>
           )}
@@ -211,7 +213,7 @@ export default function DraftPage() {
             <motion.div key="spinning" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
               className="flex flex-col items-center justify-center gap-6 flex-1 min-h-72">
 
-              <span className="label-xs">Dobbelstenen rollen…</span>
+              <span className="label-xs">{t.draft.rolling}</span>
 
               {/* Slot machine box */}
               <div style={{
@@ -293,7 +295,7 @@ export default function DraftPage() {
               >
                 <div className="px-5 py-4 flex items-center justify-between">
                   <div>
-                    <span className="label-xs block mb-1.5" style={{ color: `${roll.team.primaryColor}cc` }}>Gerold team</span>
+                    <span className="label-xs block mb-1.5" style={{ color: `${roll.team.primaryColor}cc` }}>{t.draft.drawnTeam}</span>
                     <h2 style={{
                       fontFamily: 'var(--font-display)',
                       fontSize: 'clamp(1.5rem,5vw,2.2rem)',
@@ -306,7 +308,7 @@ export default function DraftPage() {
                     </h2>
                   </div>
                   <div className="text-right">
-                    <span className="label-xs block mb-1.5">Seizoen</span>
+                    <span className="label-xs block mb-1.5">{t.draft.season}</span>
                     <p style={{
                       fontFamily: 'var(--font-display)',
                       fontSize: '1.6rem',
@@ -327,7 +329,7 @@ export default function DraftPage() {
               {/* Herroll balk */}
               <div className="flex items-center justify-between px-1">
                 <div className="flex items-center gap-2.5">
-                  <span className="text-xs" style={{ color: 'var(--muted)' }}>Herrolls</span>
+                  <span className="text-xs" style={{ color: 'var(--muted)' }}>{t.draft.rerolls}</span>
                   <div className="flex gap-1.5">
                     {Array.from({ length: MAX_REROLLS }).map((_, i) => (
                       <motion.div
@@ -352,14 +354,14 @@ export default function DraftPage() {
                     cursor: rerollsLeft > 0 ? 'pointer' : 'not-allowed',
                   }}
                 >
-                  {rerollsLeft > 0 ? `Opnieuw rollen (${rerollsLeft} over)` : 'Geen herrolls meer'}
+                  {rerollsLeft > 0 ? t.draft.rerollBtn(rerollsLeft) : t.draft.noRerolls}
                 </button>
               </div>
 
               {/* Instructie + sort toggle */}
               <div className="flex items-center justify-between px-1">
                 <p className="text-xs" style={{ color: 'var(--muted)' }}>
-                  Kies een speler → wijs daarna de positie toe
+                  {t.draft.chooseHint}
                 </p>
                 {!blind && (
                   <div className="flex rounded-lg overflow-hidden" style={{ border: '1px solid var(--border)' }}>
@@ -407,8 +409,9 @@ export default function DraftPage() {
                           player={player}
                           teamColor={roll.team.primaryColor}
                           disabled={disabled}
-                          disabledReason={alreadyPicked ? 'Gekozen' : posFull ? 'Vol' : undefined}
+                          disabledReason={alreadyPicked ? t.draft.taken : posFull ? t.draft.full : undefined}
                           blind={blind}
+                          pickLabel={t.draft.choose}
                           onPick={() => !disabled && handleSelectPlayer(player)}
                         />
                       </motion.div>
@@ -429,7 +432,7 @@ export default function DraftPage() {
                 border: '2px solid var(--gold)',
                 boxShadow: '0 0 50px rgba(212,148,10,0.18)',
               }}>
-                <span className="label-xs block mb-3" style={{ color: 'var(--gold-dim)' }}>Gekozen speler</span>
+                <span className="label-xs block mb-3" style={{ color: 'var(--gold-dim)' }}>{t.draft.chosenPlayer}</span>
                 <div className="flex items-center gap-4">
                   <OverallBadge overall={selectedPlayer.overall} size="lg" blind={blind} />
                   <div className="flex-1 min-w-0">
@@ -458,7 +461,7 @@ export default function DraftPage() {
               {eligibleIndices.size === 0 ? (
                 <div className="w-full text-center p-4 rounded-xl" style={{ background: 'var(--red-dim)', border: '1px solid var(--red)' }}>
                   <p className="text-sm" style={{ color: 'var(--red)' }}>
-                    Geen vrije {playerPositions(selectedPlayer).join('/')} positie beschikbaar in {formation}.
+                    {t.draft.noFreePos(playerPositions(selectedPlayer).join('/'), formation)}
                   </p>
                 </div>
               ) : (
@@ -468,7 +471,7 @@ export default function DraftPage() {
                 }}>
                   <span style={{ fontSize: '1.5rem' }}>←</span>
                   <p className="text-sm" style={{ color: 'var(--gold)' }}>
-                    Klik op een oplichtende <strong>{playerPositions(selectedPlayer).join('/')}</strong>-positie op het veld
+                    {t.draft.clickHighlight(playerPositions(selectedPlayer).join('/'))}
                   </p>
                 </div>
               )}
@@ -478,7 +481,7 @@ export default function DraftPage() {
                 className="text-sm"
                 style={{ color: 'var(--muted)', textDecoration: 'underline', cursor: 'pointer' }}
               >
-                ← Andere speler kiezen
+                {t.draft.otherPlayer}
               </button>
             </motion.div>
           )}
@@ -491,9 +494,9 @@ export default function DraftPage() {
 
 // ─── Player card ──────────────────────────────────────────────────────────────
 
-function PlayerCard({ player, teamColor, onPick, disabled, disabledReason, blind }: {
+function PlayerCard({ player, teamColor, onPick, disabled, disabledReason, blind, pickLabel }: {
   player: Player; teamColor: string; onPick: () => void;
-  disabled?: boolean; disabledReason?: string; blind?: boolean;
+  disabled?: boolean; disabledReason?: string; blind?: boolean; pickLabel: string;
 }) {
   const allPositions = playerPositions(player);
   return (
@@ -572,7 +575,7 @@ function PlayerCard({ player, teamColor, onPick, disabled, disabledReason, blind
               fontWeight: 700,
             }}
           >
-            KIES
+            {pickLabel}
           </span>
         )}
       </div>

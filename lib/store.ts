@@ -2,6 +2,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { Formation, PickedPlayer, SimulatedSeason } from './types';
+import { Lang } from './i18n';
 
 interface GameState {
   formation: Formation | null;
@@ -12,6 +13,7 @@ interface GameState {
   draftMode: 'normal' | 'blind';
   simSeason: string;
   theme: 'dark' | 'light';
+  language: Lang;
 
   setFormation: (f: Formation) => void;
   pickPlayer: (p: PickedPlayer) => void;
@@ -20,6 +22,7 @@ interface GameState {
   setDraftMode: (m: 'normal' | 'blind') => void;
   setSimSeason: (s: string) => void;
   setTheme: (t: 'dark' | 'light') => void;
+  setLanguage: (l: Lang) => void;
   reset: () => void;
   resetKeepFormation: () => void;
 }
@@ -35,6 +38,7 @@ export const useGameStore = create<GameState>()(
       draftMode: 'normal',
       simSeason: '2024-25',
       theme: 'dark',
+      language: 'nl',
 
       setFormation: (formation) =>
         set({ formation, pickedPlayers: [], currentPositionIndex: 0, simulatedSeason: null }),
@@ -55,6 +59,8 @@ export const useGameStore = create<GameState>()(
 
       setTheme: (theme) => set({ theme }),
 
+      setLanguage: (language) => set({ language }),
+
       reset: () =>
         set({ formation: null, pickedPlayers: [], currentPositionIndex: 0, simulatedSeason: null }),
 
@@ -72,6 +78,7 @@ export const useGameStore = create<GameState>()(
         draftMode:        state.draftMode,
         simSeason:        state.simSeason,
         theme:            state.theme,
+        language:         state.language,
       }),
     }
   )

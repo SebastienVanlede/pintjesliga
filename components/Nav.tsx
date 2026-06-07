@@ -2,13 +2,9 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useGameStore } from '@/lib/store';
+import { useT } from '@/lib/useT';
 
-const STEPS = [
-  { label: 'Formatie', path: '/' },
-  { label: 'Draft',    path: '/draft' },
-  { label: 'XI',       path: '/xi' },
-  { label: 'Seizoen',  path: '/simulate' },
-];
+const STEP_PATHS = ['/', '/draft', '/xi', '/simulate'];
 
 function currentStepIndex(pathname: string): number {
   if (pathname === '/') return 0;
@@ -19,7 +15,8 @@ function currentStepIndex(pathname: string): number {
 
 export default function Nav() {
   const pathname = usePathname();
-  const { formation, pickedPlayers, simulatedSeason, theme, setTheme } = useGameStore();
+  const { formation, pickedPlayers, simulatedSeason, theme, setTheme, language, setLanguage } = useGameStore();
+  const t = useT();
   const currentStep = currentStepIndex(pathname);
 
   const stepReachable = [
@@ -64,21 +61,19 @@ export default function Nav() {
 
         {/* Step progress — center */}
         <nav className="flex items-center">
-          {STEPS.map((step, i) => {
+          {t.nav.steps.map((label, i) => {
             const isActive  = currentStep === i;
             const isDone    = currentStep > i;
             const canNav    = stepReachable[i];
 
             return (
-              <div key={step.path} className="flex items-center">
-                {/* Connector line */}
+              <div key={STEP_PATHS[i]} className="flex items-center">
                 {i > 0 && (
                   <div className="w-3 sm:w-5 h-px mx-0.5 sm:mx-1"
                     style={{ background: isDone ? 'var(--gold-dim)' : 'var(--border)' }} />
                 )}
-
                 <Link
-                  href={canNav ? step.path : '#'}
+                  href={canNav ? STEP_PATHS[i] : '#'}
                   className="flex items-center gap-1 sm:gap-1.5 rounded"
                   style={{
                     textDecoration: 'none',
@@ -89,33 +84,21 @@ export default function Nav() {
                     transition: 'all 0.15s',
                   }}
                 >
-                  {/* Circle */}
-                  <span
-                    className="flex items-center justify-center flex-shrink-0"
+                  <span className="flex items-center justify-center flex-shrink-0"
                     style={{
-                      width: 18, height: 18,
-                      borderRadius: '50%',
+                      width: 18, height: 18, borderRadius: '50%',
                       background: isActive ? 'var(--gold)' : isDone ? 'var(--gold-dim)' : 'var(--border-2)',
-                      fontSize: '0.58rem',
-                      fontWeight: 700,
+                      fontSize: '0.58rem', fontWeight: 700,
                       color: isActive || isDone ? '#07070A' : 'var(--muted)',
-                    }}
-                  >
+                    }}>
                     {isDone ? '✓' : i + 1}
                   </span>
-
-                  {/* Label — verborgen op mobiel */}
-                  <span
-                    className="hidden sm:inline"
-                    style={{
-                      fontSize: '0.65rem',
-                      letterSpacing: '0.06em',
-                      textTransform: 'uppercase',
-                      color: isActive ? 'var(--gold)' : isDone ? 'var(--text-2)' : 'var(--muted)',
-                      fontWeight: isActive ? 600 : 400,
-                    }}
-                  >
-                    {step.label}
+                  <span className="hidden sm:inline" style={{
+                    fontSize: '0.65rem', letterSpacing: '0.06em', textTransform: 'uppercase',
+                    color: isActive ? 'var(--gold)' : isDone ? 'var(--text-2)' : 'var(--muted)',
+                    fontWeight: isActive ? 600 : 400,
+                  }}>
+                    {label}
                   </span>
                 </Link>
               </div>
@@ -123,7 +106,7 @@ export default function Nav() {
           })}
         </nav>
 
-        {/* Rechts: leaderboard + theme */}
+        {/* Rechts: leaderboard + taal + theme */}
         <div className="flex items-center gap-1.5 flex-shrink-0">
           <Link
             href="/leaderboard"
@@ -137,15 +120,33 @@ export default function Nav() {
             }}
           >
             <span>🏆</span>
-            {/* Text — verborgen op mobiel */}
             <span className="hidden sm:inline" style={{ fontSize: '0.6rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>
-              Board
+              {t.nav.board}
             </span>
           </Link>
 
+          {/* Taal toggle */}
+          <button
+            onClick={() => setLanguage(language === 'nl' ? 'en' : 'nl')}
+            title={language === 'nl' ? 'Switch to English' : 'Schakel naar Nederlands'}
+            style={{
+              background: 'transparent',
+              border: '1px solid var(--border)',
+              borderRadius: 4,
+              padding: '4px 7px',
+              cursor: 'pointer',
+              fontSize: '0.6rem',
+              letterSpacing: '0.08em',
+              fontFamily: 'var(--font-display)',
+              color: 'var(--muted)',
+              lineHeight: 1,
+            }}
+          >
+            {language === 'nl' ? 'EN' : 'NL'}
+          </button>
+
           <button
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            title={theme === 'dark' ? 'Licht' : 'Donker'}
             style={{
               background: 'transparent',
               border: '1px solid var(--border)',

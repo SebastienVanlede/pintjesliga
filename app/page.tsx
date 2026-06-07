@@ -4,17 +4,13 @@ import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Formation, FORMATIONS } from '@/lib/types';
 import { useGameStore } from '@/lib/store';
+import { useT } from '@/lib/useT';
 import FormationCard from '@/components/FormationCard';
-
-const HOW_IT_WORKS = [
-  { n: '01', title: 'Kies een formatie', desc: 'Bepaal met welk systeem jouw XI speelt.' },
-  { n: '02', title: 'Rol & kies spelers', desc: 'Dobbelstenen bepalen welk team je trekt. Jij kiest de beste speler.' },
-  { n: '03', title: 'Simuleer het seizoen', desc: 'Speel het volledige Belgische playoffsysteem — PO1, PO2 en meer.' },
-];
 
 export default function HomePage() {
   const router = useRouter();
   const { setFormation, draftMode, setDraftMode } = useGameStore();
+  const t = useT();
   const [selected, setSelected] = useState<Formation | null>(null);
 
   function handleStart() {
@@ -37,7 +33,7 @@ export default function HomePage() {
           animate={{ opacity: 1, y: 0 }}
           className="flex flex-col gap-5"
         >
-          <span className="label-xs">Belgische Pro League Simulator</span>
+          <span className="label-xs">{t.home.subtitle}</span>
 
           <h1
             className="leading-none"
@@ -57,7 +53,7 @@ export default function HomePage() {
           </h1>
 
           <p style={{ color: 'var(--text-2)', maxWidth: '36ch', lineHeight: 1.6, fontSize: '0.95rem' }}>
-            Bouw je ultieme Belgische Pro League droomelf uit 8 seizoenen historische squads — en bewijs dat jij de beste coach bent.
+            {t.home.heroDesc}
           </p>
         </motion.div>
 
@@ -68,9 +64,9 @@ export default function HomePage() {
           transition={{ delay: 0.15 }}
           className="flex flex-col gap-4 mt-12 lg:mt-0"
         >
-          <span className="label-xs">Hoe het werkt</span>
+          <span className="label-xs">{t.home.howItWorks}</span>
           <div className="flex flex-col gap-3">
-            {HOW_IT_WORKS.map((step, i) => (
+            {t.home.steps.map((step, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, x: -12 }}
@@ -79,18 +75,8 @@ export default function HomePage() {
                 className="flex items-start gap-4 p-4 rounded-lg"
                 style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
               >
-                <span
-                  style={{
-                    fontFamily: 'var(--font-display)',
-                    fontSize: '1.5rem',
-                    color: 'var(--gold)',
-                    letterSpacing: '0.05em',
-                    lineHeight: 1,
-                    flexShrink: 0,
-                    opacity: 0.7,
-                  }}
-                >
-                  {step.n}
+                <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', color: 'var(--gold)', letterSpacing: '0.05em', lineHeight: 1, flexShrink: 0, opacity: 0.7 }}>
+                  {String(i + 1).padStart(2, '0')}
                 </span>
                 <div>
                   <p className="font-medium text-sm" style={{ color: 'var(--text)', marginBottom: 2 }}>{step.title}</p>
@@ -109,15 +95,10 @@ export default function HomePage() {
           className="flex items-center gap-4 pt-8 mt-4 flex-wrap"
           style={{ borderTop: '1px solid var(--border)' }}
         >
-          {[
-            ['129', 'squads'],
-            ['8', 'seizoenen'],
-            ['3', 'herrolls'],
-            ['PO1 · PO2', 'playoffs'],
-          ].map(([val, label]) => (
-            <div key={label} className="flex flex-col">
+          {(['129', '8', '3', 'PO1 · PO2'] as string[]).map((val, i) => (
+            <div key={i} className="flex flex-col">
               <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', color: 'var(--text)', letterSpacing: '0.05em' }}>{val}</span>
-              <span className="label-xs" style={{ marginTop: 1 }}>{label}</span>
+              <span className="label-xs" style={{ marginTop: 1 }}>{t.home.statsLabels[i]}</span>
             </div>
           ))}
         </motion.div>
@@ -130,20 +111,12 @@ export default function HomePage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
         >
-          <span className="label-xs block mb-2">Stap 1 van 3</span>
-          <h2
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: 'clamp(1.8rem, 4vw, 2.8rem)',
-              color: 'var(--text)',
-              letterSpacing: '0.06em',
-              lineHeight: 1,
-            }}
-          >
-            KIES JE FORMATIE
+          <span className="label-xs block mb-2">{t.home.step1of4}</span>
+          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.8rem, 4vw, 2.8rem)', color: 'var(--text)', letterSpacing: '0.06em', lineHeight: 1 }}>
+            {t.home.chooseFormation}
           </h2>
           <p className="text-sm mt-2" style={{ color: 'var(--muted)' }}>
-            Dit bepaalt welke posities je moet invullen tijdens de draft.
+            {t.home.chooseFormationDesc}
           </p>
         </motion.div>
 
@@ -177,12 +150,12 @@ export default function HomePage() {
           transition={{ delay: 0.25 }}
           className="flex flex-col gap-2"
         >
-          <span className="label-xs">Speelmodus</span>
+          <span className="label-xs">{t.home.gameMode}</span>
           <div className="flex gap-2">
             {([
-              { value: 'normal', label: 'Normaal', desc: 'Ratings zichtbaar' },
-              { value: 'blind',  label: 'From Memory', desc: 'Ratings verborgen' },
-            ] as const).map(({ value, label, desc }) => (
+              { value: 'normal' as const, label: t.home.modeNormal, desc: t.home.modeNormalDesc },
+              { value: 'blind'  as const, label: t.home.modeBlind,  desc: t.home.modeBlindDesc },
+            ]).map(({ value, label, desc }) => (
               <button
                 key={value}
                 onClick={() => setDraftMode(value)}
@@ -227,7 +200,7 @@ export default function HomePage() {
               alignSelf: 'flex-start',
             }}
           >
-            {selected ? `Start de Draft → ${selected}` : 'Selecteer een formatie'}
+            {selected ? t.home.startBtn(selected) : t.home.selectFirst}
           </button>
 
           {selected && (
@@ -237,7 +210,7 @@ export default function HomePage() {
               className="text-xs"
               style={{ color: 'var(--muted)' }}
             >
-              Je vult 11 posities in via de dobbelsteendraft.
+              {t.home.willFill}
             </motion.p>
           )}
         </motion.div>

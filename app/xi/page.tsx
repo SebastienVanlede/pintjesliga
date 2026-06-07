@@ -3,12 +3,14 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { useGameStore } from '@/lib/store';
+import { useT } from '@/lib/useT';
 import { FORMATION_POSITIONS, playerPositions } from '@/lib/types';
 import FormationPitch from '@/components/FormationPitch';
 
 export default function XIPage() {
   const router = useRouter();
   const { formation, pickedPlayers, reset, resetKeepFormation } = useGameStore();
+  const t = useT();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => { setMounted(true); }, []);
@@ -36,7 +38,7 @@ export default function XIPage() {
       >
         {/* Title */}
         <motion.div initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }} className="w-full">
-          <span className="label-xs block mb-1">Jouw droomelf</span>
+          <span className="label-xs block mb-1">{t.xi.yourDreamTeam}</span>
           <h1 style={{
             fontFamily: 'var(--font-display)',
             fontSize: 'clamp(2rem,5vw,2.8rem)',
@@ -56,9 +58,9 @@ export default function XIPage() {
           className="w-full grid grid-cols-3 gap-2"
         >
           {[
-            { label: 'Formatie', value: formation },
-            { label: 'Gem. OVR', value: String(avgOverall), highlight: true },
-            { label: 'Teams', value: String(teamsUsed) },
+            { label: t.xi.formation, value: formation },
+            { label: t.xi.avgOvr,    value: String(avgOverall), highlight: true },
+            { label: t.xi.teams,     value: String(teamsUsed) },
           ].map(({ label, value, highlight }) => (
             <div
               key={label}
@@ -97,7 +99,7 @@ export default function XIPage() {
             onMouseEnter={e => { (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1.02)'; }}
             onMouseLeave={e => { (e.currentTarget as HTMLButtonElement).style.transform = 'scale(1)'; }}
           >
-            Simuleer het Seizoen →
+            {t.xi.simulateBtn}
           </button>
           <button
             onClick={() => { resetKeepFormation(); router.push('/draft'); }}
@@ -114,14 +116,11 @@ export default function XIPage() {
               cursor: 'pointer',
             }}
           >
-            Nieuwe draft ({formation})
+            {t.xi.newDraft(formation)}
           </button>
           <button
             onClick={() => {
-              if (window.confirm('Weet je zeker dat je opnieuw wil beginnen? Je huidige XI gaat verloren.')) {
-                reset();
-                router.push('/');
-              }
+              if (window.confirm(t.xi.confirmReset)) { reset(); router.push('/'); }
             }}
             style={{
               fontFamily: 'var(--font-display)',
@@ -136,7 +135,7 @@ export default function XIPage() {
               cursor: 'pointer',
             }}
           >
-            Opnieuw beginnen
+            {t.xi.startOver}
           </button>
         </motion.div>
       </div>
@@ -144,14 +143,14 @@ export default function XIPage() {
       {/* ── Right: Player list ────────────────────────────────────────── */}
       <div className="flex-1 px-6 py-8 lg:px-10 lg:py-10 overflow-y-auto">
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1 }} className="mb-6">
-          <span className="label-xs block mb-1">Spelerslijst</span>
+          <span className="label-xs block mb-1">{t.xi.playerList}</span>
           <div className="flex items-center gap-3">
             <h2 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', color: 'var(--text)', letterSpacing: '0.06em' }}>
               {formation.toUpperCase()}
             </h2>
             {topPlayer && (
               <span className="text-xs" style={{ color: 'var(--muted)' }}>
-                Beste: {topPlayer.player.name} ({topPlayer.player.overall})
+                {t.xi.best(topPlayer.player.name, topPlayer.player.overall)}
               </span>
             )}
           </div>

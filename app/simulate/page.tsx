@@ -14,6 +14,7 @@ import {
 } from '@/lib/simulation/engine';
 import { Squad, SimulatedSeason, SimulatedPhase, StandingRow, SimulatedMatch, Formation, PickedPlayer } from '@/lib/types';
 import { calculateScore, ScoreBreakdown } from '@/lib/scoring';
+import { useT } from '@/lib/useT';
 
 type SimMode = 'auto' | 'manual';
 type TabId = 'regular' | 'po1' | 'po2' | 'relegation' | 'scorers';
@@ -95,23 +96,24 @@ function ModeSelector({ teamName, setTeamName, simSeason, setSimSeason, onSelect
   simSeason: string; setSimSeason: (s: string) => void;
   onSelect: (m: SimMode) => void;
 }) {
+  const t = useT();
   return (
     <PageShell>
       <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.8rem,6vw,3rem)', color: 'var(--gold)', letterSpacing: '0.08em' }}>
-        KIES SIMULATIEMODUS
+        {t.simMode.title}
       </h1>
 
       {/* Team name */}
       <div className="w-full max-w-xl flex flex-col gap-1.5">
         <label className="text-xs tracking-widest uppercase px-1" style={{ color: 'var(--muted)' }}>
-          Naam van jouw team
+          {t.simMode.teamNameLabel}
         </label>
         <input
           value={teamName}
           onChange={e => setTeamName(e.target.value)}
-          onBlur={e => { if (!e.target.value.trim()) setTeamName('Mijn Droomelftal'); }}
+          onBlur={e => { if (!e.target.value.trim()) setTeamName(t.simMode.teamNamePlaceholder); }}
           maxLength={28}
-          placeholder="Mijn Droomelftal"
+          placeholder={t.simMode.teamNamePlaceholder}
           className="rounded px-4 py-2 text-sm w-full"
           style={{ background: 'var(--surface)', border: '1px solid var(--border)', color: 'var(--text)', outline: 'none', fontFamily: 'inherit' }}
         />
@@ -120,7 +122,7 @@ function ModeSelector({ teamName, setTeamName, simSeason, setSimSeason, onSelect
       {/* Season picker */}
       <div className="w-full max-w-xl flex flex-col gap-1.5">
         <label className="text-xs tracking-widest uppercase px-1" style={{ color: 'var(--muted)' }}>
-          Seizoen van de tegenstanders
+          {t.simMode.opponentSeasonLabel}
         </label>
         <div className="flex gap-2 flex-wrap">
           {SIM_SEASONS.map(s => (
@@ -139,19 +141,8 @@ function ModeSelector({ teamName, setTeamName, simSeason, setSimSeason, onSelect
       </div>
 
       <div className="flex flex-col sm:flex-row gap-4 w-full max-w-xl">
-        <ModeCard
-          icon="⚡"
-          title="Automatisch"
-          description="Volledig seizoen in één klik. Direct de eindstand, play-offs en uitslag."
-          onClick={() => onSelect('auto')}
-        />
-        <ModeCard
-          icon="▶"
-          title="Handmatig"
-          description="Speeldag per speeldag. Jij bepaalt wanneer je doorgaat. Zie de stand live evolueren."
-          onClick={() => onSelect('manual')}
-          highlight
-        />
+        <ModeCard icon="⚡" title={t.simMode.autoTitle}   description={t.simMode.autoDesc}   onClick={() => onSelect('auto')} />
+        <ModeCard icon="▶" title={t.simMode.manualTitle} description={t.simMode.manualDesc} onClick={() => onSelect('manual')} highlight />
       </div>
     </PageShell>
   );
@@ -209,7 +200,8 @@ interface Playoffs {
 function ManualSim({ squads, pickedPlayers, teamName, onDone }: {
   squads: Squad[]; pickedPlayers: any[]; teamName: string; onDone: (r: SimulatedSeason) => void;
 }) {
-  const myTeam = teamName.trim() || 'Mijn Droomelftal';
+  const t = useT();
+  const myTeam = teamName.trim() || t.simMode.teamNamePlaceholder;
   // Ensure 16 teams total (drop last squad if needed for even number)
   const validSquads = (squads.length + 1) % 2 !== 0 ? squads.slice(0, -1) : squads;
 
@@ -361,12 +353,12 @@ function ManualSim({ squads, pickedPlayers, teamName, onDone }: {
       {/* Header */}
       <div className="w-full max-w-2xl text-center">
         <p className="text-xs tracking-widest uppercase mb-1" style={{ color: 'var(--muted)' }}>
-          {isRegular ? 'Regulier Seizoen' : 'Play-offs — PO1 · PO2 · Relegate PO gelijktijdig'}
+          {isRegular ? t.sim.regularSeason : t.sim.playoffsHeader}
         </p>
         <p style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1rem,4vw,1.6rem)', color: 'var(--gold)', letterSpacing: '0.1em' }}>
           {isRegular
-            ? (regDone ? 'Regulier seizoen afgelopen!' : `Speeldag ${regRound + 1} van ${totalRegRounds}`)
-            : (playoffsDone ? 'Play-offs afgelopen!' : `PO speeldag ${playoffs.round + 1} van ${playoffs.maxRounds}`)}
+            ? (regDone ? t.sim.regularDone : t.sim.matchday(regRound + 1, totalRegRounds))
+            : (playoffsDone ? t.sim.posDone : t.sim.poMatchday(playoffs.round + 1, playoffs.maxRounds))}
         </p>
         <div className="h-1 rounded-full mt-2 w-full" style={{ background: 'var(--border)' }}>
           <div className="h-1 rounded-full transition-all duration-300"
@@ -379,7 +371,7 @@ function ManualSim({ squads, pickedPlayers, teamName, onDone }: {
         <motion.div key={`${regRound}-${playoffs?.round}`} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
           className="w-full max-w-2xl flex flex-col gap-1.5">
           <p className="text-xs uppercase tracking-widest px-1" style={{ color: 'var(--muted)' }}>
-            {isRegular ? `Resultaten speeldag ${regRound}` : `Resultaten PO speeldag ${playoffs!.round}`}
+            {isRegular ? t.sim.resultsMatchday(regRound) : t.sim.resultsPOMatchday(playoffs!.round)}
           </p>
           {lastRound.map((m, i) => <MatchRow key={i} match={m} />)}
         </motion.div>
@@ -389,7 +381,7 @@ function ManualSim({ squads, pickedPlayers, teamName, onDone }: {
       {isRegular && !regDone && (
         <div className="w-full max-w-2xl flex flex-col gap-1.5">
           <p className="text-xs uppercase tracking-widest px-1" style={{ color: 'var(--muted)' }}>
-            Speeldag {regRound + 1} — aankomende wedstrijden
+            {t.sim.upcomingMatchday(regRound + 1)}
           </p>
           {upcomingPairs.map(([h, a], i) => {
             const isUser = h === myTeam || a === myTeam;
@@ -397,7 +389,7 @@ function ManualSim({ squads, pickedPlayers, teamName, onDone }: {
               <div key={i} className="flex items-center justify-between rounded-lg px-4 py-2"
                 style={{ background: isUser ? 'rgba(212,148,10,0.06)' : 'var(--surface)', border: `1px solid ${isUser ? 'var(--gold-dim)' : 'var(--border)'}` }}>
                 <span className="text-xs flex-1 text-right truncate" style={{ color: h === myTeam ? 'var(--gold)' : 'var(--text)', fontWeight: h === myTeam ? 600 : 400 }}>{h}</span>
-                <span className="mx-3 text-xs flex-shrink-0" style={{ color: 'var(--muted)' }}>vs</span>
+                <span className="mx-3 text-xs flex-shrink-0" style={{ color: 'var(--muted)' }}>{t.sim.vs}</span>
                 <span className="text-xs flex-1 truncate" style={{ color: a === myTeam ? 'var(--gold)' : 'var(--text)', fontWeight: a === myTeam ? 600 : 400 }}>{a}</span>
               </div>
             );
@@ -409,12 +401,12 @@ function ManualSim({ squads, pickedPlayers, teamName, onDone }: {
       {playoffs && !playoffsDone && poUpcomingR >= 0 && (
         <div className="w-full max-w-2xl flex flex-col gap-2">
           <p className="text-xs uppercase tracking-widest px-1" style={{ color: 'var(--muted)' }}>
-            PO speeldag {poUpcomingR + 1} — aankomende wedstrijden
+            {t.sim.upcomingPOMatchday(poUpcomingR + 1)}
           </p>
           {(['po1', 'po2', 'rel'] as const).map(group => {
             const g = playoffs[group];
             if (poUpcomingR >= g.schedule.length) return null;
-            const label = group === 'po1' ? 'PO1 Championship' : group === 'po2' ? 'PO2 Europa' : 'Relegate PO';
+            const label = group === 'po1' ? t.sim.po1 : group === 'po2' ? t.sim.po2 : t.sim.rel;
             const color = group === 'po1' ? 'var(--gold)' : group === 'po2' ? '#3a8fd1' : 'var(--red)';
             return (
               <div key={group}>
@@ -425,7 +417,7 @@ function ManualSim({ squads, pickedPlayers, teamName, onDone }: {
                     <div key={i} className="flex items-center justify-between rounded-lg px-4 py-2 mb-1"
                       style={{ background: isUser ? 'rgba(212,148,10,0.06)' : 'var(--surface)', border: `1px solid ${isUser ? 'var(--gold-dim)' : 'var(--border)'}` }}>
                       <span className="text-xs flex-1 text-right truncate" style={{ color: h === myTeam ? 'var(--gold)' : 'var(--text)', fontWeight: h === myTeam ? 600 : 400 }}>{h}</span>
-                      <span className="mx-3 text-xs flex-shrink-0" style={{ color: 'var(--muted)' }}>vs</span>
+                      <span className="mx-3 text-xs flex-shrink-0" style={{ color: 'var(--muted)' }}>{t.sim.vs}</span>
                       <span className="text-xs flex-1 truncate" style={{ color: a === myTeam ? 'var(--gold)' : 'var(--text)', fontWeight: a === myTeam ? 600 : 400 }}>{a}</span>
                     </div>
                   );
@@ -440,16 +432,16 @@ function ManualSim({ squads, pickedPlayers, teamName, onDone }: {
       <div className="w-full max-w-2xl flex flex-col gap-3">
         {isRegular && (
           <>
-            <p className="text-xs uppercase tracking-widest px-1" style={{ color: 'var(--muted)' }}>Huidige stand</p>
+            <p className="text-xs uppercase tracking-widest px-1" style={{ color: 'var(--muted)' }}>{t.sim.currentStandings}</p>
             <CompactStandings rows={regStandings} directlyRelegate="" />
           </>
         )}
         {playoffs && po1Standings && po2Standings && relStandings && (
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {[
-              { label: 'PO1 Championship', rows: po1Standings, color: 'var(--gold)' },
-              { label: 'PO2 Europa',       rows: po2Standings, color: '#3a8fd1' },
-              { label: 'Relegate PO',      rows: relStandings, color: 'var(--red)' },
+              { label: t.sim.po1, rows: po1Standings, color: 'var(--gold)' },
+              { label: t.sim.po2, rows: po2Standings, color: '#3a8fd1' },
+              { label: t.sim.rel, rows: relStandings, color: 'var(--red)' },
             ].map(({ label, rows, color }) => (
               <div key={label}>
                 <p className="text-xs mb-1 px-1" style={{ color }}>{label}</p>
@@ -479,12 +471,12 @@ function ManualSim({ squads, pickedPlayers, teamName, onDone }: {
             <button onClick={simulateRegularRound}
               className="w-full px-10 py-3 rounded transition-all duration-150"
               style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', letterSpacing: '0.12em', background: 'var(--gold)', color: '#090907', border: '2px solid var(--gold)', boxShadow: '0 0 20px rgba(212,148,10,0.3)' }}>
-              ▶ Simuleer speeldag {regRound + 1}
+              {t.sim.simulateMatchday(regRound + 1)}
             </button>
             <button onClick={simulateAllRegular}
               className="w-full px-10 py-2.5 rounded transition-all duration-150"
               style={{ fontFamily: 'var(--font-display)', fontSize: '0.85rem', letterSpacing: '0.1em', background: 'transparent', color: 'var(--muted)', border: '1px solid var(--border)' }}>
-              ⚡ Simuleer alle {totalRegRounds - regRound} resterende speeldagen in 1x
+              {t.sim.simulateAllRegular(totalRegRounds - regRound)}
             </button>
           </>
         )}
@@ -492,7 +484,7 @@ function ManualSim({ squads, pickedPlayers, teamName, onDone }: {
           <button onClick={startPlayoffs}
             className="w-full px-10 py-3 rounded transition-all duration-150"
             style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', letterSpacing: '0.12em', background: 'var(--gold)', color: '#090907', border: '2px solid var(--gold)' }}>
-            → Start Play-offs
+            {t.sim.startPlayoffs}
           </button>
         )}
         {isPlayoffs && (
@@ -500,12 +492,12 @@ function ManualSim({ squads, pickedPlayers, teamName, onDone }: {
             <button onClick={simulatePlayoffRound}
               className="w-full px-10 py-3 rounded transition-all duration-150"
               style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', letterSpacing: '0.12em', background: 'var(--gold)', color: '#090907', border: '2px solid var(--gold)', boxShadow: '0 0 20px rgba(212,148,10,0.3)' }}>
-              ▶ Simuleer PO speeldag {playoffs.round + 1}
+              {t.sim.simulatePOMatchday(playoffs.round + 1)}
             </button>
             <button onClick={simulateAllPlayoffs}
               className="w-full px-10 py-2.5 rounded transition-all duration-150"
               style={{ fontFamily: 'var(--font-display)', fontSize: '0.85rem', letterSpacing: '0.1em', background: 'transparent', color: 'var(--muted)', border: '1px solid var(--border)' }}>
-              ⚡ Simuleer alle {playoffs.maxRounds - playoffs.round} resterende PO speeldagen in 1x
+              {t.sim.simulateAllPO(playoffs.maxRounds - playoffs.round)}
             </button>
           </>
         )}
@@ -513,7 +505,7 @@ function ManualSim({ squads, pickedPlayers, teamName, onDone }: {
           <button onClick={finishSimulation}
             className="w-full px-10 py-3 rounded transition-all duration-150"
             style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', letterSpacing: '0.12em', background: 'var(--gold)', color: '#090907', border: '2px solid var(--gold)' }}>
-            → Bekijk eindresultaat
+            {t.sim.viewResult}
           </button>
         )}
       </div>
@@ -529,16 +521,17 @@ function ResultsView({ sim, onReset, onBack }: {
   const [activeTab, setActiveTab] = useState<TabId>('regular');
   const [matchesOpen, setMatchesOpen] = useState(false);
   const { pickedPlayers, formation, teamName, draftMode } = useGameStore();
-  const myTeam = teamName.trim() || 'Mijn Droomelftal';
+  const t = useT();
+  const myTeam = teamName.trim() || t.simMode.teamNamePlaceholder;
   const isBlind = draftMode === 'blind';
   const score = calculateScore(pickedPlayers as PickedPlayer[], sim, myTeam, isBlind);
 
   const TABS: { id: TabId; label: string; sublabel: string }[] = [
-    { id: 'regular',    label: 'Regulier',      sublabel: '30 speeldagen' },
-    { id: 'po1',        label: 'PO1',           sublabel: 'Championship' },
-    { id: 'po2',        label: 'PO2',           sublabel: 'Europa' },
-    { id: 'relegation', label: 'Relegate PO',   sublabel: 'Plaatsen 13–16' },
-    { id: 'scorers',    label: 'Topschutters',  sublabel: 'Alle fases' },
+    { id: 'regular',    label: t.results.tabs.regular,    sublabel: t.results.tabs.regularSub },
+    { id: 'po1',        label: t.results.tabs.po1,        sublabel: t.results.tabs.po1Sub },
+    { id: 'po2',        label: t.results.tabs.po2,        sublabel: t.results.tabs.po2Sub },
+    { id: 'relegation', label: t.results.tabs.relegation, sublabel: t.results.tabs.relegationSub },
+    { id: 'scorers',    label: t.results.tabs.scorers,    sublabel: t.results.tabs.scorersSub },
   ];
 
   const phaseForTab: Partial<Record<TabId, SimulatedPhase>> = {
@@ -554,11 +547,11 @@ function ResultsView({ sim, onReset, onBack }: {
   const isChampion = sim.champion === myTeam;
   const isRelegate = [...sim.relegated, sim.directlyRelegate].includes(myTeam);
 
-  const resultLabel = isChampion                        ? 'KAMPIOEN!'
-    : userInPO1                                         ? 'Championship Play-off (PO1)'
-    : userInPO2                                         ? 'Europa Play-off (PO2)'
-    : userInRele                                        ? 'Relegation Play-off'
-    : sim.directlyRelegate === myTeam                   ? 'Rechtstreeks gedegradeerd'
+  const resultLabel = isChampion                      ? t.results.resultLabels.champion
+    : userInPO1                                       ? t.results.resultLabels.po1
+    : userInPO2                                       ? t.results.resultLabels.po2
+    : userInRele                                      ? t.results.resultLabels.rel
+    : sim.directlyRelegate === myTeam                 ? t.results.resultLabels.directRel
     : '';
 
   return (
@@ -567,7 +560,7 @@ function ResultsView({ sim, onReset, onBack }: {
 
         {/* Compact result header */}
         <div className="flex flex-col gap-2">
-          <p className="label-xs">Seizoensresultaten</p>
+          <p className="label-xs">{t.results.seasonResults}</p>
           <div className="flex items-center justify-between gap-4 rounded-xl px-5 py-4"
             style={{ background: 'var(--surface)', border: `1px solid ${isChampion ? 'var(--gold)' : isRelegate ? 'rgba(196,30,58,0.4)' : 'var(--border)'}` }}>
             <div>
@@ -578,7 +571,7 @@ function ResultsView({ sim, onReset, onBack }: {
               </p>
             </div>
             <div className="text-right shrink-0">
-              <p className="text-xs mb-0.5" style={{ color: 'var(--muted)' }}>Kampioen</p>
+              <p className="text-xs mb-0.5" style={{ color: 'var(--muted)' }}>{t.results.champion}</p>
               <p style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', color: 'var(--gold)', letterSpacing: '0.05em' }}>
                 {sim.champion}
               </p>
@@ -614,9 +607,7 @@ function ResultsView({ sim, onReset, onBack }: {
               <motion.div key={tab.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex flex-col gap-3">
                 {tab.id !== 'regular' && (
                   <p className="text-xs px-1" style={{ color: 'var(--muted)' }}>
-                    {tab.id === 'relegation'
-                      ? 'Startpunten = volledig regulier seizoen.'
-                      : 'Startpunten = helft regulier seizoen (afgerond naar boven).'}
+                    {tab.id === 'relegation' ? t.results.carryFull : t.results.carryHalf}
                   </p>
                 )}
                 <StandingsTable rows={phase.standings} tab={tab.id}
@@ -628,8 +619,8 @@ function ResultsView({ sim, onReset, onBack }: {
                       onClick={() => setMatchesOpen(v => !v)}
                       className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-xs transition-all duration-150"
                       style={{ background: 'var(--surface)', border: '1px solid var(--border)', color: 'var(--muted)', cursor: 'pointer' }}>
-                      <span>Wedstrijden ({phase.matches.length})</span>
-                      <span>{matchesOpen ? '▲ Inklappen' : '▼ Uitklappen'}</span>
+                      <span>{t.results.matches(phase.matches.length)}</span>
+                      <span>{matchesOpen ? t.results.collapse : t.results.expand}</span>
                     </button>
                     <AnimatePresence>
                       {matchesOpen && (
@@ -658,11 +649,11 @@ function ResultsView({ sim, onReset, onBack }: {
         <div className="flex gap-4 justify-center mt-2">
           <button onClick={onBack} className="px-6 py-3 rounded text-sm transition-all duration-150"
             style={{ fontFamily: 'var(--font-display)', letterSpacing: '0.1em', background: 'transparent', color: 'var(--muted)', border: '2px solid var(--border)' }}>
-            ← {myTeam}
+            {t.results.backBtn(myTeam)}
           </button>
           <button onClick={onReset} className="px-8 py-3 rounded transition-all duration-150"
             style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', letterSpacing: '0.12em', background: 'var(--gold)', color: '#090907', border: '2px solid var(--gold)' }}>
-            Nieuw team samenstellen
+            {t.results.newTeamBtn}
           </button>
         </div>
       </div>
@@ -675,6 +666,7 @@ function ResultsView({ sim, onReset, onBack }: {
 function TopScorers({ sim, pickedPlayers, myTeam }: {
   sim: SimulatedSeason; pickedPlayers: PickedPlayer[]; myTeam: string;
 }) {
+  const t = useT();
   const userNames = new Set(pickedPlayers.map(p => p.player.name));
 
   const goalMap: Record<string, number> = {};
@@ -693,13 +685,13 @@ function TopScorers({ sim, pickedPlayers, myTeam }: {
     .sort(([, a], [, b]) => b - a)
     .slice(0, 15);
 
-  if (!ranked.length) return <p className="text-xs px-1" style={{ color: 'var(--muted)' }}>Geen doelpunten gevonden.</p>;
+  if (!ranked.length) return <p className="text-xs px-1" style={{ color: 'var(--muted)' }}>{t.scorers.none}</p>;
 
   return (
     <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--border)' }}>
       <div className="grid px-3 py-1.5 text-xs uppercase tracking-widest"
         style={{ background: 'var(--surface)', color: 'var(--muted)', gridTemplateColumns: '1.5rem 1fr 2.5rem' }}>
-        <span>#</span><span>Speler</span><span className="text-center">Doel</span>
+        <span>{t.standings.rank}</span><span>{t.scorers.player}</span><span className="text-center">{t.scorers.goals}</span>
       </div>
       {ranked.map(([name, goals], i) => {
         const isUser = userNames.has(name);
@@ -738,7 +730,8 @@ function ShareSection({ sim, pickedPlayers, formation }: {
   const [shared, setShared] = useState(false);
   const [twitterImgCopied, setTwitterImgCopied] = useState(false);
   const { teamName } = useGameStore();
-  const myTeam = teamName.trim() || 'Mijn Droomelftal';
+  const t = useT();
+  const myTeam = teamName.trim() || t.simMode.teamNamePlaceholder;
 
   const userInPO1   = sim.po1.standings.some(r => r.team === myTeam);
   const userInPO2   = sim.po2.standings.some(r => r.team === myTeam);
@@ -749,18 +742,18 @@ function ShareSection({ sim, pickedPlayers, formation }: {
     ? Math.round(pickedPlayers.reduce((s, p) => s + p.player.overall, 0) / pickedPlayers.length)
     : 0;
 
-  const resultLabel = isChampion ? 'KAMPIOEN!'
+  const resultLabel = isChampion ? t.results.resultLabels.champion
     : userInPO1  ? `${po1Rank}e — PO1 Championship`
-    : userInPO2  ? 'Europa PO (PO2)'
-    : userInRele ? 'Relegation PO'
-    : 'Rechtstreeks gedegradeerd';
+    : userInPO2  ? t.results.resultLabels.po2
+    : userInRele ? t.results.resultLabels.rel
+    : t.results.resultLabels.directRel;
 
   const degraded = [...sim.relegated, sim.directlyRelegate].filter(Boolean).join(', ');
 
   function getShareText() {
     const sorted = [...pickedPlayers].sort((a, b) => a.positionIndex - b.positionIndex);
     const lines = [
-      '🍺 PINTJESLIGA — Mijn droomelf',
+      t.share.shareTextHeader,
       '',
       `Formatie: ${formation}  |  Gem. overall: ${avgOverall}`,
       '',
@@ -773,7 +766,7 @@ function ShareSection({ sim, pickedPlayers, formation }: {
       `⭐ ${myTeam}: ${resultLabel}`,
       ...(degraded ? [`🔴 Gedegradeerd: ${degraded}`] : []),
       '',
-      'Maak je eigen droomelf: pintjesliga.vercel.app',
+      `pintjesliga.vercel.app`,
     ];
     return lines.join('\n');
   }
@@ -782,7 +775,7 @@ function ShareSection({ sim, pickedPlayers, formation }: {
     // Twitter-vriendelijk (< 280 tekens)
     const sorted = [...pickedPlayers].sort((a, b) => a.positionIndex - b.positionIndex);
     const top3 = sorted.slice(0, 3).map(p => `${p.position} ${p.player.name} (${p.player.overall})`).join(' · ');
-    return `🍺 Mijn Pintjesliga XI — ${formation}\n${resultLabel} | gem. OVR ${avgOverall}\n\n${top3}\n\nMaak je eigen droomelf: pintjesliga.vercel.app #Pintjesliga`;
+    return `${t.share.shortSharePrefix} — ${formation}\n${resultLabel} | ${t.score.avgOvr(avgOverall)}\n\n${top3}\n\npintjesliga.vercel.app #Pintjesliga`;
   }
 
   function handleCopy() {
@@ -966,7 +959,7 @@ function ShareSection({ sim, pickedPlayers, formation }: {
       {/* Divider */}
       <div className="flex items-center gap-4">
         <div className="flex-1 h-px" style={{ background: 'var(--border)' }} />
-        <span className="text-xs tracking-widest uppercase" style={{ color: 'var(--muted)' }}>Deel je resultaat</span>
+        <span className="text-xs tracking-widest uppercase" style={{ color: 'var(--muted)' }}>{t.share.title}</span>
         <div className="flex-1 h-px" style={{ background: 'var(--border)' }} />
       </div>
 
@@ -1068,7 +1061,7 @@ function ShareSection({ sim, pickedPlayers, formation }: {
             border: `2px solid ${shared ? '#4ade80' : 'var(--gold)'}`,
             cursor: 'pointer',
           }}>
-          {shared ? '✓ Gedeeld!' : '↑ Deel je resultaat'}
+          {shared ? t.share.shared : t.share.shareBtn}
         </button>
 
         {/* Secondary row */}
@@ -1087,7 +1080,7 @@ function ShareSection({ sim, pickedPlayers, formation }: {
             </button>
             {twitterImgCopied && (
               <p className="text-center" style={{ fontSize: '0.65rem', color: '#4ade80' }}>
-                ✓ Afbeelding gekopieerd — plak in je tweet
+                {t.share.imgCopied}
               </p>
             )}
           </div>
@@ -1103,7 +1096,7 @@ function ShareSection({ sim, pickedPlayers, formation }: {
               border: `1px solid ${copied ? '#4ade80' : 'var(--border)'}`,
               cursor: 'pointer',
             }}>
-            {copied ? '✓ Gekopieerd' : '📋 Kopieer'}
+            {copied ? t.share.copied : t.share.copy}
           </button>
 
           {/* Download */}
@@ -1115,12 +1108,12 @@ function ShareSection({ sim, pickedPlayers, formation }: {
               background: 'var(--surface)', color: 'var(--muted)',
               border: '1px solid var(--border)', cursor: 'pointer',
             }}>
-            📥 Download
+            {t.share.download}
           </button>
         </div>
 
         <p className="text-xs text-center" style={{ color: 'var(--muted)', opacity: 0.6 }}>
-          Op mobiel opent "Deel" het native deelscherm — WhatsApp, Instagram, X, …
+          {t.share.mobileHint}
         </p>
       </div>
     </div>
@@ -1133,6 +1126,7 @@ function ScoreCard({ score, sim, formation }: { score: ScoreBreakdown; sim: Simu
   const [name, setName] = useState('');
   const [status, setStatus] = useState<'idle' | 'submitting' | 'done' | 'error'>('idle');
   const router = useRouter();
+  const t = useT();
 
   async function handleSubmit() {
     if (!name.trim() || status === 'submitting') return;
@@ -1163,7 +1157,7 @@ function ScoreCard({ score, sim, formation }: { score: ScoreBreakdown; sim: Simu
     <div className="w-full flex flex-col gap-4">
       <div className="flex items-center gap-4">
         <div className="flex-1 h-px" style={{ background: 'var(--border)' }} />
-        <span className="label-xs">Jouw score</span>
+        <span className="label-xs">{t.score.yourScore}</span>
         <div className="flex-1 h-px" style={{ background: 'var(--border)' }} />
       </div>
 
@@ -1172,7 +1166,7 @@ function ScoreCard({ score, sim, formation }: { score: ScoreBreakdown; sim: Simu
         {/* Big total */}
         <div className="flex items-center justify-between px-6 py-5" style={{ background: 'rgba(212,148,10,0.06)', borderBottom: '1px solid var(--border)' }}>
           <div>
-            <span className="label-xs block mb-1">Totaalscore</span>
+            <span className="label-xs block mb-1">{t.score.total}</span>
             <span style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.5rem,8vw,4rem)', color: 'var(--gold)', letterSpacing: '0.06em', lineHeight: 1 }}>
               {score.total.toLocaleString('nl-BE')}
             </span>
@@ -1183,17 +1177,17 @@ function ScoreCard({ score, sim, formation }: { score: ScoreBreakdown; sim: Simu
             className="text-xs px-4 py-2 rounded transition-all"
             style={{ background: 'var(--surface-2)', border: '1px solid var(--border)', color: 'var(--text-2)', fontFamily: 'var(--font-display)', letterSpacing: '0.08em', cursor: 'pointer' }}
           >
-            LEADERBOARD →
+            {t.score.leaderboard}
           </button>
         </div>
 
         {/* Breakdown */}
         <div className={`grid divide-x ${score.isBlind ? 'grid-cols-4' : 'grid-cols-3'}`} style={{ borderColor: 'var(--border)' }}>
           {[
-            { label: 'Resultaat', value: score.resultScore, color: 'var(--text)' },
-            { label: 'Underdog', value: `+${score.underdogBonus}`, sub: `gem. ${score.avgOverall} OVR`, color: score.underdogBonus > 0 ? 'var(--gold)' : 'var(--muted)' },
-            { label: 'Diversiteit', value: `+${score.diversityBonus}`, sub: `${score.uniqueTeams} clubs`, color: score.diversityBonus > 100 ? 'var(--gold)' : 'var(--text-2)' },
-            ...(score.isBlind ? [{ label: '🎭 Memory', value: `+${score.blindBonus}`, sub: '×1.15 bonus', color: 'var(--gold)' }] : []),
+            { label: t.score.result,    value: score.resultScore,           color: 'var(--text)' },
+            { label: t.score.underdog,  value: `+${score.underdogBonus}`,   sub: t.score.avgOvr(score.avgOverall), color: score.underdogBonus > 0 ? 'var(--gold)' : 'var(--muted)' },
+            { label: t.score.diversity, value: `+${score.diversityBonus}`,  sub: t.score.clubs(score.uniqueTeams), color: score.diversityBonus > 100 ? 'var(--gold)' : 'var(--text-2)' },
+            ...(score.isBlind ? [{ label: t.score.memory, value: `+${score.blindBonus}`, sub: t.score.blindBonus, color: 'var(--gold)' }] : []),
           ].map(({ label, value, sub, color }) => (
             <div key={label} className="flex flex-col items-center py-4 px-2 gap-0.5">
               <span className="label-xs">{label}</span>
@@ -1211,9 +1205,9 @@ function ScoreCard({ score, sim, formation }: { score: ScoreBreakdown; sim: Simu
           style={{ background: 'rgba(74,222,128,0.08)', border: '1px solid rgba(74,222,128,0.3)' }}>
           <span style={{ color: '#4ade80', fontSize: '1.2rem' }}>✓</span>
           <div>
-            <p className="text-sm font-medium" style={{ color: '#4ade80' }}>Score opgeslagen!</p>
+            <p className="text-sm font-medium" style={{ color: '#4ade80' }}>{t.score.saved}</p>
             <button onClick={() => router.push('/leaderboard')} className="text-xs underline" style={{ color: 'var(--muted)' }}>
-              Bekijk het leaderboard →
+              {t.score.viewLeaderboard}
             </button>
           </div>
         </motion.div>
@@ -1222,7 +1216,7 @@ function ScoreCard({ score, sim, formation }: { score: ScoreBreakdown; sim: Simu
           <input
             value={name}
             onChange={e => { setName(e.target.value.slice(0, 24)); if (status === 'error') setStatus('idle'); }}
-            placeholder="Jouw naam (max. 24 tekens)"
+            placeholder={t.score.namePlaceholder}
             maxLength={24}
             onKeyDown={e => e.key === 'Enter' && handleSubmit()}
             className="flex-1 rounded-lg px-4 py-2.5 text-sm"
@@ -1241,17 +1235,17 @@ function ScoreCard({ score, sim, formation }: { score: ScoreBreakdown; sim: Simu
               opacity: status === 'submitting' ? 0.6 : 1,
             }}
           >
-            {status === 'submitting' ? '…' : 'SUBMIT'}
+            {status === 'submitting' ? '…' : t.score.submit}
           </button>
         </div>
       )}
       {status === 'error' && (
         <div className="flex items-center justify-between rounded-lg px-3 py-2" style={{ background: 'rgba(196,30,58,0.08)', border: '1px solid rgba(196,30,58,0.3)' }}>
           <p className="text-xs" style={{ color: 'var(--red)' }}>
-            Kon score niet opslaan. Probeer opnieuw.
+            {t.score.errorMsg}
           </p>
           <button onClick={() => setStatus('idle')} className="text-xs underline ml-3 shrink-0" style={{ color: 'var(--red)', cursor: 'pointer' }}>
-            Wis fout
+            {t.score.clearError}
           </button>
         </div>
       )}
@@ -1283,7 +1277,8 @@ function LoadingView({ label }: { label: string }) {
 
 function MatchRow({ match }: { match: SimulatedMatch }) {
   const { teamName } = useGameStore();
-  const myTeam = teamName.trim() || 'Mijn Droomelftal';
+  const t = useT();
+  const myTeam = teamName.trim() || t.simMode.teamNamePlaceholder;
   const isUser = match.home === myTeam || match.away === myTeam;
   return (
     <div className="flex items-center justify-between rounded-lg px-3 py-2"
@@ -1306,13 +1301,14 @@ function MatchRow({ match }: { match: SimulatedMatch }) {
 
 function CompactStandings({ rows, directlyRelegate }: { rows: StandingRow[]; directlyRelegate: string }) {
   const { teamName } = useGameStore();
-  const myTeam = teamName.trim() || 'Mijn Droomelftal';
+  const t = useT();
+  const myTeam = teamName.trim() || t.simMode.teamNamePlaceholder;
   return (
     <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--border)' }}>
       <div className="grid px-3 py-1.5 text-xs uppercase tracking-widest"
         style={{ background: 'var(--surface)', color: 'var(--muted)', gridTemplateColumns: '1.5rem 1fr 2rem 2rem 3rem' }}>
-        <span>#</span><span>Team</span><span className="text-center">Pld</span>
-        <span className="text-center">+/-</span><span className="text-center">Pts</span>
+        <span>{t.standings.rank}</span><span>{t.standings.team}</span><span className="text-center">{t.standings.played}</span>
+        <span className="text-center">{t.standings.gd}</span><span className="text-center">{t.standings.pts}</span>
       </div>
       {rows.map((row, i) => {
         const isUser = row.team === myTeam;
@@ -1346,7 +1342,8 @@ function StandingsTable({ rows, tab, champion, relegated, europeanSpots, directl
   relegated: string[]; europeanSpots: string[]; directlyRelegate: string;
 }) {
   const { teamName } = useGameStore();
-  const myTeam = teamName.trim() || 'Mijn Droomelftal';
+  const t = useT();
+  const myTeam = teamName.trim() || t.simMode.teamNamePlaceholder;
   const showCarryover = tab !== 'regular' && rows.some(r => r.carryoverPoints !== undefined);
   return (
     <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--border)' }}>
@@ -1355,11 +1352,11 @@ function StandingsTable({ rows, tab, champion, relegated, europeanSpots, directl
           background: 'var(--surface)', color: 'var(--muted)',
           gridTemplateColumns: showCarryover ? '1.5rem 1fr 1.8rem 1.8rem 1.8rem 2rem 2.5rem 2.8rem' : '1.5rem 1fr 1.8rem 1.8rem 1.8rem 2rem 2.8rem',
         }}>
-        <span>#</span><span>Team</span>
-        <span className="text-center">W</span><span className="text-center">G</span>
-        <span className="text-center">V</span><span className="text-center">+/-</span>
-        {showCarryover && <span className="text-center">Start</span>}
-        <span className="text-center">Pts</span>
+        <span>{t.standings.rank}</span><span>{t.standings.team}</span>
+        <span className="text-center">{t.standings.w}</span><span className="text-center">{t.standings.d}</span>
+        <span className="text-center">{t.standings.l}</span><span className="text-center">{t.standings.gd}</span>
+        {showCarryover && <span className="text-center">{t.standings.carryover}</span>}
+        <span className="text-center">{t.standings.pts}</span>
       </div>
       {rows.map((row, i) => {
         const isUser         = row.team === myTeam;
@@ -1401,17 +1398,18 @@ function StandingsTable({ rows, tab, champion, relegated, europeanSpots, directl
 function MatchList({ matches }: { matches: SimulatedMatch[] }) {
   const [showAll, setShowAll] = useState(false);
   const { teamName } = useGameStore();
-  const myTeam = teamName.trim() || 'Mijn Droomelftal';
+  const t = useT();
+  const myTeam = teamName.trim() || t.simMode.teamNamePlaceholder;
   const userMatches = matches.filter(m => m.home === myTeam || m.away === myTeam);
   const displayed = showAll ? matches : userMatches;
   return (
     <div className="flex flex-col gap-1">
       <div className="flex items-center justify-between px-1 mb-1">
         <span className="text-xs uppercase tracking-widest" style={{ color: 'var(--muted)' }}>
-          Uitslagen ({matches.length} wedstrijden)
+          {t.matchList.results(matches.length)}
         </span>
         <button className="text-xs underline" style={{ color: 'var(--muted)' }} onClick={() => setShowAll(v => !v)}>
-          {showAll ? `Enkel ${myTeam}` : `Toon alle ${matches.length}`}
+          {showAll ? t.matchList.onlyTeam(myTeam) : t.matchList.showAll(matches.length)}
         </button>
       </div>
       {displayed.map((m, i) => <MatchRow key={i} match={m} />)}

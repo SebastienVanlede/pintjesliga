@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { LeaderboardEntry } from '@/lib/supabase';
+import { useT } from '@/lib/useT';
 
 const MEDAL = ['🥇', '🥈', '🥉'];
 
@@ -11,15 +12,16 @@ export default function LeaderboardPage() {
   const [entries, setEntries] = useState<LeaderboardEntry[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const t = useT();
 
   useEffect(() => {
     fetch('/api/scores')
       .then(r => r.json())
       .then(data => {
         if (Array.isArray(data)) setEntries(data);
-        else setError('Leaderboard niet beschikbaar');
+        else setError(t.leaderboard.error);
       })
-      .catch(() => setError('Kon leaderboard niet laden'))
+      .catch(() => setError(t.leaderboard.loadError))
       .finally(() => setLoading(false));
   }, []);
 
@@ -32,17 +34,13 @@ export default function LeaderboardPage() {
           LEADERBOARD
         </h1>
         <p className="text-sm mt-2" style={{ color: 'var(--muted)' }}>
-          De beste Pintjesliga coaches aller tijden
+          {t.leaderboard.subtitle}
         </p>
       </motion.div>
 
       {/* Score explanation */}
       <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
-        {[
-          { label: 'Resultaat', desc: 'Kampioen = 1000 pts, degradatie = 0 pts' },
-          { label: 'Underdog', desc: 'Lager gem. overall = meer bonuspunten' },
-          { label: 'Diversiteit', desc: 'Meer unieke clubs = meer bonuspunten' },
-        ].map(({ label, desc }) => (
+        {t.leaderboard.explanations.map(({ label, desc }) => (
           <div key={label} className="card p-3 flex sm:flex-col items-center sm:text-center gap-3 sm:gap-1">
             <p className="text-xs font-medium shrink-0" style={{ color: 'var(--text)', minWidth: '5.5rem' }}>{label}</p>
             <p className="text-xs" style={{ color: 'var(--muted)', lineHeight: 1.4 }}>{desc}</p>
@@ -54,22 +52,22 @@ export default function LeaderboardPage() {
       {loading ? (
         <div className="flex flex-col items-center gap-4 py-8">
           <div className="w-10 h-10 rounded-full border-2 animate-spin" style={{ borderColor: 'var(--gold)', borderTopColor: 'transparent' }} />
-          <p style={{ color: 'var(--muted)' }}>Laden…</p>
+          <p style={{ color: 'var(--muted)' }}>{t.leaderboard.loading}</p>
         </div>
       ) : error ? (
         <div className="text-center py-8">
           <p style={{ color: 'var(--muted)' }}>{error}</p>
           <p className="text-xs mt-2" style={{ color: 'var(--border-2)' }}>
-            Het leaderboard is actief zodra Supabase geconfigureerd is.
+            {t.leaderboard.errorSub}
           </p>
         </div>
       ) : entries.length === 0 ? (
         <div className="text-center py-12 card w-full">
           <p style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', color: 'var(--gold)', letterSpacing: '0.1em' }}>
-            WEES DE EERSTE
+            {t.leaderboard.empty}
           </p>
           <p className="text-sm mt-2" style={{ color: 'var(--muted)' }}>
-            Er zijn nog geen scores ingediend. Speel het spel en zet jouw naam op de board!
+            {t.leaderboard.emptyDesc}
           </p>
         </div>
       ) : (
@@ -78,8 +76,8 @@ export default function LeaderboardPage() {
           <div className="grid items-center px-3 sm:px-4 py-2 text-xs uppercase tracking-widest"
             style={{ background: 'var(--surface-2)', color: 'var(--muted)', gridTemplateColumns: '2rem 1fr auto' }}>
             <span>#</span>
-            <span>Naam</span>
-            <span className="text-right">Score</span>
+            <span>{t.leaderboard.colName}</span>
+            <span className="text-right">{t.leaderboard.colScore}</span>
           </div>
 
           {entries.map((entry, i) => (
@@ -132,14 +130,14 @@ export default function LeaderboardPage() {
           className="px-6 py-3 rounded text-sm transition-all"
           style={{ fontFamily: 'var(--font-display)', letterSpacing: '0.1em', background: 'var(--gold)', color: '#07070A', border: '2px solid var(--gold)' }}
         >
-          Nieuw spel
+          {t.leaderboard.newGame}
         </button>
         <button
           onClick={() => window.location.reload()}
           className="px-6 py-3 rounded text-sm transition-all"
           style={{ fontFamily: 'var(--font-display)', letterSpacing: '0.1em', background: 'transparent', color: 'var(--muted)', border: '1px solid var(--border)' }}
         >
-          Vernieuwen
+          {t.leaderboard.refresh}
         </button>
       </div>
     </div>
