@@ -1,0 +1,24 @@
+{
+  "team": "RAAL La Louvière",
+  "teamId": "la-louviere",
+  "season": "2025-26",
+  "year": 2025,
+  "players": [
+    {"id":"marcos-peano","name":"Marcos Peano","position":"GK","nationality":"ARG","age":27,"appearances":28,"goals":0,"assists":0,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"celestin-de-schrevel","name":"Célestin De Schrevel","position":"GK","nationality":"BEL","age":24,"appearances":8,"goals":0,"assists":0,"marketValue":200000,"internationalCaps":0,"awards":[],"overall":62},
+    {"id":"yllan-okou","name":"Yllan Okou","position":"CB","nationality":"FRA","age":23,"appearances":26,"goals":1,"assists":0,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"djibril-lamego","name":"Djibril Lamego","position":"CB","nationality":"FRA","age":23,"appearances":24,"goals":1,"assists":0,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"maxence-maisonneuve","name":"Maxence Maisonneuve","position":"CB","nationality":"FRA","age":27,"appearances":22,"goals":0,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"thierry-lutonda","name":"Thierry Lutonda","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":25,"appearances":22,"goals":0,"assists":2,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"dario-benavides","name":"Darío Benavides","position":"RB","alternativePositions":["RM"],"nationality":"ESP","age":23,"appearances":24,"goals":0,"assists":2,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":62},
+    {"id":"alexis-beka-beka","name":"Alexis Beka Beka","position":"CDM","alternativePositions":["CM"],"nationality":"FRA","age":25,"appearances":22,"goals":1,"assists":2,"marketValue":300000,"internationalCaps":3,"awards":[],"overall":65},
+    {"id":"sami-lahssaini","name":"Sami Lahssaini","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":27,"appearances":26,"goals":2,"assists":4,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"samuel-gueulette","name":"Samuel Gueulette","position":"CM","alternativePositions":["CDM"],"nationality":"RWA","age":26,"appearances":22,"goals":2,"assists":3,"marketValue":500000,"internationalCaps":3,"awards":[],"overall":65},
+    {"id":"majeed-ashimeru","name":"Majeed Ashimeru","position":"CM","alternativePositions":["CAM"],"nationality":"GHA","age":28,"appearances":18,"goals":2,"assists":3,"marketValue":500000,"internationalCaps":15,"awards":[],"overall":67},
+    {"id":"jordi-liongola","name":"Jordi Liongola","position":"RM","alternativePositions":["RW"],"nationality":"BDI","age":26,"appearances":24,"goals":4,"assists":4,"marketValue":1500000,"internationalCaps":8,"awards":[],"overall":67},
+    {"id":"joel-ito","name":"Joël Ito","position":"CAM","alternativePositions":["CM"],"nationality":"BEL","age":28,"appearances":22,"goals":3,"assists":4,"marketValue":900000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"pape-moussa-fall","name":"Pape Moussa Fall","position":"ST","nationality":"SEN","age":21,"appearances":26,"goals":11,"assists":3,"marketValue":3500000,"internationalCaps":3,"awards":[],"overall":71},
+    {"id":"jerry-afriyie","name":"Jerry Afriyie","position":"ST","nationality":"GHA","age":19,"appearances":22,"goals":6,"assists":2,"marketValue":1200000,"internationalCaps":3,"awards":[],"overall":67},
+    {"id":"mouhamed-belkheir","name":"Mouhamed Belkheir","position":"ST","nationality":"ALG","age":27,"appearances":18,"goals":4,"assists":2,"marketValue":500000,"internationalCaps":5,"awards":[],"overall":65}
+  ]
+}

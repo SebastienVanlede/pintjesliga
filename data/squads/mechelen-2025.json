@@ -1,0 +1,24 @@
+{
+  "team": "KV Mechelen",
+  "teamId": "mechelen",
+  "season": "2025-26",
+  "year": 2025,
+  "players": [
+    {"id":"nacho-miras","name":"Nacho Miras","position":"GK","nationality":"ESP","age":28,"appearances":28,"goals":0,"assists":0,"marketValue":3500000,"internationalCaps":0,"awards":[],"overall":72},
+    {"id":"ortwin-de-wolf-25","name":"Ortwin De Wolf","position":"GK","nationality":"BEL","age":29,"appearances":6,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"redouane-halhal","name":"Redouane Halhal","position":"CB","nationality":"MAR","age":23,"appearances":28,"goals":2,"assists":1,"marketValue":5000000,"internationalCaps":5,"awards":[],"overall":72},
+    {"id":"jose-marsa-25","name":"José Marsà","position":"CB","nationality":"ESP","age":24,"appearances":26,"goals":1,"assists":0,"marketValue":3500000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"tommy-st-jago","name":"Tommy St. Jago","position":"CB","nationality":"NED","age":26,"appearances":24,"goals":1,"assists":0,"marketValue":2000000,"internationalCaps":3,"awards":[],"overall":69},
+    {"id":"moncef-zekri","name":"Moncef Zekri","position":"LB","alternativePositions":["LM"],"nationality":"MAR","age":17,"appearances":22,"goals":0,"assists":3,"marketValue":4000000,"internationalCaps":3,"awards":[],"overall":71},
+    {"id":"therence-koudou-25","name":"Thérence Koudou","position":"RB","alternativePositions":["LB","LM"],"nationality":"FRA","age":21,"appearances":24,"goals":1,"assists":3,"marketValue":4000000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"fredrik-hammar-25","name":"Fredrik Hammar","position":"CDM","alternativePositions":["CM"],"nationality":"SWE","age":25,"appearances":26,"goals":1,"assists":2,"marketValue":3000000,"internationalCaps":8,"awards":[],"overall":70},
+    {"id":"mory-konate-25","name":"Mory Konaté","position":"CDM","alternativePositions":["CM"],"nationality":"GUI","age":32,"appearances":20,"goals":1,"assists":2,"marketValue":500000,"internationalCaps":12,"awards":[],"overall":65},
+    {"id":"dikeni-salifou","name":"Dikeni Salifou","position":"CM","alternativePositions":["CDM"],"nationality":"GER","age":22,"appearances":22,"goals":1,"assists":3,"marketValue":1000000,"internationalCaps":3,"awards":[],"overall":67},
+    {"id":"mathis-servais","name":"Mathis Servais","position":"CAM","alternativePositions":["CM"],"nationality":"BEL","age":21,"appearances":26,"goals":5,"assists":6,"marketValue":4000000,"internationalCaps":5,"awards":[],"overall":71},
+    {"id":"kerim-mrabti-25","name":"Kerim Mrabti","position":"CAM","alternativePositions":["CM"],"nationality":"SWE","age":32,"appearances":18,"goals":2,"assists":3,"marketValue":1200000,"internationalCaps":12,"awards":[],"overall":67},
+    {"id":"myron-van-brederode","name":"Myron van Brederode","position":"LW","alternativePositions":["CAM"],"nationality":"NED","age":22,"appearances":24,"goals":5,"assists":5,"marketValue":4500000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"bill-antonio-25","name":"Bill Antonio","position":"RW","nationality":"ZWE","age":23,"appearances":22,"goals":5,"assists":3,"marketValue":1200000,"internationalCaps":12,"awards":[],"overall":68},
+    {"id":"bouke-boersma","name":"Bouke Boersma","position":"ST","nationality":"NED","age":20,"appearances":24,"goals":8,"assists":3,"marketValue":2500000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"benito-raman-25","name":"Benito Raman","position":"ST","alternativePositions":["LW","RW"],"nationality":"BEL","age":31,"appearances":18,"goals":5,"assists":3,"marketValue":800000,"internationalCaps":8,"awards":[],"overall":68}
+  ]
+}

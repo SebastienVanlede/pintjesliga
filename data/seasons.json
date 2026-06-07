@@ -22,5 +22,7 @@
   {"id":"2020-21","year":2020,"champion":"club-brugge"},
   {"id":"2021-22","year":2021,"champion":"club-brugge"},
   {"id":"2022-23","year":2022,"champion":"antwerp"},
-  {"id":"2023-24","year":2023,"champion":"club-brugge"}
+  {"id":"2023-24","year":2023,"champion":"club-brugge"},
+  {"id":"2024-25","year":2024,"champion":"union"},
+  {"id":"2025-26","year":2025,"champion":"club-brugge"}
 ]

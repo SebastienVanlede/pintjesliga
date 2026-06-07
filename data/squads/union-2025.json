@@ -1,0 +1,24 @@
+{
+  "team": "Royale Union Saint-Gilloise",
+  "teamId": "union",
+  "season": "2025-26",
+  "year": 2025,
+  "players": [
+    {"id":"kjell-scherpen","name":"Kjell Scherpen","position":"GK","nationality":"NED","age":26,"appearances":30,"goals":0,"assists":0,"marketValue":8000000,"internationalCaps":0,"awards":[],"overall":76},
+    {"id":"vic-chambaere-25","name":"Vic Chambaere","position":"GK","nationality":"BEL","age":23,"appearances":4,"goals":0,"assists":0,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"kevin-mac-allister-25","name":"Kevin Mac Allister","position":"CB","alternativePositions":["RB"],"nationality":"ARG","age":28,"appearances":28,"goals":2,"assists":3,"marketValue":12000000,"internationalCaps":12,"awards":[],"overall":76},
+    {"id":"ross-sykes-25","name":"Ross Sykes","position":"CB","nationality":"ENG","age":27,"appearances":26,"goals":2,"assists":0,"marketValue":4500000,"internationalCaps":0,"awards":[],"overall":72},
+    {"id":"fedde-leysen-25","name":"Fedde Leysen","position":"CB","alternativePositions":["LB"],"nationality":"BEL","age":22,"appearances":24,"goals":1,"assists":2,"marketValue":3500000,"internationalCaps":3,"awards":[],"overall":71},
+    {"id":"christian-burgess-25","name":"Christian Burgess","position":"CB","nationality":"ENG","age":34,"appearances":18,"goals":1,"assists":0,"marketValue":1800000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"louis-patris-25","name":"Louis Patris","position":"RB","alternativePositions":["RM"],"nationality":"BEL","age":25,"appearances":24,"goals":0,"assists":3,"marketValue":2500000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"adem-zorgane-union","name":"Adem Zorgane","position":"CM","alternativePositions":["CDM","CAM"],"nationality":"ALG","age":26,"appearances":30,"goals":4,"assists":7,"marketValue":12000000,"internationalCaps":25,"awards":[],"overall":76},
+    {"id":"kamiel-van-de-perre-25","name":"Kamiel Van De Perre","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":22,"appearances":28,"goals":3,"assists":5,"marketValue":8000000,"internationalCaps":3,"awards":[],"overall":74},
+    {"id":"besfort-zeneli","name":"Besfort Zeneli","position":"CM","alternativePositions":["CDM"],"nationality":"SWE","age":23,"appearances":24,"goals":3,"assists":4,"marketValue":6000000,"internationalCaps":5,"awards":[],"overall":73},
+    {"id":"anan-khalaili-25","name":"Anan Khalaili","position":"RM","alternativePositions":["RW","CAM"],"nationality":"ISR","age":21,"appearances":30,"goals":7,"assists":9,"marketValue":23000000,"internationalCaps":12,"awards":[],"overall":77},
+    {"id":"ousseynou-niang-25","name":"Ousseynou Niang","position":"LM","alternativePositions":["LW","CAM"],"nationality":"SEN","age":24,"appearances":26,"goals":5,"assists":6,"marketValue":6000000,"internationalCaps":8,"awards":[],"overall":73},
+    {"id":"anouar-ait-el-hadj-25","name":"Anouar Ait El Hadj","position":"CAM","alternativePositions":["LW","CM"],"nationality":"BEL","age":24,"appearances":26,"goals":6,"assists":8,"marketValue":5000000,"internationalCaps":8,"awards":[],"overall":74},
+    {"id":"guilherme-smith","name":"Guilherme Smith","position":"LW","alternativePositions":["RW"],"nationality":"BRA","age":22,"appearances":22,"goals":5,"assists":4,"marketValue":4000000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"promise-david-25","name":"Promise David","position":"ST","alternativePositions":["RW","LW"],"nationality":"CAN","age":24,"appearances":30,"goals":17,"assists":5,"marketValue":17000000,"internationalCaps":16,"awards":["Pro League Top Scorer 2026"],"overall":78},
+    {"id":"raul-florucz","name":"Raul Florucz","position":"ST","nationality":"AUT","age":24,"appearances":22,"goals":7,"assists":3,"marketValue":4000000,"internationalCaps":12,"awards":[],"overall":71}
+  ]
+}

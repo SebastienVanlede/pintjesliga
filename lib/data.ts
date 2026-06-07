@@ -4,10 +4,27 @@ import { Team, Squad } from './types';
 
 export const teams: Team[] = teamsJson as Team[];
 export const seasons = seasonsJson;
-export const CURRENT_SEASON = '2024-25';
+export const CURRENT_SEASON = '2025-26';
 
 // All squad files — add new entries here when a squad file is created
 const squadModules: Record<string, () => Promise<Squad>> = {
+  // 2025-26 season (current)
+  'club-brugge-2025-26':  () => import('@/data/squads/club-brugge-2025.json').then(m => m.default as Squad),
+  'union-2025-26':        () => import('@/data/squads/union-2025.json').then(m => m.default as Squad),
+  'genk-2025-26':         () => import('@/data/squads/genk-2025.json').then(m => m.default as Squad),
+  'anderlecht-2025-26':   () => import('@/data/squads/anderlecht-2025.json').then(m => m.default as Squad),
+  'antwerp-2025-26':      () => import('@/data/squads/antwerp-2025.json').then(m => m.default as Squad),
+  'gent-2025-26':         () => import('@/data/squads/gent-2025.json').then(m => m.default as Squad),
+  'standard-2025-26':     () => import('@/data/squads/standard-2025.json').then(m => m.default as Squad),
+  'mechelen-2025-26':     () => import('@/data/squads/mechelen-2025.json').then(m => m.default as Squad),
+  'westerlo-2025-26':     () => import('@/data/squads/westerlo-2025.json').then(m => m.default as Squad),
+  'charleroi-2025-26':    () => import('@/data/squads/charleroi-2025.json').then(m => m.default as Squad),
+  'ohl-2025-26':          () => import('@/data/squads/ohl-2025.json').then(m => m.default as Squad),
+  'dender-2025-26':       () => import('@/data/squads/dender-2025.json').then(m => m.default as Squad),
+  'cercle-brugge-2025-26':() => import('@/data/squads/cercle-brugge-2025.json').then(m => m.default as Squad),
+  'stvv-2025-26':         () => import('@/data/squads/stvv-2025.json').then(m => m.default as Squad),
+  'la-louviere-2025-26':  () => import('@/data/squads/la-louviere-2025.json').then(m => m.default as Squad),
+  'zulte-waregem-2025-26':() => import('@/data/squads/zulte-waregem-2025.json').then(m => m.default as Squad),
   // 2019-20 season
   'club-brugge-2019-20':    () => import('@/data/squads/club-brugge-2019.json').then(m => m.default as Squad),
   'genk-2019-20':           () => import('@/data/squads/genk-2019.json').then(m => m.default as Squad),

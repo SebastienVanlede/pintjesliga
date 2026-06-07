@@ -1,0 +1,24 @@
+{
+  "team": "AA Gent",
+  "teamId": "gent",
+  "season": "2025-26",
+  "year": 2025,
+  "players": [
+    {"id":"davy-roef-25","name":"Davy Roef","position":"GK","nationality":"BEL","age":32,"appearances":28,"goals":0,"assists":0,"marketValue":2500000,"internationalCaps":0,"awards":[],"overall":72},
+    {"id":"kjell-peersman","name":"Kjell Peersman","position":"GK","nationality":"BEL","age":22,"appearances":6,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"maksim-paskotsi","name":"Maksim Paskotsi","position":"CB","nationality":"EST","age":23,"appearances":26,"goals":1,"assists":0,"marketValue":3500000,"internationalCaps":15,"awards":[],"overall":70},
+    {"id":"siebe-van-der-heyden-25","name":"Siebe Van der Heyden","position":"CB","nationality":"BEL","age":28,"appearances":24,"goals":1,"assists":0,"marketValue":3000000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"jean-kevin-duverne-25","name":"Jean-Kévin Duverne","position":"CB","nationality":"HAI","age":28,"appearances":22,"goals":1,"assists":0,"marketValue":2000000,"internationalCaps":18,"awards":[],"overall":68},
+    {"id":"tiago-araujo","name":"Tiago Araújo","position":"LB","alternativePositions":["LM"],"nationality":"POR","age":25,"appearances":24,"goals":0,"assists":3,"marketValue":2500000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"daiki-hashioka-gent","name":"Daiki Hashioka","position":"RB","alternativePositions":["RM"],"nationality":"JPN","age":27,"appearances":24,"goals":0,"assists":3,"marketValue":1500000,"internationalCaps":12,"awards":[],"overall":68},
+    {"id":"mathias-delorge-25","name":"Mathias Delorge","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":21,"appearances":30,"goals":3,"assists":6,"marketValue":7000000,"internationalCaps":8,"awards":[],"overall":73},
+    {"id":"atsuki-ito","name":"Atsuki Ito","position":"CM","alternativePositions":["CDM"],"nationality":"JPN","age":27,"appearances":26,"goals":2,"assists":4,"marketValue":2500000,"internationalCaps":3,"awards":[],"overall":69},
+    {"id":"tibe-de-vlieger","name":"Tibe De Vlieger","position":"CM","alternativePositions":["CAM"],"nationality":"BEL","age":20,"appearances":22,"goals":2,"assists":3,"marketValue":3000000,"internationalCaps":3,"awards":[],"overall":70},
+    {"id":"hong-hyun-seok-25","name":"Hong Hyun-seok","position":"CAM","alternativePositions":["CM"],"nationality":"KOR","age":26,"appearances":18,"goals":3,"assists":4,"marketValue":2500000,"internationalCaps":22,"awards":[],"overall":71},
+    {"id":"matisse-samoise-25","name":"Matisse Samoise","position":"RM","alternativePositions":["RW","RB"],"nationality":"BEL","age":24,"appearances":24,"goals":4,"assists":5,"marketValue":2500000,"internationalCaps":5,"awards":[],"overall":69},
+    {"id":"michal-skoras","name":"Michal Skoras","position":"LW","alternativePositions":["RW"],"nationality":"POL","age":26,"appearances":24,"goals":5,"assists":5,"marketValue":4000000,"internationalCaps":12,"awards":[],"overall":71},
+    {"id":"momodou-sonko-25","name":"Momodou Sonko","position":"LW","alternativePositions":["ST"],"nationality":"SWE","age":21,"appearances":22,"goals":4,"assists":4,"marketValue":1700000,"internationalCaps":5,"awards":[],"overall":68},
+    {"id":"hyllarion-goore","name":"Hyllarion Goore","position":"ST","nationality":"CIV","age":20,"appearances":24,"goals":8,"assists":3,"marketValue":4000000,"internationalCaps":3,"awards":[],"overall":70},
+    {"id":"wilfried-kanga-gent","name":"Wilfried Kanga","position":"ST","nationality":"CIV","age":28,"appearances":22,"goals":7,"assists":3,"marketValue":3000000,"internationalCaps":10,"awards":[],"overall":70}
+  ]
+}

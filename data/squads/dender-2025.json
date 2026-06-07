@@ -1,0 +1,24 @@
+{
+  "team": "FCV Dender EH",
+  "teamId": "dender",
+  "season": "2025-26",
+  "year": 2025,
+  "players": [
+    {"id":"gauthier-gallon","name":"Gauthier Gallon","position":"GK","nationality":"FRA","age":33,"appearances":26,"goals":0,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"michael-verrips-25","name":"Michael Verrips","position":"GK","nationality":"NED","age":29,"appearances":8,"goals":0,"assists":0,"marketValue":450000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"luc-de-fougerolles","name":"Luc De Fougerolles","position":"CB","nationality":"CAN","age":20,"appearances":26,"goals":1,"assists":0,"marketValue":1000000,"internationalCaps":3,"awards":[],"overall":66},
+    {"id":"luc-marijnissen","name":"Luc Marijnissen","position":"CB","nationality":"NED","age":23,"appearances":24,"goals":0,"assists":0,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"kobe-cools-25","name":"Kobe Cools","position":"CB","alternativePositions":["LB"],"nationality":"BEL","age":28,"appearances":22,"goals":0,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"fabio-ferraro","name":"Fabio Ferraro","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":23,"appearances":24,"goals":0,"assists":2,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"marsoni-sambu","name":"Marsoni Sambu","position":"RB","alternativePositions":["RM"],"nationality":"ANG","age":30,"appearances":22,"goals":0,"assists":3,"marketValue":700000,"internationalCaps":3,"awards":[],"overall":65},
+    {"id":"malcolm-viltard-25","name":"Malcolm Viltard","position":"CDM","alternativePositions":["CM"],"nationality":"FRA","age":23,"appearances":24,"goals":1,"assists":3,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"nathan-rodes","name":"Nathan Rôdes","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":28,"appearances":22,"goals":1,"assists":2,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"noah-mbamba-25","name":"Noah Mbamba","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":21,"appearances":22,"goals":1,"assists":3,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"roman-kvet-25","name":"Roman Květ","position":"CM","alternativePositions":["CDM"],"nationality":"CZE","age":28,"appearances":24,"goals":2,"assists":3,"marketValue":1200000,"internationalCaps":3,"awards":[],"overall":66},
+    {"id":"david-hrncar-25","name":"David Hrnčár","position":"RM","alternativePositions":["RW"],"nationality":"SVK","age":28,"appearances":20,"goals":2,"assists":4,"marketValue":500000,"internationalCaps":5,"awards":[],"overall":65},
+    {"id":"ragnar-oratmangoen-25","name":"Ragnar Oratmangoen","position":"LW","alternativePositions":["RW"],"nationality":"IDN","age":28,"appearances":22,"goals":3,"assists":4,"marketValue":500000,"internationalCaps":38,"awards":[],"overall":66},
+    {"id":"mohamed-berte","name":"Mohamed Berte","position":"CAM","alternativePositions":["ST"],"nationality":"BEL","age":24,"appearances":22,"goals":4,"assists":4,"marketValue":650000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"bruny-nsimba-25","name":"Bruny Nsimba","position":"ST","nationality":"BEL","age":26,"appearances":22,"goals":7,"assists":3,"marketValue":2500000,"internationalCaps":5,"awards":[],"overall":68},
+    {"id":"david-toshevski-25","name":"David Toshevski","position":"ST","nationality":"MKD","age":24,"appearances":18,"goals":5,"assists":2,"marketValue":600000,"internationalCaps":18,"awards":[],"overall":65}
+  ]
+}

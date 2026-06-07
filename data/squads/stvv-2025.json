@@ -1,0 +1,24 @@
+{
+  "team": "Sint-Truidense VV",
+  "teamId": "stvv",
+  "season": "2025-26",
+  "year": 2025,
+  "players": [
+    {"id":"leo-kokubo-25","name":"Leo Kokubo","position":"GK","nationality":"JPN","age":25,"appearances":28,"goals":0,"assists":0,"marketValue":5000000,"internationalCaps":3,"awards":[],"overall":73},
+    {"id":"matt-lendfers","name":"Matt Lendfers","position":"GK","nationality":"BEL","age":20,"appearances":6,"goals":0,"assists":0,"marketValue":200000,"internationalCaps":0,"awards":[],"overall":62},
+    {"id":"loic-mbe-soh-25","name":"Loïc Mbe Soh","position":"CB","nationality":"FRA","age":24,"appearances":24,"goals":0,"assists":0,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"joedrick-pupe","name":"Joedrick Pupe","position":"CB","nationality":"BEL","age":29,"appearances":22,"goals":1,"assists":0,"marketValue":1300000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"visar-musliu-25","name":"Visar Musliu","position":"CB","nationality":"MKD","age":31,"appearances":20,"goals":0,"assists":0,"marketValue":1000000,"internationalCaps":28,"awards":[],"overall":66},
+    {"id":"shogo-taniguchi-25","name":"Shōgo Taniguchi","position":"CB","nationality":"JPN","age":34,"appearances":18,"goals":1,"assists":0,"marketValue":750000,"internationalCaps":28,"awards":[],"overall":66},
+    {"id":"taiga-hata","name":"Taiga Hata","position":"LB","alternativePositions":["LM"],"nationality":"JPN","age":24,"appearances":24,"goals":0,"assists":3,"marketValue":2500000,"internationalCaps":3,"awards":[],"overall":69},
+    {"id":"robert-jan-vanwesemael","name":"Robert-Jan Vanwesemael","position":"RB","alternativePositions":["RM"],"nationality":"BEL","age":24,"appearances":26,"goals":1,"assists":4,"marketValue":3000000,"internationalCaps":3,"awards":[],"overall":70},
+    {"id":"rihito-yamamoto","name":"Rihito Yamamoto","position":"CDM","alternativePositions":["CM"],"nationality":"JPN","age":24,"appearances":28,"goals":2,"assists":4,"marketValue":7000000,"internationalCaps":5,"awards":[],"overall":73},
+    {"id":"abdoulaye-sissako-25","name":"Abdoulaye Sissako","position":"CDM","alternativePositions":["CM"],"nationality":"FRA","age":28,"appearances":22,"goals":1,"assists":2,"marketValue":2000000,"internationalCaps":5,"awards":[],"overall":69},
+    {"id":"ryan-merlen","name":"Ryan Merlen","position":"CM","alternativePositions":["CDM"],"nationality":"FRA","age":24,"appearances":22,"goals":2,"assists":3,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"ryotaro-ito-stvv-25","name":"Ryōtarō Itō","position":"CAM","alternativePositions":["CM"],"nationality":"JPN","age":28,"appearances":26,"goals":5,"assists":6,"marketValue":6000000,"internationalCaps":7,"awards":[],"overall":72},
+    {"id":"ilias-sebaoui","name":"Ilias Sebaoui","position":"LW","alternativePositions":["RW"],"nationality":"MAR","age":24,"appearances":22,"goals":4,"assists":4,"marketValue":3500000,"internationalCaps":5,"awards":[],"overall":70},
+    {"id":"arbnor-muja-25","name":"Arbnor Muja","position":"RW","alternativePositions":["LW"],"nationality":"ALB","age":27,"appearances":20,"goals":5,"assists":4,"marketValue":2500000,"internationalCaps":20,"awards":[],"overall":69},
+    {"id":"keisuke-goto","name":"Keisuke Goto","position":"ST","nationality":"JPN","age":21,"appearances":28,"goals":11,"assists":3,"marketValue":10000000,"internationalCaps":5,"awards":[],"overall":73},
+    {"id":"oumar-diouf","name":"Oumar Diouf","position":"ST","nationality":"SEN","age":23,"appearances":18,"goals":5,"assists":2,"marketValue":1000000,"internationalCaps":3,"awards":[],"overall":67}
+  ]
+}
