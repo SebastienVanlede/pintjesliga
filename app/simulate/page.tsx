@@ -1188,17 +1188,31 @@ function ScoreCard({ score, sim, formation }: { score: ScoreBreakdown; sim: Simu
           </button>
         </div>
 
-        {/* Breakdown */}
-        <div className={`grid divide-x ${score.isBlind ? 'grid-cols-4' : 'grid-cols-3'}`} style={{ borderColor: 'var(--border)' }}>
+        {/* Breakdown — rij 1: resultaat + underdog + doelpunten */}
+        <div className="grid grid-cols-3 divide-x" style={{ borderColor: 'var(--border)', borderBottom: '1px solid var(--border)' }}>
           {[
-            { label: t.score.result,    value: score.resultScore,           color: 'var(--text)' },
-            { label: t.score.underdog,  value: `+${score.underdogBonus}`,   sub: t.score.avgOvr(score.avgOverall), color: score.underdogBonus > 0 ? 'var(--gold)' : 'var(--muted)' },
-            { label: t.score.diversity, value: `+${score.diversityBonus}`,  sub: t.score.clubs(score.uniqueTeams), color: score.diversityBonus > 100 ? 'var(--gold)' : 'var(--text-2)' },
+            { label: t.score.result,   value: score.resultScore,          color: 'var(--text)' },
+            { label: t.score.underdog, value: `+${score.underdogBonus}`,  sub: t.score.avgOvr(score.avgOverall), color: score.underdogBonus > 0 ? 'var(--gold)' : 'var(--muted)' },
+            { label: t.score.goals,    value: `+${score.goalsBonus}`,     sub: t.score.goalsScored(score.goalsScored), color: score.goalsBonus > 50 ? 'var(--gold)' : 'var(--text-2)' },
+          ].map(({ label, value, sub, color }) => (
+            <div key={label} className="flex flex-col items-center py-3 px-2 gap-0.5">
+              <span className="label-xs">{label}</span>
+              <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.3rem', color, letterSpacing: '0.04em' }}>{value}</span>
+              {sub && <span className="text-xs" style={{ color: 'var(--muted)' }}>{sub}</span>}
+            </div>
+          ))}
+        </div>
+
+        {/* Breakdown — rij 2: diversiteit + seizoenen + memory */}
+        <div className={`grid divide-x ${score.isBlind ? 'grid-cols-3' : 'grid-cols-2'}`} style={{ borderColor: 'var(--border)' }}>
+          {[
+            { label: t.score.diversity, value: `+${score.diversityBonus}`, sub: t.score.clubs(score.uniqueTeams),         color: score.diversityBonus > 100 ? 'var(--gold)' : 'var(--text-2)' },
+            { label: t.score.seasons,   value: `+${score.seasonsBonus}`,   sub: t.score.uniqueSeasons(score.uniqueSeasons), color: score.uniqueSeasons >= 5 ? 'var(--gold)' : 'var(--text-2)' },
             ...(score.isBlind ? [{ label: t.score.memory, value: `+${score.blindBonus}`, sub: t.score.blindBonus, color: 'var(--gold)' }] : []),
           ].map(({ label, value, sub, color }) => (
-            <div key={label} className="flex flex-col items-center py-4 px-2 gap-0.5">
+            <div key={label} className="flex flex-col items-center py-3 px-2 gap-0.5">
               <span className="label-xs">{label}</span>
-              <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.4rem', color, letterSpacing: '0.04em' }}>{value}</span>
+              <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.3rem', color, letterSpacing: '0.04em' }}>{value}</span>
               {sub && <span className="text-xs" style={{ color: 'var(--muted)' }}>{sub}</span>}
             </div>
           ))}

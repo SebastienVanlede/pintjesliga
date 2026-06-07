@@ -52,6 +52,7 @@ export const translations = {
       otherPlayer: '← Andere speler kiezen',
       confirmReset: 'Weet je zeker dat je opnieuw wil beginnen? Je huidige XI gaat verloren.',
       choose: 'KIES',
+      groups: { GK: 'KEEPERS', DEF: 'VERDEDIGING', MID: 'MIDDENVELD', ATT: 'AANVAL' },
     },
 
     // ── XI ────────────────────────────────────────────────────────────────────
@@ -145,9 +146,13 @@ export const translations = {
       result: 'Resultaat',
       underdog: 'Underdog',
       diversity: 'Diversiteit',
+      seasons: 'Seizoenen',
+      goals: 'Doelpunten',
       memory: '🎭 Memory',
       avgOvr: (n: number) => `gem. ${n} OVR`,
       clubs: (n: number) => `${n} clubs`,
+      uniqueSeasons: (n: number) => `${n} seizoenen`,
+      goalsScored: (n: number) => `${n} goals`,
       saved: 'Score opgeslagen!',
       viewLeaderboard: 'Bekijk het leaderboard →',
       namePlaceholder: 'Jouw naam (max. 24 tekens)',
@@ -282,6 +287,7 @@ export const translations = {
       otherPlayer: '← Choose another player',
       confirmReset: 'Are you sure you want to start over? Your current XI will be lost.',
       choose: 'PICK',
+      groups: { GK: 'GOALKEEPERS', DEF: 'DEFENDERS', MID: 'MIDFIELDERS', ATT: 'ATTACKERS' },
     },
 
     xi: {
@@ -370,9 +376,13 @@ export const translations = {
       result: 'Result',
       underdog: 'Underdog',
       diversity: 'Diversity',
+      seasons: 'Seasons',
+      goals: 'Goals',
       memory: '🎭 Memory',
       avgOvr: (n: number) => `avg. ${n} OVR`,
       clubs: (n: number) => `${n} clubs`,
+      uniqueSeasons: (n: number) => `${n} seasons`,
+      goalsScored: (n: number) => `${n} goals`,
       saved: 'Score saved!',
       viewLeaderboard: 'View the leaderboard →',
       namePlaceholder: 'Your name (max. 24 chars)',
