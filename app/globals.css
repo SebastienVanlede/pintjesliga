@@ -74,9 +74,9 @@ body::after {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.28;
+  opacity: 0.16;
 }
-[data-theme="light"] body::after { opacity: 0.10; }
+[data-theme="light"] body::after { opacity: 0.06; }
 
 /* Page wrapper — accounts for fixed nav height */
 .page-root {
@@ -124,4 +124,48 @@ body::after {
 @keyframes pulse-ring {
   0%, 100% { opacity: 0.8; }
   50% { opacity: 1; }
+}
+
+/* Player card hover — CSS-only, replaces inline JS mutation */
+.player-card {
+  transition: border-color 0.12s ease, background 0.12s ease, transform 0.12s ease;
+}
+.player-card:hover:not(:disabled) {
+  border-color: var(--team-color, var(--gold-dim));
+  background: color-mix(in srgb, var(--team-color, var(--gold)) 10%, var(--surface));
+  transform: translateX(2px);
+}
+.player-card:hover:not(:disabled) .player-card-pick {
+  opacity: 1;
+}
+.player-card-pick {
+  opacity: 0;
+  transition: opacity 0.12s ease;
+}
+.player-card:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* Reel viewport */
+.reel-mask {
+  position: relative;
+  overflow: hidden;
+}
+.reel-mask::before,
+.reel-mask::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 28px;
+  z-index: 2;
+  pointer-events: none;
+}
+.reel-mask::before {
+  top: 0;
+  background: linear-gradient(to bottom, var(--surface) 0%, transparent 100%);
+}
+.reel-mask::after {
+  bottom: 0;
+  background: linear-gradient(to top, var(--surface) 0%, transparent 100%);
 }

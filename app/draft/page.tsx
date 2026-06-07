@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState, useCallback, useRef } from 'react';
+import { useEffect, useState, useCallback, useRef, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGameStore } from '@/lib/store';
@@ -10,8 +10,21 @@ import FormationPitch from '@/components/FormationPitch';
 
 type Phase = 'idle' | 'spinning' | 'squad' | 'placing';
 interface Roll { team: Team; season: string; squad: Squad }
+interface ReelItem { team: Team; season: string }
 
 const POSITION_ORDER = ['GK','RB','CB','LB','CDM','CM','CAM','RM','LM','RW','LW','ST'];
+const GROUP_ORDER = ['GK','DEF','MID','ATT'] as const;
+type GroupKey = typeof GROUP_ORDER[number];
+function positionGroup(pos: Position): GroupKey {
+  if (pos === 'GK') return 'GK';
+  if (pos === 'CB' || pos === 'LB' || pos === 'RB') return 'DEF';
+  if (pos === 'CDM' || pos === 'CM' || pos === 'CAM' || pos === 'RM' || pos === 'LM') return 'MID';
+  return 'ATT';
+}
+
+const REEL_ITEM_H = 84;
+const REEL_LENGTH = 26;
+const REEL_DURATION_MS = 1500;
 
 export default function DraftPage() {
   const router = useRouter();
@@ -21,9 +34,9 @@ export default function DraftPage() {
 
   const [phase, setPhase] = useState<Phase>('idle');
   const [roll, setRoll] = useState<Roll | null>(null);
-  const [spinLabel, setSpinLabel] = useState('');
+  const [reelItems, setReelItems] = useState<ReelItem[]>([]);
+  const [rollKey, setRollKey] = useState(0);
   const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null);
-  const [sortBy, setSortBy] = useState<'position' | 'rating'>('position');
 
   const MAX_REROLLS = 3;
   const rerollsLeft = MAX_REROLLS - rerollsUsed;
@@ -37,7 +50,6 @@ export default function DraftPage() {
   const positions = formation ? FORMATION_POSITIONS[formation] : [];
   const pickedByIndex = Object.fromEntries(pickedPlayers.map((p) => [p.positionIndex, p]));
   const filledCount = pickedPlayers.length;
-  const nextPos = positions[filledCount] ?? null;
 
   const [mounted, setMounted] = useState(false);
   useEffect(() => { setMounted(true); }, []);
@@ -63,39 +75,65 @@ export default function DraftPage() {
       setRoll({ team: teamObj, season: pendingRoll.season, squad });
       setPhase('squad');
     }).catch(() => setPhase('idle'));
-  }, [mounted]); // enkel bij mount uitvoeren
+  }, [mounted]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const rollDice = useCallback((isReroll = false) => {
     if (isReroll) useReroll();
     setPendingRoll(null);
-    setPhase('spinning');
     setRoll(null);
     setSelectedPlayer(null);
+
     const allRolls = getAvailableRolls();
-    let ticks = 0;
-    const interval = setInterval(() => {
+    if (deckRef.current.length === 0) {
+      deckRef.current = [...allRolls].sort(() => Math.random() - 0.5);
+    }
+    const final = deckRef.current.shift()!;
+
+    // Bouw de reel: random tussen-items + finaal item op het einde
+    const reel: ReelItem[] = Array.from({ length: REEL_LENGTH - 1 }, () => {
       const r = allRolls[Math.floor(Math.random() * allRolls.length)];
-      setSpinLabel(`${r.team.name} · ${r.season}`);
-      ticks++;
-      if (ticks >= 20) {
-        clearInterval(interval);
-        if (deckRef.current.length === 0) {
-          deckRef.current = [...allRolls].sort(() => Math.random() - 0.5);
-        }
-        const final = deckRef.current.shift()!;
-        loadSquad(final.team.id, final.season)
-          .then((squad) => {
-            if (!squad) { rollDice(isReroll); return; }
-            setPendingRoll({ teamId: final.team.id, teamName: final.team.name, season: final.season, primaryColor: final.team.primaryColor });
-            setRoll({ team: final.team, season: final.season, squad });
-            setPhase('squad');
-          })
-          .catch(() => setPhase('idle'));
-      }
-    }, 80);
+      return { team: r.team, season: r.season };
+    });
+    reel.push({ team: final.team, season: final.season });
+
+    setReelItems(reel);
+    setRollKey(k => k + 1);
+    setPhase('spinning');
+
+    const animPromise = new Promise(r => setTimeout(r, REEL_DURATION_MS));
+    const loadPromise = loadSquad(final.team.id, final.season);
+
+    Promise.all([loadPromise, animPromise]).then(([squad]) => {
+      if (!squad) { rollDice(isReroll); return; }
+      setPendingRoll({ teamId: final.team.id, teamName: final.team.name, season: final.season, primaryColor: final.team.primaryColor });
+      setRoll({ team: final.team, season: final.season, squad });
+      setPhase('squad');
+    });
   }, [useReroll, setPendingRoll]);
 
   function handleSelectPlayer(player: Player) {
+    if (!roll) return;
+    // B: Auto-place als er maar 1 vrije geldige positie is
+    const eligible = positions
+      .map((pos, i) => ({ pos, i }))
+      .filter(({ pos, i }) => playerPositions(player).includes(pos) && !pickedByIndex[i])
+      .map(({ i }) => i);
+
+    if (eligible.length === 1) {
+      pickPlayer({
+        positionIndex: eligible[0],
+        position: positions[eligible[0]],
+        player,
+        teamName: roll.team.name,
+        teamPrimaryColor: roll.team.primaryColor,
+        season: roll.season,
+      } as PickedPlayer);
+      setSelectedPlayer(null);
+      setRoll(null);
+      setPhase('idle');
+      return;
+    }
+
     setSelectedPlayer(player);
     setPhase('placing');
   }
@@ -114,6 +152,20 @@ export default function DraftPage() {
     setRoll(null);
     setPhase('idle');
   }
+
+  const groupedPlayers = useMemo(() => {
+    if (!roll) return null;
+    const groups: Record<GroupKey, Player[]> = { GK: [], DEF: [], MID: [], ATT: [] };
+    for (const p of roll.squad.players) groups[positionGroup(p.position)].push(p);
+    for (const k of GROUP_ORDER) {
+      groups[k].sort((a, b) => {
+        const idx = POSITION_ORDER.indexOf(a.position) - POSITION_ORDER.indexOf(b.position);
+        if (idx !== 0) return idx;
+        return b.overall - a.overall;
+      });
+    }
+    return groups;
+  }, [roll]);
 
   if (!formation) return null;
 
@@ -188,30 +240,29 @@ export default function DraftPage() {
       </div>
 
       {/* ── Rechts: Actie ─────────────────────────────────────────────── */}
-      <div className="flex-1 flex flex-col px-6 py-6 lg:px-10 lg:py-8 gap-6 overflow-y-auto">
+      <div className="flex-1 flex flex-col px-6 py-6 lg:px-10 lg:py-8 gap-5 overflow-y-auto">
         <AnimatePresence mode="wait">
 
           {/* IDLE */}
           {phase === 'idle' && (
             <motion.div key="idle" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              className="flex flex-col items-center justify-center gap-8 flex-1 min-h-72">
+              className="flex flex-col items-center justify-center gap-7 flex-1 min-h-72">
 
-              {/* Rol knop */}
               <motion.button
                 onClick={() => rollDice(false)}
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.97 }}
                 className="flex flex-col items-center gap-3 rounded-2xl"
                 style={{
                   background: 'var(--gold)',
                   border: '2px solid var(--gold)',
-                  boxShadow: '0 0 60px rgba(212,148,10,0.35), 0 0 120px rgba(212,148,10,0.15)',
+                  boxShadow: '0 0 32px rgba(212,148,10,0.22), 0 0 64px rgba(212,148,10,0.08)',
                   cursor: 'pointer',
-                  padding: '28px 56px',
+                  padding: '26px 52px',
                 }}
               >
-                <span style={{ fontSize: '2.8rem', lineHeight: 1 }}>🎲</span>
-                <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.3rem', color: '#07070A', letterSpacing: '0.2em' }}>
+                <span style={{ fontSize: '2.6rem', lineHeight: 1 }}>🎲</span>
+                <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.2rem', color: '#07070A', letterSpacing: '0.2em' }}>
                   ROL
                 </span>
               </motion.button>
@@ -222,229 +273,193 @@ export default function DraftPage() {
             </motion.div>
           )}
 
-          {/* SPINNING — slot machine */}
+          {/* SPINNING — reel animatie */}
           {phase === 'spinning' && (
             <motion.div key="spinning" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              className="flex flex-col items-center justify-center gap-6 flex-1 min-h-72">
+              className="flex flex-col items-center justify-center gap-5 flex-1 min-h-72">
 
               <span className="label-xs">{t.draft.rolling}</span>
 
-              {/* Slot machine box */}
-              <div style={{
-                width: '100%',
-                maxWidth: 420,
-                border: '2px solid var(--gold-dim)',
-                borderRadius: 16,
-                background: 'var(--surface)',
-                boxShadow: '0 0 40px rgba(212,148,10,0.12), inset 0 0 40px rgba(0,0,0,0.3)',
-                overflow: 'hidden',
-                position: 'relative',
-              }}>
-                {/* Bovenste fade */}
+              {/* Reel viewport */}
+              <div
+                className="reel-mask"
+                style={{
+                  width: '100%',
+                  maxWidth: 440,
+                  height: REEL_ITEM_H,
+                  border: '1px solid var(--border)',
+                  borderRadius: 14,
+                  background: 'var(--surface)',
+                  position: 'relative',
+                }}
+              >
+                {/* Gouden lock-indicator links */}
                 <div style={{
-                  position: 'absolute', top: 0, left: 0, right: 0, height: 40,
-                  background: 'linear-gradient(to bottom, var(--surface), transparent)',
-                  zIndex: 1, pointerEvents: 'none',
-                }} />
-                {/* Onderste fade */}
-                <div style={{
-                  position: 'absolute', bottom: 0, left: 0, right: 0, height: 40,
-                  background: 'linear-gradient(to top, var(--surface), transparent)',
-                  zIndex: 1, pointerEvents: 'none',
-                }} />
-                {/* Gouden lijn indicator */}
-                <div style={{
-                  position: 'absolute', top: '50%', left: 16, right: 16,
-                  height: 1, background: 'var(--gold-dim)', zIndex: 2,
-                  transform: 'translateY(-50%)',
+                  position: 'absolute', top: 0, bottom: 0, left: 0,
+                  width: 3, background: 'var(--gold)', zIndex: 3,
+                  boxShadow: '0 0 12px rgba(212,148,10,0.5)',
                 }} />
 
-                <div style={{ padding: '28px 24px', textAlign: 'center' }}>
-                  <AnimatePresence mode="wait">
-                    <motion.p
-                      key={spinLabel}
-                      initial={{ opacity: 0, y: -16 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 16 }}
-                      transition={{ duration: 0.06 }}
+                <motion.div
+                  key={rollKey}
+                  initial={{ y: 0 }}
+                  animate={{ y: -(reelItems.length - 1) * REEL_ITEM_H }}
+                  transition={{ duration: REEL_DURATION_MS / 1000, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  {reelItems.map((item, i) => (
+                    <div
+                      key={i}
                       style={{
-                        fontFamily: 'var(--font-display)',
-                        fontSize: 'clamp(1.1rem,4vw,1.6rem)',
-                        color: 'var(--gold)',
-                        letterSpacing: '0.1em',
+                        height: REEL_ITEM_H,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        padding: '0 24px 0 28px',
+                        background: `linear-gradient(90deg, ${item.team.primaryColor}24 0%, transparent 65%)`,
                       }}
                     >
-                      {spinLabel}
-                    </motion.p>
-                  </AnimatePresence>
-                </div>
-              </div>
-
-              {/* Pulserende dots */}
-              <div className="flex gap-2">
-                {[0, 1, 2].map(i => (
-                  <motion.div key={i}
-                    animate={{ scale: [1, 1.5, 1], opacity: [0.3, 1, 0.3] }}
-                    transition={{ duration: 0.5, delay: i * 0.12, repeat: Infinity }}
-                    style={{ width: 6, height: 6, borderRadius: '50%', background: 'var(--gold)' }}
-                  />
-                ))}
+                      <span style={{
+                        fontFamily: 'var(--font-display)',
+                        fontSize: 'clamp(0.95rem, 3vw, 1.15rem)',
+                        letterSpacing: '0.06em',
+                        color: 'var(--text)',
+                      }}>
+                        {item.team.name}
+                      </span>
+                      <span style={{
+                        fontFamily: 'var(--font-display)',
+                        fontSize: '0.95rem',
+                        color: 'var(--gold)',
+                        letterSpacing: '0.08em',
+                      }}>
+                        {item.season}
+                      </span>
+                    </div>
+                  ))}
+                </motion.div>
               </div>
             </motion.div>
           )}
 
-          {/* SQUAD — teamreveal + spelerslijst */}
-          {phase === 'squad' && roll && (
-            <motion.div key="squad" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
+          {/* SQUAD — teamreveal + gegroepeerde spelerslijst */}
+          {phase === 'squad' && roll && groupedPlayers && (
+            <motion.div key="squad" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
               className="flex flex-col gap-4 flex-1">
 
-              {/* Team reveal banner */}
+              {/* Team reveal banner — compacter, reroll inline */}
               <div
                 className="rounded-2xl overflow-hidden"
                 style={{
-                  background: `linear-gradient(135deg, ${roll.team.primaryColor}20 0%, transparent 70%)`,
-                  border: `1.5px solid ${roll.team.primaryColor}50`,
-                  boxShadow: `0 0 32px ${roll.team.primaryColor}18`,
+                  background: `linear-gradient(135deg, ${roll.team.primaryColor}1c 0%, transparent 70%)`,
+                  border: `1.5px solid ${roll.team.primaryColor}44`,
+                  boxShadow: `0 0 18px ${roll.team.primaryColor}10`,
                 }}
               >
-                <div className="px-5 py-4 flex items-center justify-between">
-                  <div>
+                <div className="px-5 py-4 flex items-start justify-between gap-4">
+                  <div className="min-w-0 flex-1">
                     <span className="label-xs block mb-1.5" style={{ color: `${roll.team.primaryColor}cc` }}>{t.draft.drawnTeam}</span>
                     <h2 style={{
                       fontFamily: 'var(--font-display)',
-                      fontSize: 'clamp(1.5rem,5vw,2.2rem)',
+                      fontSize: 'clamp(1.4rem, 4.5vw, 2rem)',
                       color: roll.team.primaryColor,
                       letterSpacing: '0.06em',
-                      lineHeight: 1,
-                      textShadow: `0 0 40px ${roll.team.primaryColor}50`,
+                      lineHeight: 1.05,
+                      textShadow: `0 0 20px ${roll.team.primaryColor}28`,
                     }}>
                       {roll.team.name}
                     </h2>
                   </div>
-                  <div className="text-right">
-                    <span className="label-xs block mb-1.5">{t.draft.season}</span>
-                    <p style={{
-                      fontFamily: 'var(--font-display)',
-                      fontSize: '1.6rem',
-                      color: 'var(--text)',
-                      letterSpacing: '0.08em',
-                      lineHeight: 1,
-                    }}>
-                      {roll.season}
-                    </p>
+                  <div className="flex flex-col items-end gap-2 flex-shrink-0">
+                    <div className="text-right">
+                      <span className="label-xs block mb-1.5">{t.draft.season}</span>
+                      <p style={{
+                        fontFamily: 'var(--font-display)',
+                        fontSize: '1.4rem',
+                        color: 'var(--text)',
+                        letterSpacing: '0.08em',
+                        lineHeight: 1,
+                      }}>
+                        {roll.season}
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => rollDice(true)}
+                      disabled={rerollsLeft === 0}
+                      className="flex items-center gap-1.5"
+                      style={{
+                        fontFamily: 'var(--font-display)',
+                        fontSize: '0.65rem',
+                        letterSpacing: '0.1em',
+                        padding: '5px 10px',
+                        borderRadius: 6,
+                        border: `1px solid ${rerollsLeft > 0 ? 'var(--gold-dim)' : 'var(--border-2)'}`,
+                        background: rerollsLeft > 0 ? 'rgba(212,148,10,0.08)' : 'transparent',
+                        color: rerollsLeft > 0 ? 'var(--gold)' : 'var(--muted)',
+                        cursor: rerollsLeft > 0 ? 'pointer' : 'not-allowed',
+                        transition: 'all 0.15s',
+                      }}
+                    >
+                      <span style={{ fontSize: '0.85rem' }}>⟲</span>
+                      {rerollsLeft > 0 ? `${t.draft.rerolls.toUpperCase()} (${rerollsLeft})` : t.draft.noRerolls}
+                    </button>
                   </div>
                 </div>
                 <div style={{
-                  height: 3,
+                  height: 2,
                   background: `linear-gradient(to right, ${roll.team.primaryColor}, transparent)`,
                 }} />
               </div>
 
-              {/* Herroll balk */}
-              <div className="flex items-center justify-between px-1">
-                <div className="flex items-center gap-2.5">
-                  <span className="text-xs" style={{ color: 'var(--muted)' }}>{t.draft.rerolls}</span>
-                  <div className="flex gap-1.5">
-                    {Array.from({ length: MAX_REROLLS }).map((_, i) => (
-                      <motion.div
-                        key={i}
-                        animate={{ scale: i < rerollsLeft ? 1 : 0.7 }}
-                        style={{
-                          width: 10, height: 10, borderRadius: '50%',
-                          background: i < rerollsLeft ? 'var(--gold)' : 'var(--border-2)',
-                          boxShadow: i < rerollsLeft ? '0 0 6px rgba(212,148,10,0.5)' : 'none',
-                        }}
-                      />
-                    ))}
-                  </div>
-                </div>
-                <button
-                  onClick={() => rollDice(true)}
-                  disabled={rerollsLeft === 0}
-                  className="text-xs transition-all duration-150"
-                  style={{
-                    color: rerollsLeft > 0 ? 'var(--text-2)' : 'var(--border-2)',
-                    textDecoration: rerollsLeft > 0 ? 'underline' : 'none',
-                    cursor: rerollsLeft > 0 ? 'pointer' : 'not-allowed',
-                  }}
-                >
-                  {rerollsLeft > 0 ? t.draft.rerollBtn(rerollsLeft) : t.draft.noRerolls}
-                </button>
-              </div>
-
-              {/* Instructie + sort toggle */}
-              <div className="flex items-center justify-between px-1">
-                <p className="text-xs" style={{ color: 'var(--muted)' }}>
-                  {t.draft.chooseHint}
-                </p>
-                {!blind && (
-                  <div className="flex rounded-lg overflow-hidden" style={{ border: '1px solid var(--border)' }}>
-                    {(['position', 'rating'] as const).map(opt => (
-                      <button
-                        key={opt}
-                        onClick={() => setSortBy(opt)}
-                        style={{
-                          padding: '3px 10px',
-                          fontSize: '0.6rem',
-                          letterSpacing: '0.08em',
-                          fontFamily: 'var(--font-display)',
-                          background: sortBy === opt ? 'var(--gold)' : 'transparent',
-                          color: sortBy === opt ? '#07070A' : 'var(--muted)',
-                          border: 'none',
-                          cursor: 'pointer',
-                          transition: 'all 0.15s',
-                        }}
-                      >
-                        {opt === 'position' ? 'POS' : 'OVR'}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              {/* Spelerslijst */}
-              <div className="flex flex-col gap-1.5 flex-1 overflow-y-auto pr-1" style={{ maxHeight: 440 }}>
-                {[...roll.squad.players]
-                  .sort((a, b) => blind || sortBy === 'position'
-                    ? POSITION_ORDER.indexOf(a.position) - POSITION_ORDER.indexOf(b.position)
-                    : b.overall - a.overall)
-                  .map((player, idx) => {
-                    const alreadyPicked = pickedPlayerIds.has(player.id) || pickedPlayerNames.has(player.name.toLowerCase());
-                    const posFull = playerPositions(player).every(pos => isPositionFull(pos));
-                    const disabled = alreadyPicked || posFull;
-                    return (
-                      <motion.div
-                        key={player.id}
-                        initial={{ opacity: 0, x: 10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: idx * 0.025, duration: 0.2 }}
-                      >
-                        <PlayerCard
-                          player={player}
-                          teamColor={roll.team.primaryColor}
-                          disabled={disabled}
-                          disabledReason={alreadyPicked ? t.draft.taken : posFull ? t.draft.full : undefined}
-                          blind={blind}
-                          pickLabel={t.draft.choose}
-                          onPick={() => !disabled && handleSelectPlayer(player)}
-                        />
-                      </motion.div>
-                    );
-                  })}
+              {/* Gegroepeerde spelerslijst — 2-koloms op desktop */}
+              <div className="flex flex-col gap-3 flex-1 overflow-y-auto pr-1" style={{ maxHeight: 'calc(100svh - 280px)' }}>
+                {GROUP_ORDER.map(groupKey => {
+                  const players = groupedPlayers[groupKey];
+                  if (players.length === 0) return null;
+                  return (
+                    <div key={groupKey} className="flex flex-col gap-1.5">
+                      <span className="label-xs px-1">{t.draft.groups[groupKey]}</span>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-1.5">
+                        {players.map((player, idx) => {
+                          const alreadyPicked = pickedPlayerIds.has(player.id) || pickedPlayerNames.has(player.name.toLowerCase());
+                          const posFull = playerPositions(player).every(pos => isPositionFull(pos));
+                          const disabled = alreadyPicked || posFull;
+                          return (
+                            <motion.div
+                              key={player.id}
+                              initial={{ opacity: 0, y: 6 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: idx * 0.015, duration: 0.16 }}
+                            >
+                              <PlayerCard
+                                player={player}
+                                teamColor={roll.team.primaryColor}
+                                disabled={disabled}
+                                disabledReason={alreadyPicked ? t.draft.taken : posFull ? t.draft.full : undefined}
+                                blind={blind}
+                                pickLabel={t.draft.choose}
+                                onPick={() => !disabled && handleSelectPlayer(player)}
+                              />
+                            </motion.div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
             </motion.div>
           )}
 
           {/* PLACING */}
           {phase === 'placing' && selectedPlayer && roll && (
-            <motion.div key="placing" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
+            <motion.div key="placing" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}
               className="flex flex-col gap-5 flex-1 justify-center items-center max-w-lg mx-auto w-full">
 
               {/* Gekozen speler card */}
               <div className="w-full rounded-2xl p-5" style={{
                 background: 'var(--surface)',
                 border: '2px solid var(--gold)',
-                boxShadow: '0 0 50px rgba(212,148,10,0.18)',
+                boxShadow: '0 0 22px rgba(212,148,10,0.10)',
               }}>
                 <span className="label-xs block mb-3" style={{ color: 'var(--gold-dim)' }}>{t.draft.chosenPlayer}</span>
                 <div className="flex items-center gap-4">
@@ -517,27 +532,15 @@ function PlayerCard({ player, teamColor, onPick, disabled, disabledReason, blind
     <button
       onClick={!disabled ? onPick : undefined}
       disabled={disabled}
-      className="w-full text-left rounded-xl transition-all duration-100 group"
+      className="player-card w-full text-left rounded-xl"
       style={{
         background: 'var(--surface)',
         border: '1px solid var(--border)',
         padding: '9px 12px',
         opacity: disabled ? 0.38 : 1,
         cursor: disabled ? 'not-allowed' : 'pointer',
-      }}
-      onMouseEnter={e => {
-        if (disabled) return;
-        const el = e.currentTarget as HTMLButtonElement;
-        el.style.borderColor = `${teamColor}90`;
-        el.style.background = `${teamColor}12`;
-        el.style.transform = 'translateX(2px)';
-      }}
-      onMouseLeave={e => {
-        const el = e.currentTarget as HTMLButtonElement;
-        el.style.borderColor = 'var(--border)';
-        el.style.background = 'var(--surface)';
-        el.style.transform = 'translateX(0)';
-      }}
+        ['--team-color' as string]: teamColor,
+      } as React.CSSProperties}
     >
       <div className="flex items-center gap-3">
         <OverallBadge overall={player.overall} size="sm" blind={blind} />
@@ -580,7 +583,7 @@ function PlayerCard({ player, teamColor, onPick, disabled, disabledReason, blind
           }}>{disabledReason}</span>
         ) : (
           <span
-            className="opacity-0 group-hover:opacity-100 transition-opacity flex-shrink-0"
+            className="player-card-pick flex-shrink-0"
             style={{
               fontSize: '0.62rem', letterSpacing: '0.12em',
               padding: '5px 12px', borderRadius: 6,
@@ -621,7 +624,7 @@ function OverallBadge({ overall, size, blind }: { overall: number; size: 'sm' | 
       display: 'flex', alignItems: 'center', justifyContent: 'center',
       fontFamily: 'var(--font-display)', color, flexShrink: 0,
       letterSpacing: '0.02em',
-      boxShadow: !blind && overall >= 80 ? `0 0 12px ${color}30` : 'none',
+      boxShadow: !blind && overall >= 80 ? `0 0 10px ${color}25` : 'none',
     }}>
       {blind ? '?' : overall}
     </div>
