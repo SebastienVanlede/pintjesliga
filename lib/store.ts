@@ -47,7 +47,7 @@ export const useGameStore = create<GameState>()(
       simulatedSeason: null,
       teamName: 'Mijn Droomelftal',
       draftMode: 'normal',
-      simSeason: '2024-25',
+      simSeason: '2025-26',
       theme: 'dark',
       language: 'nl',
       rerollsUsed: 0,
