@@ -207,9 +207,13 @@ export const translations = {
 
     // ── Top scorers ───────────────────────────────────────────────────────────
     scorers: {
-      none: 'Geen doelpunten gevonden.',
+      none: 'Geen statistieken gevonden.',
       player: 'Speler',
-      goals: 'Doel',
+      goals: 'G',
+      assists: 'A',
+      contributions: 'G+A',
+      yourXI: 'Jouw XI',
+      topOverall: 'Top 15 algemeen',
     },
 
     // ── Match list ────────────────────────────────────────────────────────────
@@ -433,9 +437,13 @@ export const translations = {
     },
 
     scorers: {
-      none: 'No goals found.',
+      none: 'No stats found.',
       player: 'Player',
-      goals: 'Goals',
+      goals: 'G',
+      assists: 'A',
+      contributions: 'G+A',
+      yourXI: 'Your XI',
+      topOverall: 'Top 15 overall',
     },
 
     matchList: {

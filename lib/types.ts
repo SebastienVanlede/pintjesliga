@@ -132,6 +132,7 @@ export interface SimulatedMatch {
   homeGoals: number;
   awayGoals: number;
   scorers: string[];
+  assisters?: string[]; // optional for backward compat with stored games
 }
 
 export interface StandingRow {

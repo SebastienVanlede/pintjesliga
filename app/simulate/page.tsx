@@ -674,52 +674,111 @@ function TopScorers({ sim, pickedPlayers, myTeam }: {
   sim: SimulatedSeason; pickedPlayers: PickedPlayer[]; myTeam: string;
 }) {
   const t = useT();
-  const userNames = new Set(pickedPlayers.map(p => p.player.name));
 
-  const goalMap: Record<string, number> = {};
+  // Aggregate goals + assists across all phases
+  const goalMap:   Record<string, number> = {};
+  const assistMap: Record<string, number> = {};
   for (const m of [
-    ...sim.regularSeason.matches,
-    ...sim.po1.matches,
-    ...sim.po2.matches,
-    ...sim.poRelegation.matches,
+    ...sim.regularSeason.matches, ...sim.po1.matches,
+    ...sim.po2.matches, ...sim.poRelegation.matches,
   ]) {
-    for (const scorer of m.scorers) {
-      goalMap[scorer] = (goalMap[scorer] ?? 0) + 1;
-    }
+    for (const s of m.scorers)            goalMap[s]   = (goalMap[s]   ?? 0) + 1;
+    for (const a of (m.assisters ?? []))  assistMap[a] = (assistMap[a] ?? 0) + 1;
   }
 
-  const ranked = Object.entries(goalMap)
-    .sort(([, a], [, b]) => b - a)
+  // Build per-player stats — include all XI players even with 0 goals
+  const userByName = Object.fromEntries(pickedPlayers.map(p => [p.player.name, p]));
+  const userNames  = new Set(pickedPlayers.map(p => p.player.name));
+
+  const userStats: { name: string; pos: string; goals: number; assists: number; isUser: boolean }[] =
+    pickedPlayers.map(p => ({
+      name:    p.player.name,
+      pos:     p.position as string,
+      goals:   goalMap[p.player.name]   ?? 0,
+      assists: assistMap[p.player.name] ?? 0,
+      isUser:  true,
+    })).sort((a, b) => (b.goals + b.assists) - (a.goals + a.assists) || b.goals - a.goals);
+
+  // Top 15 overall (may include non-user players)
+  const allNames  = new Set([...Object.keys(goalMap), ...Object.keys(assistMap)]);
+  const topOverall = [...allNames]
+    .map(name => ({
+      name, pos: '' as string,
+      goals:   goalMap[name]   ?? 0,
+      assists: assistMap[name] ?? 0,
+      isUser:  userNames.has(name),
+    }))
+    .sort((a, b) => (b.goals + b.assists) - (a.goals + a.assists) || b.goals - a.goals)
     .slice(0, 15);
 
-  if (!ranked.length) return <p className="text-xs px-1" style={{ color: 'var(--muted)' }}>{t.scorers.none}</p>;
-
-  return (
+  const StatsTable = ({ rows, showRank }: { rows: typeof userStats; showRank: boolean }) => (
     <div className="rounded-xl overflow-hidden" style={{ border: '1px solid var(--border)' }}>
       <div className="grid px-3 py-1.5 text-xs uppercase tracking-widest"
-        style={{ background: 'var(--surface)', color: 'var(--muted)', gridTemplateColumns: '1.5rem 1fr 2.5rem' }}>
-        <span>{t.standings.rank}</span><span>{t.scorers.player}</span><span className="text-center">{t.scorers.goals}</span>
+        style={{ background: 'var(--surface)', color: 'var(--muted)', gridTemplateColumns: showRank ? '1.5rem 1fr 2.5rem 3rem 3.5rem' : '1fr 2.5rem 3rem 3.5rem' }}>
+        {showRank && <span>#</span>}
+        <span>{t.scorers.player}</span>
+        <span className="text-center">{t.scorers.goals}</span>
+        <span className="text-center">{t.scorers.assists}</span>
+        <span className="text-center">{t.scorers.contributions}</span>
       </div>
-      {ranked.map(([name, goals], i) => {
-        const isUser = userNames.has(name);
+      {rows.map((row, i) => {
+        const total = row.goals + row.assists;
         return (
-          <div key={name} className="grid items-center px-3 py-2 text-xs"
+          <div key={row.name} className="grid items-center px-3 py-2 text-xs"
             style={{
-              gridTemplateColumns: '1.5rem 1fr 2.5rem',
-              background: isUser ? 'rgba(212,148,10,0.06)' : i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.015)',
+              gridTemplateColumns: showRank ? '1.5rem 1fr 2.5rem 3rem 3.5rem' : '1fr 2.5rem 3rem 3.5rem',
+              background: row.isUser ? 'rgba(212,148,10,0.06)' : i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.015)',
               borderTop: '1px solid var(--border)',
-              borderLeft: `3px solid ${isUser ? 'var(--gold)' : 'transparent'}`,
+              borderLeft: `3px solid ${row.isUser ? 'var(--gold)' : 'transparent'}`,
             }}>
-            <span style={{ color: i === 0 ? 'var(--gold)' : 'var(--muted)', fontFamily: 'var(--font-display)' }}>{i + 1}</span>
-            <span className="truncate font-medium" style={{ color: isUser ? 'var(--gold)' : 'var(--text)' }}>
-              {isUser ? `⭐ ${name}` : name}
+            {showRank && (
+              <span style={{ color: i === 0 ? 'var(--gold)' : 'var(--muted)', fontFamily: 'var(--font-display)' }}>{i + 1}</span>
+            )}
+            <div className="min-w-0">
+              <p className="truncate font-medium" style={{ color: row.isUser ? 'var(--gold)' : 'var(--text)' }}>
+                {row.isUser ? `⭐ ${row.name}` : row.name}
+              </p>
+              {row.pos && (
+                <span style={{ fontSize: '0.58rem', letterSpacing: '0.06em', color: 'var(--muted)', fontFamily: 'var(--font-display)' }}>
+                  {row.pos}
+                </span>
+              )}
+            </div>
+            <span className="text-center font-bold" style={{ fontFamily: 'var(--font-display)', color: row.goals > 0 ? 'var(--text)' : 'var(--muted)' }}>
+              {row.goals}
             </span>
-            <span className="text-center font-bold" style={{ fontFamily: 'var(--font-display)', fontSize: '0.95rem', color: isUser ? 'var(--gold)' : 'var(--text)' }}>
-              {goals}
+            <span className="text-center" style={{ color: row.assists > 0 ? 'var(--text-2)' : 'var(--muted)' }}>
+              {row.assists}
+            </span>
+            <span className="text-center font-bold" style={{ fontFamily: 'var(--font-display)', color: total > 0 ? 'var(--gold)' : 'var(--muted)' }}>
+              {total}
             </span>
           </div>
         );
       })}
+    </div>
+  );
+
+  return (
+    <div className="flex flex-col gap-5">
+      {/* Jouw XI */}
+      <div>
+        <p className="text-xs uppercase tracking-widest px-1 mb-2" style={{ color: 'var(--muted)' }}>
+          {t.scorers.yourXI}
+        </p>
+        <StatsTable rows={userStats} showRank={false} />
+      </div>
+
+      {/* Top 15 algemeen */}
+      <div>
+        <p className="text-xs uppercase tracking-widest px-1 mb-2" style={{ color: 'var(--muted)' }}>
+          {t.scorers.topOverall}
+        </p>
+        {topOverall.length === 0
+          ? <p className="text-xs px-1" style={{ color: 'var(--muted)' }}>{t.scorers.none}</p>
+          : <StatsTable rows={topOverall} showRank />
+        }
+      </div>
     </div>
   );
 }
