@@ -79,19 +79,20 @@ export default function XIPage() {
         </motion.div>
 
         {/* Actions */}
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.25 }} className="w-full flex flex-col gap-2">
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.25 }} className="w-full flex flex-col gap-3">
+          {/* Hoofdactie */}
           <button
             onClick={() => router.push('/simulate')}
             style={{
               fontFamily: 'var(--font-display)',
               fontSize: '1.1rem',
               letterSpacing: '0.14em',
-              padding: '13px 0',
+              padding: '14px 0',
               width: '100%',
               background: 'var(--gold)',
               color: '#07070A',
               border: '2px solid var(--gold)',
-              borderRadius: 8,
+              borderRadius: 10,
               cursor: 'pointer',
               boxShadow: '0 0 40px rgba(212,148,10,0.25)',
               transition: 'all 0.2s',
@@ -101,42 +102,43 @@ export default function XIPage() {
           >
             {t.xi.simulateBtn}
           </button>
-          <button
-            onClick={() => { resetKeepFormation(); router.push('/draft'); }}
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: '0.85rem',
-              letterSpacing: '0.1em',
-              padding: '10px 0',
-              width: '100%',
-              background: 'transparent',
-              color: 'var(--text)',
-              border: '1px solid var(--border)',
-              borderRadius: 8,
-              cursor: 'pointer',
-            }}
-          >
-            {t.xi.newDraft(formation)}
-          </button>
-          <button
-            onClick={() => {
-              if (window.confirm(t.xi.confirmReset)) { reset(); router.push('/'); }
-            }}
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: '0.85rem',
-              letterSpacing: '0.1em',
-              padding: '10px 0',
-              width: '100%',
-              background: 'transparent',
-              color: 'var(--muted)',
-              border: '1px solid var(--border)',
-              borderRadius: 8,
-              cursor: 'pointer',
-            }}
-          >
-            {t.xi.startOver}
-          </button>
+
+          {/* Secundaire acties als tekstlinks */}
+          <div className="flex items-center justify-center gap-4 mt-1">
+            <button
+              onClick={() => { resetKeepFormation(); router.push('/draft'); }}
+              style={{
+                fontSize: '0.75rem',
+                color: 'var(--muted)',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                textDecoration: 'underline',
+                textDecorationColor: 'var(--border)',
+                textUnderlineOffset: 3,
+              }}
+            >
+              {t.xi.newDraft(formation)}
+            </button>
+            <span style={{ color: 'var(--border-2)', fontSize: '0.7rem' }}>·</span>
+            <button
+              onClick={() => {
+                if (window.confirm(t.xi.confirmReset)) { reset(); router.push('/'); }
+              }}
+              style={{
+                fontSize: '0.75rem',
+                color: 'var(--muted)',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                textDecoration: 'underline',
+                textDecorationColor: 'var(--border)',
+                textUnderlineOffset: 3,
+              }}
+            >
+              {t.xi.startOver}
+            </button>
+          </div>
         </motion.div>
       </div>
 
