@@ -14,6 +14,7 @@ interface GameState {
   simSeason: string;
   theme: 'dark' | 'light';
   language: Lang;
+  rerollsUsed: number;
 
   setFormation: (f: Formation) => void;
   pickPlayer: (p: PickedPlayer) => void;
@@ -23,6 +24,7 @@ interface GameState {
   setSimSeason: (s: string) => void;
   setTheme: (t: 'dark' | 'light') => void;
   setLanguage: (l: Lang) => void;
+  useReroll: () => void;
   reset: () => void;
   resetKeepFormation: () => void;
 }
@@ -39,9 +41,10 @@ export const useGameStore = create<GameState>()(
       simSeason: '2024-25',
       theme: 'dark',
       language: 'nl',
+      rerollsUsed: 0,
 
       setFormation: (formation) =>
-        set({ formation, pickedPlayers: [], currentPositionIndex: 0, simulatedSeason: null }),
+        set({ formation, pickedPlayers: [], currentPositionIndex: 0, simulatedSeason: null, rerollsUsed: 0 }),
 
       pickPlayer: (player) =>
         set((state) => ({
@@ -61,11 +64,13 @@ export const useGameStore = create<GameState>()(
 
       setLanguage: (language) => set({ language }),
 
+      useReroll: () => set(state => ({ rerollsUsed: state.rerollsUsed + 1 })),
+
       reset: () =>
-        set({ formation: null, pickedPlayers: [], currentPositionIndex: 0, simulatedSeason: null }),
+        set({ formation: null, pickedPlayers: [], currentPositionIndex: 0, simulatedSeason: null, rerollsUsed: 0 }),
 
       resetKeepFormation: () =>
-        set({ pickedPlayers: [], currentPositionIndex: 0, simulatedSeason: null }),
+        set({ pickedPlayers: [], currentPositionIndex: 0, simulatedSeason: null, rerollsUsed: 0 }),
     }),
     {
       name: 'pintjesliga-state',
@@ -79,6 +84,7 @@ export const useGameStore = create<GameState>()(
         simSeason:        state.simSeason,
         theme:            state.theme,
         language:         state.language,
+        rerollsUsed:      state.rerollsUsed,
       }),
     }
   )

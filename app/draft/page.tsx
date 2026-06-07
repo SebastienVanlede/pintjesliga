@@ -15,7 +15,7 @@ const POSITION_ORDER = ['GK','RB','CB','LB','CDM','CM','CAM','RM','LM','RW','LW'
 
 export default function DraftPage() {
   const router = useRouter();
-  const { formation, pickedPlayers, pickPlayer, draftMode } = useGameStore();
+  const { formation, pickedPlayers, pickPlayer, draftMode, rerollsUsed, useReroll } = useGameStore();
   const t = useT();
   const blind = draftMode === 'blind';
 
@@ -23,7 +23,6 @@ export default function DraftPage() {
   const [roll, setRoll] = useState<Roll | null>(null);
   const [spinLabel, setSpinLabel] = useState('');
   const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(null);
-  const [rerollsUsed, setRerollsUsed] = useState(0);
   const [sortBy, setSortBy] = useState<'position' | 'rating'>('position');
 
   const MAX_REROLLS = 3;
@@ -54,7 +53,7 @@ export default function DraftPage() {
   }, [mounted, filledCount, positions.length, router]);
 
   const rollDice = useCallback((isReroll = false) => {
-    if (isReroll) setRerollsUsed(prev => prev + 1);
+    if (isReroll) useReroll();
     setPhase('spinning');
     setRoll(null);
     setSelectedPlayer(null);
@@ -79,7 +78,7 @@ export default function DraftPage() {
           .catch(() => setPhase('idle'));
       }
     }, 80);
-  }, []);
+  }, [useReroll]);
 
   function handleSelectPlayer(player: Player) {
     setSelectedPlayer(player);
