@@ -331,3 +331,46 @@ export function simulateSeason(
     directlyRelegate: '',
   };
 }
+
+// ─── Pre-season kansen ────────────────────────────────────────────────────────
+
+export interface SeasonOdds {
+  champion:    number; // % kans op kampioen
+  po1:         number; // % kans op PO1 (niet-kampioen, 2e–6e)
+  po2:         number; // % kans op PO2 Europa (7e–12e)
+  relSurvived: number; // % kans op relegate PO maar gered (13e–14e)
+  relegated:   number; // % kans op degradatie (15e–16e)
+}
+
+export function calculateOdds(
+  userPlayers: PickedPlayer[],
+  opponentSquads: Squad[],
+  teamName: string,
+  formation?: string,
+  iterations = 1000
+): SeasonOdds {
+  let champion = 0, po1 = 0, po2 = 0, relSurvived = 0, relegated = 0;
+
+  for (let i = 0; i < iterations; i++) {
+    const result = simulateSeason(userPlayers, opponentSquads, teamName, formation);
+    if (result.champion === teamName) {
+      champion++;
+    } else if (result.po1.standings.some(r => r.team === teamName)) {
+      po1++;
+    } else if (result.po2.standings.some(r => r.team === teamName)) {
+      po2++;
+    } else if (result.poRelegation.standings.some(r => r.team === teamName)) {
+      if (result.relegated.includes(teamName)) relegated++;
+      else relSurvived++;
+    }
+  }
+
+  const pct = (n: number) => Math.round(n / iterations * 100);
+  return {
+    champion:    pct(champion),
+    po1:         pct(po1),
+    po2:         pct(po2),
+    relSurvived: pct(relSurvived),
+    relegated:   pct(relegated),
+  };
+}

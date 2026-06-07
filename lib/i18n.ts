@@ -99,6 +99,16 @@ export const translations = {
       classicConfirmAuto: 'Bevestig & Automatisch simuleren',
       classicConfirmManual: 'Bevestig & Handmatig simuleren',
       backToSetup: '← Terug',
+      oddsTitle: 'PRE-SEASON PROGNOSE',
+      oddsSubtitle: (n: number) => `Gebaseerd op ${n.toLocaleString('nl-BE')} simulaties`,
+      oddsCalculating: 'Kansen berekenen…',
+      oddsChampion: 'Kampioen',
+      oddsPO1: 'PO1 Championship',
+      oddsPO2: 'PO2 Europa',
+      oddsRelSurvived: 'Relegate PO (gered)',
+      oddsRelegated: 'Gedegradeerd',
+      oddsStartAuto: '⚡ Start Automatische Simulatie',
+      oddsStartManual: '▶ Start Handmatige Simulatie',
     },
 
     // ── Simulate — manual sim ────────────────────────────────────────────────
@@ -356,6 +366,16 @@ export const translations = {
       classicConfirmAuto: 'Confirm & Simulate automatically',
       classicConfirmManual: 'Confirm & Simulate manually',
       backToSetup: '← Back',
+      oddsTitle: 'PRE-SEASON FORECAST',
+      oddsSubtitle: (n: number) => `Based on ${n.toLocaleString('en-GB')} simulations`,
+      oddsCalculating: 'Calculating odds…',
+      oddsChampion: 'Champion',
+      oddsPO1: 'PO1 Championship',
+      oddsPO2: 'PO2 Europa',
+      oddsRelSurvived: 'Relegation PO (survived)',
+      oddsRelegated: 'Relegated',
+      oddsStartAuto: '⚡ Start Automatic Simulation',
+      oddsStartManual: '▶ Start Manual Simulation',
     },
 
     sim: {
