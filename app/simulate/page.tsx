@@ -1358,23 +1358,54 @@ function LoadingView({ label }: { label: string }) {
 function MatchRow({ match }: { match: SimulatedMatch }) {
   const { teamName } = useGameStore();
   const t = useT();
-  const myTeam = teamName.trim() || t.simMode.teamNamePlaceholder;
-  const isUser = match.home === myTeam || match.away === myTeam;
+  const myTeam   = teamName.trim() || t.simMode.teamNamePlaceholder;
+  const isUser   = match.home === myTeam || match.away === myTeam;
+
+  // Scorers: first homeGoals entries = home team, rest = away team
+  const homeScorers = match.scorers.slice(0, match.homeGoals);
+  const awayScorers = match.scorers.slice(match.homeGoals);
+
+  // Count occurrences for "Speler (2)" display
+  const countNames = (names: string[]) =>
+    [...names.reduce((map, n) => map.set(n, (map.get(n) ?? 0) + 1), new Map<string, number>())]
+      .map(([n, c]) => c > 1 ? `${n.split(' ').pop()} (${c})` : n.split(' ').pop()!)
+      .join(', ');
+
+  const hasScorers = match.scorers.length > 0;
+
   return (
-    <div className="flex items-center justify-between rounded-lg px-3 py-2"
-      style={{ background: isUser ? 'rgba(212,148,10,0.06)' : 'var(--surface)', border: `1px solid ${isUser ? 'var(--gold-dim)' : 'var(--border)'}` }}>
-      <span className="text-xs flex-1 text-right truncate"
-        style={{ color: match.home === myTeam ? 'var(--gold)' : 'var(--text)', fontWeight: match.home === myTeam ? 600 : 400 }}>
-        {match.home}
-      </span>
-      <span className="mx-3 flex-shrink-0"
-        style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', color: 'var(--text)', letterSpacing: '0.1em', minWidth: 44, textAlign: 'center' }}>
-        {match.homeGoals} – {match.awayGoals}
-      </span>
-      <span className="text-xs flex-1 truncate"
-        style={{ color: match.away === myTeam ? 'var(--gold)' : 'var(--text)', fontWeight: match.away === myTeam ? 600 : 400 }}>
-        {match.away}
-      </span>
+    <div className="rounded-lg overflow-hidden"
+      style={{ background: isUser ? 'rgba(212,148,10,0.04)' : 'var(--surface)', border: `1px solid ${isUser ? 'var(--gold-dim)' : 'var(--border)'}` }}>
+
+      {/* Score row */}
+      <div className="flex items-center justify-between px-3 py-2">
+        <span className="text-xs flex-1 text-right truncate"
+          style={{ color: match.home === myTeam ? 'var(--gold)' : 'var(--text)', fontWeight: match.home === myTeam ? 600 : 400 }}>
+          {match.home}
+        </span>
+        <span className="mx-3 flex-shrink-0"
+          style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', color: 'var(--text)', letterSpacing: '0.1em', minWidth: 44, textAlign: 'center' }}>
+          {match.homeGoals} – {match.awayGoals}
+        </span>
+        <span className="text-xs flex-1 truncate"
+          style={{ color: match.away === myTeam ? 'var(--gold)' : 'var(--text)', fontWeight: match.away === myTeam ? 600 : 400 }}>
+          {match.away}
+        </span>
+      </div>
+
+      {/* Scorers row */}
+      {hasScorers && (
+        <div className="flex items-start justify-between px-3 pb-2 gap-2"
+          style={{ borderTop: '1px solid var(--border)' }}>
+          <p className="text-xs flex-1 text-right leading-relaxed" style={{ color: 'var(--muted)' }}>
+            {homeScorers.length > 0 && <span>⚽ {countNames(homeScorers)}</span>}
+          </p>
+          <div className="flex-shrink-0" style={{ width: 44 }} />
+          <p className="text-xs flex-1 leading-relaxed" style={{ color: 'var(--muted)' }}>
+            {awayScorers.length > 0 && <span>⚽ {awayScorers.length > 0 ? countNames(awayScorers) : ''}</span>}
+          </p>
+        </div>
+      )}
     </div>
   );
 }
