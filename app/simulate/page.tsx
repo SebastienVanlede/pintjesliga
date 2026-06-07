@@ -796,7 +796,7 @@ function ShareSection({ sim, pickedPlayers, formation, score }: {
   const [copied, setCopied] = useState(false);
   const [shared, setShared] = useState(false);
   const [twitterImgCopied, setTwitterImgCopied] = useState(false);
-  const { teamName } = useGameStore();
+  const { teamName, simSeason, language } = useGameStore();
   const t = useT();
   const myTeam = teamName.trim() || t.simMode.teamNamePlaceholder;
 
@@ -922,12 +922,14 @@ function ShareSection({ sim, pickedPlayers, formation, score }: {
 
   function buildCanvasBlob(): Promise<Blob> {
     return new Promise(resolve => {
-      const W       = 720;
-      const PAD     = 40;
-      const ROW_H   = 46;
-      const HEADER  = 160; // branding + resultaat blok
-      const FOOTER  = 48;
-      const H       = HEADER + pickedPlayers.length * ROW_H + FOOTER;
+      const W           = 760;
+      const PAD         = 28;
+      const ROW_H       = 48;
+      const HEADER_H    = 92;   // branding (incl. seizoen)
+      const RESULT_H    = 88;   // resultaatblok
+      const CHAMPION_H  = 64;   // kampioen footer
+      const ROWS_H      = pickedPlayers.length * ROW_H + 16;
+      const H           = 4 + HEADER_H + RESULT_H + ROWS_H + CHAMPION_H;
 
       const canvas = document.createElement('canvas');
       canvas.width  = W;
@@ -935,78 +937,149 @@ function ShareSection({ sim, pickedPlayers, formation, score }: {
       const ctx = canvas.getContext('2d')!;
 
       const GOLD   = '#D4940A';
-      const DARK   = '#090907';
+      const DARK1  = '#0E0D0B';
+      const DARK2  = '#07060A';
       const BORDER = '#1E1D1A';
       const TEXT   = '#EDE9E0';
       const MUTED  = '#6B6560';
-      const DIM    = '#2a2825';
+      const SUBTLE = '#5a5853';
       const resultCanvasColor = isChampion ? GOLD : userInPO1 ? GOLD : userInPO2 ? '#3a8fd1' : userInRele ? '#C41E3A' : MUTED;
 
-      // Achtergrond
-      ctx.fillStyle = DARK;
+      // Achtergrond met subtiele gradient
+      const grad = ctx.createLinearGradient(0, 0, 0, H);
+      grad.addColorStop(0, DARK1);
+      grad.addColorStop(1, DARK2);
+      ctx.fillStyle = grad;
       ctx.fillRect(0, 0, W, H);
 
       // Belgische balk
-      ctx.fillStyle = '#1A1A1A'; ctx.fillRect(0, 0, W / 3, 5);
-      ctx.fillStyle = GOLD;      ctx.fillRect(W / 3, 0, W / 3, 5);
-      ctx.fillStyle = '#C41E3A'; ctx.fillRect((W / 3) * 2, 0, W / 3, 5);
+      ctx.fillStyle = '#1A1A1A'; ctx.fillRect(0, 0, W / 3, 4);
+      ctx.fillStyle = GOLD;      ctx.fillRect(W / 3, 0, W / 3, 4);
+      ctx.fillStyle = '#C41E3A'; ctx.fillRect((W / 3) * 2, 0, W / 3, 4);
 
-      let y = 46;
+      // ── Header ─────────────────────────────────────────
+      let y = 4;
+      const headerBottom = y + HEADER_H;
 
-      // Branding
-      ctx.font = '700 38px Impact, Arial Black, sans-serif';
+      // Subtiele radial highlight rechtsboven
+      const radial = ctx.createRadialGradient(W - 100, 30, 0, W - 100, 30, 280);
+      radial.addColorStop(0, 'rgba(212,148,10,0.08)');
+      radial.addColorStop(1, 'transparent');
+      ctx.fillStyle = radial;
+      ctx.fillRect(0, y, W, HEADER_H);
+
+      ctx.font = '800 36px Impact, Arial Black, sans-serif';
       ctx.fillStyle = GOLD;
       ctx.textAlign = 'left';
-      ctx.fillText('PINTJESLIGA', PAD, y);
+      ctx.fillText('PINTJESLIGA', PAD, y + 44);
 
-      ctx.font = '14px Arial, sans-serif';
+      ctx.font = '11px Arial, sans-serif';
       ctx.fillStyle = MUTED;
-      ctx.textAlign = 'right';
-      ctx.fillText(`${formation}  ·  gem. OVR ${avgOverall}`, W - PAD, y);
+      ctx.letterSpacing = '1.5px';
+      ctx.fillText(`${language === 'nl' ? 'SEIZOEN' : 'SEASON'} ${simSeason}`, PAD, y + 66);
+      ctx.letterSpacing = '0px';
 
-      y += 22;
-
-      // Resultaat blok
-      ctx.fillStyle = 'rgba(255,255,255,0.03)';
+      // Formatie chip (rechts)
+      const formationText = formation;
+      ctx.font = 'bold 13px Arial, sans-serif';
+      const fmTextW = ctx.measureText(formationText).width;
+      const chipW = fmTextW + 22;
+      const chipX = W - PAD - chipW;
+      ctx.fillStyle = 'rgba(212,148,10,0.08)';
+      ctx.strokeStyle = 'rgba(212,148,10,0.4)';
+      ctx.lineWidth = 1;
       ctx.beginPath();
-      ctx.roundRect(PAD, y, W - PAD * 2, 58, 6);
+      ctx.roundRect(chipX, y + 28, chipW, 22, 4);
       ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = GOLD;
+      ctx.textAlign = 'center';
+      ctx.fillText(formationText, chipX + chipW / 2, y + 43);
 
+      // Gem. OVR onder chip
       ctx.font = '11px Arial, sans-serif';
+      ctx.fillStyle = MUTED;
+      ctx.textAlign = 'right';
+      const avgLabel = language === 'nl' ? 'gem. OVR ' : 'avg. OVR ';
+      const avgValue = String(avgOverall);
+      ctx.fillText(avgLabel, W - PAD - ctx.measureText(avgValue).width - 4, y + 66);
+      ctx.fillStyle = TEXT;
+      ctx.font = 'bold 11px Arial, sans-serif';
+      ctx.fillText(avgValue, W - PAD, y + 66);
+
+      // Separator
+      ctx.strokeStyle = BORDER;
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(0, headerBottom);
+      ctx.lineTo(W, headerBottom);
+      ctx.stroke();
+
+      // ── Resultaat blok ─────────────────────────────────
+      y = headerBottom;
+      // Achtergrond (afhankelijk van uitkomst)
+      if (isChampion) {
+        const champG = ctx.createLinearGradient(0, y, W, y);
+        champG.addColorStop(0, 'rgba(212,148,10,0.18)');
+        champG.addColorStop(1, 'rgba(212,148,10,0.02)');
+        ctx.fillStyle = champG;
+        ctx.fillRect(0, y, W, RESULT_H);
+      } else if (userInRele) {
+        const releG = ctx.createLinearGradient(0, y, W, y);
+        releG.addColorStop(0, 'rgba(196,30,58,0.12)');
+        releG.addColorStop(1, 'rgba(196,30,58,0.02)');
+        ctx.fillStyle = releG;
+        ctx.fillRect(0, y, W, RESULT_H);
+      }
+
+      // Linker accent-rand
+      ctx.fillStyle = resultCanvasColor;
+      ctx.fillRect(0, y, 3, RESULT_H);
+
+      // Teamnaam (klein label)
+      ctx.font = '10px Arial, sans-serif';
       ctx.fillStyle = MUTED;
       ctx.textAlign = 'left';
-      ctx.fillText(myTeam.toUpperCase(), PAD + 12, y + 18);
+      ctx.letterSpacing = '1.5px';
+      ctx.fillText(myTeam.toUpperCase(), PAD, y + 26);
+      ctx.letterSpacing = '0px';
 
-      ctx.font = 'bold 20px Arial, sans-serif';
+      // Result label (groot)
+      ctx.font = '800 22px Arial, sans-serif';
       ctx.fillStyle = resultCanvasColor;
-      ctx.fillText(resultLabel, PAD + 12, y + 42);
+      ctx.fillText(resultLabel, PAD, y + 56);
 
-      ctx.font = 'bold 28px Impact, Arial Black, sans-serif';
+      // Score rechts
+      ctx.font = '800 30px Impact, Arial Black, sans-serif';
       ctx.fillStyle = GOLD;
       ctx.textAlign = 'right';
-      ctx.fillText(score.total.toLocaleString('nl-BE'), W - PAD - 12, y + 42);
+      ctx.fillText(score.total.toLocaleString('nl-BE'), W - PAD, y + 50);
 
-      ctx.font = '11px Arial, sans-serif';
+      ctx.font = '10px Arial, sans-serif';
       ctx.fillStyle = MUTED;
-      ctx.fillText('pts', W - PAD - 12, y + 18);
+      ctx.letterSpacing = '1.5px';
+      ctx.fillText(language === 'nl' ? 'PUNTEN' : 'POINTS', W - PAD, y + 68);
+      ctx.letterSpacing = '0px';
 
-      y = HEADER;
+      // Separator
+      ctx.strokeStyle = BORDER;
+      ctx.beginPath();
+      ctx.moveTo(0, y + RESULT_H);
+      ctx.lineTo(W, y + RESULT_H);
+      ctx.stroke();
 
-      // Spelersrijen
+      // ── Spelersrijen ───────────────────────────────────
+      y = y + RESULT_H + 8;
       const sorted = [...pickedPlayers].sort((a, b) => a.positionIndex - b.positionIndex);
       for (let i = 0; i < sorted.length; i++) {
         const p    = sorted[i];
         const stat = playerStat(p);
         const rowY = y + i * ROW_H;
+        const midY = rowY + ROW_H / 2;
 
-        if (i % 2 === 1) {
-          ctx.fillStyle = 'rgba(255,255,255,0.02)';
-          ctx.fillRect(0, rowY, W, ROW_H);
-        }
-
-        // Scheidingslijn
+        // Lichte scheiding
         if (i > 0) {
-          ctx.strokeStyle = BORDER;
+          ctx.strokeStyle = 'rgba(30,29,26,0.5)';
           ctx.lineWidth = 0.5;
           ctx.beginPath();
           ctx.moveTo(PAD, rowY);
@@ -1014,56 +1087,82 @@ function ShareSection({ sim, pickedPlayers, formation, score }: {
           ctx.stroke();
         }
 
-        const midY = rowY + ROW_H / 2;
-
         // Positie
-        ctx.font = 'bold 10px Arial, sans-serif';
+        ctx.font = 'bold 11px Arial, sans-serif';
         ctx.fillStyle = GOLD;
         ctx.textAlign = 'left';
-        ctx.fillText(p.position, PAD, midY - 4);
+        ctx.letterSpacing = '0.8px';
+        ctx.fillText(p.position, PAD, midY + 4);
+        ctx.letterSpacing = '0px';
 
         // Naam
-        ctx.font = '500 15px Arial, sans-serif';
+        ctx.font = '600 15px Arial, sans-serif';
         ctx.fillStyle = TEXT;
-        ctx.fillText(p.player.name, PAD + 44, midY - 4);
+        ctx.fillText(p.player.name, PAD + 48, midY - 4);
 
         // Club · seizoen
-        ctx.font = '10px Arial, sans-serif';
-        ctx.fillStyle = DIM;
-        ctx.fillText(`${p.teamName} · ${p.season}`, PAD + 44, midY + 11);
+        ctx.font = '11px Arial, sans-serif';
+        ctx.fillStyle = SUBTLE;
+        ctx.fillText(`${p.teamName} · ${p.season}`, PAD + 48, midY + 13);
 
         // Stat badge
         if (stat !== '—') {
-          const bw = ctx.measureText(stat).width + 16;
-          ctx.fillStyle = 'rgba(212,148,10,0.15)';
+          ctx.font = 'bold 12px Arial, sans-serif';
+          const sw = ctx.measureText(stat).width;
+          const bw = sw + 18;
+          ctx.fillStyle = 'rgba(212,148,10,0.14)';
+          ctx.strokeStyle = 'rgba(212,148,10,0.25)';
+          ctx.lineWidth = 1;
           ctx.beginPath();
-          ctx.roundRect(W - PAD - bw, midY - 11, bw, 20, 4);
+          ctx.roundRect(W - PAD - bw, midY - 12, bw, 22, 5);
           ctx.fill();
-          ctx.font = 'bold 11px Arial, sans-serif';
+          ctx.stroke();
           ctx.fillStyle = GOLD;
           ctx.textAlign = 'right';
-          ctx.fillText(stat, W - PAD - 8, midY + 4);
+          ctx.fillText(stat, W - PAD - 9, midY + 4);
         } else {
-          ctx.font = '11px Arial, sans-serif';
+          ctx.font = '12px Arial, sans-serif';
           ctx.fillStyle = '#2a2825';
           ctx.textAlign = 'right';
           ctx.fillText('—', W - PAD, midY + 4);
         }
       }
 
-      // Footer
-      const footerY = HEADER + sorted.length * ROW_H;
+      // ── Kampioen footer ────────────────────────────────
+      const footerTop = HEADER_H + RESULT_H + ROWS_H + 4;
+      ctx.fillStyle = 'rgba(212,148,10,0.04)';
+      ctx.fillRect(0, footerTop, W, CHAMPION_H);
       ctx.strokeStyle = BORDER;
-      ctx.lineWidth = 0.5;
+      ctx.lineWidth = 1;
       ctx.beginPath();
-      ctx.moveTo(PAD, footerY);
-      ctx.lineTo(W - PAD, footerY);
+      ctx.moveTo(0, footerTop);
+      ctx.lineTo(W, footerTop);
       ctx.stroke();
 
+      // Trofee emoji
+      ctx.font = '22px Arial, sans-serif';
+      ctx.fillStyle = TEXT;
+      ctx.textAlign = 'left';
+      ctx.fillText('🏆', PAD, footerTop + 38);
+
+      // Champion label + naam
+      ctx.font = '10px Arial, sans-serif';
+      ctx.fillStyle = MUTED;
+      ctx.letterSpacing = '1.5px';
+      ctx.fillText(language === 'nl' ? 'KAMPIOEN' : 'CHAMPION', PAD + 38, footerTop + 24);
+      ctx.letterSpacing = '0px';
+
+      ctx.font = 'bold 16px Arial, sans-serif';
+      ctx.fillStyle = isChampion ? GOLD : TEXT;
+      ctx.fillText(sim.champion, PAD + 38, footerTop + 46);
+
+      // URL rechts
       ctx.font = '11px Arial, sans-serif';
       ctx.fillStyle = '#3a3835';
-      ctx.textAlign = 'center';
-      ctx.fillText('pintjesliga.vercel.app', W / 2, footerY + 28);
+      ctx.textAlign = 'right';
+      ctx.letterSpacing = '1px';
+      ctx.fillText('pintjesliga.vercel.app', W - PAD, footerTop + 46);
+      ctx.letterSpacing = '0px';
 
       canvas.toBlob(blob => resolve(blob!), 'image/png');
     });
@@ -1092,90 +1191,179 @@ function ShareSection({ sim, pickedPlayers, formation, score }: {
       {/* Preview card */}
       {(() => {
         const resultColor = isChampion ? '#D4940A' : userInPO1 ? '#D4940A' : userInPO2 ? '#3a8fd1' : userInRele ? '#C41E3A' : '#6B6560';
-        const resultBg    = isChampion ? 'rgba(212,148,10,0.12)' : userInPO2 ? 'rgba(58,143,209,0.08)' : userInRele ? 'rgba(196,30,58,0.08)' : 'rgba(255,255,255,0.04)';
         return (
-          <div style={{ background: '#090907', borderRadius: 12, overflow: 'hidden', border: '1px solid #1E1D1A', fontFamily: 'system-ui, Arial, sans-serif' }}>
+          <div style={{
+            background: 'linear-gradient(180deg, #0E0D0B 0%, #07060A 100%)',
+            borderRadius: 14,
+            overflow: 'hidden',
+            border: '1px solid #1E1D1A',
+            fontFamily: 'system-ui, Arial, sans-serif',
+            boxShadow: '0 8px 32px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.04)',
+          }}>
             {/* Belgian stripe */}
-            <div style={{ display: 'flex', height: 4 }}>
+            <div style={{ display: 'flex', height: 3 }}>
               <div style={{ flex: 1, background: '#1A1A1A' }} />
               <div style={{ flex: 1, background: '#D4940A' }} />
               <div style={{ flex: 1, background: '#C41E3A' }} />
             </div>
 
-            <div style={{ padding: '18px 20px', display: 'flex', flexDirection: 'column', gap: 14 }}>
-
-              {/* Branding + formatie */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <span style={{ fontFamily: 'Impact, Arial Black, sans-serif', fontSize: 22, color: '#D4940A', letterSpacing: 2 }}>
-                  PINTJESLIGA
-                </span>
-                <span style={{ fontSize: 11, color: '#6B6560', letterSpacing: 1 }}>{formation}</span>
-              </div>
-
-              {/* Resultaat + score */}
-              <div style={{ borderRadius: 8, padding: '10px 14px', background: resultBg, border: `1px solid ${resultColor}30`, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            {/* ── Header ── */}
+            <div style={{
+              padding: '18px 22px 14px',
+              borderBottom: '1px solid #1E1D1A',
+              background: 'radial-gradient(ellipse at top right, rgba(212,148,10,0.08) 0%, transparent 60%)',
+            }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: 12 }}>
                 <div>
-                  <p style={{ fontSize: 10, color: '#6B6560', marginBottom: 2 }}>{myTeam}</p>
-                  <p style={{ fontSize: 18, fontWeight: 700, color: resultColor, letterSpacing: 0.5 }}>{resultLabel}</p>
+                  <p style={{
+                    fontFamily: 'Impact, Arial Black, sans-serif',
+                    fontSize: 24, color: '#D4940A', letterSpacing: 2.5,
+                    lineHeight: 1,
+                  }}>
+                    PINTJESLIGA
+                  </p>
+                  <p style={{ fontSize: 10, color: '#6B6560', marginTop: 5, letterSpacing: 1.5, textTransform: 'uppercase' }}>
+                    {language === 'nl' ? 'Seizoen' : 'Season'} {simSeason}
+                  </p>
                 </div>
-                <div style={{ textAlign: 'right', display: 'flex', flexDirection: 'column', gap: 4 }}>
-                  <div>
-                    <p style={{ fontSize: 10, color: '#6B6560', marginBottom: 2 }}>Score</p>
-                    <p style={{ fontFamily: 'Impact, Arial Black, sans-serif', fontSize: 22, color: '#D4940A', letterSpacing: 1 }}>
-                      {score.total.toLocaleString('nl-BE')}
-                    </p>
-                  </div>
-                  <p style={{ fontSize: 10, color: '#6B6560' }}>gem. OVR {avgOverall}</p>
+                <div style={{ textAlign: 'right' }}>
+                  <p style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: 11, color: '#D4940A', letterSpacing: 2,
+                    padding: '2px 8px',
+                    border: '1px solid rgba(212,148,10,0.35)',
+                    borderRadius: 3,
+                    background: 'rgba(212,148,10,0.06)',
+                    display: 'inline-block',
+                  }}>
+                    {formation}
+                  </p>
+                  <p style={{ fontSize: 9.5, color: '#6B6560', marginTop: 5, letterSpacing: 0.6 }}>
+                    {language === 'nl' ? 'gem. OVR' : 'avg. OVR'} <span style={{ color: '#EDE9E0', fontWeight: 600 }}>{avgOverall}</span>
+                  </p>
                 </div>
               </div>
+            </div>
 
-              {/* Spelerslijst */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-                {[...pickedPlayers].sort((a, b) => a.positionIndex - b.positionIndex).map((p, i) => {
-                  const stat = playerStat(p);
-                  const hasStat = stat !== '—';
-                  return (
-                    <div key={i} style={{
-                      display: 'flex', alignItems: 'center', gap: 8,
-                      padding: '6px 0',
-                      borderBottom: i < 10 ? '1px solid #141412' : 'none',
+            {/* ── Resultaat blok ── */}
+            <div style={{
+              padding: '14px 22px',
+              borderBottom: '1px solid #1E1D1A',
+              background: isChampion
+                ? 'linear-gradient(90deg, rgba(212,148,10,0.18) 0%, rgba(212,148,10,0.04) 100%)'
+                : userInRele
+                ? 'linear-gradient(90deg, rgba(196,30,58,0.12) 0%, rgba(196,30,58,0.02) 100%)'
+                : 'transparent',
+              borderLeft: `3px solid ${resultColor}`,
+            }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12 }}>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <p style={{
+                    fontSize: 9, color: '#6B6560', letterSpacing: 1.5, textTransform: 'uppercase',
+                    marginBottom: 3,
+                  }}>
+                    {myTeam}
+                  </p>
+                  <p style={{
+                    fontSize: 18, fontWeight: 800, color: resultColor,
+                    letterSpacing: 0.3, lineHeight: 1.15,
+                  }}>
+                    {resultLabel}
+                  </p>
+                </div>
+                <div style={{ textAlign: 'right', flexShrink: 0 }}>
+                  <p style={{
+                    fontFamily: 'Impact, Arial Black, sans-serif',
+                    fontSize: 26, color: '#D4940A', letterSpacing: 0.8,
+                    lineHeight: 1,
+                  }}>
+                    {score.total.toLocaleString('nl-BE')}
+                  </p>
+                  <p style={{ fontSize: 9, color: '#6B6560', marginTop: 3, letterSpacing: 1.5, textTransform: 'uppercase' }}>
+                    {language === 'nl' ? 'punten' : 'points'}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* ── Spelerslijst ── */}
+            <div style={{ padding: '4px 18px' }}>
+              {[...pickedPlayers].sort((a, b) => a.positionIndex - b.positionIndex).map((p, i) => {
+                const stat = playerStat(p);
+                const hasStat = stat !== '—';
+                return (
+                  <div key={i} style={{
+                    display: 'flex', alignItems: 'center', gap: 10,
+                    padding: '8px 4px',
+                    borderBottom: i < 10 ? '1px solid rgba(30,29,26,0.5)' : 'none',
+                  }}>
+                    {/* Positie chip */}
+                    <span style={{
+                      fontSize: 9, color: '#D4940A', width: 30,
+                      fontWeight: 700, flexShrink: 0, letterSpacing: 0.8,
+                      textAlign: 'left',
                     }}>
-                      {/* Positie */}
-                      <span style={{ fontSize: 9, color: '#D4940A', width: 28, fontWeight: 700, flexShrink: 0, letterSpacing: 0.5 }}>
-                        {p.position}
-                      </span>
-                      {/* Naam + club */}
-                      <div style={{ flex: 1, minWidth: 0 }}>
-                        <p style={{ fontSize: 13, color: '#EDE9E0', fontWeight: 600, margin: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                          {p.player.name}
-                        </p>
-                        <p style={{ fontSize: 9, color: '#4a4845', margin: 0, marginTop: 1 }}>
-                          {p.teamName} · {p.season}
-                        </p>
-                      </div>
-                      {/* Stat badge */}
-                      {hasStat ? (
-                        <span style={{
-                          fontSize: 10, fontWeight: 700, flexShrink: 0,
-                          padding: '2px 6px', borderRadius: 4,
-                          background: 'rgba(212,148,10,0.12)',
-                          color: '#D4940A',
-                          letterSpacing: 0.3,
-                        }}>
-                          {stat}
-                        </span>
-                      ) : (
-                        <span style={{ fontSize: 10, color: '#2a2825', width: 36, textAlign: 'right', flexShrink: 0 }}>—</span>
-                      )}
+                      {p.position}
+                    </span>
+                    {/* Naam + club */}
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <p style={{
+                        fontSize: 13.5, color: '#EDE9E0', fontWeight: 600,
+                        margin: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+                        letterSpacing: 0.1,
+                      }}>
+                        {p.player.name}
+                      </p>
+                      <p style={{ fontSize: 9.5, color: '#5a5853', margin: 0, marginTop: 1, letterSpacing: 0.2 }}>
+                        {p.teamName} · {p.season}
+                      </p>
                     </div>
-                  );
-                })}
-              </div>
+                    {/* Stat badge */}
+                    {hasStat ? (
+                      <span style={{
+                        fontSize: 10, fontWeight: 700, flexShrink: 0,
+                        padding: '3px 8px', borderRadius: 4,
+                        background: 'rgba(212,148,10,0.14)',
+                        color: '#D4940A',
+                        letterSpacing: 0.4,
+                        border: '1px solid rgba(212,148,10,0.2)',
+                      }}>
+                        {stat}
+                      </span>
+                    ) : (
+                      <span style={{ fontSize: 11, color: '#2a2825', minWidth: 42, textAlign: 'right', flexShrink: 0 }}>—</span>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
 
-              {/* Footer */}
-              <div style={{ fontSize: 10, color: '#3a3835', textAlign: 'center', letterSpacing: 1 }}>
-                pintjesliga.vercel.app
+            {/* ── Kampioen footer ── */}
+            <div style={{
+              padding: '12px 22px',
+              borderTop: '1px solid #1E1D1A',
+              background: 'rgba(212,148,10,0.04)',
+              display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12,
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 0 }}>
+                <span style={{ fontSize: 16, flexShrink: 0 }}>🏆</span>
+                <div style={{ minWidth: 0 }}>
+                  <p style={{ fontSize: 9, color: '#6B6560', letterSpacing: 1.5, textTransform: 'uppercase' }}>
+                    {language === 'nl' ? 'Kampioen' : 'Champion'}
+                  </p>
+                  <p style={{
+                    fontSize: 13, fontWeight: 700,
+                    color: isChampion ? '#D4940A' : '#EDE9E0',
+                    letterSpacing: 0.3, marginTop: 2,
+                    overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+                  }}>
+                    {sim.champion}
+                  </p>
+                </div>
               </div>
+              <p style={{ fontSize: 9.5, color: '#3a3835', letterSpacing: 1.2, flexShrink: 0 }}>
+                pintjesliga.vercel.app
+              </p>
             </div>
           </div>
         );
