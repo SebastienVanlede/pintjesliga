@@ -11,6 +11,13 @@ export interface PendingRoll {
   primaryColor: string;
 }
 
+export interface ClassicOpponent {
+  teamId: string;
+  teamName: string;
+  season: string;
+  primaryColor: string;
+}
+
 interface GameState {
   formation: Formation | null;
   pickedPlayers: PickedPlayer[];
@@ -23,6 +30,7 @@ interface GameState {
   language: Lang;
   rerollsUsed: number;
   pendingRoll: PendingRoll | null;
+  classicSquads: ClassicOpponent[] | null;
 
   setFormation: (f: Formation) => void;
   pickPlayer: (p: PickedPlayer) => void;
@@ -34,6 +42,7 @@ interface GameState {
   setLanguage: (l: Lang) => void;
   useReroll: () => void;
   setPendingRoll: (r: PendingRoll | null) => void;
+  setClassicSquads: (s: ClassicOpponent[] | null) => void;
   reset: () => void;
   resetKeepFormation: () => void;
 }
@@ -52,9 +61,10 @@ export const useGameStore = create<GameState>()(
       language: 'nl',
       rerollsUsed: 0,
       pendingRoll: null,
+      classicSquads: null,
 
       setFormation: (formation) =>
-        set({ formation, pickedPlayers: [], currentPositionIndex: 0, simulatedSeason: null, rerollsUsed: 0 }),
+        set({ formation, pickedPlayers: [], currentPositionIndex: 0, simulatedSeason: null, rerollsUsed: 0, classicSquads: null }),
 
       pickPlayer: (player) =>
         set((state) => ({
@@ -79,11 +89,13 @@ export const useGameStore = create<GameState>()(
 
       setPendingRoll: (pendingRoll) => set({ pendingRoll }),
 
+      setClassicSquads: (classicSquads) => set({ classicSquads }),
+
       reset: () =>
-        set({ formation: null, pickedPlayers: [], currentPositionIndex: 0, simulatedSeason: null, rerollsUsed: 0, pendingRoll: null }),
+        set({ formation: null, pickedPlayers: [], currentPositionIndex: 0, simulatedSeason: null, rerollsUsed: 0, pendingRoll: null, classicSquads: null }),
 
       resetKeepFormation: () =>
-        set({ pickedPlayers: [], currentPositionIndex: 0, simulatedSeason: null, rerollsUsed: 0, pendingRoll: null }),
+        set({ pickedPlayers: [], currentPositionIndex: 0, simulatedSeason: null, rerollsUsed: 0, pendingRoll: null, classicSquads: null }),
     }),
     {
       name: 'pintjesliga-state',
@@ -99,6 +111,7 @@ export const useGameStore = create<GameState>()(
         language:         state.language,
         rerollsUsed:      state.rerollsUsed,
         pendingRoll:      state.pendingRoll,
+        classicSquads:    state.classicSquads,
       }),
     }
   )

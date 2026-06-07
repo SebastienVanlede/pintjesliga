@@ -183,3 +183,24 @@ export async function loadSquad(teamId: string, season: string): Promise<Squad |
   if (!loader) return null;
   return loader();
 }
+
+/** Selecteer 16 willekeurige ploegen — elke club maximaal 1 keer. */
+export function selectClassicOpponents(): { teamId: string; teamName: string; season: string; primaryColor: string }[] {
+  const allRolls = getAvailableRolls();
+  const shuffled = [...allRolls].sort(() => Math.random() - 0.5);
+  const usedClubs = new Set<string>();
+  const selected: { teamId: string; teamName: string; season: string; primaryColor: string }[] = [];
+  for (const roll of shuffled) {
+    if (selected.length >= 16) break;
+    if (!usedClubs.has(roll.team.id)) {
+      usedClubs.add(roll.team.id);
+      selected.push({
+        teamId:       roll.team.id,
+        teamName:     roll.team.name,
+        season:       roll.season,
+        primaryColor: roll.team.primaryColor,
+      });
+    }
+  }
+  return selected;
+}

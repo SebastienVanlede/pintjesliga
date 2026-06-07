@@ -3,7 +3,8 @@ import { useEffect, useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGameStore } from '@/lib/store';
-import { getAvailableRolls, loadSquad, CURRENT_SEASON } from '@/lib/data';
+import { getAvailableRolls, loadSquad, selectClassicOpponents, CURRENT_SEASON } from '@/lib/data';
+import { ClassicOpponent } from '@/lib/store';
 import {
   simulateSeason,
   buildSimTeams,
@@ -23,12 +24,15 @@ type TabId = 'regular' | 'po1' | 'po2' | 'relegation' | 'scorers';
 
 export default function SimulatePage() {
   const router = useRouter();
-  const { formation, pickedPlayers, simulatedSeason, setSimulatedSeason, reset, teamName, setTeamName, simSeason, setSimSeason } = useGameStore();
+  const {
+    formation, pickedPlayers, simulatedSeason, setSimulatedSeason, reset,
+    teamName, setTeamName, simSeason, setSimSeason,
+    classicSquads, setClassicSquads,
+  } = useGameStore();
   const [mode, setMode] = useState<SimMode | null>(null);
   const [squads, setSquads] = useState<Squad[] | null>(null);
   const [mounted, setMounted] = useState(false);
 
-  // Wacht tot de Zustand store gehydrateerd is voor de redirect-check
   useEffect(() => { setMounted(true); }, []);
 
   useEffect(() => {
@@ -39,16 +43,22 @@ export default function SimulatePage() {
   useEffect(() => {
     if (!formation || pickedPlayers.length < 11) return;
     setSquads(null);
-    const rolls = getAvailableRolls().filter(r => r.season === simSeason);
-    Promise.all(rolls.map(r => loadSquad(r.team.id, r.season)))
-      .then(results => setSquads(results.filter(Boolean) as Squad[]));
-  }, [simSeason]);
+    if (classicSquads && classicSquads.length > 0) {
+      // Classic mode — laad de geselecteerde 16 ploegen
+      Promise.all(classicSquads.map(s => loadSquad(s.teamId, s.season)))
+        .then(results => setSquads(results.filter(Boolean) as Squad[]));
+    } else {
+      // Seizoen mode — laad alle ploegen van het gekozen seizoen
+      const rolls = getAvailableRolls().filter(r => r.season === simSeason);
+      Promise.all(rolls.map(r => loadSquad(r.team.id, r.season)))
+        .then(results => setSquads(results.filter(Boolean) as Squad[]));
+    }
+  }, [simSeason, classicSquads]);
 
   if (!mounted || !formation || pickedPlayers.length < 11) return null;
 
   const sim = simulatedSeason as SimulatedSeason | null;
 
-  // Already have a completed result → show it
   if (sim) {
     return <ResultsView sim={sim} onReset={() => {
       if (window.confirm('Weet je zeker dat je opnieuw wil beginnen? Je resultaten gaan verloren.')) {
@@ -57,9 +67,19 @@ export default function SimulatePage() {
     }} onBack={() => router.push('/xi')} />;
   }
 
-  // Mode not yet chosen
+  function handleModeSelect(simMode: SimMode, opponents?: ClassicOpponent[]) {
+    if (opponents) setClassicSquads(opponents);
+    setMode(simMode);
+  }
+
   if (!mode) {
-    return <ModeSelector teamName={teamName} setTeamName={setTeamName} simSeason={simSeason} setSimSeason={setSimSeason} onSelect={setMode} />;
+    return (
+      <ModeSelector
+        teamName={teamName} setTeamName={setTeamName}
+        simSeason={simSeason} setSimSeason={setSimSeason}
+        onSelect={handleModeSelect}
+      />
+    );
   }
 
   if (!squads) {
@@ -94,9 +114,88 @@ const SIM_SEASONS = ['2025-26', '2024-25', '2023-24', '2022-23', '2021-22', '202
 function ModeSelector({ teamName, setTeamName, simSeason, setSimSeason, onSelect }: {
   teamName: string; setTeamName: (n: string) => void;
   simSeason: string; setSimSeason: (s: string) => void;
-  onSelect: (m: SimMode) => void;
+  onSelect: (m: SimMode, classicOpponents?: ClassicOpponent[]) => void;
 }) {
   const t = useT();
+  const [opponentMode, setOpponentMode] = useState<'classic' | 'season'>('season');
+  const [pendingSimMode, setPendingSimMode] = useState<SimMode | null>(null);
+  const [generatedOpponents, setGeneratedOpponents] = useState<ClassicOpponent[] | null>(null);
+
+  function handleModeCardClick(simMode: SimMode) {
+    if (opponentMode === 'classic') {
+      // Genereer 16 unieke ploegen en toon preview
+      const opponents = selectClassicOpponents();
+      setGeneratedOpponents(opponents);
+      setPendingSimMode(simMode);
+    } else {
+      onSelect(simMode);
+    }
+  }
+
+  // Classic preview scherm
+  if (pendingSimMode && generatedOpponents) {
+    return (
+      <PageShell>
+        <div className="w-full max-w-xl">
+          <button
+            onClick={() => { setPendingSimMode(null); setGeneratedOpponents(null); }}
+            className="text-xs mb-6 transition-all"
+            style={{ color: 'var(--muted)', cursor: 'pointer', background: 'none', border: 'none' }}
+          >
+            {t.simMode.backToSetup}
+          </button>
+
+          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem,5vw,2.4rem)', color: 'var(--gold)', letterSpacing: '0.08em', marginBottom: 6 }}>
+            {t.simMode.classicPreviewTitle}
+          </h1>
+          <p className="text-xs mb-6" style={{ color: 'var(--muted)' }}>{t.simMode.classicPreviewSubtitle}</p>
+
+          {/* Lijst van 16 ploegen */}
+          <div className="flex flex-col rounded-xl overflow-hidden mb-6" style={{ border: '1px solid var(--border)' }}>
+            {generatedOpponents.map((opp, i) => (
+              <div key={i} className="flex items-center justify-between px-4 py-3 text-sm"
+                style={{
+                  borderTop: i > 0 ? '1px solid var(--border)' : 'none',
+                  background: i % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.015)',
+                  borderLeft: `3px solid ${opp.primaryColor}`,
+                }}>
+                <div className="flex items-center gap-3">
+                  <span style={{
+                    fontFamily: 'var(--font-display)', fontSize: '0.7rem', color: 'var(--muted)',
+                    width: 20, textAlign: 'right', flexShrink: 0,
+                  }}>{i + 1}</span>
+                  <span style={{ color: 'var(--text)', fontWeight: 500 }}>{opp.teamName}</span>
+                </div>
+                <span style={{
+                  fontSize: '0.7rem', fontFamily: 'var(--font-display)', letterSpacing: '0.06em',
+                  padding: '2px 8px', borderRadius: 4,
+                  background: 'var(--surface-2)', color: 'var(--muted)',
+                }}>
+                  {opp.season}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <button
+            onClick={() => onSelect(pendingSimMode, generatedOpponents)}
+            className="w-full py-3.5 rounded-xl transition-all duration-150"
+            style={{
+              fontFamily: 'var(--font-display)', fontSize: '1rem', letterSpacing: '0.12em',
+              background: 'var(--gold)', color: '#07070A',
+              border: '2px solid var(--gold)',
+              boxShadow: '0 0 30px rgba(212,148,10,0.25)',
+              cursor: 'pointer',
+            }}
+          >
+            {pendingSimMode === 'auto' ? t.simMode.classicConfirmAuto : t.simMode.classicConfirmManual}
+          </button>
+        </div>
+      </PageShell>
+    );
+  }
+
+  // Normaal setup scherm
   return (
     <PageShell>
       <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.8rem,6vw,3rem)', color: 'var(--gold)', letterSpacing: '0.08em' }}>
@@ -119,30 +218,60 @@ function ModeSelector({ teamName, setTeamName, simSeason, setSimSeason, onSelect
         />
       </div>
 
-      {/* Season picker */}
-      <div className="w-full max-w-xl flex flex-col gap-1.5">
+      {/* Opponent mode toggle */}
+      <div className="w-full max-w-xl flex flex-col gap-2">
         <label className="text-xs tracking-widest uppercase px-1" style={{ color: 'var(--muted)' }}>
-          {t.simMode.opponentSeasonLabel}
+          {t.simMode.opponentModeLabel}
         </label>
-        <div className="flex gap-2 flex-wrap">
-          {SIM_SEASONS.map(s => (
-            <button key={s} onClick={() => setSimSeason(s)}
-              className="px-4 py-2 rounded text-sm transition-all duration-150"
-              style={{
-                fontFamily: 'var(--font-display)', letterSpacing: '0.06em',
-                background: simSeason === s ? 'var(--gold)' : 'var(--surface)',
-                color: simSeason === s ? '#090907' : 'var(--muted)',
-                border: `1px solid ${simSeason === s ? 'var(--gold)' : 'var(--border)'}`,
-              }}>
-              {s}
-            </button>
-          ))}
+        <div className="flex gap-3">
+          {(['classic', 'season'] as const).map(m => {
+            const isActive = opponentMode === m;
+            const label = m === 'classic' ? t.simMode.classicMode : t.simMode.seasonMode;
+            const desc  = m === 'classic' ? t.simMode.classicModeDesc : t.simMode.opponentSeasonLabel;
+            return (
+              <button key={m} onClick={() => setOpponentMode(m)}
+                className="flex-1 flex flex-col items-start px-4 py-3 rounded-lg transition-all duration-150 text-left"
+                style={{
+                  background: isActive ? 'rgba(212,148,10,0.08)' : 'var(--surface)',
+                  border: `1.5px solid ${isActive ? 'var(--gold)' : 'var(--border)'}`,
+                  cursor: 'pointer',
+                }}>
+                <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.85rem', letterSpacing: '0.08em', color: isActive ? 'var(--gold)' : 'var(--text)' }}>
+                  {label}
+                </span>
+                <span style={{ fontSize: '0.68rem', color: 'var(--muted)', marginTop: 3, lineHeight: 1.4 }}>{desc}</span>
+              </button>
+            );
+          })}
         </div>
       </div>
 
+      {/* Season picker — enkel zichtbaar in seizoen-modus */}
+      {opponentMode === 'season' && (
+        <div className="w-full max-w-xl flex flex-col gap-1.5">
+          <label className="text-xs tracking-widest uppercase px-1" style={{ color: 'var(--muted)' }}>
+            {t.simMode.opponentSeasonLabel}
+          </label>
+          <div className="flex gap-2 flex-wrap">
+            {SIM_SEASONS.map(s => (
+              <button key={s} onClick={() => setSimSeason(s)}
+                className="px-4 py-2 rounded text-sm transition-all duration-150"
+                style={{
+                  fontFamily: 'var(--font-display)', letterSpacing: '0.06em',
+                  background: simSeason === s ? 'var(--gold)' : 'var(--surface)',
+                  color: simSeason === s ? '#090907' : 'var(--muted)',
+                  border: `1px solid ${simSeason === s ? 'var(--gold)' : 'var(--border)'}`,
+                }}>
+                {s}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
       <div className="flex flex-col sm:flex-row gap-4 w-full max-w-xl">
-        <ModeCard icon="⚡" title={t.simMode.autoTitle}   description={t.simMode.autoDesc}   onClick={() => onSelect('auto')} />
-        <ModeCard icon="▶" title={t.simMode.manualTitle} description={t.simMode.manualDesc} onClick={() => onSelect('manual')} highlight />
+        <ModeCard icon="⚡" title={t.simMode.autoTitle}   description={t.simMode.autoDesc}   onClick={() => handleModeCardClick('auto')} />
+        <ModeCard icon="▶" title={t.simMode.manualTitle} description={t.simMode.manualDesc} onClick={() => handleModeCardClick('manual')} highlight />
       </div>
     </PageShell>
   );
