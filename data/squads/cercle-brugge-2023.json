@@ -18,7 +18,7 @@
     {"id":"kazeem-olaigbe-23","name":"Kazeem Olaigbe","position":"RW","nationality":"BEL","age":21,"appearances":18,"goals":3,"assists":3,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":65},
     {"id":"kevin-denkey-23","name":"Kévin Denkey","position":"ST","nationality":"TGO","age":23,"appearances":32,"goals":23,"assists":6,"marketValue":12000000,"internationalCaps":20,"awards":["Pro League Top Scorer 2024"],"overall":78},
     {"id":"abdoul-ouattara-23","name":"Abdoul Kader Ouattara","position":"RW","nationality":"BFA","age":22,"appearances":26,"goals":7,"assists":6,"marketValue":3000000,"internationalCaps":6,"awards":[],"overall":70},
-    {"id":"felix-lemarchal-23","name":"Félix Lemaréchal","position":"LW","nationality":"FRA","age":20,"appearances":18,"goals":2,"assists":3,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"felix-lemarchal-23","name":"Félix Lemaréchal","position":"CAM","alternativePositions":["LW","CM"],"nationality":"FRA","age":20,"appearances":31,"goals":2,"assists":5,"marketValue":5000000,"internationalCaps":0,"awards":[],"overall":71},
     {"id":"thibo-somers-23","name":"Thibo Somers","position":"ST","nationality":"BEL","age":21,"appearances":14,"goals":3,"assists":2,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":62}
   ]
 }
