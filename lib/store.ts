@@ -27,6 +27,17 @@ export type ResultCategory =
   | 'direct_relegated' // rechtstreeks gedegradeerd
   | 'unknown';
 
+export interface DailyResult {
+  dateKey: string;
+  totalScore: number;
+  isChampion: boolean;
+  resultLabel: string;
+  formation: string;
+  champion: string;
+  avgOverall: number;
+  playedAt: number;
+}
+
 export interface PlayedGame {
   id: string;
   playedAt: number;
@@ -62,6 +73,13 @@ interface GameState {
   classicSquads: ClassicOpponent[] | null;
   playHistory: PlayedGame[];
 
+  // Daily challenge
+  isDailyChallenge: boolean;
+  dailyDeck: { teamId: string; season: string }[] | null;
+  dailyResults: Record<string, DailyResult>;
+  dailyStreak: number;
+  lastDailyDate: string | null;
+
   setFormation: (f: Formation) => void;
   pickPlayer: (p: PickedPlayer) => void;
   setSimulatedSeason: (s: SimulatedSeason) => void;
@@ -75,6 +93,15 @@ interface GameState {
   setClassicSquads: (s: ClassicOpponent[] | null) => void;
   recordPlayedGame: (g: Omit<PlayedGame, 'id' | 'playedAt'>) => void;
   clearPlayHistory: () => void;
+
+  // Daily actions
+  startDailyChallenge: (
+    formation: Formation, opponents: ClassicOpponent[],
+    rollDeck: { teamId: string; season: string }[]
+  ) => void;
+  recordDailyResult: (r: DailyResult) => void;
+  endDailyChallenge: () => void;
+
   reset: () => void;
   resetKeepFormation: () => void;
 }
@@ -95,6 +122,11 @@ export const useGameStore = create<GameState>()(
       pendingRoll: null,
       classicSquads: null,
       playHistory: [],
+      isDailyChallenge: false,
+      dailyDeck: null,
+      dailyResults: {},
+      dailyStreak: 0,
+      lastDailyDate: null,
 
       setFormation: (formation) =>
         set({ formation, pickedPlayers: [], currentPositionIndex: 0, simulatedSeason: null, rerollsUsed: 0, classicSquads: null }),
@@ -135,11 +167,50 @@ export const useGameStore = create<GameState>()(
 
       clearPlayHistory: () => set({ playHistory: [] }),
 
+      startDailyChallenge: (formation, opponents, rollDeck) =>
+        set({
+          formation,
+          pickedPlayers: [],
+          currentPositionIndex: 0,
+          simulatedSeason: null,
+          rerollsUsed: 0,
+          pendingRoll: null,
+          draftMode: 'normal',
+          classicSquads: opponents,
+          isDailyChallenge: true,
+          dailyDeck: rollDeck,
+        }),
+
+      recordDailyResult: (result) =>
+        set(state => {
+          // Streak: gisteren ook gespeeld? → +1; anders reset naar 1
+          const yesterday = (() => {
+            const fmt = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Brussels', year: 'numeric', month: '2-digit', day: '2-digit' });
+            return fmt.format(new Date(Date.now() - 24 * 60 * 60 * 1000));
+          })();
+          const newStreak = state.lastDailyDate === yesterday
+            ? state.dailyStreak + 1
+            : state.lastDailyDate === result.dateKey
+              ? state.dailyStreak
+              : 1;
+          return {
+            dailyResults: { ...state.dailyResults, [result.dateKey]: result },
+            dailyStreak: newStreak,
+            lastDailyDate: result.dateKey,
+          };
+        }),
+
+      endDailyChallenge: () => set({
+        isDailyChallenge: false,
+        dailyDeck: null,
+        classicSquads: null,
+      }),
+
       reset: () =>
-        set({ formation: null, pickedPlayers: [], currentPositionIndex: 0, simulatedSeason: null, rerollsUsed: 0, pendingRoll: null, classicSquads: null }),
+        set({ formation: null, pickedPlayers: [], currentPositionIndex: 0, simulatedSeason: null, rerollsUsed: 0, pendingRoll: null, classicSquads: null, isDailyChallenge: false, dailyDeck: null }),
 
       resetKeepFormation: () =>
-        set({ pickedPlayers: [], currentPositionIndex: 0, simulatedSeason: null, rerollsUsed: 0, pendingRoll: null, classicSquads: null }),
+        set({ pickedPlayers: [], currentPositionIndex: 0, simulatedSeason: null, rerollsUsed: 0, pendingRoll: null, classicSquads: null, isDailyChallenge: false, dailyDeck: null }),
     }),
     {
       name: 'pintjesliga-state',
@@ -157,6 +228,11 @@ export const useGameStore = create<GameState>()(
         pendingRoll:      state.pendingRoll,
         classicSquads:    state.classicSquads,
         playHistory:      state.playHistory,
+        isDailyChallenge: state.isDailyChallenge,
+        dailyDeck:        state.dailyDeck,
+        dailyResults:     state.dailyResults,
+        dailyStreak:      state.dailyStreak,
+        lastDailyDate:    state.lastDailyDate,
       }),
     }
   )
