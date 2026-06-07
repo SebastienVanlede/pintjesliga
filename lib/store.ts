@@ -18,6 +18,15 @@ export interface ClassicOpponent {
   primaryColor: string;
 }
 
+export type ResultCategory =
+  | 'champion'         // 1e in PO1
+  | 'po1'              // 2e-6e in PO1
+  | 'po2'              // PO2 (7-12)
+  | 'rel_survived'     // Relegate PO, plek 1-2 (gered)
+  | 'rel_relegated'    // Relegate PO, plek 3-4 (gedegradeerd)
+  | 'direct_relegated' // rechtstreeks gedegradeerd
+  | 'unknown';
+
 export interface PlayedGame {
   id: string;
   playedAt: number;
@@ -29,6 +38,7 @@ export interface PlayedGame {
   avgOverall: number;
   totalScore: number;
   resultLabel: string;
+  resultCategory?: ResultCategory; // optioneel voor backwards-compat met oude entries
   isChampion: boolean;
   champion: string;
   players: { name: string; teamName: string; season: string; position: string; overall: number }[];

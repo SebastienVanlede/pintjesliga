@@ -222,16 +222,26 @@ function computeStats(games: PlayedGame[]): Stats {
     };
   }
 
-  const championLabel  = 'KAMPIOEN!';
-  const championLabelEn = 'CHAMPION!';
-  const po1Labels = ['Championship Play-off (PO1)', 'KAMPIOEN!', 'CHAMPION!'];
-  const po2Labels = ['Europa Play-off (PO2)', 'Europa PO (PO2)'];
-  const relLabels = ['Relegation Play-off', 'Rechtstreeks gedegradeerd', 'Directly relegated'];
+  // Bepaal categorie per game: gebruik nieuwe resultCategory als beschikbaar,
+  // anders fallback op de werkelijke labels van getResultLabel()
+  function categorize(g: PlayedGame): import('@/lib/store').ResultCategory {
+    if (g.resultCategory) return g.resultCategory;
+    if (g.isChampion) return 'champion';
+    const label = g.resultLabel;
+    if (label.includes('PO1')) return 'po1';
+    if (label.includes('PO2') || label.includes('Europa')) return 'po2';
+    if (label.includes('gered'))         return 'rel_survived';
+    if (label.includes('via PO') || label.includes('Relegate'))      return 'rel_relegated';
+    if (label.includes('Rechtstreeks') || label.includes('Directly')) return 'direct_relegated';
+    return 'unknown';
+  }
+  const categorized = games.map(g => ({ g, cat: categorize(g) }));
 
-  const championships = games.filter(g => g.isChampion).length;
-  const po1Finishes   = games.filter(g => po1Labels.some(l => g.resultLabel.includes(l)) || g.isChampion).length;
-  const po2Finishes   = games.filter(g => po2Labels.some(l => g.resultLabel.includes(l))).length;
-  const relegations   = games.filter(g => relLabels.some(l => g.resultLabel.includes(l))).length;
+  const championships = categorized.filter(x => x.cat === 'champion').length;
+  // PO1 finishes = iedereen die in PO1 belandde, kampioen inclusief
+  const po1Finishes   = categorized.filter(x => x.cat === 'champion' || x.cat === 'po1').length;
+  const po2Finishes   = categorized.filter(x => x.cat === 'po2').length;
+  const relegations   = categorized.filter(x => x.cat === 'rel_relegated' || x.cat === 'direct_relegated').length;
 
   const normalGames  = games.filter(g => g.draftMode === 'normal').length;
   const blindGames   = games.filter(g => g.draftMode === 'blind').length;

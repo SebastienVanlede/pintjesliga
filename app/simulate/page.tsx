@@ -816,6 +816,19 @@ function ResultsView({ sim, onReset, onBack }: {
     (sum, m) => sum + m.scorers.filter(s => userPlayerNames.has(s)).length, 0
   );
 
+  // Bepaal exacte resultcategorie op basis van sim (taal-onafhankelijk)
+  function determineResultCategory(): import('@/lib/store').ResultCategory {
+    if (isChampion) return 'champion';
+    if (userInPO1)  return 'po1';
+    if (userInPO2)  return 'po2';
+    if (userInRele) {
+      const releRank = sim.poRelegation.standings.findIndex(r => r.team === myTeam);
+      return releRank < 2 ? 'rel_survived' : 'rel_relegated';
+    }
+    if (sim.directlyRelegate === myTeam) return 'direct_relegated';
+    return 'unknown';
+  }
+
   // Sla deze run één keer op in history (idempotent — check laatste entry)
   useEffect(() => {
     if (!formation) return;
@@ -832,6 +845,7 @@ function ResultsView({ sim, onReset, onBack }: {
       avgOverall: Math.round(score.avgOverall),
       totalScore: score.total,
       resultLabel: score.resultLabel,
+      resultCategory: determineResultCategory(),
       isChampion,
       champion: sim.champion,
       players: (pickedPlayers as PickedPlayer[]).map(p => ({
