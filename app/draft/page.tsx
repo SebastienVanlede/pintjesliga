@@ -15,7 +15,7 @@ const POSITION_ORDER = ['GK','RB','CB','LB','CDM','CM','CAM','RM','LM','RW','LW'
 
 export default function DraftPage() {
   const router = useRouter();
-  const { formation, pickedPlayers, pickPlayer, draftMode, rerollsUsed, useReroll } = useGameStore();
+  const { formation, pickedPlayers, pickPlayer, draftMode, rerollsUsed, useReroll, pendingRoll, setPendingRoll } = useGameStore();
   const t = useT();
   const blind = draftMode === 'blind';
 
@@ -52,8 +52,22 @@ export default function DraftPage() {
     if (filledCount >= positions.length && positions.length > 0) router.push('/xi');
   }, [mounted, filledCount, positions.length, router]);
 
+  // Na refresh: herstel het gerolde team vanuit de store
+  useEffect(() => {
+    if (!mounted || !pendingRoll) return;
+    setPhase('spinning');
+    loadSquad(pendingRoll.teamId, pendingRoll.season).then(squad => {
+      if (!squad) { setPhase('idle'); return; }
+      const teamObj = getAvailableRolls().find(r => r.team.id === pendingRoll.teamId && r.season === pendingRoll.season)?.team;
+      if (!teamObj) { setPhase('idle'); return; }
+      setRoll({ team: teamObj, season: pendingRoll.season, squad });
+      setPhase('squad');
+    }).catch(() => setPhase('idle'));
+  }, [mounted]); // enkel bij mount uitvoeren
+
   const rollDice = useCallback((isReroll = false) => {
     if (isReroll) useReroll();
+    setPendingRoll(null);
     setPhase('spinning');
     setRoll(null);
     setSelectedPlayer(null);
@@ -72,13 +86,14 @@ export default function DraftPage() {
         loadSquad(final.team.id, final.season)
           .then((squad) => {
             if (!squad) { rollDice(isReroll); return; }
+            setPendingRoll({ teamId: final.team.id, teamName: final.team.name, season: final.season, primaryColor: final.team.primaryColor });
             setRoll({ team: final.team, season: final.season, squad });
             setPhase('squad');
           })
           .catch(() => setPhase('idle'));
       }
     }, 80);
-  }, [useReroll]);
+  }, [useReroll, setPendingRoll]);
 
   function handleSelectPlayer(player: Player) {
     setSelectedPlayer(player);

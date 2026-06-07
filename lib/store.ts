@@ -4,6 +4,13 @@ import { persist } from 'zustand/middleware';
 import { Formation, PickedPlayer, SimulatedSeason } from './types';
 import { Lang } from './i18n';
 
+export interface PendingRoll {
+  teamId: string;
+  teamName: string;
+  season: string;
+  primaryColor: string;
+}
+
 interface GameState {
   formation: Formation | null;
   pickedPlayers: PickedPlayer[];
@@ -15,6 +22,7 @@ interface GameState {
   theme: 'dark' | 'light';
   language: Lang;
   rerollsUsed: number;
+  pendingRoll: PendingRoll | null;
 
   setFormation: (f: Formation) => void;
   pickPlayer: (p: PickedPlayer) => void;
@@ -25,6 +33,7 @@ interface GameState {
   setTheme: (t: 'dark' | 'light') => void;
   setLanguage: (l: Lang) => void;
   useReroll: () => void;
+  setPendingRoll: (r: PendingRoll | null) => void;
   reset: () => void;
   resetKeepFormation: () => void;
 }
@@ -42,6 +51,7 @@ export const useGameStore = create<GameState>()(
       theme: 'dark',
       language: 'nl',
       rerollsUsed: 0,
+      pendingRoll: null,
 
       setFormation: (formation) =>
         set({ formation, pickedPlayers: [], currentPositionIndex: 0, simulatedSeason: null, rerollsUsed: 0 }),
@@ -50,6 +60,7 @@ export const useGameStore = create<GameState>()(
         set((state) => ({
           pickedPlayers: [...state.pickedPlayers, player],
           currentPositionIndex: state.currentPositionIndex + 1,
+          pendingRoll: null,
         })),
 
       setSimulatedSeason: (simulatedSeason) => set({ simulatedSeason }),
@@ -66,11 +77,13 @@ export const useGameStore = create<GameState>()(
 
       useReroll: () => set(state => ({ rerollsUsed: state.rerollsUsed + 1 })),
 
+      setPendingRoll: (pendingRoll) => set({ pendingRoll }),
+
       reset: () =>
-        set({ formation: null, pickedPlayers: [], currentPositionIndex: 0, simulatedSeason: null, rerollsUsed: 0 }),
+        set({ formation: null, pickedPlayers: [], currentPositionIndex: 0, simulatedSeason: null, rerollsUsed: 0, pendingRoll: null }),
 
       resetKeepFormation: () =>
-        set({ pickedPlayers: [], currentPositionIndex: 0, simulatedSeason: null, rerollsUsed: 0 }),
+        set({ pickedPlayers: [], currentPositionIndex: 0, simulatedSeason: null, rerollsUsed: 0, pendingRoll: null }),
     }),
     {
       name: 'pintjesliga-state',
@@ -85,6 +98,7 @@ export const useGameStore = create<GameState>()(
         theme:            state.theme,
         language:         state.language,
         rerollsUsed:      state.rerollsUsed,
+        pendingRoll:      state.pendingRoll,
       }),
     }
   )
