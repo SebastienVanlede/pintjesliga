@@ -29,7 +29,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Invalid payload' }, { status: 400 });
   }
 
-  const { data, error } = await supabase
+  const { error } = await supabase
     .from('scores')
     .insert({
       player_name: player_name.trim().slice(0, 32),
@@ -41,10 +41,8 @@ export async function POST(req: NextRequest) {
       underdog_bonus,
       diversity_bonus,
       unique_teams,
-    })
-    .select()
-    .single();
+    });
 
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
-  return NextResponse.json(data, { status: 201 });
+  return NextResponse.json({ ok: true }, { status: 201 });
 }
