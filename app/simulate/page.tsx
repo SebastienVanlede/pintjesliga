@@ -457,6 +457,25 @@ function ManualSim({ squads, pickedPlayers, teamName, formation, onDone }: {
     setRegRound(regSched.current.length);
   }
 
+  function simulateNRegularRounds(n: number) {
+    if (regDone) return;
+    const slice = regSched.current.slice(regRound, regRound + n);
+    if (slice.length === 0) return;
+    let allMatches = [...regMatches];
+    let c = counter;
+    let lastBatch: SimulatedMatch[] = [];
+    for (const pairs of slice) {
+      const results = simulateRound(pairs, teams.current, c);
+      allMatches = [...allMatches, ...results];
+      c += results.length;
+      lastBatch = results;
+    }
+    setRegMatches(allMatches);
+    setLastRound(lastBatch);
+    setCounter(c);
+    setRegRound(prev => prev + slice.length);
+  }
+
   function startPlayoffs() {
     const finalStandings = computeStandings(teamNames.current, regMatches);
     const po1Names = finalStandings.slice(0, 6).map(r => r.team);
@@ -530,6 +549,39 @@ function ManualSim({ squads, pickedPlayers, teamName, formation, onDone }: {
     }));
   }
 
+  function simulateNPlayoffRounds(n: number) {
+    if (!playoffs || playoffsDone) return;
+    let po1M = [...playoffs.po1.matches];
+    let po2M = [...playoffs.po2.matches];
+    let relM = [...playoffs.rel.matches];
+    let c = counter;
+    const steps = Math.min(n, playoffs.maxRounds - playoffs.round);
+    if (steps === 0) return;
+    let lastBatch: SimulatedMatch[] = [];
+    for (let step = 0; step < steps; step++) {
+      const r = playoffs.round + step;
+      const po1R = r < playoffs.po1.schedule.length ? simulateRound(playoffs.po1.schedule[r], teams.current, c) : [];
+      c += po1R.length;
+      const po2R = r < playoffs.po2.schedule.length ? simulateRound(playoffs.po2.schedule[r], teams.current, c) : [];
+      c += po2R.length;
+      const relR = r < playoffs.rel.schedule.length ? simulateRound(playoffs.rel.schedule[r], teams.current, c) : [];
+      c += relR.length;
+      po1M = [...po1M, ...po1R];
+      po2M = [...po2M, ...po2R];
+      relM = [...relM, ...relR];
+      lastBatch = [...po1R, ...po2R, ...relR];
+    }
+    setCounter(c);
+    setLastRound(lastBatch);
+    setPlayoffs(prev => prev && ({
+      ...prev,
+      round: prev.round + steps,
+      po1: { ...prev.po1, matches: po1M },
+      po2: { ...prev.po2, matches: po2M },
+      rel: { ...prev.rel, matches: relM },
+    }));
+  }
+
   function finishSimulation() {
     if (!playoffs || !po1Standings || !po2Standings || !relStandings) return;
     onDone({
@@ -570,15 +622,13 @@ function ManualSim({ squads, pickedPlayers, teamName, formation, onDone }: {
         </div>
       </div>
 
-      {/* Last round results */}
+      {/* Last round results — ingeklapt, opent via knop */}
       {lastRound && lastRound.length > 0 && (
-        <motion.div key={`${regRound}-${playoffs?.round}`} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
-          className="w-full max-w-2xl flex flex-col gap-1.5">
-          <p className="text-xs uppercase tracking-widest px-1" style={{ color: 'var(--muted)' }}>
-            {isRegular ? t.sim.resultsMatchday(regRound) : t.sim.resultsPOMatchday(playoffs!.round)}
-          </p>
-          {lastRound.map((m, i) => <MatchRow key={i} match={m} />)}
-        </motion.div>
+        <LastRoundResults
+          key={`${regRound}-${playoffs?.round}`}
+          matches={lastRound}
+          label={isRegular ? t.sim.resultsMatchday(regRound) : t.sim.resultsPOMatchday(playoffs!.round)}
+        />
       )}
 
       {/* Upcoming fixtures preview (regular season) */}
@@ -673,42 +723,42 @@ function ManualSim({ squads, pickedPlayers, teamName, formation, onDone }: {
         {isRegular && !regDone && (
           <>
             <button onClick={simulateRegularRound}
-              className="w-full px-10 py-3 rounded transition-all duration-150"
-              style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', letterSpacing: '0.12em', background: 'var(--gold)', color: '#090907', border: '2px solid var(--gold)', boxShadow: '0 0 20px rgba(212,148,10,0.3)' }}>
+              className="w-full px-10 py-3 rounded-lg transition-all duration-150"
+              style={{ fontFamily: 'var(--font-display)', fontSize: '1.05rem', letterSpacing: '0.12em', background: 'var(--gold)', color: '#090907', border: '2px solid var(--gold)', boxShadow: '0 0 20px rgba(212,148,10,0.3)', cursor: 'pointer' }}>
               {t.sim.simulateMatchday(regRound + 1)}
             </button>
-            <button onClick={simulateAllRegular}
-              className="w-full px-10 py-2.5 rounded transition-all duration-150"
-              style={{ fontFamily: 'var(--font-display)', fontSize: '0.85rem', letterSpacing: '0.1em', background: 'transparent', color: 'var(--muted)', border: '1px solid var(--border)' }}>
-              {t.sim.simulateAllRegular(totalRegRounds - regRound)}
-            </button>
+            <SpeedUpRow
+              remaining={totalRegRounds - regRound}
+              onSkipN={(n) => simulateNRegularRounds(n)}
+              onSkipAll={simulateAllRegular}
+            />
           </>
         )}
         {isRegular && regDone && (
           <button onClick={startPlayoffs}
-            className="w-full px-10 py-3 rounded transition-all duration-150"
-            style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', letterSpacing: '0.12em', background: 'var(--gold)', color: '#090907', border: '2px solid var(--gold)' }}>
+            className="w-full px-10 py-3 rounded-lg transition-all duration-150"
+            style={{ fontFamily: 'var(--font-display)', fontSize: '1.05rem', letterSpacing: '0.12em', background: 'var(--gold)', color: '#090907', border: '2px solid var(--gold)', cursor: 'pointer' }}>
             {t.sim.startPlayoffs}
           </button>
         )}
         {isPlayoffs && (
           <>
             <button onClick={simulatePlayoffRound}
-              className="w-full px-10 py-3 rounded transition-all duration-150"
-              style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', letterSpacing: '0.12em', background: 'var(--gold)', color: '#090907', border: '2px solid var(--gold)', boxShadow: '0 0 20px rgba(212,148,10,0.3)' }}>
+              className="w-full px-10 py-3 rounded-lg transition-all duration-150"
+              style={{ fontFamily: 'var(--font-display)', fontSize: '1.05rem', letterSpacing: '0.12em', background: 'var(--gold)', color: '#090907', border: '2px solid var(--gold)', boxShadow: '0 0 20px rgba(212,148,10,0.3)', cursor: 'pointer' }}>
               {t.sim.simulatePOMatchday(playoffs.round + 1)}
             </button>
-            <button onClick={simulateAllPlayoffs}
-              className="w-full px-10 py-2.5 rounded transition-all duration-150"
-              style={{ fontFamily: 'var(--font-display)', fontSize: '0.85rem', letterSpacing: '0.1em', background: 'transparent', color: 'var(--muted)', border: '1px solid var(--border)' }}>
-              {t.sim.simulateAllPO(playoffs.maxRounds - playoffs.round)}
-            </button>
+            <SpeedUpRow
+              remaining={playoffs.maxRounds - playoffs.round}
+              onSkipN={(n) => simulateNPlayoffRounds(n)}
+              onSkipAll={simulateAllPlayoffs}
+            />
           </>
         )}
         {playoffsDone && (
           <button onClick={finishSimulation}
-            className="w-full px-10 py-3 rounded transition-all duration-150"
-            style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', letterSpacing: '0.12em', background: 'var(--gold)', color: '#090907', border: '2px solid var(--gold)' }}>
+            className="w-full px-10 py-3 rounded-lg transition-all duration-150"
+            style={{ fontFamily: 'var(--font-display)', fontSize: '1.05rem', letterSpacing: '0.12em', background: 'var(--gold)', color: '#090907', border: '2px solid var(--gold)', cursor: 'pointer' }}>
             {t.sim.viewResult}
           </button>
         )}
@@ -1839,6 +1889,98 @@ function PageShell({ children }: { children: React.ReactNode }) {
     <main className="min-h-[calc(100svh-56px)] flex flex-col items-center px-4 py-5 sm:py-8 gap-4 sm:gap-6">
       {children}
     </main>
+  );
+}
+
+function SpeedUpRow({ remaining, onSkipN, onSkipAll }: {
+  remaining: number;
+  onSkipN: (n: number) => void;
+  onSkipAll: () => void;
+}) {
+  const t = useT();
+  // Bepaal welke skip-knoppen zinnig zijn
+  const showThree = remaining > 3;
+  const showFive  = remaining > 5;
+
+  if (remaining <= 1) return null;
+
+  return (
+    <div className="flex gap-2 w-full">
+      {showThree && (
+        <button onClick={() => onSkipN(3)}
+          className="flex-1 px-3 py-2.5 rounded-lg transition-all duration-150"
+          style={{ fontFamily: 'var(--font-display)', fontSize: '0.8rem', letterSpacing: '0.08em', background: 'var(--surface)', color: 'var(--text-2)', border: '1px solid var(--border)', cursor: 'pointer' }}>
+          +3 ⏭
+        </button>
+      )}
+      {showFive && (
+        <button onClick={() => onSkipN(5)}
+          className="flex-1 px-3 py-2.5 rounded-lg transition-all duration-150"
+          style={{ fontFamily: 'var(--font-display)', fontSize: '0.8rem', letterSpacing: '0.08em', background: 'var(--surface)', color: 'var(--text-2)', border: '1px solid var(--border)', cursor: 'pointer' }}>
+          +5 ⏭
+        </button>
+      )}
+      <button onClick={onSkipAll}
+        className="flex-1 px-3 py-2.5 rounded-lg transition-all duration-150"
+        style={{ fontFamily: 'var(--font-display)', fontSize: '0.8rem', letterSpacing: '0.08em', background: 'var(--surface)', color: 'var(--muted)', border: '1px solid var(--border)', cursor: 'pointer' }}>
+        ⚡ {t.sim.skipAll ?? 'Sla alles over'} ({remaining})
+      </button>
+    </div>
+  );
+}
+
+function LastRoundResults({ matches, label }: { matches: SimulatedMatch[]; label: string }) {
+  const [open, setOpen] = useState(false);
+  const { teamName } = useGameStore();
+  const t = useT();
+  const myTeam = teamName.trim() || t.simMode.teamNamePlaceholder;
+
+  // Mini-samenvatting wedstrijd gebruiker
+  const userMatch = matches.find(m => m.home === myTeam || m.away === myTeam);
+  const summary = userMatch
+    ? `${userMatch.home}  ${userMatch.homeGoals} — ${userMatch.awayGoals}  ${userMatch.away}`
+    : `${matches.length} ${matches.length === 1 ? 'wedstrijd' : 'wedstrijden'}`;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
+      className="w-full max-w-2xl"
+    >
+      <button
+        onClick={() => setOpen(v => !v)}
+        className="w-full flex items-center justify-between rounded-lg px-4 py-2.5 transition-all"
+        style={{
+          background: 'var(--surface)',
+          border: `1px solid ${open ? 'var(--gold-dim)' : 'var(--border)'}`,
+          cursor: 'pointer',
+        }}
+      >
+        <div className="flex flex-col items-start gap-0.5 min-w-0 flex-1">
+          <span className="text-xs uppercase tracking-widest" style={{ color: 'var(--muted)' }}>{label}</span>
+          {!open && (
+            <span className="text-xs truncate" style={{ color: 'var(--text-2)', fontFamily: 'var(--font-display)', letterSpacing: '0.04em' }}>
+              {summary}
+            </span>
+          )}
+        </div>
+        <span style={{ color: 'var(--muted)', fontSize: '0.75rem', marginLeft: 12 }}>
+          {open ? '▲' : '▼'}
+        </span>
+      </button>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            style={{ overflow: 'hidden' }}
+            className="flex flex-col gap-1.5 mt-2"
+          >
+            {matches.map((m, i) => <MatchRow key={i} match={m} />)}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
   );
 }
 
