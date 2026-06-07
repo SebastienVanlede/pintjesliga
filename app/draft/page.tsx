@@ -28,7 +28,7 @@ const REEL_DURATION_MS = 1500;
 
 export default function DraftPage() {
   const router = useRouter();
-  const { formation, pickedPlayers, pickPlayer, draftMode, rerollsUsed, useReroll, pendingRoll, setPendingRoll } = useGameStore();
+  const { formation, pickedPlayers, pickPlayer, draftMode, rerollsUsed, useReroll, pendingRoll, setPendingRoll, isDailyChallenge, dailyDeck } = useGameStore();
   const t = useT();
   const blind = draftMode === 'blind';
 
@@ -43,9 +43,19 @@ export default function DraftPage() {
   const deckRef = useRef<{ team: Team; season: string }[]>([]);
 
   useEffect(() => {
-    const rolls = getAvailableRolls();
-    deckRef.current = [...rolls].sort(() => Math.random() - 0.5);
-  }, []);
+    // Daily mode: gebruik de seeded deck van de challenge
+    if (isDailyChallenge && dailyDeck) {
+      const allRolls = getAvailableRolls();
+      // Map deck entries → volwaardige roll-objecten met team-data
+      deckRef.current = dailyDeck.map(d => {
+        const match = allRolls.find(r => r.team.id === d.teamId && r.season === d.season);
+        return match ? { team: match.team, season: match.season } : null;
+      }).filter((r): r is { team: Team; season: string } => r !== null);
+    } else {
+      const rolls = getAvailableRolls();
+      deckRef.current = [...rolls].sort(() => Math.random() - 0.5);
+    }
+  }, [isDailyChallenge, dailyDeck]);
 
   const positions = formation ? FORMATION_POSITIONS[formation] : [];
   const pickedByIndex = Object.fromEntries(pickedPlayers.map((p) => [p.positionIndex, p]));
@@ -85,6 +95,8 @@ export default function DraftPage() {
 
     const allRolls = getAvailableRolls();
     if (deckRef.current.length === 0) {
+      // In daily mode mag het deck niet random worden bijgevuld (zou determinisme breken).
+      // Maar in praktijk is 20 entries genoeg voor 11 picks + 3 herrolls. Fallback voor safety:
       deckRef.current = [...allRolls].sort(() => Math.random() - 0.5);
     }
     const final = deckRef.current.shift()!;

@@ -31,8 +31,9 @@ export default function SimulatePage() {
     formation, pickedPlayers, simulatedSeason, setSimulatedSeason, reset,
     teamName, setTeamName, simSeason, setSimSeason,
     classicSquads, setClassicSquads,
+    isDailyChallenge,
   } = useGameStore();
-  const [mode, setMode] = useState<SimMode | null>(null);
+  const [mode, setMode] = useState<SimMode | null>(isDailyChallenge ? 'auto' : null);
   const [squads, setSquads] = useState<Squad[] | null>(null);
   const [mounted, setMounted] = useState(false);
   const [odds, setOdds] = useState<SeasonOdds | null>(null);
@@ -775,7 +776,7 @@ function ResultsView({ sim, onReset, onBack }: {
 }) {
   const [activeTab, setActiveTab] = useState<TabId>('regular');
   const [matchesOpen, setMatchesOpen] = useState(false);
-  const { pickedPlayers, formation, teamName, draftMode, classicSquads, simSeason, recordPlayedGame, playHistory } = useGameStore();
+  const { pickedPlayers, formation, teamName, draftMode, classicSquads, simSeason, recordPlayedGame, playHistory, isDailyChallenge, recordDailyResult, endDailyChallenge } = useGameStore();
   const t = useT();
   const myTeam = teamName.trim() || t.simMode.teamNamePlaceholder;
   const isBlind = draftMode === 'blind';
@@ -856,6 +857,25 @@ function ResultsView({ sim, onReset, onBack }: {
       uniqueSeasons: score.uniqueSeasons,
       goalsScored: userGoalsScored,
     });
+
+    // Daily: ook bewaar in dailyResults + update streak (eenmalig)
+    if (isDailyChallenge) {
+      // Haal vandaag's datum (Brussel-tijd) — async import om SSR-issues te vermijden
+      import('@/lib/daily').then(({ getTodayDateKey }) => {
+        const dateKey = getTodayDateKey();
+        recordDailyResult({
+          dateKey,
+          totalScore: score.total,
+          isChampion,
+          resultLabel: score.resultLabel,
+          formation,
+          champion: sim.champion,
+          avgOverall: Math.round(score.avgOverall),
+          playedAt: Date.now(),
+        });
+        endDailyChallenge();
+      });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
