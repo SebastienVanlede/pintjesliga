@@ -1,6 +1,7 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Formation, FORMATIONS } from '@/lib/types';
 import { useGameStore } from '@/lib/store';
@@ -9,11 +10,19 @@ import FormationCard from '@/components/FormationCard';
 
 export default function HomePage() {
   const router = useRouter();
-  const { setFormation, draftMode, setDraftMode } = useGameStore();
+  const { setFormation, draftMode, setDraftMode, dailyResults, dailyStreak } = useGameStore();
   const t = useT();
   const [selected, setSelected] = useState<Formation | null>(null);
   const [hovered, setHovered] = useState<Formation | null>(null);
+  const [todayKey, setTodayKey] = useState<string | null>(null);
   const activeFormation = hovered ?? selected;
+
+  // Lokale tijd in Brussel — alleen client-side berekenen om hydration mismatch te voorkomen
+  useEffect(() => {
+    import('@/lib/daily').then(({ getTodayDateKey }) => setTodayKey(getTodayDateKey()));
+  }, []);
+
+  const dailyPlayedToday = todayKey ? !!dailyResults[todayKey] : false;
 
   function handleStart() {
     if (!selected) return;
@@ -108,6 +117,58 @@ export default function HomePage() {
 
       {/* ── Right: Formation selector ─────────────────────────────────── */}
       <div className="flex flex-col justify-center px-6 py-6 lg:px-16 lg:py-16 flex-1 gap-5 lg:gap-8">
+
+        {/* Daily Challenge banner */}
+        <motion.div
+          initial={{ opacity: 0, y: -4 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.05 }}
+        >
+          <Link
+            href="/daily"
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: 12,
+              padding: '12px 16px',
+              borderRadius: 10,
+              background: dailyPlayedToday ? 'var(--surface)' : 'rgba(212,148,10,0.08)',
+              border: `1px solid ${dailyPlayedToday ? 'var(--border)' : 'var(--gold-dim)'}`,
+              textDecoration: 'none',
+              cursor: 'pointer',
+              transition: 'all 0.15s',
+              boxShadow: dailyPlayedToday ? 'none' : '0 0 24px rgba(212,148,10,0.1)',
+            }}
+          >
+            <div className="flex items-center gap-3 min-w-0">
+              <span style={{ fontSize: '1.5rem', flexShrink: 0 }}>{dailyPlayedToday ? '✓' : '🎯'}</span>
+              <div className="min-w-0">
+                <p style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: '0.85rem',
+                  color: dailyPlayedToday ? 'var(--text-2)' : 'var(--gold)',
+                  letterSpacing: '0.1em',
+                  lineHeight: 1.2,
+                }}>
+                  {t.daily.navLink.toUpperCase()}
+                </p>
+                <p className="text-xs mt-0.5" style={{ color: 'var(--muted)' }}>
+                  {dailyPlayedToday ? t.daily.alreadyPlayed : t.daily.subtitle}
+                </p>
+              </div>
+            </div>
+            {dailyStreak > 0 && (
+              <div className="flex items-center gap-1 flex-shrink-0">
+                <span style={{ fontSize: '1rem' }}>🔥</span>
+                <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', color: 'var(--gold)', letterSpacing: '0.02em' }}>
+                  {dailyStreak}
+                </span>
+              </div>
+            )}
+          </Link>
+        </motion.div>
+
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
