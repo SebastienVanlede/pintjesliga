@@ -17,7 +17,22 @@ interface SimTeam {
   name: string;
   overall: number;
   players: SimPlayer[];
+  attackMod?: number;  // % meer doelpunten gescoord (positief = meer)
+  defenseMod?: number; // % minder doelpunten toegelaten (positief = minder)
 }
+
+// Formatiemodifiers — enkel van toepassing op het gebruikersteam
+const FORMATION_MODIFIERS: Record<string, { attack: number; defense: number }> = {
+  '4-2-4':   { attack:  0.15, defense: -0.15 },
+  '3-4-3':   { attack:  0.12, defense: -0.10 },
+  '4-3-3':   { attack:  0.08, defense: -0.05 },
+  '4-3-2-1': { attack:  0.06, defense: -0.03 },
+  '4-4-2':   { attack:  0.04, defense:  0.02 },
+  '4-2-3-1': { attack:  0.00, defense:  0.00 },
+  '3-5-2':   { attack:  0.03, defense:  0.05 },
+  '4-1-4-1': { attack: -0.05, defense:  0.10 },
+  '5-3-2':   { attack: -0.08, defense:  0.15 },
+};
 
 // ─── Position weights ─────────────────────────────────────────────────────────
 
@@ -74,15 +89,19 @@ function poissonSample(lambda: number): number {
 const HOME_ADVANTAGE = 0.25;
 const QUALITY_FACTOR = 0.07;
 
-function weightedGoals(own: number, opp: number, isHome: boolean): number {
+function weightedGoals(
+  own: number, opp: number, isHome: boolean,
+  ownAttackMod = 0, oppDefenseMod = 0
+): number {
   const base     = isHome ? 1.4 + HOME_ADVANTAGE : 1.4;
-  const expected = Math.max(0.2, base + (own - opp) * QUALITY_FACTOR);
+  const raw      = base + (own - opp) * QUALITY_FACTOR;
+  const expected = Math.max(0.2, raw * (1 + ownAttackMod) * (1 - oppDefenseMod));
   return poissonSample(expected);
 }
 
 function simMatch(home: SimTeam, away: SimTeam, round: number): SimulatedMatch {
-  const homeGoals = weightedGoals(home.overall, away.overall, true);
-  const awayGoals = weightedGoals(away.overall, home.overall, false);
+  const homeGoals = weightedGoals(home.overall, away.overall, true,  home.attackMod ?? 0, away.defenseMod ?? 0);
+  const awayGoals = weightedGoals(away.overall, home.overall, false, away.attackMod ?? 0, home.defenseMod ?? 0);
 
   const homeScorers   = pickGoalScorers(home, homeGoals);
   const awayScorers   = pickGoalScorers(away, awayGoals);
@@ -173,19 +192,25 @@ export interface SimTeamPublic {
   name: string;
   overall: number;
   players: SimPlayer[];
+  attackMod?: number;
+  defenseMod?: number;
 }
 
 export function buildSimTeams(
   userPlayers: PickedPlayer[],
   opponentSquads: Squad[],
-  teamName = 'Mijn Droomelftal'
+  teamName = 'Mijn Droomelftal',
+  formation?: string
 ): SimTeamPublic[] {
+  const mods = formation ? (FORMATION_MODIFIERS[formation] ?? { attack: 0, defense: 0 }) : { attack: 0, defense: 0 };
   const userTeam: SimTeamPublic = {
     name: teamName,
     overall: userPlayers.length
       ? Math.round(userPlayers.reduce((s, p) => s + p.player.overall, 0) / userPlayers.length)
       : 60,
-    players: userPlayers.map(p => ({ name: p.player.name, position: p.position })),
+    players:    userPlayers.map(p => ({ name: p.player.name, position: p.position })),
+    attackMod:  mods.attack,
+    defenseMod: mods.defense,
   };
 
   const opponents: SimTeamPublic[] = opponentSquads.map(sq => {
@@ -240,18 +265,22 @@ export function computeStandings(
 export function simulateSeason(
   userPlayers: PickedPlayer[],
   opponentSquads: Squad[],
-  teamName = 'Mijn Droomelftal'
+  teamName = 'Mijn Droomelftal',
+  formation?: string
 ): SimulatedSeason {
   const squads = (opponentSquads.length + 1) % 2 !== 0
     ? opponentSquads.slice(0, -1)
     : opponentSquads;
 
+  const mods = formation ? (FORMATION_MODIFIERS[formation] ?? { attack: 0, defense: 0 }) : { attack: 0, defense: 0 };
   const userTeam: SimTeam = {
     name: teamName,
     overall: userPlayers.length
       ? Math.round(userPlayers.reduce((s, p) => s + p.player.overall, 0) / userPlayers.length)
       : 60,
-    players: userPlayers.map(p => ({ name: p.player.name, position: p.position })),
+    players:    userPlayers.map(p => ({ name: p.player.name, position: p.position })),
+    attackMod:  mods.attack,
+    defenseMod: mods.defense,
   };
 
   const opponents: SimTeam[] = squads.map(sq => {

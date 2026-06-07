@@ -92,6 +92,7 @@ export default function SimulatePage() {
         squads={squads}
         pickedPlayers={pickedPlayers}
         teamName={teamName}
+        formation={formation ?? undefined}
         onDone={result => { setSimulatedSeason(result as any); }}
       />
     );
@@ -102,6 +103,7 @@ export default function SimulatePage() {
       squads={squads}
       pickedPlayers={pickedPlayers}
       teamName={teamName}
+      formation={formation ?? undefined}
       onDone={result => { setSimulatedSeason(result as any); }}
     />
   );
@@ -299,11 +301,11 @@ function ModeCard({ icon, title, description, onClick, highlight }: {
 
 // ─── Auto simulation ──────────────────────────────────────────────────────────
 
-function AutoSim({ squads, pickedPlayers, teamName, onDone }: {
-  squads: Squad[]; pickedPlayers: any[]; teamName: string; onDone: (r: SimulatedSeason) => void;
+function AutoSim({ squads, pickedPlayers, teamName, formation, onDone }: {
+  squads: Squad[]; pickedPlayers: any[]; teamName: string; formation?: string; onDone: (r: SimulatedSeason) => void;
 }) {
   useEffect(() => {
-    const result = simulateSeason(pickedPlayers, squads, teamName.trim() || 'Mijn Droomelftal');
+    const result = simulateSeason(pickedPlayers, squads, teamName.trim() || 'Mijn Droomelftal', formation);
     onDone(result);
   }, []);
   return <LoadingView label="Seizoen simuleren…" />;
@@ -326,15 +328,14 @@ interface Playoffs {
   regularStandings: StandingRow[];
 }
 
-function ManualSim({ squads, pickedPlayers, teamName, onDone }: {
-  squads: Squad[]; pickedPlayers: any[]; teamName: string; onDone: (r: SimulatedSeason) => void;
+function ManualSim({ squads, pickedPlayers, teamName, formation, onDone }: {
+  squads: Squad[]; pickedPlayers: any[]; teamName: string; formation?: string; onDone: (r: SimulatedSeason) => void;
 }) {
   const t = useT();
   const myTeam = teamName.trim() || t.simMode.teamNamePlaceholder;
-  // Ensure 16 teams total (drop last squad if needed for even number)
   const validSquads = (squads.length + 1) % 2 !== 0 ? squads.slice(0, -1) : squads;
 
-  const teams      = useRef<SimTeamPublic[]>(buildSimTeams(pickedPlayers, validSquads, myTeam));
+  const teams      = useRef<SimTeamPublic[]>(buildSimTeams(pickedPlayers, validSquads, myTeam, formation));
   const teamNames  = useRef(teams.current.map(t => t.name));
   const regSched   = useRef(generateFullSchedule(teamNames.current)); // 30 rounds, 8 matches each
 
