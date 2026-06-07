@@ -255,6 +255,29 @@ export const translations = {
       showAll: (n: number) => `Toon alle ${n}`,
     },
 
+    // ── Daily Challenge ──────────────────────────────────────────────────────
+    daily: {
+      navLink: 'Daily Challenge',
+      title: 'DAILY CHALLENGE',
+      subtitle: 'Elke dag dezelfde uitdaging voor iedereen',
+      todayDate: (d: string) => `Uitdaging van ${d}`,
+      howItWorks: 'Hoe werkt het?',
+      rule1: 'Iedereen krijgt vandaag dezelfde formatie, dezelfde tegenstanders en dezelfde dobbel-rolls.',
+      rule2: 'Jij beslist welke speler je kiest. Maximaal 3 herrolls.',
+      rule3: 'Je hebt één poging per dag. Reset om middernacht (Brussel-tijd).',
+      todaysFormation: "Vandaag's formatie",
+      todaysOpponents: '16 tegenstanders',
+      startBtn: 'Start de uitdaging',
+      alreadyPlayed: 'Vandaag al gespeeld',
+      yourResult: 'Jouw resultaat',
+      comeBackTomorrow: 'Kom morgen terug voor een nieuwe uitdaging',
+      streak: 'Streak',
+      streakDays: (n: number) => n === 1 ? '1 dag op rij' : `${n} dagen op rij`,
+      noStreak: 'Speel om je streak te starten',
+      viewAllOpponents: 'Toon alle 16 tegenstanders',
+      hideOpponents: 'Verberg',
+    },
+
     // ── Achievements ──────────────────────────────────────────────────────────
     achievements: {
       title: 'Achievements',
@@ -585,6 +608,29 @@ export const translations = {
       results: (n: number) => `Results (${n} matches)`,
       onlyTeam: (name: string) => `Only ${name}`,
       showAll: (n: number) => `Show all ${n}`,
+    },
+
+    // ── Daily Challenge ──────────────────────────────────────────────────────
+    daily: {
+      navLink: 'Daily Challenge',
+      title: 'DAILY CHALLENGE',
+      subtitle: 'The same challenge for everyone, every day',
+      todayDate: (d: string) => `Challenge of ${d}`,
+      howItWorks: 'How does it work?',
+      rule1: "Today everyone gets the same formation, opponents and dice rolls.",
+      rule2: 'You decide which player to pick. Maximum 3 rerolls.',
+      rule3: 'One attempt per day. Resets at midnight (Brussels time).',
+      todaysFormation: "Today's formation",
+      todaysOpponents: '16 opponents',
+      startBtn: 'Start the challenge',
+      alreadyPlayed: 'Already played today',
+      yourResult: 'Your result',
+      comeBackTomorrow: 'Come back tomorrow for a new challenge',
+      streak: 'Streak',
+      streakDays: (n: number) => n === 1 ? '1 day in a row' : `${n} days in a row`,
+      noStreak: 'Play to start your streak',
+      viewAllOpponents: 'Show all 16 opponents',
+      hideOpponents: 'Hide',
     },
 
     // ── Achievements ──────────────────────────────────────────────────────────
