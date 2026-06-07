@@ -35,6 +35,7 @@ export default function SimulatePage() {
   const [squads, setSquads] = useState<Squad[] | null>(null);
   const [mounted, setMounted] = useState(false);
   const [odds, setOdds] = useState<SeasonOdds | null>(null);
+  const [oddsConfirmed, setOddsConfirmed] = useState(false);
 
   useEffect(() => { setMounted(true); }, []);
 
@@ -52,6 +53,13 @@ export default function SimulatePage() {
     }, 50);
     return () => clearTimeout(id);
   }, [squads]);
+
+  // Als odds nog niet klaar zijn wanneer mode geselecteerd wordt → sla prognose over na 300ms
+  useEffect(() => {
+    if (!mode || oddsConfirmed || odds) return;
+    const id = setTimeout(() => setOddsConfirmed(true), 300);
+    return () => clearTimeout(id);
+  }, [mode, odds, oddsConfirmed]);
 
   useEffect(() => {
     if (!formation || pickedPlayers.length < 11) return;
@@ -90,7 +98,6 @@ export default function SimulatePage() {
       <ModeSelector
         teamName={teamName} setTeamName={setTeamName}
         simSeason={simSeason} setSimSeason={setSimSeason}
-        odds={odds}
         onSelect={handleModeSelect}
       />
     );
@@ -98,6 +105,18 @@ export default function SimulatePage() {
 
   if (!squads) {
     return <LoadingView label="Squads laden…" />;
+  }
+
+  // Prognose-scherm: toont instant (odds al berekend op achtergrond)
+  if (mode && odds && !oddsConfirmed) {
+    return (
+      <PreSeasonOdds
+        odds={odds}
+        mode={mode}
+        teamName={teamName.trim() || 'Mijn Droomelftal'}
+        onConfirm={() => setOddsConfirmed(true)}
+      />
+    );
   }
 
   if (mode === 'auto') {
@@ -127,10 +146,9 @@ export default function SimulatePage() {
 
 const SIM_SEASONS = ['2025-26', '2024-25', '2023-24', '2022-23', '2021-22', '2020-21', '2019-20', '2018-19', '2017-18'] as const;
 
-function ModeSelector({ teamName, setTeamName, simSeason, setSimSeason, odds, onSelect }: {
+function ModeSelector({ teamName, setTeamName, simSeason, setSimSeason, onSelect }: {
   teamName: string; setTeamName: (n: string) => void;
   simSeason: string; setSimSeason: (s: string) => void;
-  odds: SeasonOdds | null;
   onSelect: (m: SimMode, classicOpponents?: ClassicOpponent[]) => void;
 }) {
   const t = useT();
@@ -286,68 +304,6 @@ function ModeSelector({ teamName, setTeamName, simSeason, setSimSeason, odds, on
         </div>
       )}
 
-      {/* Pre-season prognose — toont terwijl gebruiker nog bezig is met setup */}
-      <div className="w-full max-w-xl">
-        <AnimatePresence>
-          {odds ? (
-            <motion.div
-              key="odds"
-              initial={{ opacity: 0, y: 6 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="rounded-xl overflow-hidden mb-4"
-              style={{ border: '1px solid var(--border)' }}
-            >
-              <div className="px-4 py-2.5 flex items-center justify-between"
-                style={{ background: 'var(--surface-2)', borderBottom: '1px solid var(--border)' }}>
-                <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.7rem', letterSpacing: '0.1em', color: 'var(--gold)' }}>
-                  {t.simMode.oddsTitle}
-                </span>
-                <span className="text-xs" style={{ color: 'var(--muted)' }}>
-                  {t.simMode.oddsSubtitle(1000)}
-                </span>
-              </div>
-              {ODDS_ROWS.map(({ key, icon, labelKey, color }, i) => {
-                const pct = odds[key];
-                const maxPct = Math.max(odds.champion, odds.po1, odds.po2, odds.relSurvived, odds.relegated, 1);
-                return (
-                  <div key={key} className="flex items-center gap-3 px-4 py-2.5"
-                    style={{ borderTop: i > 0 ? '1px solid var(--border)' : 'none' }}>
-                    <span style={{ fontSize: '1rem', width: 22, textAlign: 'center', flexShrink: 0 }}>{icon}</span>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center justify-between mb-1">
-                        <span className="text-xs" style={{ color: 'var(--muted)' }}>{t.simMode[labelKey]}</span>
-                        <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.85rem', color }}>{pct}%</span>
-                      </div>
-                      <div className="h-1 rounded-full w-full" style={{ background: 'var(--border)' }}>
-                        <motion.div
-                          className="h-1 rounded-full"
-                          initial={{ width: 0 }}
-                          animate={{ width: `${Math.round(pct / maxPct * 100)}%` }}
-                          transition={{ duration: 0.5, delay: i * 0.06, ease: 'easeOut' }}
-                          style={{ background: color }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </motion.div>
-          ) : (
-            <motion.div
-              key="calculating"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="flex items-center gap-2 mb-4 px-1"
-            >
-              <div className="w-3 h-3 rounded-full border border-current animate-spin flex-shrink-0"
-                style={{ borderColor: 'var(--muted)', borderTopColor: 'transparent' }} />
-              <span className="text-xs" style={{ color: 'var(--muted)' }}>{t.simMode.oddsCalculating}</span>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-
       <div className="flex flex-col sm:flex-row gap-4 w-full max-w-xl">
         <ModeCard icon="⚡" title={t.simMode.autoTitle}   description={t.simMode.autoDesc}   onClick={() => handleModeCardClick('auto')} />
         <ModeCard icon="▶" title={t.simMode.manualTitle} description={t.simMode.manualDesc} onClick={() => handleModeCardClick('manual')} highlight />
@@ -376,7 +332,7 @@ function ModeCard({ icon, title, description, onClick, highlight }: {
   );
 }
 
-// ─── Pre-season kansen (inline config voor ModeSelector) ─────────────────────
+// ─── Pre-season prognose ──────────────────────────────────────────────────────
 
 const ODDS_ROWS: {
   key: keyof SeasonOdds;
@@ -385,11 +341,143 @@ const ODDS_ROWS: {
   color: string;
 }[] = [
   { key: 'champion',    icon: '🥇', labelKey: 'oddsChampion',    color: '#D4940A' },
-  { key: 'po1',         icon: '🏆', labelKey: 'oddsPO1',         color: '#D4940A' },
+  { key: 'po1',         icon: '🏆', labelKey: 'oddsPO1',         color: '#C8A040' },
   { key: 'po2',         icon: '🌍', labelKey: 'oddsPO2',         color: '#3a8fd1' },
   { key: 'relSurvived', icon: '⚠️', labelKey: 'oddsRelSurvived', color: 'var(--text-2)' },
   { key: 'relegated',   icon: '🔴', labelKey: 'oddsRelegated',   color: 'var(--red)' },
 ];
+
+function PreSeasonOdds({ odds, mode, teamName, onConfirm }: {
+  odds: SeasonOdds; mode: SimMode; teamName: string; onConfirm: () => void;
+}) {
+  const t = useT();
+
+  // Meest waarschijnlijke uitkomst
+  const entries = ODDS_ROWS.map(r => ({ ...r, pct: odds[r.key] }));
+  const top     = [...entries].sort((a, b) => b.pct - a.pct)[0];
+  const maxPct  = Math.max(...entries.map(e => e.pct), 1);
+
+  return (
+    <PageShell>
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="w-full max-w-lg flex flex-col gap-6"
+      >
+        {/* Header */}
+        <div>
+          <p className="label-xs mb-2">{teamName}</p>
+          <h1 style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(1.8rem,5vw,2.8rem)',
+            color: 'var(--gold)',
+            letterSpacing: '0.1em',
+            lineHeight: 1,
+          }}>
+            {t.simMode.oddsTitle}
+          </h1>
+          <p className="text-xs mt-2" style={{ color: 'var(--muted)' }}>
+            {t.simMode.oddsSubtitle(1000)}
+          </p>
+        </div>
+
+        {/* Meest waarschijnlijke uitkomst — groot */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.97 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.1 }}
+          className="rounded-xl px-6 py-5 flex items-center justify-between gap-4"
+          style={{
+            background: 'rgba(212,148,10,0.06)',
+            border: '1.5px solid var(--gold-dim)',
+            boxShadow: '0 0 32px rgba(212,148,10,0.08)',
+          }}
+        >
+          <div>
+            <p className="label-xs mb-1.5">{t.simMode.oddsMostLikely ?? 'Meest waarschijnlijk'}</p>
+            <div className="flex items-center gap-2.5">
+              <span style={{ fontSize: '1.6rem' }}>{top.icon}</span>
+              <span style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: 'clamp(1.1rem,3.5vw,1.5rem)',
+                color: top.color,
+                letterSpacing: '0.05em',
+              }}>
+                {t.simMode[top.labelKey]}
+              </span>
+            </div>
+          </div>
+          <span style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(2rem,6vw,3rem)',
+            color: 'var(--gold)',
+            letterSpacing: '0.04em',
+            flexShrink: 0,
+          }}>
+            {top.pct}%
+          </span>
+        </motion.div>
+
+        {/* Alle kansen */}
+        <div className="flex flex-col gap-0 rounded-xl overflow-hidden" style={{ border: '1px solid var(--border)' }}>
+          {entries.map(({ key, icon, labelKey, color, pct }, i) => (
+            <motion.div
+              key={key}
+              initial={{ opacity: 0, x: -8 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.15 + i * 0.06 }}
+              className="flex items-center gap-4 px-5 py-3.5"
+              style={{ borderTop: i > 0 ? '1px solid var(--border)' : 'none' }}
+            >
+              <span style={{ fontSize: '1.1rem', width: 24, textAlign: 'center', flexShrink: 0 }}>{icon}</span>
+              <div className="flex-1 min-w-0 flex flex-col gap-1.5">
+                <div className="flex items-center justify-between">
+                  <span className="text-xs" style={{ color: 'var(--muted)' }}>{t.simMode[labelKey]}</span>
+                  <span style={{ fontFamily: 'var(--font-display)', fontSize: '0.9rem', color, letterSpacing: '0.02em' }}>
+                    {pct}%
+                  </span>
+                </div>
+                <div className="h-1.5 rounded-full w-full overflow-hidden" style={{ background: 'var(--border)' }}>
+                  <motion.div
+                    className="h-full rounded-full"
+                    initial={{ width: 0 }}
+                    animate={{ width: `${Math.round(pct / maxPct * 100)}%` }}
+                    transition={{ duration: 0.55, delay: 0.2 + i * 0.07, ease: 'easeOut' }}
+                    style={{ background: color }}
+                  />
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Start knop */}
+        <motion.button
+          onClick={onConfirm}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.55 }}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: '1rem',
+            letterSpacing: '0.14em',
+            padding: '15px 0',
+            background: 'var(--gold)',
+            color: '#07070A',
+            border: '2px solid var(--gold)',
+            borderRadius: 10,
+            cursor: 'pointer',
+            boxShadow: '0 0 40px rgba(212,148,10,0.25)',
+          }}
+        >
+          {mode === 'auto' ? t.simMode.oddsStartAuto : t.simMode.oddsStartManual}
+        </motion.button>
+      </motion.div>
+    </PageShell>
+  );
+}
 
 // ─── Auto simulation ──────────────────────────────────────────────────────────
 
