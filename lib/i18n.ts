@@ -213,6 +213,25 @@ export const translations = {
       onlyTeam: (name: string) => `Enkel ${name}`,
       showAll: (n: number) => `Toon alle ${n}`,
     },
+
+    // ── Data correctie ────────────────────────────────────────────────────────
+    corrections: {
+      label: 'Pintjesliga',
+      title: 'DATACORRECTIE',
+      desc: 'Klopt er iets niet in de spelersdata? Geef hieronder je naam en een beschrijving van de fout. We bekijken elke aanvraag en passen de data aan indien nodig.',
+      nameLabel: 'Jouw naam',
+      namePlaceholder: 'Bijv. Sebastien',
+      messageLabel: 'Correctieaanvraag',
+      messagePlaceholder: 'Bijv. "Wataru Endo staat in STVV 2019-20 maar hij is 71 OVR, dat zou eerder 73 moeten zijn want..."',
+      submit: 'VERSTUUR',
+      cancel: 'Annuleer',
+      errorMsg: 'Kon aanvraag niet versturen. Probeer opnieuw.',
+      clearError: 'Wis fout',
+      successTitle: 'Aanvraag verstuurd!',
+      successDesc: 'Bedankt! We bekijken je correctie zo snel mogelijk.',
+      backHome: 'Terug naar startpagina',
+      navLink: 'Datacorrectie',
+    },
   },
 
   en: {
@@ -414,7 +433,27 @@ export const translations = {
       onlyTeam: (name: string) => `Only ${name}`,
       showAll: (n: number) => `Show all ${n}`,
     },
+
+    // ── Data correction ───────────────────────────────────────────────────────
+    corrections: {
+      label: 'Pintjesliga',
+      title: 'DATA CORRECTION',
+      desc: 'Something wrong in the player data? Enter your name and a description of the issue below. We review every request and update the data if needed.',
+      nameLabel: 'Your name',
+      namePlaceholder: 'E.g. Sebastien',
+      messageLabel: 'Correction request',
+      messagePlaceholder: 'E.g. "Wataru Endo is in STVV 2019-20 but his rating is 71 OVR, it should be closer to 73 because..."',
+      submit: 'SUBMIT',
+      cancel: 'Cancel',
+      errorMsg: 'Could not send request. Please try again.',
+      clearError: 'Clear error',
+      successTitle: 'Request sent!',
+      successDesc: 'Thank you! We will review your correction as soon as possible.',
+      backHome: 'Back to home',
+      navLink: 'Data correction',
+    },
   },
 } as const;
 
+// Append to each language block above — done inline below via module augmentation
 export type Translations = typeof translations.nl;

@@ -1,6 +1,7 @@
 'use client';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Formation, FORMATIONS } from '@/lib/types';
 import { useGameStore } from '@/lib/store';
@@ -92,15 +93,22 @@ export default function HomePage() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
-          className="flex items-center gap-4 pt-8 mt-4 flex-wrap"
+          className="flex items-center justify-between pt-8 mt-4 flex-wrap gap-4"
           style={{ borderTop: '1px solid var(--border)' }}
         >
-          {(['129', '8', '3', 'PO1 · PO2'] as string[]).map((val, i) => (
-            <div key={i} className="flex flex-col">
-              <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', color: 'var(--text)', letterSpacing: '0.05em' }}>{val}</span>
-              <span className="label-xs" style={{ marginTop: 1 }}>{t.home.statsLabels[i]}</span>
-            </div>
-          ))}
+          <div className="flex items-center gap-4 flex-wrap">
+            {(['129', '8', '3', 'PO1 · PO2'] as string[]).map((val, i) => (
+              <div key={i} className="flex flex-col">
+                <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', color: 'var(--text)', letterSpacing: '0.05em' }}>{val}</span>
+                <span className="label-xs" style={{ marginTop: 1 }}>{t.home.statsLabels[i]}</span>
+              </div>
+            ))}
+          </div>
+          <Link href="/corrections" style={{ textDecoration: 'none' }}>
+            <span className="text-xs" style={{ color: 'var(--muted)', borderBottom: '1px dashed var(--border)', paddingBottom: 1 }}>
+              {t.corrections.navLink}
+            </span>
+          </Link>
         </motion.div>
       </div>
 

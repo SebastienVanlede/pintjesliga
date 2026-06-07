@@ -645,6 +645,13 @@ function ResultsView({ sim, onReset, onBack }: {
         {/* Share card */}
         <ShareSection sim={sim} pickedPlayers={pickedPlayers as PickedPlayer[]} formation={formation!} />
 
+        {/* Data correction link */}
+        <p className="text-xs text-center" style={{ color: 'var(--muted)' }}>
+          <a href="/corrections" style={{ color: 'var(--muted)', borderBottom: '1px dashed var(--border)' }}>
+            {t.corrections.navLink}
+          </a>
+        </p>
+
         {/* Actions */}
         <div className="flex gap-4 justify-center mt-2">
           <button onClick={onBack} className="px-6 py-3 rounded text-sm transition-all duration-150"
