@@ -269,6 +269,43 @@ export default function Nav() {
 
                 <div style={{ height: 1, background: 'var(--border)', margin: '4px 0' }} />
 
+                {/* Stats link */}
+                <Link
+                  href="/stats"
+                  onClick={() => setMenuOpen(false)}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 10,
+                    padding: '9px 10px',
+                    borderRadius: 4,
+                    color: pathname === '/stats' ? 'var(--gold)' : 'var(--text-2)',
+                    textDecoration: 'none',
+                    fontSize: '0.78rem',
+                    transition: 'all 0.15s',
+                    background: pathname === '/stats' ? 'var(--gold-glow)' : 'transparent',
+                  }}
+                  onMouseEnter={e => {
+                    if (pathname !== '/stats') {
+                      e.currentTarget.style.background = 'var(--surface)';
+                      e.currentTarget.style.color = 'var(--text)';
+                    }
+                  }}
+                  onMouseLeave={e => {
+                    if (pathname !== '/stats') {
+                      e.currentTarget.style.background = 'transparent';
+                      e.currentTarget.style.color = 'var(--text-2)';
+                    }
+                  }}
+                >
+                  <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                    <rect x="2" y="9" width="3" height="5" />
+                    <rect x="6.5" y="5" width="3" height="9" />
+                    <rect x="11" y="2" width="3" height="12" />
+                  </svg>
+                  <span style={{ flex: 1 }}>{t.stats.navLink}</span>
+                </Link>
+
                 {/* Datacorrectie link */}
                 <Link
                   href="/corrections"

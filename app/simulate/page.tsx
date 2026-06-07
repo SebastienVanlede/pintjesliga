@@ -774,7 +774,7 @@ function ResultsView({ sim, onReset, onBack }: {
 }) {
   const [activeTab, setActiveTab] = useState<TabId>('regular');
   const [matchesOpen, setMatchesOpen] = useState(false);
-  const { pickedPlayers, formation, teamName, draftMode } = useGameStore();
+  const { pickedPlayers, formation, teamName, draftMode, classicSquads, simSeason, recordPlayedGame, playHistory } = useGameStore();
   const t = useT();
   const myTeam = teamName.trim() || t.simMode.teamNamePlaceholder;
   const isBlind = draftMode === 'blind';
@@ -807,6 +807,42 @@ function ResultsView({ sim, onReset, onBack }: {
     : userInRele                                      ? t.results.resultLabels.rel
     : sim.directlyRelegate === myTeam                 ? t.results.resultLabels.directRel
     : '';
+
+  // Bereken doelpunten van eigen spelers in de hele sim
+  const allMatches = [...sim.regularSeason.matches, ...sim.po1.matches, ...sim.po2.matches, ...sim.poRelegation.matches];
+  const userPlayerNames = new Set((pickedPlayers as PickedPlayer[]).map(p => p.player.name));
+  const userGoalsScored = allMatches.reduce(
+    (sum, m) => sum + m.scorers.filter(s => userPlayerNames.has(s)).length, 0
+  );
+
+  // Sla deze run één keer op in history (idempotent — check laatste entry)
+  useEffect(() => {
+    if (!formation) return;
+    const last = playHistory[0];
+    // Identiek aan laatste = niet opnieuw opslaan (refresh-bestendig)
+    if (last && last.totalScore === score.total && last.champion === sim.champion && last.teamName === myTeam) return;
+
+    recordPlayedGame({
+      formation,
+      draftMode,
+      opponentMode:  classicSquads && classicSquads.length > 0 ? 'classic' : 'season',
+      opponentSeason: classicSquads && classicSquads.length > 0 ? undefined : simSeason,
+      teamName: myTeam,
+      avgOverall: Math.round(score.avgOverall),
+      totalScore: score.total,
+      resultLabel: score.resultLabel,
+      isChampion,
+      champion: sim.champion,
+      players: (pickedPlayers as PickedPlayer[]).map(p => ({
+        name: p.player.name, teamName: p.teamName, season: p.season,
+        position: p.position, overall: p.player.overall,
+      })),
+      uniqueTeams: score.uniqueTeams,
+      uniqueSeasons: score.uniqueSeasons,
+      goalsScored: userGoalsScored,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <PageShell>

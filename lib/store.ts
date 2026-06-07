@@ -18,6 +18,25 @@ export interface ClassicOpponent {
   primaryColor: string;
 }
 
+export interface PlayedGame {
+  id: string;
+  playedAt: number;
+  formation: string;
+  draftMode: 'normal' | 'blind';
+  opponentMode: 'classic' | 'season';
+  opponentSeason?: string;
+  teamName: string;
+  avgOverall: number;
+  totalScore: number;
+  resultLabel: string;
+  isChampion: boolean;
+  champion: string;
+  players: { name: string; teamName: string; season: string; position: string; overall: number }[];
+  uniqueTeams: number;
+  uniqueSeasons: number;
+  goalsScored: number;
+}
+
 interface GameState {
   formation: Formation | null;
   pickedPlayers: PickedPlayer[];
@@ -31,6 +50,7 @@ interface GameState {
   rerollsUsed: number;
   pendingRoll: PendingRoll | null;
   classicSquads: ClassicOpponent[] | null;
+  playHistory: PlayedGame[];
 
   setFormation: (f: Formation) => void;
   pickPlayer: (p: PickedPlayer) => void;
@@ -43,6 +63,8 @@ interface GameState {
   useReroll: () => void;
   setPendingRoll: (r: PendingRoll | null) => void;
   setClassicSquads: (s: ClassicOpponent[] | null) => void;
+  recordPlayedGame: (g: Omit<PlayedGame, 'id' | 'playedAt'>) => void;
+  clearPlayHistory: () => void;
   reset: () => void;
   resetKeepFormation: () => void;
 }
@@ -62,6 +84,7 @@ export const useGameStore = create<GameState>()(
       rerollsUsed: 0,
       pendingRoll: null,
       classicSquads: null,
+      playHistory: [],
 
       setFormation: (formation) =>
         set({ formation, pickedPlayers: [], currentPositionIndex: 0, simulatedSeason: null, rerollsUsed: 0, classicSquads: null }),
@@ -91,6 +114,17 @@ export const useGameStore = create<GameState>()(
 
       setClassicSquads: (classicSquads) => set({ classicSquads }),
 
+      recordPlayedGame: (game) =>
+        set(state => {
+          const id = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+          const newEntry: PlayedGame = { ...game, id, playedAt: Date.now() };
+          // Trim oude entries (max 200)
+          const trimmed = [newEntry, ...state.playHistory].slice(0, 200);
+          return { playHistory: trimmed };
+        }),
+
+      clearPlayHistory: () => set({ playHistory: [] }),
+
       reset: () =>
         set({ formation: null, pickedPlayers: [], currentPositionIndex: 0, simulatedSeason: null, rerollsUsed: 0, pendingRoll: null, classicSquads: null }),
 
@@ -112,6 +146,7 @@ export const useGameStore = create<GameState>()(
         rerollsUsed:      state.rerollsUsed,
         pendingRoll:      state.pendingRoll,
         classicSquads:    state.classicSquads,
+        playHistory:      state.playHistory,
       }),
     }
   )
