@@ -247,6 +247,23 @@ const squadModules: Record<string, () => Promise<Squad>> = {
   'waasland-beveren-2012-13': () => import('@/data/squads/waasland-beveren-2012.json').then(m => m.default as Squad),
   'mons-2012-13':             () => import('@/data/squads/mons-2012.json').then(m => m.default as Squad),
   'germinal-beerschot-2012-13':() => import('@/data/squads/germinal-beerschot-2012.json').then(m => m.default as Squad),
+  // 2011-12 season
+  'anderlecht-2011-12':       () => import('@/data/squads/anderlecht-2011.json').then(m => m.default as Squad),
+  'club-brugge-2011-12':      () => import('@/data/squads/club-brugge-2011.json').then(m => m.default as Squad),
+  'genk-2011-12':             () => import('@/data/squads/genk-2011.json').then(m => m.default as Squad),
+  'standard-2011-12':         () => import('@/data/squads/standard-2011.json').then(m => m.default as Squad),
+  'gent-2011-12':             () => import('@/data/squads/gent-2011.json').then(m => m.default as Squad),
+  'kortrijk-2011-12':         () => import('@/data/squads/kortrijk-2011.json').then(m => m.default as Squad),
+  'cercle-brugge-2011-12':    () => import('@/data/squads/cercle-brugge-2011.json').then(m => m.default as Squad),
+  'lokeren-2011-12':          () => import('@/data/squads/lokeren-2011.json').then(m => m.default as Squad),
+  'mechelen-2011-12':         () => import('@/data/squads/mechelen-2011.json').then(m => m.default as Squad),
+  'mons-2011-12':             () => import('@/data/squads/mons-2011.json').then(m => m.default as Squad),
+  'germinal-beerschot-2011-12':() => import('@/data/squads/germinal-beerschot-2011.json').then(m => m.default as Squad),
+  'lierse-2011-12':           () => import('@/data/squads/lierse-2011.json').then(m => m.default as Squad),
+  'zulte-waregem-2011-12':    () => import('@/data/squads/zulte-waregem-2011.json').then(m => m.default as Squad),
+  'westerlo-2011-12':         () => import('@/data/squads/westerlo-2011.json').then(m => m.default as Squad),
+  'ohl-2011-12':              () => import('@/data/squads/ohl-2011.json').then(m => m.default as Squad),
+  'stvv-2011-12':             () => import('@/data/squads/stvv-2011.json').then(m => m.default as Squad),
 };
 
 /** Aantal squad bestanden geregistreerd (1 per club-per-seizoen). */

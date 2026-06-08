@@ -1,0 +1,26 @@
+{
+  "team": "SV Zulte Waregem",
+  "teamId": "zulte-waregem",
+  "season": "2011-12",
+  "year": 2011,
+  "players": [
+    {"id":"bossut-11","name":"Sammy Bossut","position":"GK","nationality":"BEL","age":26,"appearances":28,"goals":0,"assists":0,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"muyters-11","name":"Tom Muyters","position":"GK","nationality":"BEL","age":26,"appearances":10,"goals":0,"assists":0,"marketValue":350000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"colpaert-11","name":"Steve Colpaert","position":"CB","nationality":"BEL","age":25,"appearances":24,"goals":1,"assists":0,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"dhaene-k-11","name":"Karel D'Haene","position":"CB","nationality":"BEL","age":30,"appearances":22,"goals":1,"assists":0,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"dachelet-11","name":"Miguel Dachelet","position":"CB","nationality":"BEL","age":23,"appearances":18,"goals":1,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"sivakov-11","name":"Mikhail Sivakov","position":"CB","nationality":"BLR","age":23,"appearances":16,"goals":1,"assists":0,"marketValue":500000,"internationalCaps":12,"awards":[],"overall":65},
+    {"id":"mareval-zlt-11","name":"Rémi Maréval","position":"LB","alternativePositions":["LM"],"nationality":"FRA","age":28,"appearances":20,"goals":1,"assists":2,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"hamalainen-11","name":"Brian Hämäläinen","position":"LB","alternativePositions":["LM"],"nationality":"DEN","age":23,"appearances":18,"goals":0,"assists":2,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"de-fauw-11","name":"Davy De Fauw","position":"RB","alternativePositions":["CB"],"nationality":"BEL","age":30,"appearances":24,"goals":0,"assists":2,"marketValue":1400000,"internationalCaps":4,"awards":[],"overall":69},
+    {"id":"hyland-zlt-11","name":"Khaleem Hyland","position":"CDM","alternativePositions":["CM"],"nationality":"TTO","age":22,"appearances":22,"goals":1,"assists":1,"marketValue":2000000,"internationalCaps":12,"awards":[],"overall":70},
+    {"id":"skulason-o-11","name":"Ólafur Ingi Skúlason","position":"CDM","alternativePositions":["CM"],"nationality":"ISL","age":28,"appearances":22,"goals":1,"assists":2,"marketValue":700000,"internationalCaps":15,"awards":[],"overall":68},
+    {"id":"delaplace-11","name":"Jonathan Delaplace","position":"CM","alternativePositions":["CDM"],"nationality":"FRA","age":25,"appearances":24,"goals":2,"assists":3,"marketValue":900000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"berrier-11","name":"Franck Berrier","position":"CAM","alternativePositions":["CM"],"nationality":"FRA","age":28,"appearances":26,"goals":6,"assists":4,"marketValue":1800000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"matton-11","name":"Thomas Matton","position":"CAM","alternativePositions":["CM"],"nationality":"BEL","age":26,"appearances":22,"goals":3,"assists":3,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"trajkovski-11","name":"Aleksandar Trajkovski","position":"LW","alternativePositions":["ST","RW"],"nationality":"MKD","age":18,"appearances":16,"goals":3,"assists":2,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"maazou-11","name":"Moussa Maazou","position":"ST","alternativePositions":["LW"],"nationality":"NER","age":23,"appearances":22,"goals":7,"assists":2,"marketValue":1000000,"internationalCaps":18,"awards":[],"overall":69},
+    {"id":"leye-11","name":"Mbaye Leye","position":"ST","nationality":"SEN","age":28,"appearances":24,"goals":9,"assists":3,"marketValue":1000000,"internationalCaps":18,"awards":[],"overall":70},
+    {"id":"chevalier-11","name":"Teddy Chevalier","position":"ST","nationality":"FRA","age":25,"appearances":20,"goals":5,"assists":2,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":68}
+  ]
+}

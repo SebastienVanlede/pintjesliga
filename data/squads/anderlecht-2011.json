@@ -1,0 +1,25 @@
+{
+  "team": "RSC Anderlecht",
+  "teamId": "anderlecht",
+  "season": "2011-12",
+  "year": 2011,
+  "players": [
+    {"id":"proto-11","name":"Silvio Proto","position":"GK","nationality":"BEL","age":28,"appearances":30,"goals":0,"assists":0,"marketValue":4000000,"internationalCaps":0,"awards":[],"overall":74},
+    {"id":"schollen-11","name":"Davy Schollen","position":"GK","nationality":"BEL","age":33,"appearances":10,"goals":0,"assists":0,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"deschacht-11","name":"Olivier Deschacht","position":"CB","alternativePositions":["LB"],"nationality":"BEL","age":30,"appearances":24,"goals":1,"assists":0,"marketValue":1000000,"internationalCaps":12,"awards":[],"overall":68},
+    {"id":"odoi-11","name":"Denis Odoi","position":"CB","alternativePositions":["RB"],"nationality":"BEL","age":23,"appearances":22,"goals":1,"assists":1,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"juhasz-11","name":"Roland Juhász","position":"CB","nationality":"HUN","age":28,"appearances":26,"goals":2,"assists":0,"marketValue":5000000,"internationalCaps":50,"awards":[],"overall":73},
+    {"id":"wasilewski-11","name":"Marcin Wasilewski","position":"CB","nationality":"POL","age":31,"appearances":20,"goals":1,"assists":0,"marketValue":1500000,"internationalCaps":22,"awards":[],"overall":70},
+    {"id":"safari-11","name":"Behrang Safari","position":"LB","alternativePositions":["LM"],"nationality":"SWE","age":26,"appearances":24,"goals":0,"assists":3,"marketValue":2500000,"internationalCaps":15,"awards":[],"overall":70},
+    {"id":"lukaku-j-11","name":"Jordan Lukaku","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":17,"appearances":10,"goals":0,"assists":1,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"biglia-11","name":"Lucas Biglia","position":"CDM","alternativePositions":["CM"],"nationality":"ARG","age":25,"appearances":28,"goals":3,"assists":4,"marketValue":8500000,"internationalCaps":12,"awards":[],"overall":76},
+    {"id":"kouyate-11","name":"Cheikhou Kouyaté","position":"CDM","alternativePositions":["CB","CM"],"nationality":"SEN","age":22,"appearances":26,"goals":2,"assists":2,"marketValue":5000000,"internationalCaps":10,"awards":[],"overall":73},
+    {"id":"gillet-11","name":"Guillaume Gillet","position":"CDM","alternativePositions":["RB","CM"],"nationality":"BEL","age":27,"appearances":26,"goals":3,"assists":3,"marketValue":5000000,"internationalCaps":8,"awards":[],"overall":73},
+    {"id":"praet-11","name":"Dennis Praet","position":"CM","alternativePositions":["CAM"],"nationality":"BEL","age":17,"appearances":14,"goals":1,"assists":2,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"kljestan-11","name":"Sacha Kljestan","position":"CAM","alternativePositions":["CM"],"nationality":"USA","age":26,"appearances":22,"goals":3,"assists":3,"marketValue":2500000,"internationalCaps":35,"awards":[],"overall":71},
+    {"id":"vargas-11","name":"Ronald Vargas","position":"CAM","alternativePositions":["LW","RW"],"nationality":"VEN","age":24,"appearances":24,"goals":4,"assists":4,"marketValue":4000000,"internationalCaps":18,"awards":[],"overall":72},
+    {"id":"jovanovic-11","name":"Milan Jovanović","position":"LW","alternativePositions":["ST","CAM"],"nationality":"SRB","age":30,"appearances":22,"goals":5,"assists":3,"marketValue":4000000,"internationalCaps":50,"awards":[],"overall":72},
+    {"id":"lukaku-r-11","name":"Romelu Lukaku","position":"ST","nationality":"BEL","age":18,"appearances":30,"goals":15,"assists":3,"marketValue":14000000,"internationalCaps":8,"awards":[],"overall":78},
+    {"id":"suarez-m-11","name":"Matías Suárez","position":"ST","alternativePositions":["CAM"],"nationality":"ARG","age":23,"appearances":26,"goals":13,"assists":4,"marketValue":10000000,"internationalCaps":0,"awards":[],"overall":75}
+  ]
+}

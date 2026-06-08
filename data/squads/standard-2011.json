@@ -1,0 +1,25 @@
+{
+  "team": "Standard Liège",
+  "teamId": "standard",
+  "season": "2011-12",
+  "year": 2011,
+  "players": [
+    {"id":"bolat-11","name":"Sinan Bolat","position":"GK","nationality":"TUR","age":22,"appearances":28,"goals":0,"assists":0,"marketValue":3500000,"internationalCaps":2,"awards":[],"overall":72},
+    {"id":"blazic-11","name":"Srdjan Blažić","position":"GK","nationality":"MNE","age":28,"appearances":10,"goals":0,"assists":0,"marketValue":1000000,"internationalCaps":4,"awards":[],"overall":68},
+    {"id":"trevizan-11","name":"Felipe Trevizan","position":"CB","nationality":"BRA","age":24,"appearances":24,"goals":1,"assists":0,"marketValue":3000000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"van-damme-11","name":"Jelle Van Damme","position":"CB","alternativePositions":["LB"],"nationality":"BEL","age":28,"appearances":22,"goals":1,"assists":1,"marketValue":3000000,"internationalCaps":30,"awards":[],"overall":72},
+    {"id":"kanu-11","name":"Kanu","position":"CB","nationality":"BRA","age":27,"appearances":22,"goals":1,"assists":0,"marketValue":2200000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"ciman-11","name":"Laurent Ciman","position":"CB","nationality":"BEL","age":25,"appearances":20,"goals":1,"assists":0,"marketValue":2000000,"internationalCaps":4,"awards":[],"overall":71},
+    {"id":"pocognoli-11","name":"Sébastien Pocognoli","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":23,"appearances":26,"goals":1,"assists":3,"marketValue":3700000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"goreux-11","name":"Réginal Goreux","position":"RB","alternativePositions":["CB"],"nationality":"BEL","age":23,"appearances":24,"goals":1,"assists":3,"marketValue":1800000,"internationalCaps":4,"awards":[],"overall":69},
+    {"id":"opare-11","name":"Daniel Opare","position":"RB","alternativePositions":["CB"],"nationality":"GHA","age":20,"appearances":18,"goals":1,"assists":2,"marketValue":1800000,"internationalCaps":2,"awards":[],"overall":69},
+    {"id":"buyens-11","name":"Yoni Buyens","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":23,"appearances":22,"goals":2,"assists":2,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"vainqueur-11","name":"William Vainqueur","position":"CDM","alternativePositions":["CM"],"nationality":"FRA","age":22,"appearances":24,"goals":2,"assists":2,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"bjarnason-11","name":"Birkir Bjarnason","position":"CM","alternativePositions":["CAM","LM"],"nationality":"ISL","age":23,"appearances":20,"goals":3,"assists":3,"marketValue":800000,"internationalCaps":10,"awards":[],"overall":68},
+    {"id":"seijas-11","name":"Luis Manuel Seijas","position":"LM","alternativePositions":["CAM","LW"],"nationality":"VEN","age":25,"appearances":18,"goals":2,"assists":3,"marketValue":1500000,"internationalCaps":10,"awards":[],"overall":68},
+    {"id":"gonzalez-i-11","name":"Ignacio González","position":"CAM","alternativePositions":["CM"],"nationality":"URU","age":29,"appearances":20,"goals":3,"assists":4,"marketValue":1000000,"internationalCaps":15,"awards":[],"overall":68},
+    {"id":"cyriac-11","name":"Cyriac","position":"LW","alternativePositions":["ST","RW"],"nationality":"CIV","age":20,"appearances":22,"goals":5,"assists":3,"marketValue":3000000,"internationalCaps":2,"awards":[],"overall":70},
+    {"id":"tchite-11","name":"Mémé Tchité","position":"ST","alternativePositions":["LW"],"nationality":"BDI","age":27,"appearances":24,"goals":8,"assists":3,"marketValue":4000000,"internationalCaps":2,"awards":[],"overall":71},
+    {"id":"batshuayi-11","name":"Michy Batshuayi","position":"ST","nationality":"BEL","age":18,"appearances":12,"goals":4,"assists":1,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":68}
+  ]
+}

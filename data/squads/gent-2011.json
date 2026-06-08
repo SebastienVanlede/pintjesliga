@@ -1,0 +1,25 @@
+{
+  "team": "AA Gent",
+  "teamId": "gent",
+  "season": "2011-12",
+  "year": 2011,
+  "players": [
+    {"id":"padt-11","name":"Sergio Padt","position":"GK","nationality":"NED","age":21,"appearances":22,"goals":0,"assists":0,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"boeckx-11","name":"Frank Boeckx","position":"GK","nationality":"BEL","age":25,"appearances":16,"goals":0,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"arzo-11","name":"César Arzo","position":"CB","nationality":"ESP","age":25,"appearances":24,"goals":2,"assists":1,"marketValue":3000000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"melli-11","name":"Melli","position":"CB","nationality":"ESP","age":27,"appearances":22,"goals":1,"assists":0,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"suler-11","name":"Marko Šuler","position":"CB","nationality":"SVN","age":28,"appearances":20,"goals":1,"assists":0,"marketValue":1200000,"internationalCaps":35,"awards":[],"overall":69},
+    {"id":"mareval-11","name":"Rémi Maréval","position":"LB","alternativePositions":["LM"],"nationality":"FRA","age":28,"appearances":24,"goals":1,"assists":2,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"skarabot-11","name":"Matija Škarabot","position":"LB","alternativePositions":["LM","CB"],"nationality":"SVN","age":23,"appearances":16,"goals":0,"assists":1,"marketValue":800000,"internationalCaps":4,"awards":[],"overall":66},
+    {"id":"baric-11","name":"Mario Barić","position":"RB","alternativePositions":["CB"],"nationality":"CRO","age":26,"appearances":22,"goals":0,"assists":2,"marketValue":1200000,"internationalCaps":2,"awards":[],"overall":68},
+    {"id":"jorgensen-11","name":"Jesper Jørgensen","position":"CM","alternativePositions":["CDM"],"nationality":"DEN","age":27,"appearances":26,"goals":3,"assists":3,"marketValue":2500000,"internationalCaps":2,"awards":[],"overall":70},
+    {"id":"smolders-11","name":"Tim Smolders","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":30,"appearances":24,"goals":2,"assists":3,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"lepoint-11","name":"Christophe Lepoint","position":"CM","alternativePositions":["CDM","CAM"],"nationality":"BEL","age":26,"appearances":22,"goals":3,"assists":3,"marketValue":1000000,"internationalCaps":2,"awards":[],"overall":68},
+    {"id":"bruls-11","name":"Christian Brüls","position":"CAM","alternativePositions":["LW","CM"],"nationality":"BEL","age":22,"appearances":22,"goals":5,"assists":3,"marketValue":2500000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"el-ghanassy-11","name":"Yassine El Ghanassy","position":"LW","alternativePositions":["RW","CAM"],"nationality":"BEL","age":20,"appearances":24,"goals":5,"assists":4,"marketValue":3000000,"internationalCaps":2,"awards":[],"overall":71},
+    {"id":"mboyo-11","name":"Ilombe Mboyo","position":"ST","nationality":"BEL","age":24,"appearances":26,"goals":11,"assists":3,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"ljubijankic-11","name":"Zlatan Ljubijankić","position":"ST","nationality":"SVN","age":27,"appearances":22,"goals":7,"assists":2,"marketValue":1700000,"internationalCaps":35,"awards":[],"overall":70},
+    {"id":"arbeitman-11","name":"Shlomi Arbeitman","position":"ST","nationality":"ISR","age":26,"appearances":18,"goals":4,"assists":2,"marketValue":900000,"internationalCaps":4,"awards":[],"overall":67},
+    {"id":"coulibaly-e-11","name":"Elimane Coulibaly","position":"ST","nationality":"SEN","age":31,"appearances":16,"goals":3,"assists":1,"marketValue":800000,"internationalCaps":12,"awards":[],"overall":66}
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "team": "Club Brugge KV",
+  "teamId": "club-brugge",
+  "season": "2011-12",
+  "year": 2011,
+  "players": [
+    {"id":"jorgacevic-11","name":"Bojan Jorgačević","position":"GK","nationality":"SRB","age":29,"appearances":28,"goals":0,"assists":0,"marketValue":2200000,"internationalCaps":4,"awards":[],"overall":71},
+    {"id":"coosemans-11","name":"Colin Coosemans","position":"GK","nationality":"BEL","age":19,"appearances":10,"goals":0,"assists":0,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"donk-11","name":"Ryan Donk","position":"CB","nationality":"NED","age":25,"appearances":26,"goals":2,"assists":0,"marketValue":3500000,"internationalCaps":0,"awards":[],"overall":72},
+    {"id":"figueras-11","name":"Jordi Figueras","position":"CB","nationality":"ESP","age":24,"appearances":22,"goals":1,"assists":0,"marketValue":2500000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"almeback-11","name":"Michael Almebäck","position":"CB","nationality":"SWE","age":23,"appearances":18,"goals":1,"assists":0,"marketValue":2000000,"internationalCaps":2,"awards":[],"overall":69},
+    {"id":"stenman-11","name":"Fredrik Stenman","position":"LB","alternativePositions":["CB","LM"],"nationality":"SWE","age":28,"appearances":24,"goals":0,"assists":2,"marketValue":1800000,"internationalCaps":2,"awards":[],"overall":69},
+    {"id":"dirar-11","name":"Nabil Dirar","position":"RB","alternativePositions":["RW","RM"],"nationality":"MAR","age":25,"appearances":28,"goals":5,"assists":6,"marketValue":5000000,"internationalCaps":4,"awards":[],"overall":74},
+    {"id":"hogli-11","name":"Tom Høgli","position":"RB","alternativePositions":["LB"],"nationality":"NOR","age":27,"appearances":20,"goals":0,"assists":2,"marketValue":1800000,"internationalCaps":10,"awards":[],"overall":69},
+    {"id":"meunier-11","name":"Thomas Meunier","position":"RB","alternativePositions":["RM"],"nationality":"BEL","age":19,"appearances":14,"goals":1,"assists":2,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"hoefkens-11","name":"Carl Hoefkens","position":"CB","alternativePositions":["RB"],"nationality":"BEL","age":32,"appearances":18,"goals":1,"assists":0,"marketValue":1200000,"internationalCaps":18,"awards":[],"overall":68},
+    {"id":"zimling-11","name":"Niki Zimling","position":"CDM","alternativePositions":["CM"],"nationality":"DEN","age":26,"appearances":26,"goals":2,"assists":3,"marketValue":3000000,"internationalCaps":18,"awards":[],"overall":71},
+    {"id":"blondel-11","name":"Jonathan Blondel","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":27,"appearances":22,"goals":2,"assists":2,"marketValue":2000000,"internationalCaps":4,"awards":[],"overall":69},
+    {"id":"odjidja-11","name":"Vadis Odjidja-Ofoe","position":"CM","alternativePositions":["CAM"],"nationality":"BEL","age":22,"appearances":24,"goals":3,"assists":4,"marketValue":6000000,"internationalCaps":0,"awards":[],"overall":73},
+    {"id":"refaelov-11","name":"Lior Refaelov","position":"CAM","alternativePositions":["CM","RW"],"nationality":"ISR","age":25,"appearances":28,"goals":8,"assists":6,"marketValue":2500000,"internationalCaps":15,"awards":["Gouden Schoen 2012"],"overall":75},
+    {"id":"vazquez-11","name":"Víctor Vázquez","position":"CAM","alternativePositions":["CM"],"nationality":"ESP","age":24,"appearances":22,"goals":4,"assists":4,"marketValue":2500000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"bacca-11","name":"Carlos Bacca","position":"ST","nationality":"COL","age":25,"appearances":26,"goals":11,"assists":3,"marketValue":2000000,"internationalCaps":4,"awards":["Gouden Schoen 2013"],"overall":73},
+    {"id":"vleminckx-11","name":"Björn Vleminckx","position":"ST","nationality":"BEL","age":26,"appearances":22,"goals":7,"assists":2,"marketValue":3000000,"internationalCaps":2,"awards":[],"overall":71}
+  ]
+}

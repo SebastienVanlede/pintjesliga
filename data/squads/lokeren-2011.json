@@ -1,0 +1,25 @@
+{
+  "team": "KSC Lokeren",
+  "teamId": "lokeren",
+  "season": "2011-12",
+  "year": 2011,
+  "players": [
+    {"id":"copa-11","name":"Boubacar Copa","position":"GK","nationality":"CIV","age":31,"appearances":26,"goals":0,"assists":0,"marketValue":1800000,"internationalCaps":12,"awards":[],"overall":70},
+    {"id":"lazic-11","name":"Jugoslav Lazić","position":"GK","nationality":"SRB","age":31,"appearances":12,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"taravel-11","name":"Jérémy Taravel","position":"CB","nationality":"FRA","age":24,"appearances":26,"goals":2,"assists":0,"marketValue":1700000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"maric-11","name":"Mijat Marić","position":"CB","nationality":"SUI","age":28,"appearances":22,"goals":1,"assists":0,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"gueye-11","name":"Ibrahima Gueyé","position":"CB","nationality":"SEN","age":33,"appearances":18,"goals":1,"assists":0,"marketValue":300000,"internationalCaps":12,"awards":[],"overall":65},
+    {"id":"de-bock-11","name":"Laurens De Bock","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":18,"appearances":18,"goals":0,"assists":1,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"el-mouataz-11","name":"Hassan El Mouataz","position":"LB","alternativePositions":["LM"],"nationality":"MAR","age":29,"appearances":16,"goals":0,"assists":1,"marketValue":400000,"internationalCaps":4,"awards":[],"overall":65},
+    {"id":"galitsios-11","name":"Georgios Galitsios","position":"RB","alternativePositions":["CB"],"nationality":"GRC","age":25,"appearances":24,"goals":1,"assists":2,"marketValue":900000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"de-roover-11","name":"Sepp De Roover","position":"RB","alternativePositions":["CB"],"nationality":"BEL","age":26,"appearances":18,"goals":0,"assists":1,"marketValue":800000,"internationalCaps":2,"awards":[],"overall":66},
+    {"id":"overmeire-11","name":"Killian Overmeire","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":25,"appearances":28,"goals":2,"assists":3,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"persoons-11","name":"Koen Persoons","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":28,"appearances":24,"goals":2,"assists":2,"marketValue":1300000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"tiko-11","name":"Tiko","position":"CDM","alternativePositions":["CM"],"nationality":"COD","age":30,"appearances":18,"goals":1,"assists":2,"marketValue":500000,"internationalCaps":4,"awards":[],"overall":66},
+    {"id":"leko-11","name":"Ivan Leko","position":"CAM","alternativePositions":["CM"],"nationality":"CRO","age":33,"appearances":22,"goals":4,"assists":3,"marketValue":400000,"internationalCaps":15,"awards":[],"overall":67},
+    {"id":"de-ceulaer-11","name":"Benjamin De Ceulaer","position":"ST","nationality":"BEL","age":27,"appearances":26,"goals":10,"assists":3,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"harbaoui-11","name":"Hamdi Harbaoui","position":"ST","nationality":"TUN","age":26,"appearances":24,"goals":9,"assists":2,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"fall-d-11","name":"Djiby Fall","position":"ST","nationality":"SEN","age":26,"appearances":18,"goals":5,"assists":2,"marketValue":1500000,"internationalCaps":2,"awards":[],"overall":69},
+    {"id":"corryn-11","name":"Alexander Corryn","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":17,"appearances":10,"goals":0,"assists":1,"marketValue":150000,"internationalCaps":0,"awards":[],"overall":63}
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "team": "KVC Westerlo",
+  "teamId": "westerlo",
+  "season": "2011-12",
+  "year": 2011,
+  "players": [
+    {"id":"de-winter-11","name":"Yves De Winter","position":"GK","nationality":"BEL","age":24,"appearances":24,"goals":0,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"verbauwhede-11","name":"Glenn Verbauwhede","position":"GK","nationality":"BEL","age":26,"appearances":10,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"vanhamel-11","name":"Mike Vanhamel","position":"GK","nationality":"BEL","age":21,"appearances":6,"goals":0,"assists":0,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"wils-s-11","name":"Stef Wils","position":"CB","nationality":"BEL","age":28,"appearances":26,"goals":1,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"corstjens-11","name":"Wouter Corstjens","position":"CB","nationality":"BEL","age":24,"appearances":22,"goals":1,"assists":0,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"de-greef-11","name":"Arnaud De Greef","position":"CB","nationality":"BEL","age":19,"appearances":18,"goals":1,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"j-cools-11","name":"Jens Cools","position":"CB","alternativePositions":["CDM"],"nationality":"BEL","age":20,"appearances":16,"goals":0,"assists":1,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"vanthournout-11","name":"Jeroen Vanthournout","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":22,"appearances":22,"goals":0,"assists":2,"marketValue":350000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"cabeke-11","name":"Geoffrey Cabeke","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":22,"appearances":16,"goals":0,"assists":1,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"vanaudenaerde-11","name":"Gunther Vanaudenaerde","position":"RB","alternativePositions":["CB"],"nationality":"BEL","age":27,"appearances":24,"goals":0,"assists":2,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"de-petter-11","name":"Steven De Petter","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":25,"appearances":26,"goals":2,"assists":3,"marketValue":850000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"ngolok-11","name":"Evariste Ngolok","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":22,"appearances":22,"goals":1,"assists":2,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"annab-11","name":"Lens Annab","position":"RW","alternativePositions":["RM"],"nationality":"BEL","age":22,"appearances":20,"goals":3,"assists":3,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"molenberghs-11","name":"Jarno Molenberghs","position":"RW","alternativePositions":["RM"],"nationality":"BEL","age":21,"appearances":18,"goals":2,"assists":2,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"reynaldo-11","name":"Reynaldo","position":"ST","alternativePositions":["LW","RW"],"nationality":"BRA","age":21,"appearances":24,"goals":7,"assists":3,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"owusu-11","name":"William Owusu","position":"ST","alternativePositions":["LW"],"nationality":"GHA","age":21,"appearances":20,"goals":5,"assists":2,"marketValue":600000,"internationalCaps":2,"awards":[],"overall":67},
+    {"id":"sidibe-11","name":"Ibrahima Sidibé","position":"ST","nationality":"SEN","age":30,"appearances":18,"goals":4,"assists":2,"marketValue":400000,"internationalCaps":12,"awards":[],"overall":66}
+  ]
+}

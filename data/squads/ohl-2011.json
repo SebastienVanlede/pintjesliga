@@ -1,0 +1,25 @@
+{
+  "team": "OH Leuven",
+  "teamId": "ohl",
+  "season": "2011-12",
+  "year": 2011,
+  "players": [
+    {"id":"lenaerts-11","name":"Yves Lenaerts","position":"GK","nationality":"BEL","age":28,"appearances":26,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"michiels-11","name":"Dean Michiels","position":"GK","nationality":"BEL","age":19,"appearances":12,"goals":0,"assists":0,"marketValue":50000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"raymaekers-11","name":"Wim Raymaekers","position":"CB","nationality":"BEL","age":26,"appearances":26,"goals":1,"assists":0,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"weuts-11","name":"Koen Weuts","position":"CB","nationality":"BEL","age":20,"appearances":22,"goals":1,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"dejmek-11","name":"Radek Dejmek","position":"CB","nationality":"CZE","age":23,"appearances":20,"goals":1,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"hayen-11","name":"Nicky Hayen","position":"CB","nationality":"BEL","age":30,"appearances":18,"goals":1,"assists":0,"marketValue":250000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"gendarme-11","name":"Lionel Gendarme","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":22,"appearances":22,"goals":0,"assists":2,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"diandy-11","name":"Christophe Diandy","position":"CDM","alternativePositions":["CM"],"nationality":"SEN","age":20,"appearances":22,"goals":1,"assists":2,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"gislason-s-11","name":"Stefán Gíslason","position":"CDM","alternativePositions":["CM"],"nationality":"ISL","age":31,"appearances":20,"goals":1,"assists":2,"marketValue":500000,"internationalCaps":22,"awards":[],"overall":66},
+    {"id":"van-goethem-11","name":"Kenneth Van Goethem","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":27,"appearances":18,"goals":1,"assists":1,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"annys-11","name":"Maxime Annys","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":24,"appearances":18,"goals":1,"assists":1,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"geraerts-11","name":"Karel Geraerts","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":29,"appearances":26,"goals":3,"assists":4,"marketValue":1200000,"internationalCaps":2,"awards":[],"overall":69},
+    {"id":"boi-11","name":"Frederik Boi","position":"RM","alternativePositions":["RW"],"nationality":"BEL","age":29,"appearances":22,"goals":2,"assists":3,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"yakovenko-11","name":"Oleksandr Yakovenko","position":"LW","alternativePositions":["CAM","RW"],"nationality":"UKR","age":24,"appearances":24,"goals":5,"assists":4,"marketValue":1200000,"internationalCaps":2,"awards":[],"overall":70},
+    {"id":"remacle-11","name":"Jordan Remacle","position":"RW","alternativePositions":["RM"],"nationality":"BEL","age":24,"appearances":22,"goals":4,"assists":3,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"ogbu-11","name":"Derick Ogbu","position":"ST","nationality":"NGA","age":21,"appearances":22,"goals":7,"assists":2,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"salou-11","name":"Ibrahim Salou","position":"ST","nationality":"GHA","age":32,"appearances":18,"goals":5,"assists":2,"marketValue":350000,"internationalCaps":2,"awards":[],"overall":66}
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "team": "Lierse SK",
+  "teamId": "lierse",
+  "season": "2011-12",
+  "year": 2011,
+  "players": [
+    {"id":"kawashima-11","name":"Eiji Kawashima","position":"GK","nationality":"JPN","age":28,"appearances":28,"goals":0,"assists":0,"marketValue":2000000,"internationalCaps":50,"awards":[],"overall":72},
+    {"id":"goris-n-11","name":"Nathan Goris","position":"GK","nationality":"BEL","age":21,"appearances":10,"goals":0,"assists":0,"marketValue":150000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"sels-11","name":"Matz Sels","position":"GK","nationality":"BEL","age":19,"appearances":4,"goals":0,"assists":0,"marketValue":100000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"grncarov-11","name":"Boban Grnčarov","position":"CB","nationality":"MKD","age":28,"appearances":24,"goals":1,"assists":0,"marketValue":800000,"internationalCaps":35,"awards":[],"overall":68},
+    {"id":"wils-t-11","name":"Thomas Wils","position":"CB","nationality":"BEL","age":21,"appearances":22,"goals":1,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"saidi-11","name":"Karim Saïdi","position":"CB","nationality":"TUN","age":28,"appearances":20,"goals":1,"assists":0,"marketValue":800000,"internationalCaps":18,"awards":[],"overall":67},
+    {"id":"frans-11","name":"Frédéric Frans","position":"CB","nationality":"BEL","age":22,"appearances":18,"goals":1,"assists":0,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"andreasson-11","name":"Marcus Andreasson","position":"CB","nationality":"SWE","age":32,"appearances":14,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":18,"awards":[],"overall":64},
+    {"id":"thompson-11","name":"Kenny Thompson","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":26,"appearances":24,"goals":0,"assists":2,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"gilberto-11","name":"Gilberto","position":"LB","alternativePositions":["LM"],"nationality":"AGO","age":28,"appearances":16,"goals":0,"assists":1,"marketValue":600000,"internationalCaps":15,"awards":[],"overall":66},
+    {"id":"gaxa-11","name":"Siboniso Gaxa","position":"RB","alternativePositions":["CB"],"nationality":"RSA","age":27,"appearances":22,"goals":0,"assists":2,"marketValue":600000,"internationalCaps":30,"awards":[],"overall":67},
+    {"id":"ayew-i-11","name":"Ibrahim Ayew","position":"RB","alternativePositions":["RM"],"nationality":"GHA","age":23,"appearances":18,"goals":0,"assists":1,"marketValue":600000,"internationalCaps":8,"awards":[],"overall":66},
+    {"id":"davids-11","name":"Lance Davids","position":"CDM","alternativePositions":["CM"],"nationality":"RSA","age":26,"appearances":22,"goals":1,"assists":1,"marketValue":400000,"internationalCaps":2,"awards":[],"overall":65},
+    {"id":"maric-m-11","name":"Miloš Marić","position":"CM","alternativePositions":["CDM"],"nationality":"SRB","age":29,"appearances":24,"goals":2,"assists":2,"marketValue":1000000,"internationalCaps":2,"awards":[],"overall":68},
+    {"id":"claasen-11","name":"Daylon Claasen","position":"CAM","alternativePositions":["RW"],"nationality":"RSA","age":21,"appearances":22,"goals":4,"assists":3,"marketValue":1200000,"internationalCaps":2,"awards":[],"overall":69},
+    {"id":"bidaoui-11","name":"Soufiane Bidaoui","position":"LW","alternativePositions":["RW"],"nationality":"MAR","age":21,"appearances":18,"goals":3,"assists":3,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"sonck-11","name":"Wesley Sonck","position":"ST","nationality":"BEL","age":32,"appearances":18,"goals":4,"assists":2,"marketValue":300000,"internationalCaps":50,"awards":[],"overall":66}
+  ]
+}

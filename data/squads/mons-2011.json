@@ -1,0 +1,26 @@
+{
+  "team": "RAEC Mons",
+  "teamId": "mons",
+  "season": "2011-12",
+  "year": 2011,
+  "players": [
+    {"id":"werner-11","name":"Olivier Werner","position":"GK","nationality":"BEL","age":26,"appearances":26,"goals":0,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"berthelin-11","name":"Cédric Berthelin","position":"GK","nationality":"FRA","age":34,"appearances":12,"goals":0,"assists":0,"marketValue":250000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"sapina-11","name":"Jérémy Sapina","position":"CB","nationality":"FRA","age":26,"appearances":22,"goals":1,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"lepicier-11","name":"Maël Lepicier","position":"CB","nationality":"COG","age":25,"appearances":22,"goals":1,"assists":0,"marketValue":750000,"internationalCaps":4,"awards":[],"overall":67},
+    {"id":"franquart-11","name":"Peter Franquart","position":"CB","nationality":"FRA","age":26,"appearances":20,"goals":1,"assists":0,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"blondelle-11","name":"Siebe Blondelle","position":"CB","nationality":"BEL","age":25,"appearances":18,"goals":1,"assists":0,"marketValue":550000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"mbow-11","name":"Pape M'Bow","position":"CB","nationality":"SEN","age":23,"appearances":16,"goals":0,"assists":0,"marketValue":200000,"internationalCaps":2,"awards":[],"overall":64},
+    {"id":"monteyne-11","name":"Pieter-Jan Monteyne","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":28,"appearances":22,"goals":0,"assists":1,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"timmermans-11","name":"Nicolas Timmermans","position":"RB","alternativePositions":["RM"],"nationality":"BEL","age":28,"appearances":20,"goals":0,"assists":1,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"dia-11","name":"Aliou Dia","position":"RB","alternativePositions":["CB"],"nationality":"FRA","age":21,"appearances":16,"goals":0,"assists":1,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"nicaise-11","name":"Benjamin Nicaise","position":"CDM","alternativePositions":["CM"],"nationality":"FRA","age":30,"appearances":24,"goals":1,"assists":2,"marketValue":650000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"van-imschoot-11","name":"Tom Van Imschoot","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":29,"appearances":20,"goals":1,"assists":1,"marketValue":350000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"bourabia-11","name":"Rachid Bourabia","position":"CM","alternativePositions":["CDM"],"nationality":"MAR","age":26,"appearances":24,"goals":3,"assists":3,"marketValue":650000,"internationalCaps":4,"awards":[],"overall":67},
+    {"id":"matthys-t-11","name":"Tim Matthys","position":"RM","alternativePositions":["RW","CAM"],"nationality":"BEL","age":27,"appearances":24,"goals":3,"assists":4,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"matumona-11","name":"Zola Matumona","position":"LM","alternativePositions":["LW"],"nationality":"COD","age":29,"appearances":20,"goals":2,"assists":2,"marketValue":700000,"internationalCaps":15,"awards":[],"overall":67},
+    {"id":"ibou-11","name":"Ibou","position":"LW","alternativePositions":["RW"],"nationality":"GMB","age":24,"appearances":22,"goals":4,"assists":3,"marketValue":750000,"internationalCaps":8,"awards":[],"overall":68},
+    {"id":"perbet-11","name":"Jérémy Perbet","position":"ST","nationality":"FRA","age":27,"appearances":26,"goals":13,"assists":3,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"nong-11","name":"Aloys Nong","position":"ST","nationality":"CMR","age":27,"appearances":20,"goals":6,"assists":2,"marketValue":900000,"internationalCaps":4,"awards":[],"overall":68}
+  ]
+}

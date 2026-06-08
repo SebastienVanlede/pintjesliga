@@ -1,0 +1,25 @@
+{
+  "team": "Sint-Truidense VV",
+  "teamId": "stvv",
+  "season": "2011-12",
+  "year": 2011,
+  "players": [
+    {"id":"volders-11","name":"Mark Volders","position":"GK","nationality":"BEL","age":34,"appearances":14,"goals":0,"assists":0,"marketValue":100000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"castro-b-11","name":"Bram Castro","position":"GK","nationality":"BEL","age":28,"appearances":12,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"verhulst-11","name":"Davino Verhulst","position":"GK","nationality":"BEL","age":24,"appearances":14,"goals":0,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"euvrard-11","name":"Vincent Euvrard","position":"CB","nationality":"BEL","age":29,"appearances":24,"goals":1,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"buysens-11","name":"Ludovic Buysens","position":"CB","nationality":"BEL","age":25,"appearances":22,"goals":1,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"ngawa-11","name":"Pierre-Yves Ngawa","position":"CB","alternativePositions":["RB"],"nationality":"BEL","age":19,"appearances":20,"goals":1,"assists":1,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"kotysch-11","name":"Sascha Kotysch","position":"CB","nationality":"GER","age":22,"appearances":18,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"taelemans-11","name":"Kevin Taelemans","position":"CB","nationality":"BEL","age":24,"appearances":16,"goals":1,"assists":0,"marketValue":100000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"iandoli-11","name":"Alessandro Iandoli","position":"LB","alternativePositions":["LM"],"nationality":"SUI","age":27,"appearances":22,"goals":0,"assists":2,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"rymenants-11","name":"Yannick Rymenants","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":22,"appearances":16,"goals":0,"assists":1,"marketValue":250000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"daeseleire-11","name":"Dimitri Daeseleire","position":"RB","alternativePositions":["RM"],"nationality":"BEL","age":21,"appearances":24,"goals":0,"assists":2,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"deferm-11","name":"Giel Deferm","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":23,"appearances":22,"goals":1,"assists":2,"marketValue":450000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"daerden-11","name":"Koen Daerden","position":"CM","alternativePositions":["CAM"],"nationality":"BEL","age":29,"appearances":24,"goals":4,"assists":3,"marketValue":500000,"internationalCaps":8,"awards":[],"overall":67},
+    {"id":"schoofs-11","name":"Rob Schoofs","position":"CM","alternativePositions":["CAM"],"nationality":"BEL","age":17,"appearances":12,"goals":1,"assists":1,"marketValue":250000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"schouterden-11","name":"Nils Schouterden","position":"LM","alternativePositions":["LB","LW"],"nationality":"BEL","age":22,"appearances":24,"goals":3,"assists":3,"marketValue":650000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"andrade-b-11","name":"Bruno Andrade","position":"LW","alternativePositions":["RW","CAM"],"nationality":"BRA","age":22,"appearances":22,"goals":4,"assists":3,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"ghoochannejhad-11","name":"Reza Ghoochannejhad","position":"ST","nationality":"IRN","age":23,"appearances":24,"goals":10,"assists":2,"marketValue":1300000,"internationalCaps":4,"awards":[],"overall":71}
+  ]
+}
