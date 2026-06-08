@@ -2023,11 +2023,25 @@ function ScoreCard({ score, sim, formation, isDaily = false }: { score: ScoreBre
   const [status, setStatus] = useState<'idle' | 'submitting' | 'done' | 'error'>('idle');
   const router = useRouter();
   const t = useT();
-  const { dailyStreak, dailyDate, isDailyChallenge: storeIsDaily, teamName: storeTeamName } = useGameStore();
+  const {
+    dailyStreak, dailyDate, isDailyChallenge: storeIsDaily, teamName: storeTeamName,
+    draftMode, pickedPlayers,
+  } = useGameStore();
 
   async function handleSubmit() {
     if (!name.trim() || status === 'submitting') return;
     setStatus('submitting');
+
+    const myTeam = storeTeamName.trim() || 'Mijn Droomelftal';
+    const isChampion = sim.champion === myTeam;
+    const pickedSummary = (pickedPlayers as PickedPlayer[]).map(p => ({
+      name:     p.player.name,
+      teamName: p.teamName,
+      season:   p.season,
+      position: p.position,
+      overall:  p.player.overall,
+    }));
+
     try {
       // Strikte check: alleen daily-flow + opgeslagen dailyDate accepteren
       if (isDaily && storeIsDaily && dailyDate) {
@@ -2041,8 +2055,10 @@ function ScoreCard({ score, sim, formation, isDaily = false }: { score: ScoreBre
             formation,
             avg_overall: Math.round(score.avgOverall),
             result_label: score.resultLabel,
-            is_champion: sim.champion === (storeTeamName.trim() || 'Mijn Droomelftal'),
+            is_champion: isChampion,
             streak: dailyStreak,
+            draft_mode: draftMode,
+            picked_players: pickedSummary,
           }),
         });
         setStatus(res.ok ? 'done' : 'error');
@@ -2060,6 +2076,11 @@ function ScoreCard({ score, sim, formation, isDaily = false }: { score: ScoreBre
             underdog_bonus: score.underdogBonus,
             diversity_bonus: score.diversityBonus,
             unique_teams: score.uniqueTeams,
+            draft_mode: draftMode,
+            is_champion: isChampion,
+            goals_scored: score.goalsScored,
+            unique_seasons: score.uniqueSeasons,
+            picked_players: pickedSummary,
           }),
         });
         setStatus(res.ok ? 'done' : 'error');

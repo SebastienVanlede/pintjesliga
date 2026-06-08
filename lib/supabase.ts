@@ -1,5 +1,13 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
+export interface PickedPlayerSummary {
+  name: string;
+  teamName: string;
+  season: string;
+  position: string;
+  overall: number;
+}
+
 export interface LeaderboardEntry {
   id: string;
   created_at: string;
@@ -12,6 +20,13 @@ export interface LeaderboardEntry {
   underdog_bonus: number;
   diversity_bonus: number;
   unique_teams: number;
+  // ── Stats-velden (toegevoegd via migration 2026-06-09) ───────────────────
+  // Oude rijen hebben deze velden niet — verwacht null voor pre-migratie data.
+  draft_mode?: 'classic' | 'blind' | null;
+  is_champion?: boolean | null;
+  goals_scored?: number | null;
+  unique_seasons?: number | null;
+  picked_players?: PickedPlayerSummary[] | null;
 }
 
 export interface DailyLeaderboardEntry {
@@ -25,6 +40,9 @@ export interface DailyLeaderboardEntry {
   result_label: string;
   is_champion: boolean;
   streak: number;
+  // ── Stats-velden ─────────────────────────────────────────────────────────
+  draft_mode?: 'classic' | 'blind' | null;
+  picked_players?: PickedPlayerSummary[] | null;
 }
 
 const url  = process.env.NEXT_PUBLIC_SUPABASE_URL  ?? '';

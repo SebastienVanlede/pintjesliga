@@ -30,7 +30,12 @@ export async function POST(req: NextRequest) {
   if (!supabase) return NextResponse.json({ error: 'Leaderboard not configured' }, { status: 503 });
 
   const body = await req.json();
-  const { player_name, score, daily_date, formation, avg_overall, result_label, is_champion, streak } = body;
+  const {
+    player_name, score, daily_date, formation, avg_overall, result_label,
+    is_champion, streak,
+    // ── Stats-velden ─────────────────────────────────────────────────────
+    draft_mode, picked_players,
+  } = body;
 
   if (!player_name?.trim() || typeof score !== 'number' || !daily_date) {
     return NextResponse.json({ error: 'Invalid payload' }, { status: 400 });
@@ -47,6 +52,8 @@ export async function POST(req: NextRequest) {
       result_label,
       is_champion: !!is_champion,
       streak: typeof streak === 'number' ? streak : 0,
+      ...(draft_mode     !== undefined && { draft_mode     }),
+      ...(picked_players !== undefined && { picked_players }),
     });
 
   if (error) {
