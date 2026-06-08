@@ -1,0 +1,25 @@
+{
+  "team": "AA Gent",
+  "teamId": "gent",
+  "season": "2013-14",
+  "year": 2013,
+  "players": [
+    {"id":"sels-13","name":"Matz Sels","position":"GK","nationality":"BEL","age":21,"appearances":26,"goals":0,"assists":0,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"padt-13","name":"Sergio Padt","position":"GK","nationality":"NED","age":23,"appearances":12,"goals":0,"assists":0,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"zukanovic-13","name":"Ervin Zukanović","position":"CB","nationality":"BIH","age":26,"appearances":26,"goals":1,"assists":0,"marketValue":2000000,"internationalCaps":12,"awards":[],"overall":70},
+    {"id":"puljic-13","name":"Ante Puljic","position":"CB","nationality":"HRV","age":25,"appearances":22,"goals":1,"assists":0,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"nahayo-13","name":"Valery Nahayo","position":"CB","nationality":"BDI","age":29,"appearances":18,"goals":1,"assists":0,"marketValue":700000,"internationalCaps":20,"awards":[],"overall":66},
+    {"id":"asare-13","name":"Nana Asare","position":"LB","alternativePositions":["LM"],"nationality":"GHA","age":26,"appearances":24,"goals":1,"assists":2,"marketValue":1800000,"internationalCaps":4,"awards":[],"overall":69},
+    {"id":"delporte-13","name":"Nicolas Delporte","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":19,"appearances":14,"goals":0,"assists":1,"marketValue":150000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"locigno-13","name":"Sébastien Locigno","position":"RB","alternativePositions":["RM"],"nationality":"BEL","age":18,"appearances":18,"goals":0,"assists":1,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"van-der-bruggen-13","name":"Hannes Van Der Bruggen","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":20,"appearances":22,"goals":1,"assists":2,"marketValue":2200000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"lepoint-13","name":"Christophe Lepoint","position":"CM","alternativePositions":["CDM","CAM"],"nationality":"BEL","age":28,"appearances":24,"goals":3,"assists":3,"marketValue":1500000,"internationalCaps":2,"awards":[],"overall":70},
+    {"id":"dejaegere-13","name":"Brecht Dejaegere","position":"CM","alternativePositions":["CAM"],"nationality":"BEL","age":22,"appearances":22,"goals":2,"assists":3,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"vandeputte-13","name":"Jari Vandeputte","position":"CM","alternativePositions":["CAM"],"nationality":"BEL","age":18,"appearances":14,"goals":1,"assists":1,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"milicevic-13","name":"Danijel Milićević","position":"CAM","alternativePositions":["CM","RW"],"nationality":"BIH","age":28,"appearances":24,"goals":5,"assists":4,"marketValue":1000000,"internationalCaps":8,"awards":[],"overall":70},
+    {"id":"kage-13","name":"Hervé Kage","position":"LW","alternativePositions":["LM","CAM"],"nationality":"COD","age":24,"appearances":22,"goals":3,"assists":3,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"soumahoro-13","name":"Yaya Soumahoro","position":"LW","alternativePositions":["RW","ST"],"nationality":"CIV","age":23,"appearances":18,"goals":3,"assists":2,"marketValue":1200000,"internationalCaps":2,"awards":[],"overall":68},
+    {"id":"habibou-13","name":"Habib Habibou","position":"ST","nationality":"CAF","age":26,"appearances":24,"goals":8,"assists":2,"marketValue":2000000,"internationalCaps":12,"awards":[],"overall":70},
+    {"id":"pedersen-13","name":"Nicklas Pedersen","position":"ST","nationality":"DEN","age":26,"appearances":20,"goals":7,"assists":2,"marketValue":2000000,"internationalCaps":4,"awards":[],"overall":70}
+  ]
+}

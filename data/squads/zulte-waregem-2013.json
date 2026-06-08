@@ -1,0 +1,25 @@
+{
+  "team": "SV Zulte Waregem",
+  "teamId": "zulte-waregem",
+  "season": "2013-14",
+  "year": 2013,
+  "players": [
+    {"id":"bossut-13","name":"Sammy Bossut","position":"GK","nationality":"BEL","age":28,"appearances":28,"goals":0,"assists":0,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"bruzzese-13","name":"Sébastien Bruzzese","position":"GK","nationality":"BEL","age":25,"appearances":10,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"colpaert-13","name":"Steve Colpaert","position":"CB","nationality":"BEL","age":27,"appearances":26,"goals":2,"assists":0,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"godeau-13","name":"Bruno Godeau","position":"CB","nationality":"BEL","age":22,"appearances":22,"goals":1,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"dhaene-k-13","name":"Karel D'Haene","position":"CB","nationality":"BEL","age":33,"appearances":18,"goals":1,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"verboom-13","name":"Bryan Verboom","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":22,"appearances":24,"goals":0,"assists":2,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"de-fauw-13","name":"Davy De Fauw","position":"RB","alternativePositions":["CB"],"nationality":"BEL","age":32,"appearances":22,"goals":0,"assists":1,"marketValue":1000000,"internationalCaps":4,"awards":[],"overall":68},
+    {"id":"duplus-13","name":"Frédéric Duplus","position":"RB","nationality":"FRA","age":24,"appearances":16,"goals":0,"assists":1,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"skulason-o-13","name":"Ólafur Ingi Skúlason","position":"CDM","alternativePositions":["CM"],"nationality":"ISL","age":30,"appearances":22,"goals":1,"assists":2,"marketValue":600000,"internationalCaps":18,"awards":[],"overall":67},
+    {"id":"kums-13","name":"Sven Kums","position":"CM","alternativePositions":["CAM","CDM"],"nationality":"BEL","age":25,"appearances":30,"goals":5,"assists":6,"marketValue":2500000,"internationalCaps":0,"awards":["Gouden Schoen 2015","Pro League Best Midfielder 2015"],"overall":72},
+    {"id":"ndiaye-13","name":"Mamoutou N'Diaye","position":"CM","alternativePositions":["CDM"],"nationality":"MLI","age":23,"appearances":20,"goals":2,"assists":2,"marketValue":800000,"internationalCaps":4,"awards":[],"overall":67},
+    {"id":"hazard-t-13","name":"Thorgan Hazard","position":"CAM","alternativePositions":["LW","RW"],"nationality":"BEL","age":20,"appearances":30,"goals":11,"assists":8,"marketValue":10000000,"internationalCaps":2,"awards":[],"overall":76},
+    {"id":"conte-13","name":"Ibrahima Conté","position":"CAM","alternativePositions":["LW","CM"],"nationality":"GIN","age":23,"appearances":22,"goals":4,"assists":3,"marketValue":2500000,"internationalCaps":15,"awards":[],"overall":70},
+    {"id":"berrier-13","name":"Franck Berrier","position":"CAM","alternativePositions":["CM"],"nationality":"FRA","age":29,"appearances":20,"goals":3,"assists":4,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"olinga-13","name":"Fabrice Olinga","position":"LW","alternativePositions":["ST","RW"],"nationality":"CMR","age":17,"appearances":18,"goals":4,"assists":2,"marketValue":1000000,"internationalCaps":4,"awards":[],"overall":68},
+    {"id":"bongonda-13","name":"Théo Bongonda","position":"RW","alternativePositions":["LW","ST"],"nationality":"COD","age":18,"appearances":20,"goals":4,"assists":3,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"leye-13","name":"Mbaye Leye","position":"ST","nationality":"SEN","age":30,"appearances":26,"goals":10,"assists":3,"marketValue":1000000,"internationalCaps":25,"awards":[],"overall":70}
+  ]
+}

@@ -213,6 +213,23 @@ const squadModules: Record<string, () => Promise<Squad>> = {
   'westerlo-2014-15':         () => import('@/data/squads/westerlo-2014.json').then(m => m.default as Squad),
   'cercle-brugge-2014-15':    () => import('@/data/squads/cercle-brugge-2014.json').then(m => m.default as Squad),
   'lierse-2014-15':           () => import('@/data/squads/lierse-2014.json').then(m => m.default as Squad),
+  // 2013-14 season
+  'anderlecht-2013-14':       () => import('@/data/squads/anderlecht-2013.json').then(m => m.default as Squad),
+  'standard-2013-14':         () => import('@/data/squads/standard-2013.json').then(m => m.default as Squad),
+  'club-brugge-2013-14':      () => import('@/data/squads/club-brugge-2013.json').then(m => m.default as Squad),
+  'genk-2013-14':             () => import('@/data/squads/genk-2013.json').then(m => m.default as Squad),
+  'gent-2013-14':             () => import('@/data/squads/gent-2013.json').then(m => m.default as Squad),
+  'zulte-waregem-2013-14':    () => import('@/data/squads/zulte-waregem-2013.json').then(m => m.default as Squad),
+  'lokeren-2013-14':          () => import('@/data/squads/lokeren-2013.json').then(m => m.default as Squad),
+  'mechelen-2013-14':         () => import('@/data/squads/mechelen-2013.json').then(m => m.default as Squad),
+  'kortrijk-2013-14':         () => import('@/data/squads/kortrijk-2013.json').then(m => m.default as Squad),
+  'charleroi-2013-14':        () => import('@/data/squads/charleroi-2013.json').then(m => m.default as Squad),
+  'lierse-2013-14':           () => import('@/data/squads/lierse-2013.json').then(m => m.default as Squad),
+  'ohl-2013-14':              () => import('@/data/squads/ohl-2013.json').then(m => m.default as Squad),
+  'cercle-brugge-2013-14':    () => import('@/data/squads/cercle-brugge-2013.json').then(m => m.default as Squad),
+  'oostende-2013-14':         () => import('@/data/squads/oostende-2013.json').then(m => m.default as Squad),
+  'waasland-beveren-2013-14': () => import('@/data/squads/waasland-beveren-2013.json').then(m => m.default as Squad),
+  'mons-2013-14':             () => import('@/data/squads/mons-2013.json').then(m => m.default as Squad),
 };
 
 /** Aantal squad bestanden geregistreerd (1 per club-per-seizoen). */

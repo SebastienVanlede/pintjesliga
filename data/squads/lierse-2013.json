@@ -1,0 +1,25 @@
+{
+  "team": "Lierse SK",
+  "teamId": "lierse",
+  "season": "2013-14",
+  "year": 2013,
+  "players": [
+    {"id":"berezovskyi-13","name":"Igor Berezovskyi","position":"GK","nationality":"UKR","age":23,"appearances":26,"goals":0,"assists":0,"marketValue":700000,"internationalCaps":2,"awards":[],"overall":68},
+    {"id":"goris-n-13","name":"Nathan Goris","position":"GK","nationality":"BEL","age":23,"appearances":12,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"wils-t-13","name":"Thomas Wils","position":"CB","nationality":"BEL","age":23,"appearances":24,"goals":1,"assists":0,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"swinkels-13","name":"Arjan Swinkels","position":"CB","nationality":"NED","age":28,"appearances":22,"goals":1,"assists":0,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"lambot-13","name":"Benjamin Lambot","position":"CB","nationality":"BEL","age":27,"appearances":18,"goals":1,"assists":0,"marketValue":650000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"saidi-13","name":"Karim Saïdi","position":"CB","nationality":"TUN","age":30,"appearances":18,"goals":1,"assists":0,"marketValue":500000,"internationalCaps":25,"awards":[],"overall":66},
+    {"id":"frans-13","name":"Frédéric Frans","position":"CB","nationality":"BEL","age":24,"appearances":16,"goals":0,"assists":0,"marketValue":350000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"farag-13","name":"Ahmed Samir Farag","position":"LB","alternativePositions":["LM"],"nationality":"EGY","age":27,"appearances":20,"goals":0,"assists":2,"marketValue":600000,"internationalCaps":15,"awards":[],"overall":66},
+    {"id":"de-jonghe-13","name":"Jimmy De Jonghe","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":21,"appearances":14,"goals":0,"assists":1,"marketValue":250000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"jaager-13","name":"Enar Jääger","position":"RB","alternativePositions":["CB"],"nationality":"EST","age":29,"appearances":22,"goals":0,"assists":2,"marketValue":600000,"internationalCaps":75,"awards":[],"overall":67},
+    {"id":"traore-h-13","name":"Hamari Traoré","position":"RB","alternativePositions":["RM"],"nationality":"MLI","age":21,"appearances":20,"goals":0,"assists":2,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"hoefkens-13","name":"Carl Hoefkens","position":"RB","alternativePositions":["CB"],"nationality":"BEL","age":34,"appearances":14,"goals":0,"assists":0,"marketValue":200000,"internationalCaps":18,"awards":[],"overall":65},
+    {"id":"diomande-13","name":"Souleymane Diomandé","position":"CDM","alternativePositions":["CM"],"nationality":"CIV","age":21,"appearances":18,"goals":1,"assists":1,"marketValue":300000,"internationalCaps":2,"awards":[],"overall":64},
+    {"id":"bourabia-13","name":"Rachid Bourabia","position":"CM","alternativePositions":["CDM"],"nationality":"MAR","age":28,"appearances":24,"goals":3,"assists":2,"marketValue":900000,"internationalCaps":4,"awards":[],"overall":68},
+    {"id":"ghaly-13","name":"Hossam Ghaly","position":"CM","alternativePositions":["CDM"],"nationality":"EGY","age":31,"appearances":18,"goals":2,"assists":2,"marketValue":800000,"internationalCaps":50,"awards":[],"overall":68},
+    {"id":"el-messaoudi-13","name":"Ahmed El Messaoudi","position":"CM","alternativePositions":["CAM"],"nationality":"MAR","age":18,"appearances":18,"goals":1,"assists":2,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"kasmi-13","name":"Faysel Kasmi","position":"CM","alternativePositions":["CAM"],"nationality":"BEL","age":18,"appearances":16,"goals":2,"assists":1,"marketValue":200000,"internationalCaps":0,"awards":[],"overall":65}
+  ]
+}

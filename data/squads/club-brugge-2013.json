@@ -1,0 +1,25 @@
+{
+  "team": "Club Brugge KV",
+  "teamId": "club-brugge",
+  "season": "2013-14",
+  "year": 2013,
+  "players": [
+    {"id":"ryan-13","name":"Mathew Ryan","position":"GK","nationality":"AUS","age":21,"appearances":30,"goals":0,"assists":0,"marketValue":3000000,"internationalCaps":10,"awards":[],"overall":72},
+    {"id":"kujovic-13","name":"Vladan Kujović","position":"GK","nationality":"SRB","age":35,"appearances":8,"goals":0,"assists":0,"marketValue":350000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"engels-13","name":"Björn Engels","position":"CB","nationality":"BEL","age":18,"appearances":16,"goals":1,"assists":0,"marketValue":4000000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"duarte-13","name":"Óscar Duarte","position":"CB","nationality":"CRC","age":24,"appearances":22,"goals":1,"assists":0,"marketValue":2500000,"internationalCaps":18,"awards":[],"overall":70},
+    {"id":"mechele-13","name":"Brandon Mechele","position":"CB","nationality":"BEL","age":20,"appearances":18,"goals":1,"assists":0,"marketValue":2500000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"larsen-13","name":"Jim Larsen","position":"CB","nationality":"DEN","age":28,"appearances":18,"goals":1,"assists":0,"marketValue":1200000,"internationalCaps":2,"awards":[],"overall":68},
+    {"id":"stenman-13","name":"Fredrik Stenman","position":"LB","alternativePositions":["LM"],"nationality":"SWE","age":30,"appearances":20,"goals":0,"assists":2,"marketValue":1000000,"internationalCaps":2,"awards":[],"overall":68},
+    {"id":"de-bock-13","name":"Laurens De Bock","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":21,"appearances":18,"goals":0,"assists":1,"marketValue":2500000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"meunier-13","name":"Thomas Meunier","position":"RB","alternativePositions":["RM","RW"],"nationality":"BEL","age":22,"appearances":26,"goals":2,"assists":4,"marketValue":3500000,"internationalCaps":0,"awards":[],"overall":72},
+    {"id":"hogli-13","name":"Tom Høgli","position":"RB","alternativePositions":["LB"],"nationality":"NOR","age":29,"appearances":16,"goals":0,"assists":1,"marketValue":1200000,"internationalCaps":18,"awards":[],"overall":67},
+    {"id":"odjidja-13","name":"Vadis Odjidja-Ofoe","position":"CM","alternativePositions":["CDM","CAM"],"nationality":"BEL","age":24,"appearances":26,"goals":4,"assists":3,"marketValue":5000000,"internationalCaps":0,"awards":[],"overall":72},
+    {"id":"jorgensen-13","name":"Jesper Jørgensen","position":"CM","alternativePositions":["CDM"],"nationality":"DEN","age":29,"appearances":20,"goals":2,"assists":2,"marketValue":1500000,"internationalCaps":2,"awards":[],"overall":69},
+    {"id":"refaelov-13","name":"Lior Refaelov","position":"CAM","alternativePositions":["CM","RW"],"nationality":"ISR","age":27,"appearances":24,"goals":4,"assists":4,"marketValue":2500000,"internationalCaps":22,"awards":["Gouden Schoen 2012"],"overall":72},
+    {"id":"vazquez-13","name":"Víctor Vázquez","position":"CAM","alternativePositions":["CM"],"nationality":"ESP","age":26,"appearances":22,"goals":4,"assists":5,"marketValue":2500000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"lestienne-13","name":"Maxime Lestienne","position":"RW","alternativePositions":["LW","CAM"],"nationality":"BEL","age":21,"appearances":28,"goals":8,"assists":5,"marketValue":10000000,"internationalCaps":0,"awards":[],"overall":74},
+    {"id":"de-sutter-13","name":"Tom De Sutter","position":"ST","nationality":"BEL","age":28,"appearances":24,"goals":8,"assists":2,"marketValue":3000000,"internationalCaps":4,"awards":[],"overall":71},
+    {"id":"bacca-13","name":"Carlos Bacca","position":"ST","nationality":"COL","age":27,"appearances":30,"goals":18,"assists":4,"marketValue":7000000,"internationalCaps":15,"awards":["Gouden Schoen 2013"],"overall":76}
+  ]
+}
