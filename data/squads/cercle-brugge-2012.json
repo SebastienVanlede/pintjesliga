@@ -1,0 +1,25 @@
+{
+  "team": "Cercle Brugge",
+  "teamId": "cercle-brugge",
+  "season": "2012-13",
+  "year": 2012,
+  "players": [
+    {"id":"verbist-12","name":"Bram Verbist","position":"GK","nationality":"BEL","age":29,"appearances":26,"goals":0,"assists":0,"marketValue":750000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"coppens-12","name":"Jo Coppens","position":"GK","nationality":"BEL","age":22,"appearances":12,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"mertens-g-12","name":"Grégory Mertens","position":"CB","nationality":"BEL","age":21,"appearances":24,"goals":1,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"dickoh-12","name":"Francis Dickoh","position":"CB","nationality":"GHA","age":29,"appearances":22,"goals":1,"assists":0,"marketValue":650000,"internationalCaps":18,"awards":[],"overall":67},
+    {"id":"wils-s-12","name":"Stef Wils","position":"CB","nationality":"BEL","age":29,"appearances":20,"goals":1,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"portier-12","name":"Anthony Portier","position":"CB","nationality":"BEL","age":30,"appearances":18,"goals":1,"assists":0,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"dhaene-12","name":"Kristof D'Haene","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":22,"appearances":22,"goals":0,"assists":2,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"evens-12","name":"Bernt Evens","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":33,"appearances":14,"goals":0,"assists":1,"marketValue":200000,"internationalCaps":2,"awards":[],"overall":63},
+    {"id":"cornelis-12","name":"Hans Cornelis","position":"RB","alternativePositions":["CB"],"nationality":"BEL","age":30,"appearances":22,"goals":0,"assists":1,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"carvalho-12","name":"William Carvalho","position":"CDM","alternativePositions":["CM","CB"],"nationality":"POR","age":20,"appearances":20,"goals":1,"assists":2,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"van-roose-12","name":"Karel Van Roose","position":"CDM","alternativePositions":["CM","CB"],"nationality":"BEL","age":22,"appearances":20,"goals":1,"assists":1,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"vidarsson-12","name":"Arnar Vidarsson","position":"CDM","alternativePositions":["CM"],"nationality":"ISL","age":34,"appearances":18,"goals":1,"assists":2,"marketValue":200000,"internationalCaps":50,"awards":[],"overall":65},
+    {"id":"van-eenoo-12","name":"Lukas Van Eenoo","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":21,"appearances":22,"goals":2,"assists":3,"marketValue":900000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"boi-12","name":"Frederik Boi","position":"RM","alternativePositions":["RW"],"nationality":"BEL","age":30,"appearances":18,"goals":2,"assists":3,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"wilson-12","name":"Rudy Wilson","position":"CAM","alternativePositions":["CM"],"nationality":"AGO","age":23,"appearances":20,"goals":3,"assists":3,"marketValue":800000,"internationalCaps":4,"awards":[],"overall":68},
+    {"id":"bakenga-12","name":"Mushaga Bakenga","position":"ST","alternativePositions":["LW"],"nationality":"NOR","age":20,"appearances":22,"goals":7,"assists":2,"marketValue":1500000,"internationalCaps":2,"awards":[],"overall":70},
+    {"id":"uchebo-12","name":"Michael Uchebo","position":"ST","alternativePositions":["LW"],"nationality":"NGA","age":21,"appearances":18,"goals":4,"assists":2,"marketValue":600000,"internationalCaps":2,"awards":[],"overall":67}
+  ]
+}

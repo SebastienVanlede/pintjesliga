@@ -1,0 +1,25 @@
+{
+  "team": "KV Mechelen",
+  "teamId": "mechelen",
+  "season": "2012-13",
+  "year": 2012,
+  "players": [
+    {"id":"renard-12","name":"Olivier Renard","position":"GK","nationality":"BEL","age":33,"appearances":24,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"pacovski-12","name":"Tome Pačovski","position":"GK","nationality":"MKD","age":30,"appearances":14,"goals":0,"assists":0,"marketValue":900000,"internationalCaps":12,"awards":[],"overall":68},
+    {"id":"de-witte-12","name":"Seth De Witte","position":"CB","nationality":"BEL","age":25,"appearances":24,"goals":1,"assists":0,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"pandza-12","name":"Boris Pandža","position":"CB","nationality":"BIH","age":26,"appearances":22,"goals":1,"assists":0,"marketValue":1000000,"internationalCaps":12,"awards":[],"overall":68},
+    {"id":"bateau-12","name":"Sheldon Bateau","position":"CB","alternativePositions":["RB"],"nationality":"TTO","age":21,"appearances":20,"goals":1,"assists":0,"marketValue":1000000,"internationalCaps":10,"awards":[],"overall":68},
+    {"id":"biset-12","name":"Maxime Biset","position":"CB","nationality":"BEL","age":26,"appearances":18,"goals":1,"assists":0,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"ghomsi-12","name":"Antonio Ghomsi","position":"LB","alternativePositions":["LM"],"nationality":"CMR","age":26,"appearances":22,"goals":0,"assists":2,"marketValue":800000,"internationalCaps":12,"awards":[],"overall":67},
+    {"id":"chen-12","name":"Xavier Chen","position":"RB","alternativePositions":["RM"],"nationality":"TWN","age":28,"appearances":22,"goals":0,"assists":2,"marketValue":700000,"internationalCaps":15,"awards":[],"overall":66},
+    {"id":"vandam-12","name":"Jerry Vandam","position":"RB","alternativePositions":["RM"],"nationality":"FRA","age":23,"appearances":18,"goals":0,"assists":1,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"de-petter-12","name":"Steven De Petter","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":27,"appearances":24,"goals":1,"assists":2,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"rits-12","name":"Mats Rits","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":18,"appearances":18,"goals":1,"assists":1,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"van-damme-j-12","name":"Joachim Van Damme","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":20,"appearances":16,"goals":1,"assists":1,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"henkels-12","name":"Robin Henkels","position":"CM","alternativePositions":["CAM"],"nationality":"BEL","age":23,"appearances":22,"goals":2,"assists":2,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"iddi-12","name":"Abdul-Yakuni Iddi","position":"LW","alternativePositions":["RW"],"nationality":"GHA","age":26,"appearances":22,"goals":4,"assists":3,"marketValue":700000,"internationalCaps":4,"awards":[],"overall":67},
+    {"id":"cordaro-12","name":"Alessandro Cordaro","position":"RW","alternativePositions":["LW","CAM"],"nationality":"BEL","age":27,"appearances":24,"goals":4,"assists":3,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"enevoldsen-12","name":"Thomas Enevoldsen","position":"ST","alternativePositions":["LW"],"nationality":"DEN","age":24,"appearances":22,"goals":7,"assists":3,"marketValue":1200000,"internationalCaps":8,"awards":[],"overall":69},
+    {"id":"pedersen-12","name":"Nicklas Pedersen","position":"ST","nationality":"DEN","age":24,"appearances":24,"goals":11,"assists":2,"marketValue":2000000,"internationalCaps":2,"awards":[],"overall":71}
+  ]
+}

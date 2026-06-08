@@ -1,0 +1,25 @@
+{
+  "team": "Waasland-Beveren",
+  "teamId": "waasland-beveren",
+  "season": "2012-13",
+  "year": 2012,
+  "players": [
+    {"id":"coosemans-12","name":"Colin Coosemans","position":"GK","nationality":"BEL","age":20,"appearances":24,"goals":0,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"clepkens-12","name":"Michael Clepkens","position":"GK","nationality":"BEL","age":26,"appearances":12,"goals":0,"assists":0,"marketValue":350000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"ivens-12","name":"Jonas Ivens","position":"CB","nationality":"BEL","age":27,"appearances":26,"goals":1,"assists":0,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"blondelle-12","name":"Siebe Blondelle","position":"CB","nationality":"BEL","age":27,"appearances":22,"goals":1,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"doumbia-12","name":"Kassim Doumbia","position":"CB","nationality":"MLI","age":21,"appearances":18,"goals":1,"assists":0,"marketValue":400000,"internationalCaps":4,"awards":[],"overall":65},
+    {"id":"lardenoit-12","name":"Kristof Lardenoit","position":"CB","nationality":"BEL","age":28,"appearances":16,"goals":0,"assists":0,"marketValue":200000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"shish-12","name":"Gal Shish","position":"LB","alternativePositions":["LM"],"nationality":"ISR","age":24,"appearances":22,"goals":0,"assists":2,"marketValue":700000,"internationalCaps":4,"awards":[],"overall":67},
+    {"id":"dulivo-12","name":"Cédric D'Ulivo","position":"RB","alternativePositions":["CB"],"nationality":"FRA","age":23,"appearances":22,"goals":0,"assists":1,"marketValue":750000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"rowell-12","name":"Jonathan Rowell","position":"CDM","alternativePositions":["CM"],"nationality":"ENG","age":23,"appearances":22,"goals":1,"assists":2,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"sterckx-12","name":"René Sterckx","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":21,"appearances":18,"goals":1,"assists":1,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"sibum-12","name":"Bas Sibum","position":"CM","alternativePositions":["CDM"],"nationality":"NED","age":29,"appearances":20,"goals":1,"assists":2,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"farssi-12","name":"Rachid Farssi","position":"LM","alternativePositions":["LW"],"nationality":"BEL","age":27,"appearances":22,"goals":2,"assists":3,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"de-smet-12","name":"Stijn De Smet","position":"CAM","alternativePositions":["CM","RW"],"nationality":"BEL","age":27,"appearances":24,"goals":5,"assists":3,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"ladriere-12","name":"Benoît Ladrière","position":"CAM","alternativePositions":["CM"],"nationality":"BEL","age":25,"appearances":18,"goals":2,"assists":2,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"remacle-12","name":"Jordan Remacle","position":"RW","alternativePositions":["RM"],"nationality":"BEL","age":25,"appearances":24,"goals":4,"assists":3,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"plut-12","name":"Vito Plut","position":"ST","nationality":"SVN","age":23,"appearances":22,"goals":6,"assists":2,"marketValue":400000,"internationalCaps":4,"awards":[],"overall":67},
+    {"id":"sonck-12","name":"Wesley Sonck","position":"ST","nationality":"BEL","age":33,"appearances":18,"goals":4,"assists":2,"marketValue":200000,"internationalCaps":52,"awards":[],"overall":67}
+  ]
+}

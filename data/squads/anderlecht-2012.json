@@ -1,0 +1,25 @@
+{
+  "team": "RSC Anderlecht",
+  "teamId": "anderlecht",
+  "season": "2012-13",
+  "year": 2012,
+  "players": [
+    {"id":"proto-12","name":"Silvio Proto","position":"GK","nationality":"BEL","age":29,"appearances":30,"goals":0,"assists":0,"marketValue":4000000,"internationalCaps":2,"awards":[],"overall":75},
+    {"id":"kaminski-12","name":"Thomas Kaminski","position":"GK","nationality":"BEL","age":20,"appearances":10,"goals":0,"assists":0,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"nuytinck-12","name":"Bram Nuytinck","position":"CB","nationality":"NED","age":22,"appearances":26,"goals":1,"assists":1,"marketValue":5000000,"internationalCaps":0,"awards":[],"overall":72},
+    {"id":"odoi-12","name":"Denis Odoi","position":"CB","alternativePositions":["RB"],"nationality":"BEL","age":24,"appearances":22,"goals":1,"assists":2,"marketValue":1300000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"deschacht-12","name":"Olivier Deschacht","position":"CB","alternativePositions":["LB"],"nationality":"BEL","age":32,"appearances":22,"goals":1,"assists":0,"marketValue":1000000,"internationalCaps":12,"awards":[],"overall":68},
+    {"id":"safari-12","name":"Behrang Safari","position":"LB","alternativePositions":["LM"],"nationality":"SWE","age":27,"appearances":24,"goals":0,"assists":3,"marketValue":2000000,"internationalCaps":18,"awards":[],"overall":70},
+    {"id":"vanden-borre-12","name":"Anthony Vanden Borre","position":"RB","alternativePositions":["CB","RM"],"nationality":"BEL","age":24,"appearances":18,"goals":1,"assists":1,"marketValue":1000000,"internationalCaps":29,"awards":["Gouden Schoen 2005"],"overall":70},
+    {"id":"najar-12","name":"Andy Najar","position":"RB","alternativePositions":["RM"],"nationality":"HON","age":19,"appearances":16,"goals":1,"assists":2,"marketValue":350000,"internationalCaps":22,"awards":[],"overall":68},
+    {"id":"biglia-12","name":"Lucas Biglia","position":"CDM","alternativePositions":["CM"],"nationality":"ARG","age":26,"appearances":28,"goals":3,"assists":4,"marketValue":8000000,"internationalCaps":18,"awards":[],"overall":77},
+    {"id":"kouyate-12","name":"Cheikhou Kouyaté","position":"CDM","alternativePositions":["CB","CM"],"nationality":"SEN","age":23,"appearances":26,"goals":3,"assists":2,"marketValue":7500000,"internationalCaps":18,"awards":[],"overall":74},
+    {"id":"gillet-12","name":"Guillaume Gillet","position":"CDM","alternativePositions":["RB","CM"],"nationality":"BEL","age":28,"appearances":24,"goals":2,"assists":3,"marketValue":4500000,"internationalCaps":12,"awards":[],"overall":72},
+    {"id":"praet-12","name":"Dennis Praet","position":"CM","alternativePositions":["CAM"],"nationality":"BEL","age":18,"appearances":20,"goals":2,"assists":3,"marketValue":7000000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"de-zeeuw-12","name":"Demy de Zeeuw","position":"CM","alternativePositions":["CDM"],"nationality":"NED","age":29,"appearances":22,"goals":2,"assists":3,"marketValue":3000000,"internationalCaps":25,"awards":[],"overall":71},
+    {"id":"bruno-12","name":"Massimo Bruno","position":"CAM","alternativePositions":["LW","RW"],"nationality":"BEL","age":19,"appearances":18,"goals":3,"assists":3,"marketValue":4000000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"jovanovic-12","name":"Milan Jovanović","position":"LW","alternativePositions":["ST","CAM"],"nationality":"SRB","age":31,"appearances":22,"goals":5,"assists":3,"marketValue":2500000,"internationalCaps":56,"awards":[],"overall":70},
+    {"id":"mbokani-12","name":"Dieumerci Mbokani","position":"ST","nationality":"COD","age":27,"appearances":30,"goals":17,"assists":4,"marketValue":10000000,"internationalCaps":35,"awards":[],"overall":76},
+    {"id":"suarez-m-12","name":"Matías Suárez","position":"ST","alternativePositions":["CAM"],"nationality":"ARG","age":24,"appearances":24,"goals":8,"assists":4,"marketValue":9000000,"internationalCaps":0,"awards":[],"overall":74}
+  ]
+}

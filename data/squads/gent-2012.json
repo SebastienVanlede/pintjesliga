@@ -1,0 +1,25 @@
+{
+  "team": "AA Gent",
+  "teamId": "gent",
+  "season": "2012-13",
+  "year": 2012,
+  "players": [
+    {"id":"padt-12","name":"Sergio Padt","position":"GK","nationality":"NED","age":22,"appearances":22,"goals":0,"assists":0,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"boeckx-12","name":"Frank Boeckx","position":"GK","nationality":"BEL","age":26,"appearances":16,"goals":0,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"arzo-12","name":"César Arzo","position":"CB","nationality":"ESP","age":26,"appearances":24,"goals":2,"assists":1,"marketValue":2500000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"zukanovic-12","name":"Ervin Zukanović","position":"CB","nationality":"BIH","age":25,"appearances":22,"goals":1,"assists":0,"marketValue":2000000,"internationalCaps":4,"awards":[],"overall":69},
+    {"id":"melli-12","name":"Melli","position":"CB","nationality":"ESP","age":28,"appearances":18,"goals":1,"assists":0,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"nahayo-12","name":"Valery Nahayo","position":"CB","nationality":"BDI","age":28,"appearances":16,"goals":1,"assists":0,"marketValue":700000,"internationalCaps":15,"awards":[],"overall":66},
+    {"id":"cendros-12","name":"Pau Cendrós","position":"RB","alternativePositions":["CB"],"nationality":"ESP","age":25,"appearances":24,"goals":1,"assists":2,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"foket-12","name":"Thomas Foket","position":"RB","alternativePositions":["RM"],"nationality":"BEL","age":17,"appearances":12,"goals":0,"assists":1,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"mareval-12","name":"Rémi Maréval","position":"LB","alternativePositions":["LM"],"nationality":"FRA","age":29,"appearances":20,"goals":0,"assists":2,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"hubert-d-12","name":"David Hubert","position":"CDM","alternativePositions":["CM","CB"],"nationality":"BEL","age":24,"appearances":24,"goals":2,"assists":2,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"neto-12","name":"Renato Neto","position":"CDM","alternativePositions":["CM"],"nationality":"BRA","age":21,"appearances":22,"goals":1,"assists":2,"marketValue":1700000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"lepoint-12","name":"Christophe Lepoint","position":"CM","alternativePositions":["CDM","CAM"],"nationality":"BEL","age":27,"appearances":24,"goals":3,"assists":4,"marketValue":1500000,"internationalCaps":2,"awards":[],"overall":70},
+    {"id":"bruls-12","name":"Christian Brüls","position":"CAM","alternativePositions":["LW","CM"],"nationality":"BEL","age":23,"appearances":22,"goals":5,"assists":4,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"kage-12","name":"Hervé Kage","position":"LW","alternativePositions":["LM","CAM"],"nationality":"COD","age":23,"appearances":22,"goals":3,"assists":3,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"soumahoro-12","name":"Yaya Soumahoro","position":"LW","alternativePositions":["RW","ST"],"nationality":"CIV","age":22,"appearances":18,"goals":3,"assists":2,"marketValue":1000000,"internationalCaps":2,"awards":[],"overall":67},
+    {"id":"mboyo-12","name":"Ilombe Mboyo","position":"ST","nationality":"BEL","age":25,"appearances":26,"goals":12,"assists":3,"marketValue":5000000,"internationalCaps":0,"awards":[],"overall":73},
+    {"id":"raman-12","name":"Benito Raman","position":"ST","alternativePositions":["LW","RW"],"nationality":"BEL","age":18,"appearances":14,"goals":3,"assists":2,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":67}
+  ]
+}

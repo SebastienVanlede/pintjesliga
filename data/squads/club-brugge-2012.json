@@ -1,0 +1,26 @@
+{
+  "team": "Club Brugge KV",
+  "teamId": "club-brugge",
+  "season": "2012-13",
+  "year": 2012,
+  "players": [
+    {"id":"jorgacevic-12","name":"Bojan Jorgačević","position":"GK","nationality":"SRB","age":30,"appearances":26,"goals":0,"assists":0,"marketValue":1000000,"internationalCaps":4,"awards":[],"overall":69},
+    {"id":"kujovic-12","name":"Vladan Kujović","position":"GK","nationality":"SRB","age":34,"appearances":12,"goals":0,"assists":0,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"donk-12","name":"Ryan Donk","position":"CB","nationality":"NED","age":26,"appearances":26,"goals":2,"assists":0,"marketValue":3500000,"internationalCaps":0,"awards":[],"overall":72},
+    {"id":"larsen-12","name":"Jim Larsen","position":"CB","nationality":"DEN","age":27,"appearances":22,"goals":1,"assists":0,"marketValue":1800000,"internationalCaps":2,"awards":[],"overall":69},
+    {"id":"duarte-12","name":"Óscar Duarte","position":"CB","nationality":"CRC","age":23,"appearances":18,"goals":1,"assists":0,"marketValue":1500000,"internationalCaps":8,"awards":[],"overall":68},
+    {"id":"stenman-12","name":"Fredrik Stenman","position":"LB","alternativePositions":["CB","LM"],"nationality":"SWE","age":29,"appearances":24,"goals":0,"assists":2,"marketValue":1200000,"internationalCaps":2,"awards":[],"overall":68},
+    {"id":"de-bock-12","name":"Laurens De Bock","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":19,"appearances":16,"goals":0,"assists":1,"marketValue":3000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"meunier-12","name":"Thomas Meunier","position":"RB","alternativePositions":["RM","RW"],"nationality":"BEL","age":20,"appearances":24,"goals":2,"assists":3,"marketValue":2200000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"hogli-12","name":"Tom Høgli","position":"RB","alternativePositions":["LB"],"nationality":"NOR","age":28,"appearances":18,"goals":0,"assists":1,"marketValue":1200000,"internationalCaps":15,"awards":[],"overall":67},
+    {"id":"adu-12","name":"Enoch Kofi Adu","position":"CDM","alternativePositions":["CM"],"nationality":"GHA","age":21,"appearances":22,"goals":1,"assists":2,"marketValue":2000000,"internationalCaps":2,"awards":[],"overall":69},
+    {"id":"blondel-12","name":"Jonathan Blondel","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":28,"appearances":20,"goals":2,"assists":2,"marketValue":2000000,"internationalCaps":4,"awards":[],"overall":69},
+    {"id":"odjidja-12","name":"Vadis Odjidja-Ofoe","position":"CM","alternativePositions":["CAM"],"nationality":"BEL","age":23,"appearances":26,"goals":3,"assists":4,"marketValue":5500000,"internationalCaps":0,"awards":[],"overall":73},
+    {"id":"jorgensen-12","name":"Jesper Jørgensen","position":"CM","alternativePositions":["CDM"],"nationality":"DEN","age":28,"appearances":22,"goals":2,"assists":2,"marketValue":1500000,"internationalCaps":2,"awards":[],"overall":68},
+    {"id":"vazquez-12","name":"Víctor Vázquez","position":"CAM","alternativePositions":["CM"],"nationality":"ESP","age":25,"appearances":24,"goals":4,"assists":5,"marketValue":3500000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"refaelov-12","name":"Lior Refaelov","position":"CAM","alternativePositions":["CM","RW"],"nationality":"ISR","age":26,"appearances":28,"goals":7,"assists":6,"marketValue":3000000,"internationalCaps":18,"awards":["Gouden Schoen 2012"],"overall":74},
+    {"id":"lestienne-12","name":"Maxime Lestienne","position":"RW","alternativePositions":["LW","CAM"],"nationality":"BEL","age":20,"appearances":24,"goals":6,"assists":4,"marketValue":9000000,"internationalCaps":0,"awards":[],"overall":73},
+    {"id":"bacca-12","name":"Carlos Bacca","position":"ST","nationality":"COL","age":26,"appearances":28,"goals":14,"assists":3,"marketValue":8000000,"internationalCaps":8,"awards":["Gouden Schoen 2013"],"overall":75},
+    {"id":"vleminckx-12","name":"Björn Vleminckx","position":"ST","nationality":"BEL","age":27,"appearances":20,"goals":5,"assists":2,"marketValue":3500000,"internationalCaps":4,"awards":[],"overall":71}
+  ]
+}

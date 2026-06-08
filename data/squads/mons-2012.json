@@ -1,0 +1,26 @@
+{
+  "team": "RAEC Mons",
+  "teamId": "mons",
+  "season": "2012-13",
+  "year": 2012,
+  "players": [
+    {"id":"werner-12","name":"Olivier Werner","position":"GK","nationality":"BEL","age":27,"appearances":26,"goals":0,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"berthelin-12","name":"Cédric Berthelin","position":"GK","nationality":"FRA","age":35,"appearances":12,"goals":0,"assists":0,"marketValue":250000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"van-gijseghem-12","name":"Daan Van Gijseghem","position":"CB","nationality":"BEL","age":24,"appearances":26,"goals":1,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"lorenzi-12","name":"Grégory Lorenzi","position":"CB","nationality":"FRA","age":28,"appearances":24,"goals":1,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"sapina-12","name":"Jérémy Sapina","position":"CB","nationality":"FRA","age":27,"appearances":20,"goals":1,"assists":0,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"lepicier-12","name":"Maël Lepicier","position":"CB","nationality":"COG","age":26,"appearances":18,"goals":1,"assists":0,"marketValue":600000,"internationalCaps":4,"awards":[],"overall":66},
+    {"id":"franquart-12","name":"Peter Franquart","position":"CB","nationality":"FRA","age":27,"appearances":16,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"monteyne-12","name":"Pieter-Jan Monteyne","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":29,"appearances":22,"goals":0,"assists":1,"marketValue":650000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"timmermans-12","name":"Nicolas Timmermans","position":"RB","alternativePositions":["RM"],"nationality":"BEL","age":29,"appearances":20,"goals":0,"assists":1,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"le-postollec-12","name":"Flavien Le Postollec","position":"CDM","alternativePositions":["CM"],"nationality":"FRA","age":28,"appearances":24,"goals":1,"assists":2,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"angeli-12","name":"Arnor Angeli","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":21,"appearances":22,"goals":1,"assists":2,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"debisschop-12","name":"Matthieu Debisschop","position":"CDM","alternativePositions":["CM"],"nationality":"FRA","age":28,"appearances":18,"goals":1,"assists":1,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"van-imschoot-12","name":"Tom Van Imschoot","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":30,"appearances":16,"goals":1,"assists":1,"marketValue":350000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"matthys-t-12","name":"Tim Matthys","position":"RM","alternativePositions":["RW","CAM"],"nationality":"BEL","age":28,"appearances":24,"goals":3,"assists":3,"marketValue":750000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"nyoni-12","name":"Vusumuzi Nyoni","position":"LM","alternativePositions":["LW"],"nationality":"ZWE","age":28,"appearances":22,"goals":2,"assists":3,"marketValue":750000,"internationalCaps":10,"awards":[],"overall":67},
+    {"id":"nong-12","name":"Aloys Nong","position":"ST","nationality":"CMR","age":28,"appearances":24,"goals":9,"assists":3,"marketValue":1000000,"internationalCaps":8,"awards":[],"overall":70},
+    {"id":"perbet-12","name":"Jérémy Perbet","position":"ST","nationality":"FRA","age":28,"appearances":22,"goals":10,"assists":2,"marketValue":2500000,"internationalCaps":0,"awards":[],"overall":72},
+    {"id":"arbeitman-12","name":"Shlomi Arbeitman","position":"ST","nationality":"ISR","age":27,"appearances":18,"goals":5,"assists":2,"marketValue":750000,"internationalCaps":4,"awards":[],"overall":68}
+  ]
+}

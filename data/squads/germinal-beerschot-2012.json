@@ -1,0 +1,25 @@
+{
+  "team": "Beerschot AC",
+  "teamId": "germinal-beerschot",
+  "season": "2012-13",
+  "year": 2012,
+  "players": [
+    {"id":"stijnen-12","name":"Stijn Stijnen","position":"GK","nationality":"BEL","age":31,"appearances":28,"goals":0,"assists":0,"marketValue":600000,"internationalCaps":18,"awards":[],"overall":70},
+    {"id":"van-langendonck-12","name":"Koen Van Langendonck","position":"GK","nationality":"BEL","age":23,"appearances":10,"goals":0,"assists":0,"marketValue":200000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"ozturk-12","name":"Alpaslan Öztürk","position":"CB","nationality":"TUR","age":18,"appearances":24,"goals":1,"assists":0,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"wuytens-s-12","name":"Stijn Wuytens","position":"CB","alternativePositions":["CDM"],"nationality":"BEL","age":22,"appearances":22,"goals":1,"assists":0,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"brillant-12","name":"Frédéric Brillant","position":"CB","nationality":"FRA","age":27,"appearances":22,"goals":1,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"wuytens-d-12","name":"Dries Wuytens","position":"CB","nationality":"BEL","age":21,"appearances":16,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"chanot-12","name":"Maxime Chanot","position":"CB","nationality":"LUX","age":22,"appearances":18,"goals":1,"assists":0,"marketValue":500000,"internationalCaps":15,"awards":[],"overall":66},
+    {"id":"bodor-12","name":"Boldizsár Bodor","position":"LB","alternativePositions":["LM"],"nationality":"HUN","age":30,"appearances":20,"goals":0,"assists":1,"marketValue":200000,"internationalCaps":15,"awards":[],"overall":64},
+    {"id":"marzo-12","name":"Stefano Marzo","position":"RB","alternativePositions":["RM"],"nationality":"BEL","age":21,"appearances":22,"goals":0,"assists":2,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"malul-12","name":"Dor Malul","position":"RB","alternativePositions":["CB"],"nationality":"ISR","age":23,"appearances":16,"goals":0,"assists":1,"marketValue":400000,"internationalCaps":2,"awards":[],"overall":64},
+    {"id":"de-decker-12","name":"Wim De Decker","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":30,"appearances":24,"goals":2,"assists":2,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"suk-12","name":"Joey Suk","position":"CDM","alternativePositions":["CM"],"nationality":"NED","age":22,"appearances":20,"goals":1,"assists":2,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"ojo-f-12","name":"Funso Ojo","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":20,"appearances":18,"goals":1,"assists":2,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"van-acker-12","name":"Thibaut Van Acker","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":20,"appearances":18,"goals":1,"assists":1,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"losada-12","name":"Hernán Losada","position":"CAM","alternativePositions":["CM"],"nationality":"ARG","age":30,"appearances":24,"goals":5,"assists":4,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"mununga-12","name":"Joachim Mununga","position":"RW","alternativePositions":["CAM"],"nationality":"BEL","age":24,"appearances":22,"goals":3,"assists":2,"marketValue":650000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"ogunjimi-12","name":"Marvin Ogunjimi","position":"ST","nationality":"BEL","age":24,"appearances":22,"goals":7,"assists":2,"marketValue":1000000,"internationalCaps":10,"awards":[],"overall":70}
+  ]
+}

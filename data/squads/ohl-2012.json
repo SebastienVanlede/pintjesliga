@@ -1,0 +1,25 @@
+{
+  "team": "OH Leuven",
+  "teamId": "ohl",
+  "season": "2012-13",
+  "year": 2012,
+  "players": [
+    {"id":"bailly-12","name":"Logan Bailly","position":"GK","nationality":"BEL","age":26,"appearances":28,"goals":0,"assists":0,"marketValue":800000,"internationalCaps":2,"awards":[],"overall":69},
+    {"id":"lenaerts-12","name":"Yves Lenaerts","position":"GK","nationality":"BEL","age":29,"appearances":10,"goals":0,"assists":0,"marketValue":350000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"robson-12","name":"Robson","position":"CB","nationality":"BRA","age":28,"appearances":24,"goals":1,"assists":0,"marketValue":850000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"weuts-12","name":"Koen Weuts","position":"CB","nationality":"BEL","age":21,"appearances":22,"goals":1,"assists":0,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"raymaekers-12","name":"Wim Raymaekers","position":"CB","nationality":"BEL","age":27,"appearances":20,"goals":1,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"buysens-12","name":"Ludovic Buysens","position":"CB","nationality":"BEL","age":26,"appearances":18,"goals":1,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"mikulic-12","name":"Tomislav Mikulić","position":"CB","nationality":"CRO","age":30,"appearances":16,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"thompson-12","name":"Kenny Thompson","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":27,"appearances":22,"goals":0,"assists":2,"marketValue":650000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"vanaudenaerde-12","name":"Gunther Vanaudenaerde","position":"RB","alternativePositions":["CB"],"nationality":"BEL","age":28,"appearances":22,"goals":0,"assists":1,"marketValue":650000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"van-goethem-12","name":"Kenneth Van Goethem","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":28,"appearances":22,"goals":1,"assists":2,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"ngolok-12","name":"Evariste Ngolok","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":24,"appearances":22,"goals":1,"assists":1,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"geraerts-12","name":"Karel Geraerts","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":30,"appearances":26,"goals":3,"assists":3,"marketValue":1000000,"internationalCaps":2,"awards":[],"overall":70},
+    {"id":"ibou-12","name":"Ibou","position":"LW","alternativePositions":["RW"],"nationality":"GMB","age":25,"appearances":24,"goals":5,"assists":3,"marketValue":1700000,"internationalCaps":10,"awards":[],"overall":71},
+    {"id":"azevedo-12","name":"Thomas Azevedo","position":"LW","alternativePositions":["RW"],"nationality":"BEL","age":20,"appearances":18,"goals":3,"assists":2,"marketValue":650000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"karuru-12","name":"Ovidy Karuru","position":"RW","alternativePositions":["CAM","LW"],"nationality":"ZWE","age":23,"appearances":20,"goals":3,"assists":2,"marketValue":500000,"internationalCaps":12,"awards":[],"overall":66},
+    {"id":"ogbu-12","name":"Derick Ogbu","position":"ST","nationality":"NGA","age":22,"appearances":24,"goals":8,"assists":2,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"cerigioni-12","name":"Alessandro Cerigioni","position":"ST","nationality":"BEL","age":19,"appearances":18,"goals":4,"assists":2,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":67}
+  ]
+}

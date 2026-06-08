@@ -1,0 +1,25 @@
+{
+  "team": "KSC Lokeren",
+  "teamId": "lokeren",
+  "season": "2012-13",
+  "year": 2012,
+  "players": [
+    {"id":"copa-12","name":"Boubacar Copa","position":"GK","nationality":"CIV","age":32,"appearances":26,"goals":0,"assists":0,"marketValue":1500000,"internationalCaps":12,"awards":[],"overall":69},
+    {"id":"lazic-12","name":"Jugoslav Lazić","position":"GK","nationality":"SRB","age":32,"appearances":12,"goals":0,"assists":0,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"taravel-12","name":"Jérémy Taravel","position":"CB","nationality":"FRA","age":25,"appearances":26,"goals":2,"assists":0,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"maric-12","name":"Mijat Marić","position":"CB","nationality":"SUI","age":29,"appearances":22,"goals":1,"assists":0,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"scholz-12","name":"Alexander Scholz","position":"CB","nationality":"DEN","age":20,"appearances":18,"goals":1,"assists":0,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"mpembele-12","name":"Cedric Mingiedi Mpembele","position":"CB","nationality":"BEL","age":17,"appearances":12,"goals":0,"assists":0,"marketValue":50000,"internationalCaps":0,"awards":[],"overall":62},
+    {"id":"corryn-12","name":"Alexander Corryn","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":19,"appearances":18,"goals":0,"assists":2,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"el-mouataz-12","name":"Hassan El Mouataz","position":"LB","alternativePositions":["LM"],"nationality":"MAR","age":30,"appearances":16,"goals":0,"assists":1,"marketValue":300000,"internationalCaps":4,"awards":[],"overall":64},
+    {"id":"galitsios-12","name":"Georgios Galitsios","position":"RB","alternativePositions":["CB"],"nationality":"GRC","age":26,"appearances":24,"goals":1,"assists":2,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"overmeire-12","name":"Killian Overmeire","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":26,"appearances":28,"goals":2,"assists":3,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"persoons-12","name":"Koen Persoons","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":29,"appearances":22,"goals":2,"assists":2,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"patosi-12","name":"Ayanda Patosi","position":"CAM","alternativePositions":["LW","CM"],"nationality":"RSA","age":20,"appearances":22,"goals":4,"assists":3,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"leko-12","name":"Ivan Leko","position":"CAM","alternativePositions":["CM"],"nationality":"CRO","age":34,"appearances":18,"goals":2,"assists":2,"marketValue":300000,"internationalCaps":15,"awards":[],"overall":66},
+    {"id":"fernandez-w-12","name":"Walter Fernández","position":"LW","alternativePositions":["RW","CAM"],"nationality":"ESP","age":22,"appearances":20,"goals":3,"assists":2,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"de-pauw-12","name":"Nill De Pauw","position":"RW","alternativePositions":["LW"],"nationality":"BEL","age":22,"appearances":22,"goals":4,"assists":3,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"harbaoui-12","name":"Hamdi Harbaoui","position":"ST","nationality":"TUN","age":27,"appearances":28,"goals":13,"assists":3,"marketValue":2000000,"internationalCaps":2,"awards":[],"overall":72},
+    {"id":"mokulu-12","name":"Benjamin Mokulu","position":"ST","nationality":"COD","age":22,"appearances":20,"goals":5,"assists":2,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":68}
+  ]
+}
