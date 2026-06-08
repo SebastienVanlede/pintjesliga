@@ -17,9 +17,9 @@
     {"id":"zimling-11","name":"Niki Zimling","position":"CDM","alternativePositions":["CM"],"nationality":"DEN","age":26,"appearances":26,"goals":2,"assists":3,"marketValue":3000000,"internationalCaps":18,"awards":[],"overall":71},
     {"id":"blondel-11","name":"Jonathan Blondel","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":27,"appearances":22,"goals":2,"assists":2,"marketValue":2000000,"internationalCaps":4,"awards":[],"overall":69},
     {"id":"odjidja-11","name":"Vadis Odjidja-Ofoe","position":"CM","alternativePositions":["CAM"],"nationality":"BEL","age":22,"appearances":24,"goals":3,"assists":4,"marketValue":6000000,"internationalCaps":0,"awards":[],"overall":73},
-    {"id":"refaelov-11","name":"Lior Refaelov","position":"CAM","alternativePositions":["CM","RW"],"nationality":"ISR","age":25,"appearances":28,"goals":8,"assists":6,"marketValue":2500000,"internationalCaps":15,"awards":["Gouden Schoen 2012"],"overall":75},
+    {"id":"refaelov-11","name":"Lior Refaelov","position":"CAM","alternativePositions":["CM","RW"],"nationality":"ISR","age":25,"appearances":28,"goals":8,"assists":6,"marketValue":2500000,"internationalCaps":15,"awards":[],"overall":75},
     {"id":"vazquez-11","name":"Víctor Vázquez","position":"CAM","alternativePositions":["CM"],"nationality":"ESP","age":24,"appearances":22,"goals":4,"assists":4,"marketValue":2500000,"internationalCaps":0,"awards":[],"overall":71},
-    {"id":"bacca-11","name":"Carlos Bacca","position":"ST","nationality":"COL","age":25,"appearances":26,"goals":11,"assists":3,"marketValue":2000000,"internationalCaps":4,"awards":["Gouden Schoen 2013"],"overall":73},
+    {"id":"bacca-11","name":"Carlos Bacca","position":"ST","nationality":"COL","age":25,"appearances":26,"goals":11,"assists":3,"marketValue":2000000,"internationalCaps":4,"awards":[],"overall":73},
     {"id":"vleminckx-11","name":"Björn Vleminckx","position":"ST","nationality":"BEL","age":26,"appearances":22,"goals":7,"assists":2,"marketValue":3000000,"internationalCaps":2,"awards":[],"overall":71}
   ]
 }
