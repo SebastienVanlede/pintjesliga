@@ -202,10 +202,10 @@ export default function Nav() {
               >
                 {/* Taal sectie */}
                 <div style={{ padding: '6px 8px 2px', fontSize: '0.55rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--muted)' }}>
-                  {language === 'nl' ? 'Taal' : 'Language'}
+                  {t.nav.menu.language}
                 </div>
                 <div style={{ display: 'flex', gap: 4, padding: '0 4px 6px' }}>
-                  {(['nl', 'en'] as const).map(lang => (
+                  {(['nl', 'en', 'fr'] as const).map(lang => (
                     <button
                       key={lang}
                       onClick={() => setLanguage(lang)}
@@ -215,7 +215,7 @@ export default function Nav() {
                         color: language === lang ? '#07070A' : 'var(--text-2)',
                         border: `1px solid ${language === lang ? 'var(--gold)' : 'var(--border)'}`,
                         borderRadius: 4,
-                        padding: '5px 8px',
+                        padding: '5px 6px',
                         cursor: 'pointer',
                         fontSize: '0.65rem',
                         fontFamily: 'var(--font-display)',
@@ -224,7 +224,7 @@ export default function Nav() {
                         transition: 'all 0.15s',
                       }}
                     >
-                      {lang === 'nl' ? '🇧🇪  NL' : '🇬🇧  EN'}
+                      {lang === 'nl' ? '🇧🇪  NL' : lang === 'en' ? '🇬🇧  EN' : '🇫🇷  FR'}
                     </button>
                   ))}
                 </div>
@@ -233,7 +233,7 @@ export default function Nav() {
 
                 {/* Thema sectie */}
                 <div style={{ padding: '6px 8px 2px', fontSize: '0.55rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--muted)' }}>
-                  {language === 'nl' ? 'Thema' : 'Theme'}
+                  {t.nav.menu.theme}
                 </div>
                 <div style={{ display: 'flex', gap: 4, padding: '0 4px 6px' }}>
                   {(['dark', 'light'] as const).map(mode => (
@@ -260,9 +260,7 @@ export default function Nav() {
                       }}
                     >
                       <span>{mode === 'dark' ? '🌙' : '☀️'}</span>
-                      {language === 'nl'
-                        ? mode === 'dark' ? 'Donker' : 'Licht'
-                        : mode === 'dark' ? 'Dark' : 'Light'}
+                      {mode === 'dark' ? t.nav.menu.dark : t.nav.menu.light}
                     </button>
                   ))}
                 </div>

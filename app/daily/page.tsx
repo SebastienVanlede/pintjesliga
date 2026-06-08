@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGameStore } from '@/lib/store';
 import { useT } from '@/lib/useT';
+import { localeFor } from '@/lib/i18n';
 import { generateDailyChallenge, getTodayDateKey } from '@/lib/daily';
 
 export default function DailyPage() {
@@ -28,7 +29,7 @@ export default function DailyPage() {
 
   // Datum mooi formatteren
   const localeDate = new Date(challenge.dateKey + 'T12:00:00').toLocaleDateString(
-    language === 'nl' ? 'nl-BE' : 'en-GB',
+    localeFor(language),
     { day: 'numeric', month: 'long', year: 'numeric' }
   );
 

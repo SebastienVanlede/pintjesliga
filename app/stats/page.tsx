@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGameStore, PlayedGame } from '@/lib/store';
 import { useT } from '@/lib/useT';
+import { Lang, localeFor } from '@/lib/i18n';
 import { ACHIEVEMENTS, RARITY_COLOR, getAllEarnedAchievements, AchievementId } from '@/lib/achievements';
 
 export default function StatsPage() {
@@ -454,9 +455,9 @@ function ModeBar({ label, value, total }: { label: string; value: number; other:
   );
 }
 
-function GameRow({ game, rank, language }: { game: PlayedGame; rank: number; language: 'nl' | 'en' }) {
+function GameRow({ game, rank, language }: { game: PlayedGame; rank: number; language: Lang }) {
   const date = new Date(game.playedAt);
-  const dateStr = date.toLocaleDateString(language === 'nl' ? 'nl-BE' : 'en-GB', { day: '2-digit', month: 'short' });
+  const dateStr = date.toLocaleDateString(localeFor(language), { day: '2-digit', month: 'short' });
 
   const resultColor = game.isChampion ? '#D4940A'
     : game.resultLabel.includes('PO1') || game.resultLabel.includes('Championship') ? '#C8A040'

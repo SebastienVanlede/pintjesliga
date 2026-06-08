@@ -19,6 +19,7 @@ import { Squad, SimulatedSeason, SimulatedPhase, StandingRow, SimulatedMatch, Fo
 import { calculateScore, ScoreBreakdown } from '@/lib/scoring';
 import { ACHIEVEMENTS, RARITY_COLOR, getGameAchievements, AchievementId } from '@/lib/achievements';
 import { useT } from '@/lib/useT';
+import { localeFor } from '@/lib/i18n';
 
 type SimMode = 'auto' | 'manual';
 type TabId = 'regular' | 'po1' | 'po2' | 'relegation' | 'scorers';
@@ -1136,7 +1137,7 @@ function ShareSection({ sim, pickedPlayers, formation, score, isDaily = false }:
     if (isDaily) import('@/lib/daily').then(({ getTodayDateKey }) => setTodayKey(getTodayDateKey()));
   }, [isDaily]);
   const dailyDateFormatted = todayKey
-    ? new Date(todayKey + 'T12:00:00').toLocaleDateString(language === 'nl' ? 'nl-BE' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
+    ? new Date(todayKey + 'T12:00:00').toLocaleDateString(localeFor(language), { day: 'numeric', month: 'long', year: 'numeric' })
     : '';
   const t = useT();
   const myTeam = teamName.trim() || t.simMode.teamNamePlaceholder;
@@ -1400,7 +1401,7 @@ function ShareSection({ sim, pickedPlayers, formation, score, isDaily = false }:
       if (isDaily) {
         ctx.fillText(`${t.daily.shareDateLabel.toUpperCase()} ${dailyDateFormatted}`, PAD, y + 66 + brandingOffsetY);
       } else {
-        ctx.fillText(`${language === 'nl' ? 'SEIZOEN' : 'SEASON'} ${simSeason}`, PAD, y + 66 + brandingOffsetY);
+        ctx.fillText(`${t.share.canvas.season} ${simSeason}`, PAD, y + 66 + brandingOffsetY);
       }
       ctx.letterSpacing = '0px';
 
@@ -1425,7 +1426,7 @@ function ShareSection({ sim, pickedPlayers, formation, score, isDaily = false }:
       ctx.font = '11px Arial, sans-serif';
       ctx.fillStyle = MUTED;
       ctx.textAlign = 'right';
-      const avgLabel = language === 'nl' ? 'gem. OVR ' : 'avg. OVR ';
+      const avgLabel = t.share.canvas.avgOvr;
       const avgValue = String(avgOverall);
       ctx.fillText(avgLabel, W - PAD - ctx.measureText(avgValue).width - 4, y + 66 + brandingOffsetY);
       ctx.fillStyle = TEXT;
@@ -1497,12 +1498,12 @@ function ShareSection({ sim, pickedPlayers, formation, score, isDaily = false }:
       ctx.font = '800 30px Impact, Arial Black, sans-serif';
       ctx.fillStyle = GOLD;
       ctx.textAlign = 'right';
-      ctx.fillText(score.total.toLocaleString('nl-BE'), W - PAD, y + 50);
+      ctx.fillText(score.total.toLocaleString(localeFor(language)), W - PAD, y + 50);
 
       ctx.font = '10px Arial, sans-serif';
       ctx.fillStyle = MUTED;
       ctx.letterSpacing = '1.5px';
-      ctx.fillText(language === 'nl' ? 'PUNTEN' : 'POINTS', W - PAD, y + 68);
+      ctx.fillText(t.share.canvas.points, W - PAD, y + 68);
       ctx.letterSpacing = '0px';
 
       // Separator
@@ -1586,7 +1587,7 @@ function ShareSection({ sim, pickedPlayers, formation, score, isDaily = false }:
         ctx.fillStyle = MUTED;
         ctx.textAlign = 'left';
         ctx.letterSpacing = '1.5px';
-        ctx.fillText(language === 'nl' ? 'BEHAALDE ACHIEVEMENTS' : 'ACHIEVEMENTS UNLOCKED', PAD, achTop + 16);
+        ctx.fillText(t.share.canvas.achievements, PAD, achTop + 16);
         ctx.letterSpacing = '0px';
 
         // Render badges
@@ -1653,7 +1654,7 @@ function ShareSection({ sim, pickedPlayers, formation, score, isDaily = false }:
       ctx.font = '10px Arial, sans-serif';
       ctx.fillStyle = MUTED;
       ctx.letterSpacing = '1.5px';
-      ctx.fillText(language === 'nl' ? 'KAMPIOEN' : 'CHAMPION', PAD + 38, footerTop + 24);
+      ctx.fillText(t.share.canvas.champion, PAD + 38, footerTop + 24);
       ctx.letterSpacing = '0px';
 
       ctx.font = 'bold 16px Arial, sans-serif';
@@ -1749,7 +1750,7 @@ function ShareSection({ sim, pickedPlayers, formation, score, isDaily = false }:
                   <p style={{ fontSize: 10, color: '#6B6560', marginTop: 5, letterSpacing: 1.5, textTransform: 'uppercase' }}>
                     {isDaily
                       ? `${t.daily.shareDateLabel} ${dailyDateFormatted}`
-                      : `${language === 'nl' ? 'Seizoen' : 'Season'} ${simSeason}`}
+                      : `${t.share.card.season} ${simSeason}`}
                   </p>
                 </div>
                 <div style={{ textAlign: 'right' }}>
@@ -1765,7 +1766,7 @@ function ShareSection({ sim, pickedPlayers, formation, score, isDaily = false }:
                     {formation}
                   </p>
                   <p style={{ fontSize: 9.5, color: '#6B6560', marginTop: 5, letterSpacing: 0.6 }}>
-                    {language === 'nl' ? 'gem. OVR' : 'avg. OVR'} <span style={{ color: '#EDE9E0', fontWeight: 600 }}>{avgOverall}</span>
+                    {t.share.card.avgOvr} <span style={{ color: '#EDE9E0', fontWeight: 600 }}>{avgOverall}</span>
                   </p>
                   {isDaily && dailyStreak > 0 && (
                     <div style={{
@@ -1818,10 +1819,10 @@ function ShareSection({ sim, pickedPlayers, formation, score, isDaily = false }:
                     fontSize: 26, color: '#D4940A', letterSpacing: 0.8,
                     lineHeight: 1,
                   }}>
-                    {score.total.toLocaleString('nl-BE')}
+                    {score.total.toLocaleString(localeFor(language))}
                   </p>
                   <p style={{ fontSize: 9, color: '#6B6560', marginTop: 3, letterSpacing: 1.5, textTransform: 'uppercase' }}>
-                    {language === 'nl' ? 'punten' : 'points'}
+                    {t.share.card.points}
                   </p>
                 </div>
               </div>
@@ -1887,7 +1888,7 @@ function ShareSection({ sim, pickedPlayers, formation, score, isDaily = false }:
                 display: 'flex', flexDirection: 'column', gap: 6,
               }}>
                 <p style={{ fontSize: 9, color: '#6B6560', letterSpacing: 1.5, textTransform: 'uppercase' }}>
-                  {language === 'nl' ? 'Behaalde Achievements' : 'Achievements Unlocked'}
+                  {t.share.card.achievements}
                 </p>
                 <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
                   {gameAchievements.map(id => {
@@ -1924,7 +1925,7 @@ function ShareSection({ sim, pickedPlayers, formation, score, isDaily = false }:
                 <span style={{ fontSize: 16, flexShrink: 0 }}>🏆</span>
                 <div style={{ minWidth: 0 }}>
                   <p style={{ fontSize: 9, color: '#6B6560', letterSpacing: 1.5, textTransform: 'uppercase' }}>
-                    {language === 'nl' ? 'Kampioen' : 'Champion'}
+                    {t.share.card.champion}
                   </p>
                   <p style={{
                     fontSize: 13, fontWeight: 700,
