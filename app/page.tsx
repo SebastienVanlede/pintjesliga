@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Formation, FORMATIONS } from '@/lib/types';
 import { useGameStore } from '@/lib/store';
 import { useT } from '@/lib/useT';
-import { SQUAD_COUNT, SEASON_COUNT } from '@/lib/data';
+import { SQUAD_COUNT, SEASON_COUNT, SEASON_RANGE } from '@/lib/data';
 import FormationCard from '@/components/FormationCard';
 
 export default function HomePage() {
@@ -107,7 +107,7 @@ export default function HomePage() {
           className="hidden lg:flex items-center gap-4 pt-8 mt-4 flex-wrap"
           style={{ borderTop: '1px solid var(--border)' }}
         >
-          {([String(SQUAD_COUNT), String(SEASON_COUNT), '3', 'PO1 · PO2'] as string[]).map((val, i) => (
+          {([String(SQUAD_COUNT), String(SEASON_COUNT), SEASON_RANGE, 'PO1 · PO2'] as string[]).map((val, i) => (
             <div key={i} className="flex flex-col">
               <span style={{ fontFamily: 'var(--font-display)', fontSize: '1.1rem', color: 'var(--text)', letterSpacing: '0.05em' }}>{val}</span>
               <span className="label-xs" style={{ marginTop: 1 }}>{t.home.statsLabels[i]}</span>

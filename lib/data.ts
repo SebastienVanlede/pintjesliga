@@ -240,6 +240,19 @@ export const SEASON_COUNT = new Set(
   Object.keys(squadModules).map(k => k.slice(-7))
 ).size;
 
+const _seasonYears = Array.from(new Set(
+  Object.keys(squadModules).map(k => parseInt(k.slice(-7, -3), 10))
+)).sort((a, b) => a - b);
+
+/** Beginjaar van het oudste squad-seizoen (bv. 2013 voor 2013-14). */
+export const FIRST_SEASON_YEAR = _seasonYears[0];
+
+/** Beginjaar van het nieuwste squad-seizoen (bv. 2025 voor 2025-26). */
+export const LAST_SEASON_YEAR = _seasonYears[_seasonYears.length - 1];
+
+/** Compacte range "YYYY–YY" (bv. "2013–26"). */
+export const SEASON_RANGE = `${FIRST_SEASON_YEAR}–${String((LAST_SEASON_YEAR + 1) % 100).padStart(2, '0')}`;
+
 export function getTeamById(id: string): Team | undefined {
   return teams.find((t) => t.id === id);
 }
