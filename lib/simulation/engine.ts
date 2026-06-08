@@ -59,9 +59,35 @@ function weightedPick(players: SimPlayer[], weights: Record<string, number>): st
   return players[players.length - 1].name;
 }
 
+// Per-match diminishing returns: na elke goal halveert de speler-gewicht binnen
+// dezelfde wedstrijd. Voorkomt dat één topspits in een 5-0 wedstrijd 4 keer scoort
+// en dat één speler over het seizoen onrealistische totalen (30+) haalt.
 function pickGoalScorers(team: SimTeam, goals: number): string[] {
   if (!team.players.length) return [];
-  return Array.from({ length: goals }, () => weightedPick(team.players, GOAL_WEIGHT));
+  const result: string[] = [];
+  const matchTally: Record<string, number> = {};
+  for (let i = 0; i < goals; i++) {
+    const pool = team.players.map(p => ({
+      player: p,
+      weight: (GOAL_WEIGHT[p.position] ?? 1) * Math.pow(0.5, matchTally[p.name] ?? 0),
+    }));
+    const totalW = pool.reduce((s, x) => s + x.weight, 0);
+    if (totalW === 0) {
+      const scorer = team.players[Math.floor(Math.random() * team.players.length)].name;
+      result.push(scorer);
+      matchTally[scorer] = (matchTally[scorer] ?? 0) + 1;
+      continue;
+    }
+    let rand = Math.random() * totalW;
+    let scorer = team.players[team.players.length - 1].name;
+    for (const { player, weight } of pool) {
+      rand -= weight;
+      if (rand <= 0) { scorer = player.name; break; }
+    }
+    result.push(scorer);
+    matchTally[scorer] = (matchTally[scorer] ?? 0) + 1;
+  }
+  return result;
 }
 
 // ~75% of goals have a registered assist
