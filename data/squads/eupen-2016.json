@@ -1,0 +1,25 @@
+{
+  "team": "KAS Eupen",
+  "teamId": "eupen",
+  "season": "2016-17",
+  "year": 2016,
+  "players": [
+    {"id":"van-crombrugge-16","name":"Hendrik Van Crombrugge","position":"GK","nationality":"BEL","age":23,"appearances":28,"goals":0,"assists":0,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"niasse-16","name":"Babacar Niasse","position":"GK","nationality":"MRT","age":20,"appearances":10,"goals":0,"assists":0,"marketValue":200000,"internationalCaps":4,"awards":[],"overall":63},
+    {"id":"diallo-16","name":"Ibrahim Diallo","position":"CB","nationality":"MLI","age":20,"appearances":24,"goals":1,"assists":0,"marketValue":650000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"blondelle-16","name":"Siebe Blondelle","position":"CB","nationality":"BEL","age":31,"appearances":22,"goals":2,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"hackenberg-16","name":"Peter Hackenberg","position":"CB","nationality":"GER","age":28,"appearances":20,"goals":1,"assists":0,"marketValue":350000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"radebe-16","name":"Ntuthuko Radebe","position":"LB","alternativePositions":["LM"],"nationality":"RSA","age":22,"appearances":18,"goals":0,"assists":1,"marketValue":150000,"internationalCaps":2,"awards":[],"overall":63},
+    {"id":"wague-16","name":"Moussa Wagué","position":"RB","alternativePositions":["CB","RM"],"nationality":"SEN","age":17,"appearances":18,"goals":1,"assists":2,"marketValue":500000,"internationalCaps":4,"awards":[],"overall":66},
+    {"id":"kenne-16","name":"Raoul Kenne","position":"RB","alternativePositions":["CB"],"nationality":"CMR","age":23,"appearances":14,"goals":0,"assists":1,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"george-16","name":"Odeni George","position":"CDM","alternativePositions":["CM"],"nationality":"NGA","age":21,"appearances":18,"goals":1,"assists":1,"marketValue":350000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"amani-16","name":"Lazare Amani","position":"CM","alternativePositions":["CDM","CAM"],"nationality":"CIV","age":19,"appearances":24,"goals":2,"assists":3,"marketValue":1300000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"dufour-16","name":"Guy Dufour","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":30,"appearances":20,"goals":2,"assists":2,"marketValue":350000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"garcia-16","name":"Luis García","position":"CM","alternativePositions":["CAM"],"nationality":"ESP","age":35,"appearances":14,"goals":1,"assists":2,"marketValue":200000,"internationalCaps":18,"awards":[],"overall":65},
+    {"id":"ocansey-16","name":"Eric Ocansey","position":"CAM","alternativePositions":["LW","RW"],"nationality":"GHA","age":19,"appearances":24,"goals":3,"assists":4,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"bruls-16","name":"Christian Brüls","position":"CAM","alternativePositions":["LW","CM"],"nationality":"BEL","age":27,"appearances":24,"goals":5,"assists":4,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"onyekuru-16","name":"Henry Onyekuru","position":"LW","alternativePositions":["RW","ST"],"nationality":"NGA","age":19,"appearances":30,"goals":22,"assists":4,"marketValue":7000000,"internationalCaps":4,"awards":[],"overall":76},
+    {"id":"jeffren-16","name":"Jeffrén","position":"RW","alternativePositions":["LW"],"nationality":"VEN","age":29,"appearances":18,"goals":3,"assists":2,"marketValue":500000,"internationalCaps":8,"awards":[],"overall":67},
+    {"id":"sylla-m-16","name":"Mamadou Sylla","position":"ST","nationality":"SEN","age":23,"appearances":24,"goals":8,"assists":2,"marketValue":3000000,"internationalCaps":0,"awards":[],"overall":71}
+  ]
+}

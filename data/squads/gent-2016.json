@@ -1,0 +1,25 @@
+{
+  "team": "AA Gent",
+  "teamId": "gent",
+  "season": "2016-17",
+  "year": 2016,
+  "players": [
+    {"id":"kalinic-16","name":"Lovre Kalinić","position":"GK","nationality":"CRO","age":26,"appearances":28,"goals":0,"assists":0,"marketValue":5000000,"internationalCaps":5,"awards":[],"overall":74},
+    {"id":"rinne-16","name":"Jacob Rinne","position":"GK","nationality":"SWE","age":23,"appearances":10,"goals":0,"assists":0,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"gigot-16","name":"Samuel Gigot","position":"CB","nationality":"FRA","age":23,"appearances":26,"goals":2,"assists":1,"marketValue":3000000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"mitrovic-16","name":"Stefan Mitrović","position":"CB","nationality":"SRB","age":27,"appearances":22,"goals":1,"assists":0,"marketValue":2200000,"internationalCaps":4,"awards":[],"overall":70},
+    {"id":"troost-ekong-16","name":"William Troost-Ekong","position":"CB","nationality":"NGA","age":23,"appearances":20,"goals":1,"assists":0,"marketValue":1000000,"internationalCaps":6,"awards":[],"overall":68},
+    {"id":"asare-16","name":"Nana Asare","position":"LB","alternativePositions":["LM"],"nationality":"GHA","age":30,"appearances":24,"goals":0,"assists":2,"marketValue":2200000,"internationalCaps":10,"awards":[],"overall":69},
+    {"id":"foket-16","name":"Thomas Foket","position":"RB","alternativePositions":["RM","RW"],"nationality":"BEL","age":22,"appearances":30,"goals":2,"assists":4,"marketValue":3500000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"neto-16","name":"Renato Neto","position":"CDM","alternativePositions":["CM"],"nationality":"BRA","age":25,"appearances":24,"goals":1,"assists":2,"marketValue":5000000,"internationalCaps":0,"awards":[],"overall":72},
+    {"id":"esiti-16","name":"Anderson Esiti","position":"CDM","alternativePositions":["CM"],"nationality":"NGA","age":22,"appearances":20,"goals":1,"assists":1,"marketValue":2500000,"internationalCaps":2,"awards":[],"overall":69},
+    {"id":"dejaegere-16","name":"Brecht Dejaegere","position":"CM","alternativePositions":["CAM"],"nationality":"BEL","age":25,"appearances":26,"goals":3,"assists":4,"marketValue":3500000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"schoofs-16","name":"Rob Schoofs","position":"CM","alternativePositions":["CAM"],"nationality":"BEL","age":23,"appearances":14,"goals":2,"assists":2,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"kubo-16","name":"Yuya Kubo","position":"CAM","alternativePositions":["ST","RW"],"nationality":"JPN","age":23,"appearances":24,"goals":5,"assists":3,"marketValue":5000000,"internationalCaps":2,"awards":[],"overall":72},
+    {"id":"saief-16","name":"Kenny Saief","position":"LW","alternativePositions":["LM","CAM"],"nationality":"USA","age":23,"appearances":20,"goals":3,"assists":4,"marketValue":3000000,"internationalCaps":2,"awards":[],"overall":70},
+    {"id":"simon-16","name":"Moses Simon","position":"LW","alternativePositions":["RW"],"nationality":"NGA","age":21,"appearances":24,"goals":5,"assists":3,"marketValue":4500000,"internationalCaps":6,"awards":[],"overall":72},
+    {"id":"kalu-16","name":"Samuel Kalu","position":"RW","alternativePositions":["LW","ST"],"nationality":"NGA","age":19,"appearances":18,"goals":3,"assists":2,"marketValue":3000000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"coulibaly-16","name":"Kalifa Coulibaly","position":"ST","nationality":"MLI","age":25,"appearances":22,"goals":7,"assists":2,"marketValue":3000000,"internationalCaps":4,"awards":[],"overall":70},
+    {"id":"depoitre-16","name":"Laurent Depoitre","position":"ST","nationality":"BEL","age":28,"appearances":18,"goals":6,"assists":2,"marketValue":3000000,"internationalCaps":2,"awards":[],"overall":70}
+  ]
+}

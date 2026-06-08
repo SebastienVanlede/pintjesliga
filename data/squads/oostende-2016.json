@@ -1,0 +1,25 @@
+{
+  "team": "KV Oostende",
+  "teamId": "oostende",
+  "season": "2016-17",
+  "year": 2016,
+  "players": [
+    {"id":"proto-16","name":"Silvio Proto","position":"GK","nationality":"BEL","age":33,"appearances":30,"goals":0,"assists":0,"marketValue":1200000,"internationalCaps":4,"awards":[],"overall":72},
+    {"id":"dutoit-16","name":"William Dutoit","position":"GK","nationality":"FRA","age":27,"appearances":10,"goals":0,"assists":0,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"milic-16","name":"Antonio Milić","position":"CB","alternativePositions":["LB"],"nationality":"CRO","age":22,"appearances":26,"goals":2,"assists":0,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"tomasevic-16","name":"Žarko Tomašević","position":"CB","alternativePositions":["LB"],"nationality":"MNE","age":26,"appearances":24,"goals":1,"assists":1,"marketValue":1500000,"internationalCaps":18,"awards":[],"overall":68},
+    {"id":"godeau-16","name":"Bruno Godeau","position":"CB","nationality":"BEL","age":24,"appearances":18,"goals":0,"assists":0,"marketValue":900000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"marusic-16","name":"Adam Marušić","position":"RB","alternativePositions":["LB","RW"],"nationality":"MNE","age":23,"appearances":28,"goals":3,"assists":4,"marketValue":2500000,"internationalCaps":12,"awards":[],"overall":71},
+    {"id":"capon-16","name":"Brecht Capon","position":"RB","alternativePositions":["CB"],"nationality":"BEL","age":28,"appearances":16,"goals":0,"assists":1,"marketValue":900000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"siani-16","name":"Sébastien Siani","position":"CDM","alternativePositions":["CM"],"nationality":"CMR","age":30,"appearances":28,"goals":2,"assists":3,"marketValue":2000000,"internationalCaps":15,"awards":[],"overall":70},
+    {"id":"jali-16","name":"Andile Jali","position":"CDM","alternativePositions":["CM"],"nationality":"RSA","age":26,"appearances":18,"goals":1,"assists":1,"marketValue":1200000,"internationalCaps":35,"awards":[],"overall":68},
+    {"id":"vandendriessche-16","name":"Kevin Vandendriessche","position":"CDM","alternativePositions":["CM"],"nationality":"FRA","age":26,"appearances":18,"goals":1,"assists":1,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"jonckheere-16","name":"Michiel Jonckheere","position":"CM","alternativePositions":["CAM","RM"],"nationality":"BEL","age":26,"appearances":24,"goals":4,"assists":3,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"musona-16","name":"Knowledge Musona","position":"CAM","alternativePositions":["ST","LW"],"nationality":"ZWE","age":26,"appearances":28,"goals":11,"assists":6,"marketValue":2500000,"internationalCaps":30,"awards":[],"overall":73},
+    {"id":"canesin-16","name":"Fernando Canesin","position":"CAM","alternativePositions":["CM"],"nationality":"BRA","age":24,"appearances":22,"goals":3,"assists":4,"marketValue":2200000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"el-ghanassy-16","name":"Yassine El Ghanassy","position":"LW","alternativePositions":["RW","CAM"],"nationality":"BEL","age":25,"appearances":22,"goals":4,"assists":3,"marketValue":2000000,"internationalCaps":4,"awards":[],"overall":69},
+    {"id":"dimata-16","name":"Landry Dimata","position":"ST","alternativePositions":["LW"],"nationality":"BEL","age":18,"appearances":22,"goals":11,"assists":3,"marketValue":6500000,"internationalCaps":0,"awards":[],"overall":73},
+    {"id":"pedersen-16","name":"Nicklas Pedersen","position":"ST","nationality":"DNK","age":29,"appearances":14,"goals":3,"assists":1,"marketValue":500000,"internationalCaps":4,"awards":[],"overall":65},
+    {"id":"akpala-16","name":"Joseph Akpala","position":"ST","nationality":"NGA","age":29,"appearances":14,"goals":3,"assists":1,"marketValue":500000,"internationalCaps":18,"awards":[],"overall":66}
+  ]
+}

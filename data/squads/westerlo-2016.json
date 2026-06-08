@@ -1,0 +1,25 @@
+{
+  "team": "KVC Westerlo",
+  "teamId": "westerlo",
+  "season": "2016-17",
+  "year": 2016,
+  "players": [
+    {"id":"van-langendonck-16","name":"Koen Van Langendonck","position":"GK","nationality":"BEL","age":28,"appearances":24,"goals":0,"assists":0,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"van-hout-16","name":"Kristof Van Hout","position":"GK","nationality":"BEL","age":29,"appearances":14,"goals":0,"assists":0,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"heylen-16","name":"Michaël Heylen","position":"CB","nationality":"BEL","age":22,"appearances":24,"goals":2,"assists":0,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"apau-16","name":"Mitch Apau","position":"CB","alternativePositions":["RB"],"nationality":"NED","age":27,"appearances":22,"goals":1,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"schuermans-16","name":"Kenneth Schuermans","position":"CB","nationality":"BEL","age":26,"appearances":20,"goals":1,"assists":0,"marketValue":450000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"miletic-16","name":"Nemanja Miletić","position":"CB","nationality":"SRB","age":26,"appearances":18,"goals":1,"assists":0,"marketValue":450000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"matthys-16","name":"Hervé Matthys","position":"CB","nationality":"BEL","age":20,"appearances":12,"goals":0,"assists":0,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"mustoe-16","name":"Jordan Mustoe","position":"LB","alternativePositions":["LM"],"nationality":"ENG","age":26,"appearances":20,"goals":0,"assists":1,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"christensen-d-16","name":"Daniel Christensen","position":"LB","alternativePositions":["CB"],"nationality":"DEN","age":28,"appearances":16,"goals":0,"assists":1,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"daems-16","name":"Filip Daems","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":37,"appearances":10,"goals":0,"assists":1,"marketValue":100000,"internationalCaps":18,"awards":[],"overall":63},
+    {"id":"hyland-16","name":"Khaleem Hyland","position":"CDM","alternativePositions":["CM"],"nationality":"TTO","age":28,"appearances":22,"goals":1,"assists":2,"marketValue":700000,"internationalCaps":35,"awards":[],"overall":67},
+    {"id":"buyens-16","name":"Yoni Buyens","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":28,"appearances":20,"goals":1,"assists":1,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"rommens-16","name":"Nicolas Rommens","position":"CM","alternativePositions":["CAM"],"nationality":"BEL","age":21,"appearances":18,"goals":2,"assists":2,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"verschueren-16","name":"Arno Verschueren","position":"CAM","alternativePositions":["CM","RW"],"nationality":"BEL","age":20,"appearances":16,"goals":2,"assists":2,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"acolatse-16","name":"Elton Acolatse","position":"LW","alternativePositions":["RW","CAM"],"nationality":"NED","age":21,"appearances":22,"goals":4,"assists":3,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"ganvoula-16","name":"Silvere Ganvoula","position":"ST","nationality":"COG","age":20,"appearances":22,"goals":6,"assists":2,"marketValue":1200000,"internationalCaps":2,"awards":[],"overall":69},
+    {"id":"strandberg-16","name":"Carlos Strandberg","position":"ST","alternativePositions":["LW"],"nationality":"SWE","age":20,"appearances":18,"goals":5,"assists":1,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":68}
+  ]
+}

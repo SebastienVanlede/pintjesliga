@@ -1,0 +1,24 @@
+{
+  "team": "Waasland-Beveren",
+  "teamId": "waasland-beveren",
+  "season": "2016-17",
+  "year": 2016,
+  "players": [
+    {"id":"goblet-16","name":"Merveille Goblet","position":"GK","nationality":"BEL","age":22,"appearances":24,"goals":0,"assists":0,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"koteles-16","name":"László Köteles","position":"GK","nationality":"HUN","age":32,"appearances":14,"goals":0,"assists":0,"marketValue":600000,"internationalCaps":10,"awards":[],"overall":67},
+    {"id":"buatu-16","name":"Buatu","position":"CB","nationality":"AGO","age":23,"appearances":24,"goals":1,"assists":0,"marketValue":700000,"internationalCaps":4,"awards":[],"overall":67},
+    {"id":"j-cools-16","name":"Jens Cools","position":"CB","alternativePositions":["CDM"],"nationality":"BEL","age":25,"appearances":22,"goals":1,"assists":1,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"camacho-16","name":"Rudy Camacho","position":"CB","nationality":"FRA","age":26,"appearances":20,"goals":1,"assists":0,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"de-schutter-16","name":"Niels De Schutter","position":"CB","nationality":"BEL","age":28,"appearances":18,"goals":1,"assists":0,"marketValue":450000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"moren-16","name":"Valtteri Moren","position":"CB","nationality":"FIN","age":26,"appearances":16,"goals":0,"assists":0,"marketValue":450000,"internationalCaps":4,"awards":[],"overall":65},
+    {"id":"caufriez-16","name":"Maximiliano Caufriez","position":"CB","nationality":"BEL","age":19,"appearances":12,"goals":0,"assists":0,"marketValue":250000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"demir-16","name":"Erdin Demir","position":"LB","alternativePositions":["LM","CB"],"nationality":"SWE","age":27,"appearances":24,"goals":0,"assists":2,"marketValue":700000,"internationalCaps":2,"awards":[],"overall":67},
+    {"id":"jans-16","name":"Laurent Jans","position":"RB","alternativePositions":["RM"],"nationality":"LUX","age":24,"appearances":28,"goals":1,"assists":3,"marketValue":1200000,"internationalCaps":25,"awards":[],"overall":70},
+    {"id":"seck-16","name":"Ibrahima Seck","position":"CDM","alternativePositions":["CM"],"nationality":"SEN","age":27,"appearances":26,"goals":2,"assists":2,"marketValue":1200000,"internationalCaps":2,"awards":[],"overall":69},
+    {"id":"schrijvers-16","name":"Siebe Schrijvers","position":"CAM","alternativePositions":["CM","RW","LW"],"nationality":"BEL","age":20,"appearances":26,"goals":9,"assists":5,"marketValue":3500000,"internationalCaps":0,"awards":[],"overall":73},
+    {"id":"michel-jul-16","name":"Julian Michel","position":"CM","alternativePositions":["CAM"],"nationality":"FRA","age":25,"appearances":22,"goals":3,"assists":3,"marketValue":900000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"marquet-16","name":"François Marquet","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":21,"appearances":18,"goals":1,"assists":2,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"gano-16","name":"Zinho Gano","position":"ST","alternativePositions":["LW"],"nationality":"GNB","age":22,"appearances":26,"goals":11,"assists":3,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"rodriguez-l-16","name":"Leandro Rodríguez","position":"ST","alternativePositions":["LW"],"nationality":"URY","age":24,"appearances":18,"goals":5,"assists":2,"marketValue":1000000,"internationalCaps":2,"awards":[],"overall":68}
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "team": "KSC Lokeren",
+  "teamId": "lokeren",
+  "season": "2016-17",
+  "year": 2016,
+  "players": [
+    {"id":"verhulst-16","name":"Davino Verhulst","position":"GK","nationality":"BEL","age":29,"appearances":26,"goals":0,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"copa-16","name":"Boubacar Copa","position":"GK","nationality":"CIV","age":37,"appearances":14,"goals":0,"assists":0,"marketValue":150000,"internationalCaps":15,"awards":[],"overall":63},
+    {"id":"ingason-16","name":"Sverrir Ingi Ingason","position":"CB","nationality":"ISL","age":23,"appearances":24,"goals":2,"assists":0,"marketValue":1200000,"internationalCaps":8,"awards":[],"overall":70},
+    {"id":"rassoul-16","name":"Khadim Rassoul","position":"CB","nationality":"SEN","age":21,"appearances":20,"goals":1,"assists":0,"marketValue":750000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"ninaj-16","name":"Branislav Ninaj","position":"CB","nationality":"SVK","age":23,"appearances":18,"goals":1,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"ticinovic-16","name":"Mario Ticinović","position":"RB","alternativePositions":["LB","RM"],"nationality":"CRO","age":25,"appearances":24,"goals":1,"assists":2,"marketValue":900000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"galitsios-16","name":"Georgios Galitsios","position":"RB","alternativePositions":["CB"],"nationality":"GRC","age":30,"appearances":16,"goals":0,"assists":1,"marketValue":650000,"internationalCaps":2,"awards":[],"overall":65},
+    {"id":"skulason-16","name":"Ari Freyr Skúlason","position":"CDM","alternativePositions":["LB","CM"],"nationality":"ISL","age":29,"appearances":24,"goals":1,"assists":2,"marketValue":900000,"internationalCaps":35,"awards":[],"overall":69},
+    {"id":"overmeire-16","name":"Killian Overmeire","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":30,"appearances":26,"goals":2,"assists":2,"marketValue":850000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"terki-16","name":"Mehdi Terki","position":"CM","alternativePositions":["CAM"],"nationality":"ALG","age":25,"appearances":22,"goals":2,"assists":3,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"de-ridder-16","name":"Steve De Ridder","position":"CM","alternativePositions":["CAM","LW"],"nationality":"BEL","age":29,"appearances":18,"goals":2,"assists":2,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"patosi-16","name":"Ayanda Patosi","position":"CAM","alternativePositions":["LW","CM"],"nationality":"RSA","age":24,"appearances":26,"goals":7,"assists":5,"marketValue":1000000,"internationalCaps":12,"awards":[],"overall":71},
+    {"id":"ofkir-16","name":"Mohamed Ofkir","position":"LW","alternativePositions":["RW"],"nationality":"NOR","age":20,"appearances":18,"goals":3,"assists":2,"marketValue":350000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"hupperts-16","name":"Guus Hupperts","position":"RW","alternativePositions":["LW","CAM"],"nationality":"NED","age":24,"appearances":22,"goals":4,"assists":3,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"de-sutter-16","name":"Tom De Sutter","position":"ST","nationality":"BEL","age":31,"appearances":24,"goals":7,"assists":2,"marketValue":800000,"internationalCaps":6,"awards":[],"overall":69},
+    {"id":"martin-16","name":"Gary Martin","position":"ST","nationality":"ENG","age":26,"appearances":16,"goals":3,"assists":1,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"jaja-16","name":"Jajá","position":"ST","nationality":"BRA","age":31,"appearances":18,"goals":4,"assists":2,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":67}
+  ]
+}

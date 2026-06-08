@@ -1,0 +1,25 @@
+{
+  "team": "KRC Genk",
+  "teamId": "genk",
+  "season": "2016-17",
+  "year": 2016,
+  "players": [
+    {"id":"ryan-16","name":"Mathew Ryan","position":"GK","nationality":"AUS","age":24,"appearances":12,"goals":0,"assists":0,"marketValue":3500000,"internationalCaps":25,"awards":[],"overall":72},
+    {"id":"bizot-16","name":"Marco Bizot","position":"GK","nationality":"NED","age":25,"appearances":24,"goals":0,"assists":0,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"colley-16","name":"Omar Colley","position":"CB","nationality":"GMB","age":24,"appearances":28,"goals":2,"assists":0,"marketValue":3000000,"internationalCaps":12,"awards":[],"overall":71},
+    {"id":"brabec-16","name":"Jakub Brabec","position":"CB","nationality":"CZE","age":24,"appearances":22,"goals":1,"assists":0,"marketValue":2500000,"internationalCaps":4,"awards":[],"overall":69},
+    {"id":"dewaest-16","name":"Sébastien Dewaest","position":"CB","nationality":"BEL","age":25,"appearances":20,"goals":1,"assists":0,"marketValue":2500000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"uronen-16","name":"Jere Uronen","position":"LB","alternativePositions":["LM"],"nationality":"FIN","age":22,"appearances":26,"goals":1,"assists":3,"marketValue":1200000,"internationalCaps":12,"awards":[],"overall":68},
+    {"id":"castagne-16","name":"Timothy Castagne","position":"RB","alternativePositions":["CB","RM"],"nationality":"BEL","age":20,"appearances":24,"goals":1,"assists":2,"marketValue":3000000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"ndidi-16","name":"Wilfred Ndidi","position":"CDM","alternativePositions":["CM","CB"],"nationality":"NGA","age":19,"appearances":15,"goals":1,"assists":1,"marketValue":14000000,"internationalCaps":8,"awards":[],"overall":76},
+    {"id":"berge-16","name":"Sander Berge","position":"CDM","alternativePositions":["CM"],"nationality":"NOR","age":18,"appearances":14,"goals":1,"assists":1,"marketValue":3500000,"internationalCaps":3,"awards":[],"overall":70},
+    {"id":"malinovskyi-16","name":"Ruslan Malinovskyi","position":"CM","alternativePositions":["CAM","CDM"],"nationality":"UKR","age":23,"appearances":22,"goals":4,"assists":3,"marketValue":4000000,"internationalCaps":5,"awards":[],"overall":72},
+    {"id":"pozuelo-16","name":"Alejandro Pozuelo","position":"CAM","alternativePositions":["CM"],"nationality":"ESP","age":24,"appearances":30,"goals":8,"assists":9,"marketValue":8000000,"internationalCaps":0,"awards":[],"overall":76},
+    {"id":"boetius-16","name":"Jean-Paul Boëtius","position":"CAM","alternativePositions":["LW","CM"],"nationality":"NED","age":22,"appearances":18,"goals":3,"assists":3,"marketValue":2200000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"kebano-16","name":"Neeskens Kebano","position":"LW","alternativePositions":["RW","CAM"],"nationality":"COD","age":24,"appearances":18,"goals":4,"assists":3,"marketValue":4000000,"internationalCaps":5,"awards":[],"overall":72},
+    {"id":"trossard-16","name":"Leandro Trossard","position":"LW","alternativePositions":["RW","CAM"],"nationality":"BEL","age":22,"appearances":10,"goals":2,"assists":2,"marketValue":4000000,"internationalCaps":0,"awards":["Gouden Schoen 2018"],"overall":71},
+    {"id":"bailey-16","name":"Leon Bailey","position":"RW","alternativePositions":["LW"],"nationality":"JAM","age":19,"appearances":14,"goals":4,"assists":3,"marketValue":11000000,"internationalCaps":0,"awards":[],"overall":74},
+    {"id":"karelis-16","name":"Nikolaos Karelis","position":"ST","nationality":"GRC","age":24,"appearances":24,"goals":8,"assists":2,"marketValue":4500000,"internationalCaps":4,"awards":[],"overall":72},
+    {"id":"samatta-16","name":"Ally Samatta","position":"ST","nationality":"TZA","age":23,"appearances":22,"goals":6,"assists":2,"marketValue":3000000,"internationalCaps":18,"awards":[],"overall":71}
+  ]
+}

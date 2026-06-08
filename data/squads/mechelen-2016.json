@@ -1,0 +1,25 @@
+{
+  "team": "KV Mechelen",
+  "teamId": "mechelen",
+  "season": "2016-17",
+  "year": 2016,
+  "players": [
+    {"id":"coosemans-16","name":"Colin Coosemans","position":"GK","nationality":"BEL","age":24,"appearances":28,"goals":0,"assists":0,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"moris-16","name":"Anthony Moris","position":"GK","nationality":"LUX","age":26,"appearances":10,"goals":0,"assists":0,"marketValue":600000,"internationalCaps":5,"awards":[],"overall":65},
+    {"id":"vanlerberghe-16","name":"Jordi Vanlerberghe","position":"CB","alternativePositions":["CDM"],"nationality":"BEL","age":21,"appearances":22,"goals":1,"assists":1,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"vitas-16","name":"Uroš Vitas","position":"CB","nationality":"SRB","age":24,"appearances":22,"goals":2,"assists":0,"marketValue":1300000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"bjelica-16","name":"Aleksandar Bjelica","position":"CB","alternativePositions":["LB"],"nationality":"SRB","age":23,"appearances":20,"goals":0,"assists":1,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"de-witte-16","name":"Seth De Witte","position":"CB","nationality":"BEL","age":29,"appearances":18,"goals":1,"assists":0,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"cocalic-16","name":"Edin Čočalić","position":"CB","nationality":"BIH","age":29,"appearances":18,"goals":1,"assists":0,"marketValue":1000000,"internationalCaps":4,"awards":[],"overall":67},
+    {"id":"paulussen-16","name":"Laurens Paulussen","position":"RB","alternativePositions":["RM"],"nationality":"BEL","age":26,"appearances":18,"goals":0,"assists":2,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"rits-16","name":"Mats Rits","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":23,"appearances":26,"goals":2,"assists":3,"marketValue":2500000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"filipovic-16","name":"Žeijko Filipović","position":"CDM","alternativePositions":["CM"],"nationality":"SVN","age":28,"appearances":22,"goals":1,"assists":1,"marketValue":650000,"internationalCaps":4,"awards":[],"overall":66},
+    {"id":"jaadi-16","name":"Reda Jaadi","position":"CM","alternativePositions":["CAM"],"nationality":"MAR","age":22,"appearances":16,"goals":1,"assists":1,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"croizet-16","name":"Yohan Croizet","position":"CAM","alternativePositions":["CM","LW"],"nationality":"FRA","age":24,"appearances":24,"goals":4,"assists":4,"marketValue":900000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"ninis-16","name":"Sotiris Ninis","position":"CAM","alternativePositions":["CM","RW"],"nationality":"GRC","age":27,"appearances":18,"goals":2,"assists":3,"marketValue":800000,"internationalCaps":24,"awards":[],"overall":67},
+    {"id":"claes-16","name":"Glenn Claes","position":"CAM","alternativePositions":["LW"],"nationality":"BEL","age":23,"appearances":16,"goals":2,"assists":2,"marketValue":750000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"leal-16","name":"Randall Leal","position":"LW","alternativePositions":["RW","CAM"],"nationality":"CRC","age":20,"appearances":14,"goals":2,"assists":2,"marketValue":400000,"internationalCaps":4,"awards":[],"overall":65},
+    {"id":"kolovos-16","name":"Dimitrios Kolovos","position":"LW","alternativePositions":["RW","ST"],"nationality":"GRC","age":23,"appearances":22,"goals":4,"assists":3,"marketValue":1200000,"internationalCaps":2,"awards":[],"overall":69},
+    {"id":"verdier-16","name":"Nicolas Verdier","position":"ST","alternativePositions":["CAM"],"nationality":"FRA","age":30,"appearances":22,"goals":5,"assists":2,"marketValue":900000,"internationalCaps":0,"awards":[],"overall":68}
+  ]
+}

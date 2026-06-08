@@ -1,0 +1,25 @@
+{
+  "team": "Sporting Charleroi",
+  "teamId": "charleroi",
+  "season": "2016-17",
+  "year": 2016,
+  "players": [
+    {"id":"penneteau-16","name":"Nicolas Penneteau","position":"GK","nationality":"FRA","age":35,"appearances":28,"goals":0,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"mandanda-p-16","name":"Parfait Mandanda","position":"GK","nationality":"COD","age":27,"appearances":12,"goals":0,"assists":0,"marketValue":600000,"internationalCaps":12,"awards":[],"overall":66},
+    {"id":"mata-16","name":"Clinton Mata","position":"CB","alternativePositions":["RB"],"nationality":"AGO","age":24,"appearances":28,"goals":2,"assists":2,"marketValue":3000000,"internationalCaps":8,"awards":[],"overall":71},
+    {"id":"marcq-16","name":"Damien Marcq","position":"CB","alternativePositions":["CDM"],"nationality":"FRA","age":28,"appearances":26,"goals":2,"assists":1,"marketValue":1700000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"willems-16","name":"Steeven Willems","position":"CB","nationality":"FRA","age":26,"appearances":20,"goals":1,"assists":0,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"dessoleil-16","name":"Dorian Dessoleil","position":"CB","nationality":"BEL","age":24,"appearances":18,"goals":1,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"nganga-16","name":"Francis N'Ganga","position":"LB","alternativePositions":["LM"],"nationality":"COG","age":31,"appearances":22,"goals":0,"assists":2,"marketValue":500000,"internationalCaps":15,"awards":[],"overall":66},
+    {"id":"marinos-16","name":"Stergos Marinos","position":"RB","alternativePositions":["CB"],"nationality":"GRC","age":29,"appearances":22,"goals":1,"assists":1,"marketValue":600000,"internationalCaps":4,"awards":[],"overall":66},
+    {"id":"diandy-16","name":"Christophe Diandy","position":"CDM","alternativePositions":["CM"],"nationality":"SEN","age":26,"appearances":24,"goals":2,"assists":2,"marketValue":1200000,"internationalCaps":4,"awards":[],"overall":68},
+    {"id":"saglik-16","name":"Enes Saglik","position":"CM","alternativePositions":["CAM"],"nationality":"BEL","age":25,"appearances":22,"goals":3,"assists":2,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"hendrickx-16","name":"Gaëtan Hendrickx","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":22,"appearances":18,"goals":2,"assists":1,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"benavente-16","name":"Cristian Benavente","position":"CAM","alternativePositions":["CM","RW"],"nationality":"PER","age":22,"appearances":28,"goals":7,"assists":5,"marketValue":600000,"internationalCaps":12,"awards":[],"overall":71},
+    {"id":"baby-16","name":"Amara Baby","position":"LW","alternativePositions":["CAM","RW"],"nationality":"SEN","age":28,"appearances":22,"goals":4,"assists":3,"marketValue":900000,"internationalCaps":4,"awards":[],"overall":68},
+    {"id":"tainmont-16","name":"Clément Tainmont","position":"LW","alternativePositions":["CAM"],"nationality":"FRA","age":31,"appearances":18,"goals":3,"assists":2,"marketValue":750000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"fall-16","name":"Mamadou Fall","position":"RW","alternativePositions":["LW"],"nationality":"SEN","age":25,"appearances":20,"goals":3,"assists":2,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"bedia-16","name":"Chris Bedia","position":"ST","nationality":"CIV","age":21,"appearances":18,"goals":5,"assists":1,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"pollet-16","name":"David Pollet","position":"ST","nationality":"BEL","age":28,"appearances":22,"goals":6,"assists":2,"marketValue":900000,"internationalCaps":0,"awards":[],"overall":68}
+  ]
+}
