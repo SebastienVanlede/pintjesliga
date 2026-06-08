@@ -41,6 +41,8 @@ export default function DraftPage() {
   const MAX_REROLLS = 3;
   const rerollsLeft = MAX_REROLLS - rerollsUsed;
   const deckRef = useRef<{ team: Team; season: string }[]>([]);
+  // Voorkomt eindeloze auto-reroll loop bij een (zeer zeldzame) chain van dead squads.
+  const autoRerollCount = useRef(0);
 
   // Voor daily mode: track hoeveel keer er voor de huidige pick gerold is (0 = basis, 1-3 = herrolls)
   const [dailyAttempt, setDailyAttempt] = useState(0);
@@ -90,8 +92,8 @@ export default function DraftPage() {
     }).catch(() => setPhase('idle'));
   }, [mounted]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const rollDice = useCallback((isReroll = false) => {
-    if (isReroll) useReroll();
+  const rollDice = useCallback((isReroll = false, costFree = false) => {
+    if (isReroll && !costFree) useReroll();
     setPendingRoll(null);
     setRoll(null);
     setSelectedPlayer(null);
@@ -135,12 +137,46 @@ export default function DraftPage() {
     const loadPromise = loadSquad(final.team.id, final.season);
 
     Promise.all([loadPromise, animPromise]).then(([squad]) => {
-      if (!squad) { rollDice(isReroll); return; }
+      if (!squad) { rollDice(isReroll, costFree); return; }
       setPendingRoll({ teamId: final.team.id, teamName: final.team.name, season: final.season, primaryColor: final.team.primaryColor });
       setRoll({ team: final.team, season: final.season, squad });
       setPhase('squad');
     });
   }, [useReroll, setPendingRoll, isDailyChallenge, dailyDeck, dailyAttempt, pickedPlayers.length]);
+
+  // Dead-squad detectie: als geen enkele speler in de gerolde squad nog past op een open
+  // positie (en niet al elders gekozen is), trigger automatisch een gratis herroll.
+  // Voorkomt dat een speler vastloopt op zijn laatste pick zonder herrolls.
+  useEffect(() => {
+    if (phase !== 'squad' || !roll) return;
+
+    const pickedIds = new Set(pickedPlayers.map(p => p.player.id));
+    const pickedNames = new Set(pickedPlayers.map(p => p.player.name.toLowerCase()));
+    const filledPerPos: Record<string, number> = {};
+    for (const p of pickedPlayers) filledPerPos[p.position] = (filledPerPos[p.position] ?? 0) + 1;
+    const totalPerPos: Record<string, number> = {};
+    for (const pos of positions) totalPerPos[pos] = (totalPerPos[pos] ?? 0) + 1;
+
+    const hasValidPick = roll.squad.players.some(player => {
+      if (pickedIds.has(player.id) || pickedNames.has(player.name.toLowerCase())) return false;
+      return playerPositions(player).some(pos => (filledPerPos[pos] ?? 0) < (totalPerPos[pos] ?? 0));
+    });
+
+    if (hasValidPick) {
+      autoRerollCount.current = 0;
+      return;
+    }
+
+    // Cap voorkomt een loop in het extreme edge case dat 4+ achtereenvolgende rolls dead zijn.
+    if (autoRerollCount.current >= 4) {
+      autoRerollCount.current = 0;
+      return;
+    }
+    autoRerollCount.current++;
+
+    const timer = setTimeout(() => rollDice(true, true), 150);
+    return () => clearTimeout(timer);
+  }, [phase, roll, pickedPlayers, positions, rollDice]);
 
   function handleSelectPlayer(player: Player) {
     if (!roll) return;
