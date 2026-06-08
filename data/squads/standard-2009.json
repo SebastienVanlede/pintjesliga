@@ -1,0 +1,23 @@
+{
+  "team": "Standard Liège",
+  "teamId": "standard",
+  "season": "2009-10",
+  "year": 2009,
+  "players": [
+    {"id":"bolat-09","name":"Sinan Bolat","position":"GK","nationality":"TUR","age":20,"appearances":24,"goals":0,"assists":0,"marketValue":2200000,"internationalCaps":2,"awards":[],"overall":70},
+    {"id":"van-hout-09","name":"Kristof Van Hout","position":"GK","nationality":"BEL","age":22,"appearances":14,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"sarr-09","name":"Mohamed Sarr","position":"CB","nationality":"SEN","age":25,"appearances":24,"goals":1,"assists":0,"marketValue":4500000,"internationalCaps":18,"awards":[],"overall":72},
+    {"id":"ramos-09","name":"Victor Ramos","position":"CB","nationality":"BRA","age":20,"appearances":22,"goals":1,"assists":0,"marketValue":3500000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"mangala-09","name":"Eliaquim Mangala","position":"CB","nationality":"FRA","age":18,"appearances":18,"goals":1,"assists":0,"marketValue":3500000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"pocognoli-09","name":"Sébastien Pocognoli","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":21,"appearances":24,"goals":1,"assists":3,"marketValue":4500000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"camozzato-09","name":"Marcos Camozzato","position":"RB","alternativePositions":["RM"],"nationality":"BRA","age":26,"appearances":26,"goals":1,"assists":3,"marketValue":4500000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"defour-09","name":"Steven Defour","position":"CDM","alternativePositions":["CM","CAM"],"nationality":"BEL","age":21,"appearances":28,"goals":5,"assists":5,"marketValue":12000000,"internationalCaps":15,"awards":["Gouden Schoen 2007"],"overall":78},
+    {"id":"witsel-09","name":"Axel Witsel","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":20,"appearances":28,"goals":6,"assists":4,"marketValue":7500000,"internationalCaps":8,"awards":["Gouden Schoen 2008"],"overall":76},
+    {"id":"nicaise-09","name":"Benjamin Nicaise","position":"CDM","alternativePositions":["CM"],"nationality":"FRA","age":28,"appearances":22,"goals":1,"assists":2,"marketValue":900000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"daerden-09","name":"Koen Daerden","position":"CM","alternativePositions":["CAM"],"nationality":"BEL","age":27,"appearances":22,"goals":3,"assists":3,"marketValue":1500000,"internationalCaps":4,"awards":[],"overall":69},
+    {"id":"jovanovic-09","name":"Milan Jovanović","position":"LW","alternativePositions":["ST","CAM"],"nationality":"SRB","age":28,"appearances":30,"goals":13,"assists":7,"marketValue":8500000,"internationalCaps":40,"awards":["Gouden Schoen 2009"],"overall":76},
+    {"id":"carcela-09","name":"Mehdi Carcela-González","position":"RW","alternativePositions":["LW","CAM"],"nationality":"MAR","age":19,"appearances":22,"goals":4,"assists":3,"marketValue":3000000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"mbokani-09","name":"Dieumerci Mbokani","position":"ST","nationality":"COD","age":23,"appearances":26,"goals":13,"assists":3,"marketValue":8000000,"internationalCaps":18,"awards":["Gouden Schoen 2012"],"overall":75},
+    {"id":"de-camargo-09","name":"Igor de Camargo","position":"ST","nationality":"BEL","age":26,"appearances":22,"goals":7,"assists":2,"marketValue":4500000,"internationalCaps":6,"awards":[],"overall":72}
+  ]
+}

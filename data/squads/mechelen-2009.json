@@ -1,0 +1,25 @@
+{
+  "team": "KV Mechelen",
+  "teamId": "mechelen",
+  "season": "2009-10",
+  "year": 2009,
+  "players": [
+    {"id":"renard-09","name":"Olivier Renard","position":"GK","nationality":"BEL","age":30,"appearances":26,"goals":0,"assists":0,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"biebauw-09","name":"Wouter Biebauw","position":"GK","nationality":"BEL","age":25,"appearances":12,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"ivens-09","name":"Jonas Ivens","position":"CB","nationality":"BEL","age":24,"appearances":24,"goals":1,"assists":0,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"van-hoevelen-09","name":"Kenny Van Hoevelen","position":"CB","nationality":"BEL","age":26,"appearances":22,"goals":1,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"biset-09","name":"Maxime Biset","position":"CB","nationality":"BEL","age":23,"appearances":20,"goals":1,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"van-dessel-09","name":"Romeo Van Dessel","position":"CB","nationality":"BEL","age":20,"appearances":16,"goals":1,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"mellemans-09","name":"Jeroen Mellemans","position":"CB","nationality":"BEL","age":31,"appearances":16,"goals":0,"assists":0,"marketValue":350000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"ghomsi-09","name":"Antonio Ghomsi","position":"LB","alternativePositions":["LM"],"nationality":"CMR","age":23,"appearances":22,"goals":0,"assists":2,"marketValue":600000,"internationalCaps":4,"awards":[],"overall":66},
+    {"id":"moro-mve-09","name":"Aymar Fabrice Moro-Mvé","position":"LB","alternativePositions":["LM"],"nationality":"GAB","age":22,"appearances":16,"goals":0,"assists":1,"marketValue":250000,"internationalCaps":4,"awards":[],"overall":64},
+    {"id":"chen-09","name":"Xavier Chen","position":"RB","alternativePositions":["RM"],"nationality":"TWN","age":25,"appearances":22,"goals":0,"assists":2,"marketValue":800000,"internationalCaps":4,"awards":[],"overall":66},
+    {"id":"persoons-09","name":"Koen Persoons","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":25,"appearances":24,"goals":2,"assists":2,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"buyens-09","name":"Yoni Buyens","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":21,"appearances":22,"goals":1,"assists":2,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"van-goethem-09","name":"Kenneth Van Goethem","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":25,"appearances":18,"goals":1,"assists":1,"marketValue":450000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"gorius-09","name":"Julien Gorius","position":"CM","alternativePositions":["CAM"],"nationality":"FRA","age":24,"appearances":22,"goals":3,"assists":3,"marketValue":1250000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"destorme-09","name":"David Destorme","position":"CAM","alternativePositions":["CM"],"nationality":"BEL","age":29,"appearances":22,"goals":3,"assists":3,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"soetaers-09","name":"Tom Soetaers","position":"LW","alternativePositions":["LM"],"nationality":"BEL","age":28,"appearances":20,"goals":3,"assists":2,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"nong-09","name":"Aloys Nong","position":"ST","nationality":"CMR","age":25,"appearances":24,"goals":8,"assists":2,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":69}
+  ]
+}

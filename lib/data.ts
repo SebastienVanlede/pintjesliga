@@ -281,6 +281,23 @@ const squadModules: Record<string, () => Promise<Squad>> = {
   'stvv-2010-11':             () => import('@/data/squads/stvv-2010.json').then(m => m.default as Squad),
   'cercle-brugge-2010-11':    () => import('@/data/squads/cercle-brugge-2010.json').then(m => m.default as Squad),
   'eupen-2010-11':            () => import('@/data/squads/eupen-2010.json').then(m => m.default as Squad),
+  // 2009-10 season
+  'anderlecht-2009-10':       () => import('@/data/squads/anderlecht-2009.json').then(m => m.default as Squad),
+  'standard-2009-10':         () => import('@/data/squads/standard-2009.json').then(m => m.default as Squad),
+  'club-brugge-2009-10':      () => import('@/data/squads/club-brugge-2009.json').then(m => m.default as Squad),
+  'genk-2009-10':             () => import('@/data/squads/genk-2009.json').then(m => m.default as Squad),
+  'gent-2009-10':             () => import('@/data/squads/gent-2009.json').then(m => m.default as Squad),
+  'germinal-beerschot-2009-10':() => import('@/data/squads/germinal-beerschot-2009.json').then(m => m.default as Squad),
+  'lokeren-2009-10':          () => import('@/data/squads/lokeren-2009.json').then(m => m.default as Squad),
+  'zulte-waregem-2009-10':    () => import('@/data/squads/zulte-waregem-2009.json').then(m => m.default as Squad),
+  'mechelen-2009-10':         () => import('@/data/squads/mechelen-2009.json').then(m => m.default as Squad),
+  'charleroi-2009-10':        () => import('@/data/squads/charleroi-2009.json').then(m => m.default as Squad),
+  'cercle-brugge-2009-10':    () => import('@/data/squads/cercle-brugge-2009.json').then(m => m.default as Squad),
+  'westerlo-2009-10':         () => import('@/data/squads/westerlo-2009.json').then(m => m.default as Squad),
+  'kortrijk-2009-10':         () => import('@/data/squads/kortrijk-2009.json').then(m => m.default as Squad),
+  'stvv-2009-10':             () => import('@/data/squads/stvv-2009.json').then(m => m.default as Squad),
+  'roeselare-2009-10':        () => import('@/data/squads/roeselare-2009.json').then(m => m.default as Squad),
+  'mouscron-2009-10':         () => import('@/data/squads/mouscron-2009.json').then(m => m.default as Squad),
 };
 
 /** Aantal squad bestanden geregistreerd (1 per club-per-seizoen). */

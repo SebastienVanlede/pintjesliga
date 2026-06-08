@@ -1,0 +1,26 @@
+{
+  "team": "AA Gent",
+  "teamId": "gent",
+  "season": "2009-10",
+  "year": 2009,
+  "players": [
+    {"id":"jorgacevic-09","name":"Bojan Jorgačević","position":"GK","nationality":"SRB","age":27,"appearances":26,"goals":0,"assists":0,"marketValue":1800000,"internationalCaps":2,"awards":[],"overall":70},
+    {"id":"boeckx-09","name":"Frank Boeckx","position":"GK","nationality":"BEL","age":22,"appearances":12,"goals":0,"assists":0,"marketValue":450000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"suler-09","name":"Marko Šuler","position":"CB","nationality":"SVN","age":26,"appearances":26,"goals":1,"assists":0,"marketValue":2000000,"internationalCaps":25,"awards":[],"overall":70},
+    {"id":"wils-s-09","name":"Stef Wils","position":"CB","nationality":"BEL","age":26,"appearances":24,"goals":1,"assists":0,"marketValue":1400000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"myrie-09","name":"Roy Myrie","position":"CB","nationality":"CRC","age":26,"appearances":20,"goals":1,"assists":0,"marketValue":1000000,"internationalCaps":18,"awards":[],"overall":67},
+    {"id":"thompson-gnt-09","name":"Kenny Thompson","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":24,"appearances":22,"goals":0,"assists":2,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"hanstveit-09","name":"Erlend Hanstveit","position":"LB","alternativePositions":["LM"],"nationality":"NOR","age":28,"appearances":18,"goals":0,"assists":1,"marketValue":900000,"internationalCaps":2,"awards":[],"overall":67},
+    {"id":"rosales-09","name":"Roberto Rosales","position":"RB","alternativePositions":["RM"],"nationality":"VEN","age":20,"appearances":24,"goals":1,"assists":2,"marketValue":2000000,"internationalCaps":8,"awards":[],"overall":70},
+    {"id":"thijs-09","name":"Bernd Thijs","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":31,"appearances":24,"goals":2,"assists":2,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"azofeifa-09","name":"Randall Azofeifa","position":"CDM","alternativePositions":["CM"],"nationality":"CRC","age":24,"appearances":22,"goals":2,"assists":2,"marketValue":1200000,"internationalCaps":18,"awards":[],"overall":68},
+    {"id":"maric-m-09","name":"Miloš Marić","position":"CM","alternativePositions":["CDM"],"nationality":"SRB","age":27,"appearances":22,"goals":2,"assists":2,"marketValue":2250000,"internationalCaps":2,"awards":[],"overall":70},
+    {"id":"smolders-09","name":"Tim Smolders","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":28,"appearances":20,"goals":1,"assists":2,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"lepoint-09","name":"Christophe Lepoint","position":"CM","alternativePositions":["CDM","CAM"],"nationality":"BEL","age":24,"appearances":20,"goals":2,"assists":2,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"de-smet-09","name":"Stijn De Smet","position":"CAM","alternativePositions":["CM"],"nationality":"BEL","age":24,"appearances":22,"goals":3,"assists":3,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"el-ghanassy-09","name":"Yassine El Ghanassy","position":"LW","alternativePositions":["RW","CAM"],"nationality":"BEL","age":18,"appearances":14,"goals":2,"assists":2,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"custovic-09","name":"Adnan Ćustović","position":"RW","alternativePositions":["LW"],"nationality":"BIH","age":31,"appearances":22,"goals":4,"assists":3,"marketValue":1200000,"internationalCaps":15,"awards":[],"overall":68},
+    {"id":"leye-09","name":"Mbaye Leye","position":"ST","nationality":"SEN","age":26,"appearances":24,"goals":9,"assists":2,"marketValue":2000000,"internationalCaps":15,"awards":[],"overall":70},
+    {"id":"ljubijankic-09","name":"Zlatan Ljubijankić","position":"ST","nationality":"SVN","age":25,"appearances":22,"goals":7,"assists":2,"marketValue":2000000,"internationalCaps":20,"awards":[],"overall":70}
+  ]
+}

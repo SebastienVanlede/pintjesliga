@@ -1,0 +1,25 @@
+{
+  "team": "KVC Westerlo",
+  "teamId": "westerlo",
+  "season": "2009-10",
+  "year": 2009,
+  "players": [
+    {"id":"de-winter-09","name":"Yves De Winter","position":"GK","nationality":"BEL","age":22,"appearances":26,"goals":0,"assists":0,"marketValue":1600000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"deelkens-09","name":"Bart Deelkens","position":"GK","nationality":"BEL","age":31,"appearances":12,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"corstjens-09","name":"Wouter Corstjens","position":"CB","nationality":"BEL","age":22,"appearances":24,"goals":1,"assists":0,"marketValue":750000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"mravac-09","name":"Adnan Mravac","position":"CB","nationality":"BIH","age":27,"appearances":22,"goals":1,"assists":0,"marketValue":700000,"internationalCaps":12,"awards":[],"overall":67},
+    {"id":"van-hout-jor-09","name":"Joris Van Hout","position":"CB","nationality":"BEL","age":32,"appearances":20,"goals":1,"assists":0,"marketValue":350000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"quina-09","name":"Nelinho Quina","position":"CB","nationality":"PER","age":22,"appearances":16,"goals":1,"assists":0,"marketValue":300000,"internationalCaps":4,"awards":[],"overall":65},
+    {"id":"delen-09","name":"Jef Delen","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":33,"appearances":22,"goals":0,"assists":1,"marketValue":500000,"internationalCaps":2,"awards":[],"overall":65},
+    {"id":"van-kerckhoven-09","name":"Nico Van Kerckhoven","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":38,"appearances":18,"goals":0,"assists":1,"marketValue":300000,"internationalCaps":34,"awards":[],"overall":65},
+    {"id":"vanaudenaerde-09","name":"Gunther Vanaudenaerde","position":"RB","alternativePositions":["CB"],"nationality":"BEL","age":25,"appearances":24,"goals":0,"assists":2,"marketValue":750000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"de-petter-09","name":"Steven De Petter","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":23,"appearances":26,"goals":2,"assists":3,"marketValue":850000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"modubi-09","name":"Michael Modubi","position":"CDM","alternativePositions":["CM"],"nationality":"RSA","age":24,"appearances":22,"goals":1,"assists":2,"marketValue":450000,"internationalCaps":12,"awards":[],"overall":65},
+    {"id":"adams-m-09","name":"Moses Adams","position":"CM","alternativePositions":["CDM"],"nationality":"NGA","age":20,"appearances":20,"goals":2,"assists":2,"marketValue":650000,"internationalCaps":2,"awards":[],"overall":66},
+    {"id":"farssi-09","name":"Rachid Farssi","position":"LM","alternativePositions":["LW"],"nationality":"BEL","age":24,"appearances":22,"goals":3,"assists":3,"marketValue":900000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"yakovenko-09","name":"Oleksandr Yakovenko","position":"LW","alternativePositions":["CAM","RW"],"nationality":"UKR","age":22,"appearances":22,"goals":4,"assists":3,"marketValue":1500000,"internationalCaps":2,"awards":[],"overall":70},
+    {"id":"sarki-09","name":"Emmanuel Sarki","position":"RW","alternativePositions":["RM"],"nationality":"HAI","age":21,"appearances":18,"goals":3,"assists":2,"marketValue":400000,"internationalCaps":2,"awards":[],"overall":65},
+    {"id":"ruiz-j-09","name":"Jaime Alfonso Ruiz","position":"ST","nationality":"COL","age":25,"appearances":24,"goals":11,"assists":2,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"dekelver-09","name":"Dieter Dekelver","position":"ST","nationality":"BEL","age":29,"appearances":20,"goals":6,"assists":2,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":67}
+  ]
+}
