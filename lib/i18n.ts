@@ -208,6 +208,7 @@ export const translations = {
       shareTextHeader: '🍺 PINTJESLIGA — Mijn droomelf',
       shortSharePrefix: '🍺 Mijn Pintjesliga XI',
       url: 'pintjesliga.vercel.app',
+      fromMemoryBadge: 'FROM MEMORY',
     },
 
     // ── Leaderboard ───────────────────────────────────────────────────────────
@@ -578,6 +579,7 @@ export const translations = {
       shareTextHeader: '🍺 PINTJESLIGA — My dream team',
       shortSharePrefix: '🍺 My Pintjesliga XI',
       url: 'pintjesliga.vercel.app',
+      fromMemoryBadge: 'FROM MEMORY',
     },
 
     leaderboard: {

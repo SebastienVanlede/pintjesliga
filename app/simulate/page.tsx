@@ -1129,7 +1129,8 @@ function ShareSection({ sim, pickedPlayers, formation, score, isDaily = false }:
   const [copied, setCopied] = useState(false);
   const [shared, setShared] = useState(false);
   const [twitterImgCopied, setTwitterImgCopied] = useState(false);
-  const { teamName, simSeason, language, classicSquads, dailyStreak } = useGameStore();
+  const { teamName, simSeason, language, classicSquads, dailyStreak, draftMode } = useGameStore();
+  const isBlind = draftMode === 'blind';
   const [todayKey, setTodayKey] = useState<string>('');
   useEffect(() => {
     if (isDaily) import('@/lib/daily').then(({ getTodayDateKey }) => setTodayKey(getTodayDateKey()));
@@ -1293,7 +1294,7 @@ function ShareSection({ sim, pickedPlayers, formation, score, isDaily = false }:
       const W           = 760;
       const PAD         = 28;
       const ROW_H       = 48;
-      const HEADER_H    = isDaily ? 116 : 92;   // branding (incl. seizoen, daily badge)
+      const HEADER_H    = (isDaily || isBlind) ? 116 : 92;   // branding (incl. seizoen, daily/from-memory badge)
       const RESULT_H    = 88;   // resultaatblok
       const CHAMPION_H  = 64;   // kampioen footer
       const ROWS_H      = pickedPlayers.length * ROW_H + 16;
@@ -1338,6 +1339,8 @@ function ShareSection({ sim, pickedPlayers, formation, score, isDaily = false }:
       const radial = ctx.createRadialGradient(W - 100, 30, 0, W - 100, 30, 280);
       if (isDaily) {
         radial.addColorStop(0, 'rgba(196,30,58,0.10)');
+      } else if (isBlind) {
+        radial.addColorStop(0, 'rgba(168,85,247,0.10)');
       } else {
         radial.addColorStop(0, 'rgba(212,148,10,0.08)');
       }
@@ -1345,24 +1348,44 @@ function ShareSection({ sim, pickedPlayers, formation, score, isDaily = false }:
       ctx.fillStyle = radial;
       ctx.fillRect(0, y, W, HEADER_H);
 
-      // Daily badge bovenaan (push branding naar beneden)
-      const brandingOffsetY = isDaily ? 24 : 0;
+      // Badges (daily + from-memory) bovenaan — push branding naar beneden als er minstens één is
+      const brandingOffsetY = (isDaily || isBlind) ? 24 : 0;
 
+      const badges: Array<{ text: string; fill: string; stroke: string; color: string }> = [];
       if (isDaily) {
+        badges.push({
+          text:   `🎯  ${t.daily.shareBadge}`,
+          fill:   'rgba(196,30,58,0.15)',
+          stroke: 'rgba(196,30,58,0.5)',
+          color:  '#E66070',
+        });
+      }
+      if (isBlind) {
+        badges.push({
+          text:   `🧠  ${t.share.fromMemoryBadge}`,
+          fill:   'rgba(168,85,247,0.16)',
+          stroke: 'rgba(168,85,247,0.55)',
+          color:  '#C4A0FB',
+        });
+      }
+      if (badges.length > 0) {
         ctx.font = 'bold 10px Arial, sans-serif';
         ctx.letterSpacing = '2px';
-        const badgeText = `🎯  ${t.daily.shareBadge}`;
-        const badgeW = ctx.measureText(badgeText).width + 24;
-        ctx.fillStyle = 'rgba(196,30,58,0.15)';
-        ctx.strokeStyle = 'rgba(196,30,58,0.5)';
-        ctx.lineWidth = 1;
-        ctx.beginPath();
-        ctx.roundRect(PAD, y + 14, badgeW, 18, 3);
-        ctx.fill();
-        ctx.stroke();
-        ctx.fillStyle = '#E66070';
-        ctx.textAlign = 'left';
-        ctx.fillText(badgeText, PAD + 12, y + 27);
+        let bx = PAD;
+        for (const badge of badges) {
+          const bw = ctx.measureText(badge.text).width + 24;
+          ctx.fillStyle = badge.fill;
+          ctx.strokeStyle = badge.stroke;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.roundRect(bx, y + 14, bw, 18, 3);
+          ctx.fill();
+          ctx.stroke();
+          ctx.fillStyle = badge.color;
+          ctx.textAlign = 'left';
+          ctx.fillText(badge.text, bx + 12, y + 27);
+          bx += bw + 8;
+        }
         ctx.letterSpacing = '0px';
       }
 
