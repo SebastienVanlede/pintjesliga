@@ -162,7 +162,49 @@ const squadModules: Record<string, () => Promise<Squad>> = {
   'kortrijk-2023-24':      () => import('@/data/squads/kortrijk-2023.json').then(m => m.default as Squad),
   'eupen-2023-24':         () => import('@/data/squads/eupen-2023.json').then(m => m.default as Squad),
   'rwdm-2023-24':          () => import('@/data/squads/rwdm-2023.json').then(m => m.default as Squad),
+  // 2016-17 season
+  'anderlecht-2016-17':       () => import('@/data/squads/anderlecht-2016.json').then(m => m.default as Squad),
+  'club-brugge-2016-17':      () => import('@/data/squads/club-brugge-2016.json').then(m => m.default as Squad),
+  'genk-2016-17':             () => import('@/data/squads/genk-2016.json').then(m => m.default as Squad),
+  'gent-2016-17':             () => import('@/data/squads/gent-2016.json').then(m => m.default as Squad),
+  'standard-2016-17':         () => import('@/data/squads/standard-2016.json').then(m => m.default as Squad),
+  'oostende-2016-17':         () => import('@/data/squads/oostende-2016.json').then(m => m.default as Squad),
+  'zulte-waregem-2016-17':    () => import('@/data/squads/zulte-waregem-2016.json').then(m => m.default as Squad),
+  'charleroi-2016-17':        () => import('@/data/squads/charleroi-2016.json').then(m => m.default as Squad),
+  'mechelen-2016-17':         () => import('@/data/squads/mechelen-2016.json').then(m => m.default as Squad),
+  'lokeren-2016-17':          () => import('@/data/squads/lokeren-2016.json').then(m => m.default as Squad),
+  'kortrijk-2016-17':         () => import('@/data/squads/kortrijk-2016.json').then(m => m.default as Squad),
+  'stvv-2016-17':             () => import('@/data/squads/stvv-2016.json').then(m => m.default as Squad),
+  'eupen-2016-17':            () => import('@/data/squads/eupen-2016.json').then(m => m.default as Squad),
+  'waasland-beveren-2016-17': () => import('@/data/squads/waasland-beveren-2016.json').then(m => m.default as Squad),
+  'mouscron-2016-17':         () => import('@/data/squads/mouscron-2016.json').then(m => m.default as Squad),
+  'westerlo-2016-17':         () => import('@/data/squads/westerlo-2016.json').then(m => m.default as Squad),
+  // 2015-16 season
+  'anderlecht-2015-16':       () => import('@/data/squads/anderlecht-2015.json').then(m => m.default as Squad),
+  'club-brugge-2015-16':      () => import('@/data/squads/club-brugge-2015.json').then(m => m.default as Squad),
+  'gent-2015-16':             () => import('@/data/squads/gent-2015.json').then(m => m.default as Squad),
+  'standard-2015-16':         () => import('@/data/squads/standard-2015.json').then(m => m.default as Squad),
+  'genk-2015-16':             () => import('@/data/squads/genk-2015.json').then(m => m.default as Squad),
+  'charleroi-2015-16':        () => import('@/data/squads/charleroi-2015.json').then(m => m.default as Squad),
+  'stvv-2015-16':             () => import('@/data/squads/stvv-2015.json').then(m => m.default as Squad),
+  'oostende-2015-16':         () => import('@/data/squads/oostende-2015.json').then(m => m.default as Squad),
+  'mechelen-2015-16':         () => import('@/data/squads/mechelen-2015.json').then(m => m.default as Squad),
+  'lokeren-2015-16':          () => import('@/data/squads/lokeren-2015.json').then(m => m.default as Squad),
+  'zulte-waregem-2015-16':    () => import('@/data/squads/zulte-waregem-2015.json').then(m => m.default as Squad),
+  'kortrijk-2015-16':         () => import('@/data/squads/kortrijk-2015.json').then(m => m.default as Squad),
+  'mouscron-2015-16':         () => import('@/data/squads/mouscron-2015.json').then(m => m.default as Squad),
+  'waasland-beveren-2015-16': () => import('@/data/squads/waasland-beveren-2015.json').then(m => m.default as Squad),
+  'westerlo-2015-16':         () => import('@/data/squads/westerlo-2015.json').then(m => m.default as Squad),
+  'ohl-2015-16':              () => import('@/data/squads/ohl-2015.json').then(m => m.default as Squad),
 };
+
+/** Aantal squad bestanden geregistreerd (1 per club-per-seizoen). */
+export const SQUAD_COUNT = Object.keys(squadModules).length;
+
+/** Aantal unieke seizoenen met squad data. */
+export const SEASON_COUNT = new Set(
+  Object.keys(squadModules).map(k => k.slice(-7))
+).size;
 
 export function getTeamById(id: string): Team | undefined {
   return teams.find((t) => t.id === id);

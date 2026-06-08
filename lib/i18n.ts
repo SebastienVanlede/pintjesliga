@@ -11,7 +11,7 @@ export const translations = {
     // ── Home ─────────────────────────────────────────────────────────────────
     home: {
       subtitle: 'Belgische Pro League Simulator',
-      heroDesc: 'Bouw je ultieme Belgische Pro League droomelf uit 8 seizoenen historische squads — en bewijs dat jij de beste coach bent.',
+      heroDesc: 'Bouw je ultieme Belgische Pro League droomelf uit {seasons} seizoenen historische squads — en bewijs dat jij de beste coach bent.',
       howItWorks: 'Hoe het werkt',
       steps: [
         { title: 'Kies een formatie',    desc: 'Bepaal met welk systeem jouw XI speelt.' },
@@ -54,7 +54,7 @@ export const translations = {
       noRerolls: 'Geen herrolls meer',
       chooseHint: 'Kies een speler → wijs daarna de positie toe',
       clickPos: '← klik op een positie',
-      randomHint: 'Een willekeurig Pro League team uit 8 seizoenen',
+      randomHint: 'Een willekeurig Pro League team uit {seasons} seizoenen',
       taken: 'Gekozen',
       full: 'Vol',
       chosenPlayer: 'Gekozen speler',
@@ -305,7 +305,7 @@ export const translations = {
         david:            { name: 'David',                desc: 'Kampioen met gem. OVR onder 65' },
         galactico:        { name: 'Galacticos',           desc: 'XI met gem. OVR 75 of meer' },
         time_traveler:    { name: 'Tijdsreiziger',        desc: 'Spelers uit 6+ seizoenen in je XI' },
-        complete_history: { name: 'Compleet Archief',     desc: 'Spelers uit alle 9 seizoenen in je XI' },
+        complete_history: { name: 'Compleet Archief',     desc: 'Spelers uit 9 verschillende seizoenen in je XI' },
         purist:           { name: 'Purist',               desc: 'XI uit één enkel seizoen' },
         diverse:          { name: 'Multikulti',           desc: 'XI uit 10+ verschillende clubs' },
         mind_coach:       { name: 'Geheugenkampioen',     desc: 'Win in de From Memory modus' },
@@ -388,7 +388,7 @@ export const translations = {
 
     home: {
       subtitle: 'Belgian Pro League Simulator',
-      heroDesc: 'Build your ultimate Belgian Pro League dream team from 8 seasons of historical squads — and prove you are the best coach.',
+      heroDesc: 'Build your ultimate Belgian Pro League dream team from {seasons} seasons of historical squads — and prove you are the best coach.',
       howItWorks: 'How it works',
       steps: [
         { title: 'Choose a formation',  desc: 'Decide which system your XI plays.' },
@@ -430,7 +430,7 @@ export const translations = {
       noRerolls: 'No more rerolls',
       chooseHint: 'Choose a player → then assign the position',
       clickPos: '← click on a position',
-      randomHint: 'A random Pro League team from 8 seasons',
+      randomHint: 'A random Pro League team from {seasons} seasons',
       taken: 'Taken',
       full: 'Full',
       chosenPlayer: 'Selected player',
@@ -671,7 +671,7 @@ export const translations = {
         david:            { name: 'David',                desc: 'Champion with avg. OVR below 65' },
         galactico:        { name: 'Galacticos',           desc: 'XI with avg. OVR of 75 or more' },
         time_traveler:    { name: 'Time Traveler',        desc: 'Players from 6+ seasons in your XI' },
-        complete_history: { name: 'Complete Archive',     desc: 'Players from all 9 seasons in your XI' },
+        complete_history: { name: 'Complete Archive',     desc: 'Players from 9 different seasons in your XI' },
         purist:           { name: 'Purist',               desc: 'XI from a single season' },
         diverse:          { name: 'Multicultural',        desc: 'XI from 10+ different clubs' },
         mind_coach:       { name: 'Mind Coach',           desc: 'Win in From Memory mode' },

@@ -1,0 +1,25 @@
+{
+  "team": "Sint-Truidense VV",
+  "teamId": "stvv",
+  "season": "2015-16",
+  "year": 2015,
+  "players": [
+    {"id":"dutoit-stvv-15","name":"William Dutoit","position":"GK","nationality":"FRA","age":26,"appearances":30,"goals":0,"assists":0,"marketValue":2500000,"internationalCaps":0,"awards":[],"overall":72},
+    {"id":"de-winter-15","name":"Yves De Winter","position":"GK","nationality":"BEL","age":29,"appearances":8,"goals":0,"assists":0,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"erichot-15","name":"Yvan Erichot","position":"CB","nationality":"FRA","age":26,"appearances":26,"goals":1,"assists":1,"marketValue":1700000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"fernandes-15","name":"Rúben Fernandes","position":"CB","nationality":"POR","age":30,"appearances":24,"goals":1,"assists":0,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"kotysch-15","name":"Sascha Kotysch","position":"CB","nationality":"GER","age":26,"appearances":22,"goals":0,"assists":0,"marketValue":450000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"rherras-15","name":"Faycal Rherras","position":"LB","alternativePositions":["LM"],"nationality":"MAR","age":22,"appearances":24,"goals":1,"assists":2,"marketValue":650000,"internationalCaps":8,"awards":[],"overall":67},
+    {"id":"bagayoko-15","name":"Mamadou Bagayoko","position":"RB","alternativePositions":["CB"],"nationality":"CIV","age":26,"appearances":22,"goals":0,"assists":1,"marketValue":500000,"internationalCaps":2,"awards":[],"overall":66},
+    {"id":"dussaut-15","name":"Damien Dussaut","position":"RB","nationality":"FRA","age":21,"appearances":12,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"allan-15","name":"Allan","position":"CDM","alternativePositions":["CM"],"nationality":"BRA","age":19,"appearances":18,"goals":1,"assists":1,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"wilmots-r-15","name":"Reno Wilmots","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":19,"appearances":12,"goals":0,"assists":0,"marketValue":100000,"internationalCaps":0,"awards":[],"overall":61},
+    {"id":"mahlangu-15","name":"May Mahlangu","position":"CM","alternativePositions":["CDM"],"nationality":"RSA","age":26,"appearances":24,"goals":2,"assists":3,"marketValue":1200000,"internationalCaps":12,"awards":[],"overall":69},
+    {"id":"angban-15","name":"Victorien Angban","position":"CM","alternativePositions":["CDM"],"nationality":"CIV","age":19,"appearances":20,"goals":1,"assists":2,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"gerkens-15","name":"Pieter Gerkens","position":"CAM","alternativePositions":["CM"],"nationality":"BEL","age":20,"appearances":24,"goals":4,"assists":3,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"cuevas-15","name":"Cristian Cuevas","position":"LW","alternativePositions":["LB","LM"],"nationality":"CHI","age":21,"appearances":20,"goals":2,"assists":3,"marketValue":1500000,"internationalCaps":2,"awards":[],"overall":69},
+    {"id":"dompe-15","name":"Jean-Luc Dompé","position":"LW","alternativePositions":["RW","CAM"],"nationality":"FRA","age":20,"appearances":18,"goals":3,"assists":3,"marketValue":1700000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"raman-15","name":"Benito Raman","position":"ST","alternativePositions":["LW","RW"],"nationality":"BEL","age":21,"appearances":22,"goals":6,"assists":3,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"boli-15","name":"Yohan Boli","position":"ST","nationality":"CIV","age":22,"appearances":18,"goals":5,"assists":1,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":67}
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "team": "KV Mechelen",
+  "teamId": "mechelen",
+  "season": "2015-16",
+  "year": 2015,
+  "players": [
+    {"id":"coosemans-15","name":"Colin Coosemans","position":"GK","nationality":"BEL","age":23,"appearances":24,"goals":0,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"gillet-15","name":"Jean-François Gillet","position":"GK","nationality":"BEL","age":36,"appearances":14,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":5,"awards":[],"overall":67},
+    {"id":"de-witte-15","name":"Seth De Witte","position":"CB","nationality":"BEL","age":28,"appearances":22,"goals":1,"assists":0,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"cocalic-15","name":"Edin Čočalić","position":"CB","nationality":"BIH","age":28,"appearances":22,"goals":1,"assists":0,"marketValue":900000,"internationalCaps":4,"awards":[],"overall":67},
+    {"id":"bateau-15","name":"Sheldon Bateau","position":"CB","alternativePositions":["RB"],"nationality":"TTO","age":24,"appearances":20,"goals":1,"assists":0,"marketValue":750000,"internationalCaps":25,"awards":[],"overall":67},
+    {"id":"bjelica-15","name":"Aleksandar Bjelica","position":"CB","alternativePositions":["LB"],"nationality":"SRB","age":22,"appearances":18,"goals":0,"assists":0,"marketValue":650000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"vitas-15","name":"Uroš Vitas","position":"CB","nationality":"SRB","age":23,"appearances":16,"goals":1,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"corryn-15","name":"Alexander Corryn","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":22,"appearances":18,"goals":0,"assists":2,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"volkov-15","name":"Vladimir Volkov","position":"LB","alternativePositions":["LM"],"nationality":"MNE","age":29,"appearances":16,"goals":0,"assists":1,"marketValue":700000,"internationalCaps":15,"awards":[],"overall":66},
+    {"id":"paulussen-15","name":"Laurens Paulussen","position":"RB","alternativePositions":["RM"],"nationality":"BEL","age":24,"appearances":22,"goals":0,"assists":2,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"cisse-15","name":"Ibrahima Cissé","position":"CDM","alternativePositions":["CM","CB"],"nationality":"GIN","age":21,"appearances":24,"goals":2,"assists":2,"marketValue":2000000,"internationalCaps":2,"awards":[],"overall":70},
+    {"id":"rits-15","name":"Mats Rits","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":22,"appearances":24,"goals":2,"assists":2,"marketValue":900000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"el-messaoudi-15","name":"Ahmed El Messaoudi","position":"CM","alternativePositions":["CAM"],"nationality":"MAR","age":20,"appearances":18,"goals":2,"assists":2,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"matthys-t-15","name":"Tim Matthys","position":"RW","alternativePositions":["RM","CAM"],"nationality":"BEL","age":31,"appearances":22,"goals":3,"assists":3,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"hanni-15","name":"Sofiane Hanni","position":"CAM","alternativePositions":["CM","LW"],"nationality":"ALG","age":25,"appearances":30,"goals":13,"assists":7,"marketValue":4000000,"internationalCaps":0,"awards":[],"overall":74},
+    {"id":"leal-15","name":"Randall Leal","position":"LW","alternativePositions":["RW","CAM"],"nationality":"CRC","age":19,"appearances":14,"goals":2,"assists":2,"marketValue":250000,"internationalCaps":2,"awards":[],"overall":64},
+    {"id":"veselinovic-15","name":"Dalibor Veselinović","position":"ST","nationality":"SRB","age":28,"appearances":22,"goals":7,"assists":2,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":68}
+  ]
+}

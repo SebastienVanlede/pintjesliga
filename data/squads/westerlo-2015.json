@@ -1,0 +1,25 @@
+{
+  "team": "KVC Westerlo",
+  "teamId": "westerlo",
+  "season": "2015-16",
+  "year": 2015,
+  "players": [
+    {"id":"van-langendonck-15","name":"Koen Van Langendonck","position":"GK","nationality":"BEL","age":27,"appearances":26,"goals":0,"assists":0,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"van-hout-15","name":"Kristof Van Hout","position":"GK","nationality":"BEL","age":28,"appearances":12,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"apau-15","name":"Mitch Apau","position":"CB","alternativePositions":["RB"],"nationality":"NED","age":26,"appearances":24,"goals":1,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"schuermans-15","name":"Kenneth Schuermans","position":"CB","nationality":"BEL","age":25,"appearances":22,"goals":1,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"j-cools-15","name":"Jens Cools","position":"CB","alternativePositions":["CDM"],"nationality":"BEL","age":25,"appearances":20,"goals":1,"assists":1,"marketValue":650000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"ruyssen-15","name":"Gilles Ruyssen","position":"CB","nationality":"BEL","age":22,"appearances":16,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"matthys-15","name":"Hervé Matthys","position":"CB","nationality":"BEL","age":20,"appearances":14,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"mustoe-15","name":"Jordan Mustoe","position":"LB","alternativePositions":["LM"],"nationality":"ENG","age":25,"appearances":22,"goals":0,"assists":2,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"daems-15","name":"Filip Daems","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":36,"appearances":14,"goals":0,"assists":1,"marketValue":200000,"internationalCaps":20,"awards":[],"overall":64},
+    {"id":"lolo-15","name":"Igor Lolo","position":"RB","alternativePositions":["CB"],"nationality":"CIV","age":33,"appearances":20,"goals":1,"assists":1,"marketValue":250000,"internationalCaps":35,"awards":[],"overall":65},
+    {"id":"hyland-15","name":"Khaleem Hyland","position":"CDM","alternativePositions":["CM"],"nationality":"TTO","age":27,"appearances":24,"goals":2,"assists":2,"marketValue":1000000,"internationalCaps":32,"awards":[],"overall":68},
+    {"id":"annys-15","name":"Maxime Annys","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":29,"appearances":18,"goals":1,"assists":1,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"henkels-15","name":"Robin Henkels","position":"CM","alternativePositions":["CAM"],"nationality":"BEL","age":27,"appearances":22,"goals":3,"assists":3,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"lecomte-15","name":"Raphaël Lecomte","position":"CM","alternativePositions":["CDM"],"nationality":"FRA","age":28,"appearances":18,"goals":1,"assists":1,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"schouterden-15","name":"Nils Schouterden","position":"LM","alternativePositions":["LB","LW"],"nationality":"BEL","age":27,"appearances":24,"goals":2,"assists":4,"marketValue":900000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"aoulad-15","name":"Mohamed Aoulad","position":"CAM","alternativePositions":["LW","RW"],"nationality":"BEL","age":23,"appearances":18,"goals":3,"assists":2,"marketValue":650000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"gounongbe-15","name":"Frédéric Gounongbe","position":"ST","nationality":"BEN","age":28,"appearances":26,"goals":13,"assists":3,"marketValue":1500000,"internationalCaps":12,"awards":[],"overall":71}
+  ]
+}

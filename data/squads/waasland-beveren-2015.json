@@ -1,0 +1,25 @@
+{
+  "team": "Waasland-Beveren",
+  "teamId": "waasland-beveren",
+  "season": "2015-16",
+  "year": 2015,
+  "players": [
+    {"id":"henkinet-15","name":"Laurent Henkinet","position":"GK","nationality":"BEL","age":22,"appearances":20,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"goblet-15","name":"Merveille Goblet","position":"GK","nationality":"BEL","age":21,"appearances":18,"goals":0,"assists":0,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"moren-15","name":"Valtteri Moren","position":"CB","nationality":"FIN","age":25,"appearances":24,"goals":1,"assists":0,"marketValue":400000,"internationalCaps":2,"awards":[],"overall":65},
+    {"id":"buatu-15","name":"Buatu","position":"CB","nationality":"AGO","age":22,"appearances":22,"goals":1,"assists":0,"marketValue":700000,"internationalCaps":2,"awards":[],"overall":66},
+    {"id":"caufriez-15","name":"Maximiliano Caufriez","position":"CB","nationality":"BEL","age":18,"appearances":12,"goals":0,"assists":0,"marketValue":150000,"internationalCaps":0,"awards":[],"overall":62},
+    {"id":"sousa-15","name":"Hugo Sousa","position":"CB","nationality":"POR","age":24,"appearances":18,"goals":1,"assists":0,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"demir-15","name":"Erdin Demir","position":"LB","alternativePositions":["LM","CB"],"nationality":"SWE","age":26,"appearances":22,"goals":0,"assists":2,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"jans-15","name":"Laurent Jans","position":"RB","alternativePositions":["RM"],"nationality":"LUX","age":23,"appearances":26,"goals":1,"assists":3,"marketValue":650000,"internationalCaps":18,"awards":[],"overall":68},
+    {"id":"cisse-o-15","name":"Ousseynou Cissé","position":"CDM","alternativePositions":["CM"],"nationality":"MLI","age":25,"appearances":24,"goals":2,"assists":2,"marketValue":800000,"internationalCaps":4,"awards":[],"overall":67},
+    {"id":"coulibaly-g-15","name":"Gary Coulibaly","position":"CDM","alternativePositions":["CM"],"nationality":"FRA","age":30,"appearances":18,"goals":1,"assists":1,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"maric-m-15","name":"Miloš Marić","position":"CM","alternativePositions":["CDM"],"nationality":"SRB","age":33,"appearances":16,"goals":1,"assists":1,"marketValue":250000,"internationalCaps":2,"awards":[],"overall":64},
+    {"id":"schrijvers-15","name":"Siebe Schrijvers","position":"CM","alternativePositions":["CAM","RW","LW"],"nationality":"BEL","age":19,"appearances":24,"goals":6,"assists":4,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"moulin-15","name":"Thibault Moulin","position":"CM","alternativePositions":["CAM"],"nationality":"FRA","age":25,"appearances":20,"goals":2,"assists":3,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"milosevic-15","name":"Deni Milošević","position":"CAM","alternativePositions":["RW"],"nationality":"BIH","age":21,"appearances":18,"goals":3,"assists":2,"marketValue":500000,"internationalCaps":2,"awards":[],"overall":65},
+    {"id":"langil-15","name":"Steeven Langil","position":"LW","alternativePositions":["RW","ST"],"nationality":"FRA","age":28,"appearances":22,"goals":5,"assists":3,"marketValue":1500000,"internationalCaps":4,"awards":[],"overall":70},
+    {"id":"myny-15","name":"Olivier Myny","position":"RW","alternativePositions":["LW"],"nationality":"BEL","age":20,"appearances":18,"goals":3,"assists":2,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"gano-15","name":"Zinho Gano","position":"ST","alternativePositions":["LW"],"nationality":"GNB","age":22,"appearances":24,"goals":7,"assists":2,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":69}
+  ]
+}

@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGameStore } from '@/lib/store';
 import { useT } from '@/lib/useT';
-import { getAvailableRolls, loadSquad } from '@/lib/data';
+import { getAvailableRolls, loadSquad, SEASON_COUNT } from '@/lib/data';
 import { FORMATION_POSITIONS, Player, Squad, Team, PickedPlayer, Position, playerPositions } from '@/lib/types';
 import FormationPitch from '@/components/FormationPitch';
 
@@ -302,7 +302,7 @@ export default function DraftPage() {
               </motion.button>
 
               <p className="text-xs text-center" style={{ color: 'var(--muted)' }}>
-                {t.draft.randomHint}
+                {t.draft.randomHint.replace('{seasons}', String(SEASON_COUNT))}
               </p>
             </motion.div>
           )}
@@ -583,7 +583,7 @@ export default function DraftPage() {
             </span>
           </motion.button>
           <p className="text-center text-xs mt-2.5" style={{ color: 'var(--muted)' }}>
-            {t.draft.randomHint}
+            {t.draft.randomHint.replace('{seasons}', String(SEASON_COUNT))}
           </p>
         </div>
       )}
