@@ -1,0 +1,25 @@
+{
+  "team": "Standard Liège",
+  "teamId": "standard",
+  "season": "2014-15",
+  "year": 2014,
+  "players": [
+    {"id":"thuram-14","name":"Yohann Thuram-Ulien","position":"GK","nationality":"FRA","age":26,"appearances":22,"goals":0,"assists":0,"marketValue":1700000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"kawashima-14","name":"Eiji Kawashima","position":"GK","nationality":"JPN","age":31,"appearances":16,"goals":0,"assists":0,"marketValue":1500000,"internationalCaps":75,"awards":[],"overall":71},
+    {"id":"scholz-14","name":"Alexander Scholz","position":"CB","nationality":"DEN","age":22,"appearances":26,"goals":2,"assists":1,"marketValue":4000000,"internationalCaps":0,"awards":[],"overall":72},
+    {"id":"teixeira-14","name":"Jorge Teixeira","position":"CB","nationality":"POR","age":28,"appearances":22,"goals":1,"assists":0,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"arslanagic-14","name":"Dino Arslanagić","position":"CB","nationality":"BEL","age":22,"appearances":18,"goals":1,"assists":0,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"van-damme-14","name":"Jelle Van Damme","position":"CB","alternativePositions":["LB"],"nationality":"BEL","age":31,"appearances":20,"goals":1,"assists":1,"marketValue":1500000,"internationalCaps":34,"awards":[],"overall":71},
+    {"id":"andrade-14","name":"Darwin Andrade","position":"LB","alternativePositions":["LM"],"nationality":"COL","age":23,"appearances":24,"goals":1,"assists":2,"marketValue":2000000,"internationalCaps":2,"awards":[],"overall":69},
+    {"id":"fiore-14","name":"Corentin Fiore","position":"LB","alternativePositions":["CB","LM"],"nationality":"BEL","age":19,"appearances":14,"goals":0,"assists":1,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"milec-14","name":"Martin Milec","position":"RB","alternativePositions":["RM"],"nationality":"SVN","age":22,"appearances":22,"goals":1,"assists":2,"marketValue":1500000,"internationalCaps":12,"awards":[],"overall":68},
+    {"id":"stam-14","name":"Ronnie Stam","position":"RB","alternativePositions":["RM"],"nationality":"NED","age":30,"appearances":16,"goals":0,"assists":1,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"de-sart-j-14","name":"Julien De Sart","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":20,"appearances":24,"goals":1,"assists":2,"marketValue":3000000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"enoh-14","name":"Eyong Enoh","position":"CDM","alternativePositions":["CM"],"nationality":"CMR","age":29,"appearances":22,"goals":1,"assists":1,"marketValue":1500000,"internationalCaps":50,"awards":[],"overall":69},
+    {"id":"trebel-14","name":"Adrien Trebel","position":"CM","alternativePositions":["CDM"],"nationality":"FRA","age":23,"appearances":26,"goals":2,"assists":3,"marketValue":4000000,"internationalCaps":0,"awards":[],"overall":72},
+    {"id":"mpoku-14","name":"Paul-José Mpoku","position":"CAM","alternativePositions":["CM","LW"],"nationality":"BEL","age":22,"appearances":24,"goals":4,"assists":4,"marketValue":5000000,"internationalCaps":4,"awards":[],"overall":72},
+    {"id":"hamad-14","name":"Jiloan Hamad","position":"CAM","alternativePositions":["CM"],"nationality":"SWE","age":24,"appearances":20,"goals":3,"assists":3,"marketValue":1000000,"internationalCaps":18,"awards":[],"overall":68},
+    {"id":"ezekiel-14","name":"Imoh Ezekiel","position":"ST","alternativePositions":["LW","RW"],"nationality":"NGA","age":20,"appearances":22,"goals":8,"assists":3,"marketValue":6000000,"internationalCaps":4,"awards":[],"overall":73},
+    {"id":"de-camargo-14","name":"Igor de Camargo","position":"ST","nationality":"BEL","age":31,"appearances":20,"goals":7,"assists":2,"marketValue":1500000,"internationalCaps":13,"awards":[],"overall":70}
+  ]
+}

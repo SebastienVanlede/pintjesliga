@@ -1,0 +1,25 @@
+{
+  "team": "KSC Lokeren",
+  "teamId": "lokeren",
+  "season": "2014-15",
+  "year": 2014,
+  "players": [
+    {"id":"verhulst-14","name":"Davino Verhulst","position":"GK","nationality":"BEL","age":27,"appearances":26,"goals":0,"assists":0,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"copa-14","name":"Boubacar Copa","position":"GK","nationality":"CIV","age":35,"appearances":14,"goals":0,"assists":0,"marketValue":700000,"internationalCaps":12,"awards":[],"overall":66},
+    {"id":"odoi-14","name":"Denis Odoi","position":"CB","alternativePositions":["RB"],"nationality":"BEL","age":26,"appearances":28,"goals":2,"assists":2,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":72},
+    {"id":"maric-14","name":"Mijat Marić","position":"CB","nationality":"SUI","age":31,"appearances":22,"goals":1,"assists":0,"marketValue":1200000,"internationalCaps":4,"awards":[],"overall":69},
+    {"id":"ingason-14","name":"Sverrir Ingi Ingason","position":"CB","nationality":"ISL","age":21,"appearances":18,"goals":1,"assists":0,"marketValue":900000,"internationalCaps":2,"awards":[],"overall":68},
+    {"id":"mertens-g-14","name":"Grégory Mertens","position":"CB","nationality":"BEL","age":24,"appearances":12,"goals":0,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"melnjak-14","name":"Dario Melnjak","position":"LB","alternativePositions":["LM"],"nationality":"CRO","age":21,"appearances":20,"goals":0,"assists":2,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"corryn-14","name":"Alexander Corryn","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":21,"appearances":14,"goals":0,"assists":1,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"henrique-a-14","name":"Arthur Henrique","position":"LB","alternativePositions":["LM"],"nationality":"BRA","age":28,"appearances":16,"goals":0,"assists":1,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"galitsios-14","name":"Georgios Galitsios","position":"RB","alternativePositions":["CB"],"nationality":"GRC","age":28,"appearances":24,"goals":1,"assists":2,"marketValue":1700000,"internationalCaps":2,"awards":[],"overall":70},
+    {"id":"overmeire-14","name":"Killian Overmeire","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":28,"appearances":28,"goals":2,"assists":3,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"persoons-14","name":"Koen Persoons","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":31,"appearances":22,"goals":1,"assists":2,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"ngolok-14","name":"Evariste Ngolok","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":26,"appearances":18,"goals":1,"assists":1,"marketValue":900000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"vanaken-14","name":"Hans Vanaken","position":"CAM","alternativePositions":["CM"],"nationality":"BEL","age":22,"appearances":30,"goals":8,"assists":7,"marketValue":6000000,"internationalCaps":0,"awards":["Gouden Schoen 2018","Gouden Schoen 2019","Gouden Schoen 2024"],"overall":73},
+    {"id":"patosi-14","name":"Ayanda Patosi","position":"CAM","alternativePositions":["LW","CM"],"nationality":"RSA","age":22,"appearances":24,"goals":5,"assists":5,"marketValue":1500000,"internationalCaps":4,"awards":[],"overall":71},
+    {"id":"dessers-14","name":"Cyriel Dessers","position":"ST","alternativePositions":["LW","RW"],"nationality":"NGA","age":20,"appearances":16,"goals":4,"assists":2,"marketValue":900000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"leye-14","name":"Mbaye Leye","position":"ST","nationality":"SEN","age":31,"appearances":22,"goals":7,"assists":3,"marketValue":700000,"internationalCaps":28,"awards":[],"overall":69}
+  ]
+}

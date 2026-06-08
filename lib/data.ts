@@ -196,6 +196,23 @@ const squadModules: Record<string, () => Promise<Squad>> = {
   'waasland-beveren-2015-16': () => import('@/data/squads/waasland-beveren-2015.json').then(m => m.default as Squad),
   'westerlo-2015-16':         () => import('@/data/squads/westerlo-2015.json').then(m => m.default as Squad),
   'ohl-2015-16':              () => import('@/data/squads/ohl-2015.json').then(m => m.default as Squad),
+  // 2014-15 season
+  'anderlecht-2014-15':       () => import('@/data/squads/anderlecht-2014.json').then(m => m.default as Squad),
+  'club-brugge-2014-15':      () => import('@/data/squads/club-brugge-2014.json').then(m => m.default as Squad),
+  'gent-2014-15':             () => import('@/data/squads/gent-2014.json').then(m => m.default as Squad),
+  'standard-2014-15':         () => import('@/data/squads/standard-2014.json').then(m => m.default as Squad),
+  'genk-2014-15':             () => import('@/data/squads/genk-2014.json').then(m => m.default as Squad),
+  'charleroi-2014-15':        () => import('@/data/squads/charleroi-2014.json').then(m => m.default as Squad),
+  'kortrijk-2014-15':         () => import('@/data/squads/kortrijk-2014.json').then(m => m.default as Squad),
+  'zulte-waregem-2014-15':    () => import('@/data/squads/zulte-waregem-2014.json').then(m => m.default as Squad),
+  'mouscron-2014-15':         () => import('@/data/squads/mouscron-2014.json').then(m => m.default as Squad),
+  'waasland-beveren-2014-15': () => import('@/data/squads/waasland-beveren-2014.json').then(m => m.default as Squad),
+  'oostende-2014-15':         () => import('@/data/squads/oostende-2014.json').then(m => m.default as Squad),
+  'lokeren-2014-15':          () => import('@/data/squads/lokeren-2014.json').then(m => m.default as Squad),
+  'mechelen-2014-15':         () => import('@/data/squads/mechelen-2014.json').then(m => m.default as Squad),
+  'westerlo-2014-15':         () => import('@/data/squads/westerlo-2014.json').then(m => m.default as Squad),
+  'cercle-brugge-2014-15':    () => import('@/data/squads/cercle-brugge-2014.json').then(m => m.default as Squad),
+  'lierse-2014-15':           () => import('@/data/squads/lierse-2014.json').then(m => m.default as Squad),
 };
 
 /** Aantal squad bestanden geregistreerd (1 per club-per-seizoen). */
