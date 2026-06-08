@@ -20,7 +20,7 @@
     {"id":"kubo-18","name":"Yuya Kubo","position":"CAM","alternativePositions":["LW"],"nationality":"JPN","age":24,"appearances":18,"goals":3,"assists":3,"marketValue":2000000,"internationalCaps":5,"awards":[],"overall":66},
     {"id":"dompé-18","name":"Jean-Luc Dompé","position":"LW","alternativePositions":["RW"],"nationality":"FRA","age":22,"appearances":18,"goals":3,"assists":4,"marketValue":2000000,"internationalCaps":0,"awards":[],"overall":65},
     {"id":"kalu-gent-18","name":"Samuel Kalu","position":"RW","alternativePositions":["LW"],"nationality":"NGA","age":20,"appearances":12,"goals":3,"assists":3,"marketValue":10000000,"internationalCaps":10,"awards":[],"overall":72},
-    {"id":"david-gent-18","name":"Jonathan David","position":"ST","alternativePositions":["LW"],"nationality":"CAN","age":18,"appearances":18,"goals":9,"assists":4,"marketValue":9000000,"internationalCaps":3,"awards":[],"overall":72},
+    {"id":"david-gent-18","name":"Jonathan David","position":"ST","alternativePositions":["LW"],"nationality":"CAN","age":18,"appearances":18,"goals":9,"assists":4,"marketValue":9000000,"internationalCaps":3,"awards":[],"overall":75},
     {"id":"sorloth-18","name":"Alexander Sørloth","position":"ST","nationality":"NOR","age":22,"appearances":18,"goals":7,"assists":3,"marketValue":6000000,"internationalCaps":8,"awards":[],"overall":68},
     {"id":"yaremchuk-18","name":"Roman Yaremchuk","position":"ST","nationality":"UKR","age":22,"appearances":22,"goals":9,"assists":3,"marketValue":3800000,"internationalCaps":10,"awards":[],"overall":70}
   ]
