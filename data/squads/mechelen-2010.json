@@ -1,0 +1,25 @@
+{
+  "team": "KV Mechelen",
+  "teamId": "mechelen",
+  "season": "2010-11",
+  "year": 2010,
+  "players": [
+    {"id":"renard-10","name":"Olivier Renard","position":"GK","nationality":"BEL","age":31,"appearances":26,"goals":0,"assists":0,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"biebauw-10","name":"Wouter Biebauw","position":"GK","nationality":"BEL","age":26,"appearances":12,"goals":0,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"pandza-10","name":"Boris Pandža","position":"CB","nationality":"BIH","age":23,"appearances":24,"goals":1,"assists":0,"marketValue":1500000,"internationalCaps":8,"awards":[],"overall":69},
+    {"id":"van-hoevelen-10","name":"Kenny Van Hoevelen","position":"CB","nationality":"BEL","age":27,"appearances":22,"goals":1,"assists":0,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"biset-10","name":"Maxime Biset","position":"CB","nationality":"BEL","age":24,"appearances":20,"goals":1,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"de-witte-10","name":"Seth De Witte","position":"CB","nationality":"BEL","age":22,"appearances":18,"goals":1,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"kabasele-c-10","name":"Christian Kabasele","position":"CB","nationality":"BEL","age":19,"appearances":16,"goals":1,"assists":0,"marketValue":200000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"ghomsi-10","name":"Antonio Ghomsi","position":"LB","alternativePositions":["LM"],"nationality":"CMR","age":24,"appearances":22,"goals":0,"assists":2,"marketValue":700000,"internationalCaps":4,"awards":[],"overall":66},
+    {"id":"chen-10","name":"Xavier Chen","position":"RB","alternativePositions":["RM"],"nationality":"TWN","age":26,"appearances":22,"goals":0,"assists":2,"marketValue":1200000,"internationalCaps":4,"awards":[],"overall":68},
+    {"id":"van-loo-10","name":"Anthony Van Loo","position":"RB","alternativePositions":["CB"],"nationality":"BEL","age":21,"appearances":18,"goals":0,"assists":1,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"buyens-10","name":"Yoni Buyens","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":22,"appearances":24,"goals":2,"assists":2,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"geudens-10","name":"Kevin Geudens","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":29,"appearances":18,"goals":1,"assists":1,"marketValue":750000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"gorius-10","name":"Julien Gorius","position":"CM","alternativePositions":["CAM"],"nationality":"FRA","age":25,"appearances":24,"goals":3,"assists":3,"marketValue":1800000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"vidarsson-b-10","name":"Bjarni Vidarsson","position":"CM","alternativePositions":["CAM"],"nationality":"ISL","age":22,"appearances":18,"goals":2,"assists":2,"marketValue":600000,"internationalCaps":2,"awards":[],"overall":66},
+    {"id":"wilmet-10","name":"Jonathan Wilmet","position":"CAM","alternativePositions":["CM"],"nationality":"BEL","age":24,"appearances":22,"goals":3,"assists":3,"marketValue":900000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"ibou-10","name":"Ibou","position":"LW","alternativePositions":["RW"],"nationality":"GMB","age":23,"appearances":22,"goals":4,"assists":3,"marketValue":600000,"internationalCaps":4,"awards":[],"overall":67},
+    {"id":"nong-10","name":"Aloys Nong","position":"ST","nationality":"CMR","age":26,"appearances":24,"goals":8,"assists":2,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":69}
+  ]
+}

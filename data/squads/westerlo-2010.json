@@ -1,0 +1,25 @@
+{
+  "team": "KVC Westerlo",
+  "teamId": "westerlo",
+  "season": "2010-11",
+  "year": 2010,
+  "players": [
+    {"id":"de-winter-10","name":"Yves De Winter","position":"GK","nationality":"BEL","age":23,"appearances":24,"goals":0,"assists":0,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"deelkens-10","name":"Bart Deelkens","position":"GK","nationality":"BEL","age":32,"appearances":12,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"corstjens-10","name":"Wouter Corstjens","position":"CB","nationality":"BEL","age":23,"appearances":26,"goals":1,"assists":0,"marketValue":750000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"j-cools-10","name":"Jens Cools","position":"CB","alternativePositions":["CDM"],"nationality":"BEL","age":19,"appearances":22,"goals":1,"assists":1,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"mravac-10","name":"Adnan Mravac","position":"CB","nationality":"BIH","age":28,"appearances":20,"goals":1,"assists":0,"marketValue":700000,"internationalCaps":15,"awards":[],"overall":67},
+    {"id":"van-hout-jor-10","name":"Joris Van Hout","position":"CB","nationality":"BEL","age":33,"appearances":16,"goals":1,"assists":0,"marketValue":250000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"cabeke-10","name":"Geoffrey Cabeke","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":21,"appearances":22,"goals":0,"assists":2,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"vanthournout-10","name":"Jeroen Vanthournout","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":21,"appearances":18,"goals":0,"assists":1,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"vanaudenaerde-10","name":"Gunther Vanaudenaerde","position":"RB","alternativePositions":["CB"],"nationality":"BEL","age":26,"appearances":24,"goals":0,"assists":2,"marketValue":750000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"de-petter-10","name":"Steven De Petter","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":24,"appearances":26,"goals":2,"assists":3,"marketValue":850000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"ngolok-10","name":"Evariste Ngolok","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":21,"appearances":22,"goals":1,"assists":2,"marketValue":750000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"bruls-10","name":"Christian Brüls","position":"CAM","alternativePositions":["LW","CM"],"nationality":"BEL","age":21,"appearances":24,"goals":5,"assists":4,"marketValue":750000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"yakovenko-10","name":"Oleksandr Yakovenko","position":"LW","alternativePositions":["CAM","RW"],"nationality":"UKR","age":23,"appearances":24,"goals":4,"assists":4,"marketValue":1500000,"internationalCaps":2,"awards":[],"overall":70},
+    {"id":"annab-10","name":"Lens Annab","position":"RW","alternativePositions":["RM"],"nationality":"BEL","age":21,"appearances":20,"goals":3,"assists":3,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"paulo-henrique-10","name":"Paulo Henrique","position":"ST","nationality":"BRA","age":21,"appearances":24,"goals":9,"assists":3,"marketValue":3000000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"ruiz-j-10","name":"Jaime Alfonso Ruiz","position":"ST","nationality":"COL","age":26,"appearances":22,"goals":7,"assists":2,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"chavez-10","name":"Daniel Chávez","position":"ST","nationality":"PER","age":22,"appearances":18,"goals":5,"assists":2,"marketValue":500000,"internationalCaps":4,"awards":[],"overall":67}
+  ]
+}

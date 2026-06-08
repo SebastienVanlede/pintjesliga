@@ -264,6 +264,23 @@ const squadModules: Record<string, () => Promise<Squad>> = {
   'westerlo-2011-12':         () => import('@/data/squads/westerlo-2011.json').then(m => m.default as Squad),
   'ohl-2011-12':              () => import('@/data/squads/ohl-2011.json').then(m => m.default as Squad),
   'stvv-2011-12':             () => import('@/data/squads/stvv-2011.json').then(m => m.default as Squad),
+  // 2010-11 season
+  'anderlecht-2010-11':       () => import('@/data/squads/anderlecht-2010.json').then(m => m.default as Squad),
+  'standard-2010-11':         () => import('@/data/squads/standard-2010.json').then(m => m.default as Squad),
+  'genk-2010-11':             () => import('@/data/squads/genk-2010.json').then(m => m.default as Squad),
+  'club-brugge-2010-11':      () => import('@/data/squads/club-brugge-2010.json').then(m => m.default as Squad),
+  'gent-2010-11':             () => import('@/data/squads/gent-2010.json').then(m => m.default as Squad),
+  'mechelen-2010-11':         () => import('@/data/squads/mechelen-2010.json').then(m => m.default as Squad),
+  'lokeren-2010-11':          () => import('@/data/squads/lokeren-2010.json').then(m => m.default as Squad),
+  'germinal-beerschot-2010-11':() => import('@/data/squads/germinal-beerschot-2010.json').then(m => m.default as Squad),
+  'westerlo-2010-11':         () => import('@/data/squads/westerlo-2010.json').then(m => m.default as Squad),
+  'lierse-2010-11':           () => import('@/data/squads/lierse-2010.json').then(m => m.default as Squad),
+  'zulte-waregem-2010-11':    () => import('@/data/squads/zulte-waregem-2010.json').then(m => m.default as Squad),
+  'charleroi-2010-11':        () => import('@/data/squads/charleroi-2010.json').then(m => m.default as Squad),
+  'kortrijk-2010-11':         () => import('@/data/squads/kortrijk-2010.json').then(m => m.default as Squad),
+  'stvv-2010-11':             () => import('@/data/squads/stvv-2010.json').then(m => m.default as Squad),
+  'cercle-brugge-2010-11':    () => import('@/data/squads/cercle-brugge-2010.json').then(m => m.default as Squad),
+  'eupen-2010-11':            () => import('@/data/squads/eupen-2010.json').then(m => m.default as Squad),
 };
 
 /** Aantal squad bestanden geregistreerd (1 per club-per-seizoen). */

@@ -1,0 +1,25 @@
+{
+  "team": "KRC Genk",
+  "teamId": "genk",
+  "season": "2010-11",
+  "year": 2010,
+  "players": [
+    {"id":"courtois-10","name":"Thibaut Courtois","position":"GK","nationality":"BEL","age":18,"appearances":30,"goals":0,"assists":0,"marketValue":4000000,"internationalCaps":0,"awards":[],"overall":76},
+    {"id":"koteles-10","name":"László Köteles","position":"GK","nationality":"HUN","age":26,"appearances":10,"goals":0,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"joao-carlos-10","name":"João Carlos","position":"CB","nationality":"BRA","age":28,"appearances":26,"goals":2,"assists":1,"marketValue":3500000,"internationalCaps":0,"awards":[],"overall":72},
+    {"id":"joneleit-10","name":"Torben Joneleit","position":"CB","nationality":"GER","age":23,"appearances":22,"goals":1,"assists":0,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"matoukou-10","name":"Eric Matoukou","position":"CB","nationality":"CMR","age":26,"appearances":20,"goals":1,"assists":0,"marketValue":1000000,"internationalCaps":12,"awards":[],"overall":68},
+    {"id":"mavinga-10","name":"Chris Mavinga","position":"CB","alternativePositions":["LB"],"nationality":"COD","age":19,"appearances":18,"goals":1,"assists":0,"marketValue":850000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"pudil-10","name":"Daniel Pudil","position":"LB","alternativePositions":["LM"],"nationality":"CZE","age":24,"appearances":24,"goals":1,"assists":3,"marketValue":1800000,"internationalCaps":12,"awards":[],"overall":70},
+    {"id":"ngcongca-10","name":"Anele Ngcongca","position":"RB","alternativePositions":["CB"],"nationality":"RSA","age":22,"appearances":26,"goals":1,"assists":3,"marketValue":2500000,"internationalCaps":15,"awards":[],"overall":71},
+    {"id":"vanden-borre-10","name":"Anthony Vanden Borre","position":"RB","alternativePositions":["CB","RM"],"nationality":"BEL","age":22,"appearances":18,"goals":1,"assists":2,"marketValue":2200000,"internationalCaps":29,"awards":[],"overall":70},
+    {"id":"hubert-d-10","name":"David Hubert","position":"CDM","alternativePositions":["CM","CB"],"nationality":"BEL","age":22,"appearances":24,"goals":2,"assists":2,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"tozser-10","name":"Dániel Tőzsér","position":"CM","alternativePositions":["CDM"],"nationality":"HUN","age":25,"appearances":26,"goals":3,"assists":4,"marketValue":3000000,"internationalCaps":15,"awards":[],"overall":71},
+    {"id":"de-bruyne-10","name":"Kevin De Bruyne","position":"CAM","alternativePositions":["CM","RW"],"nationality":"BEL","age":19,"appearances":26,"goals":6,"assists":8,"marketValue":7000000,"internationalCaps":0,"awards":[],"overall":76},
+    {"id":"camus-10","name":"Fabien Camus","position":"CAM","alternativePositions":["CM"],"nationality":"TUN","age":25,"appearances":20,"goals":2,"assists":3,"marketValue":1000000,"internationalCaps":4,"awards":[],"overall":68},
+    {"id":"limbombe-a-10","name":"Anthony Limbombe","position":"LW","alternativePositions":["RW"],"nationality":"BEL","age":16,"appearances":8,"goals":1,"assists":1,"marketValue":250000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"buffel-10","name":"Thomas Buffel","position":"RW","alternativePositions":["LW","CAM"],"nationality":"BEL","age":29,"appearances":24,"goals":4,"assists":4,"marketValue":2200000,"internationalCaps":22,"awards":[],"overall":71},
+    {"id":"vossen-10","name":"Jelle Vossen","position":"ST","alternativePositions":["LW"],"nationality":"BEL","age":21,"appearances":28,"goals":15,"assists":3,"marketValue":5000000,"internationalCaps":2,"awards":[],"overall":74},
+    {"id":"ogunjimi-10","name":"Marvin Ogunjimi","position":"ST","nationality":"BEL","age":22,"appearances":26,"goals":17,"assists":3,"marketValue":3500000,"internationalCaps":4,"awards":[],"overall":73}
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "team": "KV Kortrijk",
+  "teamId": "kortrijk",
+  "season": "2010-11",
+  "year": 2010,
+  "players": [
+    {"id":"verbauwhede-10","name":"Glenn Verbauwhede","position":"GK","nationality":"BEL","age":25,"appearances":26,"goals":0,"assists":0,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"lahaye-10","name":"Damien Lahaye","position":"GK","nationality":"BEL","age":26,"appearances":12,"goals":0,"assists":0,"marketValue":200000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"gershon-10","name":"Rami Gershon","position":"CB","nationality":"ISR","age":21,"appearances":24,"goals":1,"assists":0,"marketValue":900000,"internationalCaps":4,"awards":[],"overall":68},
+    {"id":"martin-b-10","name":"Baptiste Martin","position":"CB","nationality":"FRA","age":25,"appearances":22,"goals":1,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"sunjic-10","name":"Toni Šunjić","position":"CB","nationality":"BIH","age":21,"appearances":20,"goals":1,"assists":0,"marketValue":400000,"internationalCaps":2,"awards":[],"overall":66},
+    {"id":"belhocine-10","name":"Karim Belhocine","position":"CB","nationality":"FRA","age":32,"appearances":18,"goals":1,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"oussalah-10","name":"Mustapha Oussalah","position":"LB","alternativePositions":["LM"],"nationality":"MAR","age":28,"appearances":22,"goals":1,"assists":2,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"reina-10","name":"Loris Reina","position":"LB","alternativePositions":["LM"],"nationality":"FRA","age":30,"appearances":18,"goals":0,"assists":1,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"capon-10","name":"Brecht Capon","position":"RB","alternativePositions":["CB"],"nationality":"BEL","age":22,"appearances":24,"goals":0,"assists":2,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"el-araichi-10","name":"Chemcedine El Araichi","position":"RB","alternativePositions":["RM"],"nationality":"MAR","age":29,"appearances":18,"goals":0,"assists":1,"marketValue":400000,"internationalCaps":12,"awards":[],"overall":65},
+    {"id":"pavlovic-10","name":"Nebojša Pavlović","position":"CDM","alternativePositions":["CM"],"nationality":"SRB","age":29,"appearances":24,"goals":1,"assists":2,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"de-mets-10","name":"Gertjan De Mets","position":"CDM","alternativePositions":["RB"],"nationality":"BEL","age":23,"appearances":22,"goals":1,"assists":2,"marketValue":650000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"kums-10","name":"Sven Kums","position":"CM","alternativePositions":["CAM","CDM"],"nationality":"BEL","age":22,"appearances":26,"goals":4,"assists":5,"marketValue":1500000,"internationalCaps":0,"awards":["Gouden Schoen 2015","Pro League Best Midfielder 2015"],"overall":71},
+    {"id":"de-beule-10","name":"Davy De Beule","position":"RM","alternativePositions":["CM"],"nationality":"BEL","age":28,"appearances":24,"goals":3,"assists":3,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"carevic-10","name":"Mario Carević","position":"LM","alternativePositions":["LW"],"nationality":"CRO","age":28,"appearances":22,"goals":3,"assists":3,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"messoudi-10","name":"Mohamed Messoudi","position":"CAM","alternativePositions":["CM","LW"],"nationality":"BEL","age":26,"appearances":22,"goals":4,"assists":3,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"mboyo-10","name":"Ilombe Mboyo","position":"ST","nationality":"BEL","age":23,"appearances":24,"goals":9,"assists":2,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":70}
+  ]
+}

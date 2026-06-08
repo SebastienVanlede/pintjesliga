@@ -1,0 +1,25 @@
+{
+  "team": "Sporting Charleroi",
+  "teamId": "charleroi",
+  "season": "2010-11",
+  "year": 2010,
+  "players": [
+    {"id":"riou-10","name":"Rudy Riou","position":"GK","nationality":"FRA","age":30,"appearances":26,"goals":0,"assists":0,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"baguette-10","name":"Cyprien Baguette","position":"GK","nationality":"BEL","age":20,"appearances":12,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"martos-10","name":"Javi Martos","position":"CB","nationality":"ESP","age":27,"appearances":24,"goals":1,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"dzinic-10","name":"Elvedin Dzinić","position":"CB","alternativePositions":["LB"],"nationality":"SVN","age":24,"appearances":22,"goals":1,"assists":0,"marketValue":500000,"internationalCaps":2,"awards":[],"overall":66},
+    {"id":"signorino-10","name":"Franck Signorino","position":"LB","alternativePositions":["LM"],"nationality":"FRA","age":28,"appearances":24,"goals":0,"assists":2,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"ohayon-10","name":"Matan Ohayon","position":"RB","nationality":"ISR","age":24,"appearances":22,"goals":0,"assists":2,"marketValue":500000,"internationalCaps":8,"awards":[],"overall":66},
+    {"id":"chakouri-10","name":"Mohamed Chakouri","position":"RB","alternativePositions":["RM"],"nationality":"ALG","age":24,"appearances":18,"goals":0,"assists":1,"marketValue":300000,"internationalCaps":2,"awards":[],"overall":65},
+    {"id":"tormena-10","name":"Ederson Tormena","position":"CDM","alternativePositions":["CM"],"nationality":"BRA","age":24,"appearances":24,"goals":1,"assists":2,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"fabris-10","name":"Samuel Fabris","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":19,"appearances":18,"goals":1,"assists":1,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"gregoire-10","name":"Christophe Grégoire","position":"LM","alternativePositions":["CM"],"nationality":"BEL","age":30,"appearances":22,"goals":2,"assists":3,"marketValue":600000,"internationalCaps":2,"awards":[],"overall":66},
+    {"id":"losada-10","name":"Hernán Losada","position":"CAM","alternativePositions":["CM"],"nationality":"ARG","age":28,"appearances":26,"goals":6,"assists":4,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"kaya-10","name":"Onur Kaya","position":"CAM","alternativePositions":["CM"],"nationality":"BEL","age":24,"appearances":22,"goals":4,"assists":3,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"kahlon-10","name":"Tamir Kahlon","position":"LW","alternativePositions":["LM"],"nationality":"ISR","age":22,"appearances":20,"goals":3,"assists":3,"marketValue":600000,"internationalCaps":2,"awards":[],"overall":66},
+    {"id":"cordaro-10","name":"Alessandro Cordaro","position":"RW","alternativePositions":["LW","CAM"],"nationality":"BEL","age":24,"appearances":22,"goals":4,"assists":3,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"olufade-10","name":"Adékambi Olufadé","position":"RW","alternativePositions":["ST"],"nationality":"TGO","age":30,"appearances":18,"goals":3,"assists":2,"marketValue":300000,"internationalCaps":35,"awards":[],"overall":66},
+    {"id":"thereau-10","name":"Cyril Théréau","position":"ST","nationality":"FRA","age":27,"appearances":26,"goals":9,"assists":2,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"biton-10","name":"Dudu Biton","position":"ST","nationality":"ISR","age":22,"appearances":22,"goals":7,"assists":2,"marketValue":750000,"internationalCaps":4,"awards":[],"overall":68}
+  ]
+}

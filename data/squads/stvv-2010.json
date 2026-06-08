@@ -1,0 +1,25 @@
+{
+  "team": "Sint-Truidense VV",
+  "teamId": "stvv",
+  "season": "2010-11",
+  "year": 2010,
+  "players": [
+    {"id":"castro-b-10","name":"Bram Castro","position":"GK","nationality":"BEL","age":27,"appearances":24,"goals":0,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"van-der-jeugt-10","name":"Sven Van Der Jeugt","position":"GK","nationality":"BEL","age":29,"appearances":12,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"odoi-10","name":"Denis Odoi","position":"CB","alternativePositions":["RB"],"nationality":"BEL","age":22,"appearances":26,"goals":1,"assists":2,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":70},
+    {"id":"euvrard-10","name":"Vincent Euvrard","position":"CB","nationality":"BEL","age":28,"appearances":24,"goals":1,"assists":0,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"buysens-10","name":"Ludovic Buysens","position":"CB","nationality":"BEL","age":24,"appearances":22,"goals":1,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"kotysch-10","name":"Sascha Kotysch","position":"CB","nationality":"GER","age":21,"appearances":20,"goals":0,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"rymenants-10","name":"Yannick Rymenants","position":"LB","alternativePositions":["LM"],"nationality":"BEL","age":21,"appearances":22,"goals":0,"assists":2,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"wagemakers-10","name":"Marc Wagemakers","position":"RB","alternativePositions":["RM"],"nationality":"BEL","age":32,"appearances":20,"goals":0,"assists":1,"marketValue":200000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"camara-p-10","name":"Pape Camara","position":"CDM","alternativePositions":["CM"],"nationality":"SEN","age":18,"appearances":22,"goals":1,"assists":2,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"delorge-10","name":"Peter Delorge","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":30,"appearances":20,"goals":1,"assists":1,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"deferm-10","name":"Giel Deferm","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":22,"appearances":18,"goals":1,"assists":1,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"mennes-10","name":"Wim Mennes","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":33,"appearances":16,"goals":1,"assists":1,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"schouterden-10","name":"Nils Schouterden","position":"LM","alternativePositions":["LB","LW"],"nationality":"BEL","age":21,"appearances":24,"goals":3,"assists":3,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"christ-10","name":"Grégory Christ","position":"LM","alternativePositions":["CM"],"nationality":"FRA","age":27,"appearances":20,"goals":2,"assists":2,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"dufer-10","name":"Gregory Dufer","position":"RW","alternativePositions":["LW","CAM"],"nationality":"BEL","age":28,"appearances":22,"goals":4,"assists":3,"marketValue":700000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"sidibe-10","name":"Ibrahima Sidibé","position":"ST","nationality":"SEN","age":29,"appearances":22,"goals":7,"assists":2,"marketValue":800000,"internationalCaps":10,"awards":[],"overall":68},
+    {"id":"tisza-10","name":"Tibor Tisza","position":"ST","nationality":"HUN","age":25,"appearances":18,"goals":5,"assists":2,"marketValue":400000,"internationalCaps":4,"awards":[],"overall":66}
+  ]
+}

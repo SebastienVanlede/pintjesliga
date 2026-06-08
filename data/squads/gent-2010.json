@@ -1,0 +1,25 @@
+{
+  "team": "AA Gent",
+  "teamId": "gent",
+  "season": "2010-11",
+  "year": 2010,
+  "players": [
+    {"id":"jorgacevic-10","name":"Bojan Jorgačević","position":"GK","nationality":"SRB","age":28,"appearances":26,"goals":0,"assists":0,"marketValue":2500000,"internationalCaps":2,"awards":[],"overall":71},
+    {"id":"boeckx-10","name":"Frank Boeckx","position":"GK","nationality":"BEL","age":23,"appearances":10,"goals":0,"assists":0,"marketValue":300000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"suler-10","name":"Marko Šuler","position":"CB","nationality":"SVN","age":27,"appearances":26,"goals":1,"assists":0,"marketValue":2000000,"internationalCaps":30,"awards":[],"overall":70},
+    {"id":"wils-s-10","name":"Stef Wils","position":"CB","nationality":"BEL","age":27,"appearances":24,"goals":1,"assists":0,"marketValue":1400000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"duarte-a-10","name":"Adriano Duarte","position":"CB","nationality":"BRA","age":30,"appearances":18,"goals":1,"assists":0,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"ba-a-10","name":"Alpha Ba","position":"CB","nationality":"SEN","age":20,"appearances":14,"goals":0,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"hanstveit-10","name":"Erlend Hanstveit","position":"LB","alternativePositions":["LM"],"nationality":"NOR","age":29,"appearances":22,"goals":0,"assists":2,"marketValue":700000,"internationalCaps":4,"awards":[],"overall":67},
+    {"id":"wallace-10","name":"Wallace","position":"LB","alternativePositions":["LM"],"nationality":"BRA","age":23,"appearances":16,"goals":0,"assists":1,"marketValue":1000000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"baric-10","name":"Mario Barić","position":"RB","alternativePositions":["CB"],"nationality":"CRO","age":25,"appearances":24,"goals":0,"assists":2,"marketValue":800000,"internationalCaps":2,"awards":[],"overall":67},
+    {"id":"thijs-10","name":"Bernd Thijs","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":32,"appearances":22,"goals":1,"assists":2,"marketValue":850000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"grondin-10","name":"Christophe Grondin","position":"CDM","alternativePositions":["CM"],"nationality":"FRA","age":26,"appearances":20,"goals":1,"assists":1,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"smolders-10","name":"Tim Smolders","position":"CM","alternativePositions":["CDM"],"nationality":"BEL","age":29,"appearances":24,"goals":2,"assists":2,"marketValue":1500000,"internationalCaps":0,"awards":[],"overall":69},
+    {"id":"lepoint-10","name":"Christophe Lepoint","position":"CM","alternativePositions":["CDM","CAM"],"nationality":"BEL","age":25,"appearances":22,"goals":3,"assists":3,"marketValue":1500000,"internationalCaps":2,"awards":[],"overall":70},
+    {"id":"de-smet-10","name":"Stijn De Smet","position":"CAM","alternativePositions":["CM","RW"],"nationality":"BEL","age":25,"appearances":22,"goals":4,"assists":3,"marketValue":1200000,"internationalCaps":0,"awards":[],"overall":68},
+    {"id":"el-ghanassy-10","name":"Yassine El Ghanassy","position":"LW","alternativePositions":["RW","CAM"],"nationality":"BEL","age":19,"appearances":22,"goals":4,"assists":4,"marketValue":3500000,"internationalCaps":0,"awards":[],"overall":71},
+    {"id":"ljubijankic-10","name":"Zlatan Ljubijankić","position":"ST","nationality":"SVN","age":26,"appearances":24,"goals":8,"assists":2,"marketValue":2000000,"internationalCaps":28,"awards":[],"overall":70},
+    {"id":"raman-10","name":"Benito Raman","position":"ST","alternativePositions":["LW","RW"],"nationality":"BEL","age":15,"appearances":6,"goals":1,"assists":0,"marketValue":250000,"internationalCaps":0,"awards":[],"overall":65}
+  ]
+}

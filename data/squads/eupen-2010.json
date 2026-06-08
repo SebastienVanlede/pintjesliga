@@ -1,0 +1,25 @@
+{
+  "team": "KAS Eupen",
+  "teamId": "eupen",
+  "season": "2010-11",
+  "year": 2010,
+  "players": [
+    {"id":"werner-eup-10","name":"Olivier Werner","position":"GK","nationality":"BEL","age":25,"appearances":24,"goals":0,"assists":0,"marketValue":750000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"petr-r-10","name":"Radek Petr","position":"GK","nationality":"CZE","age":23,"appearances":12,"goals":0,"assists":0,"marketValue":350000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"zukanovic-10","name":"Ervin Zukanović","position":"CB","nationality":"BIH","age":23,"appearances":26,"goals":1,"assists":0,"marketValue":700000,"internationalCaps":4,"awards":[],"overall":67},
+    {"id":"diniz-10","name":"Marcus Diniz","position":"CB","nationality":"BRA","age":22,"appearances":22,"goals":1,"assists":0,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"panizzolo-10","name":"Daniel Panizzolo","position":"CB","nationality":"SUI","age":24,"appearances":20,"goals":1,"assists":0,"marketValue":400000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"kocabas-10","name":"Fazli Kocabas","position":"CB","nationality":"BEL","age":20,"appearances":18,"goals":0,"assists":0,"marketValue":350000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"desenclos-10","name":"Nicolas Desenclos","position":"CB","nationality":"FRA","age":21,"appearances":14,"goals":0,"assists":0,"marketValue":150000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"iandoli-10","name":"Alessandro Iandoli","position":"LB","alternativePositions":["LM"],"nationality":"SUI","age":26,"appearances":24,"goals":0,"assists":2,"marketValue":800000,"internationalCaps":0,"awards":[],"overall":67},
+    {"id":"camara-i-10","name":"Ibrahima Camara","position":"LB","alternativePositions":["LM"],"nationality":"GIN","age":25,"appearances":18,"goals":0,"assists":1,"marketValue":250000,"internationalCaps":2,"awards":[],"overall":64},
+    {"id":"galego-10","name":"Alex Galego","position":"RB","alternativePositions":["RM"],"nationality":"BRA","age":21,"appearances":22,"goals":0,"assists":2,"marketValue":350000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"vinamont-10","name":"Olivier Vinamont","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":24,"appearances":22,"goals":1,"assists":1,"marketValue":350000,"internationalCaps":0,"awards":[],"overall":64},
+    {"id":"colinet-10","name":"Jérôme Colinet","position":"CDM","alternativePositions":["CM"],"nationality":"BEL","age":27,"appearances":20,"goals":1,"assists":1,"marketValue":250000,"internationalCaps":0,"awards":[],"overall":63},
+    {"id":"maaroufi-10","name":"Ibrahim Maaroufi","position":"CDM","alternativePositions":["CM"],"nationality":"MAR","age":21,"appearances":18,"goals":1,"assists":1,"marketValue":200000,"internationalCaps":2,"awards":[],"overall":63},
+    {"id":"saglik-10","name":"Enes Sağlık","position":"CM","alternativePositions":["CAM"],"nationality":"BEL","age":18,"appearances":20,"goals":2,"assists":2,"marketValue":600000,"internationalCaps":0,"awards":[],"overall":66},
+    {"id":"jadid-10","name":"Abderrazzak Jadid","position":"CM","alternativePositions":["CAM"],"nationality":"MAR","age":27,"appearances":18,"goals":2,"assists":2,"marketValue":500000,"internationalCaps":0,"awards":[],"overall":65},
+    {"id":"milicevic-10","name":"Danijel Milićević","position":"CAM","alternativePositions":["CM","RW"],"nationality":"BIH","age":24,"appearances":22,"goals":5,"assists":4,"marketValue":600000,"internationalCaps":2,"awards":[],"overall":68},
+    {"id":"lepiller-10","name":"Matthias Lepiller","position":"ST","nationality":"FRA","age":22,"appearances":22,"goals":7,"assists":2,"marketValue":650000,"internationalCaps":0,"awards":[],"overall":67}
+  ]
+}
