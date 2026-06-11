@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { Bebas_Neue, DM_Sans } from 'next/font/google';
-import { Analytics } from '@vercel/analytics/next';
+import Analytics from '@/components/Analytics';
 import Nav from '@/components/Nav';
 import ThemeApplier from '@/components/ThemeApplier';
 import './globals.css';
